@@ -4,11 +4,11 @@ database.sqlite3
 
 db.sqlite3
 
-uploaded_files/
+# No media and static files
+media/
+static/
 
 *.pyc
 google-analytics.js
 
 
-# Hide uploads folder
-podcastquotes/static/media
