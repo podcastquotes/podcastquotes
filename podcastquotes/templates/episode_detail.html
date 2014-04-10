@@ -11,7 +11,7 @@
   <div class="pq-podcast-header">
 
         <div class="pq-podcast-profile-picture">
-            <img src="../../static/img/The_Drunken_Taoist.jpg" />
+            <img src="/media/{{ episode.podcast.image }}" />
         </div><!-- /.pq-podcast-profile-picture -->
         
           <div class="pq-podcast-header-button color-share">
@@ -60,12 +60,10 @@
       <div class="clearfix">
       </div>
 
-
-  
   <div class="pq-episode-header">
       
       <div class="pq-episode-profile-picture">
-          <img class="img-responsive" src="/static/img/The_Drunken_Taoist_episode_26.jpg" />
+          <img class="img-responsive" src="/media/{{ episode.image }}" />
       </div><!-- /.pq-episode-profile-picture -->
 
       <div class="pq-episode-header-button bg-yellow">
@@ -184,7 +182,7 @@
   </div><!-- /.visible-xs .hidden-sm .hidden-md .hidden-lg -->
   
   {% for quote in episode.all_episode_quotes %}
-
+  
   <div class="pq-quote hidden-xs visible-sm visible-md visible-lg">
     
     <div class="pq-quote-votes">
@@ -202,6 +200,8 @@
       </div><!-- /.pq-quote-downvote-button -->
     
     </div><!-- /.pq-quote-votes -->
+    
+    {{ quote.converted_time_begins }}
     
     <div class="pq-quote-big-box">
       
