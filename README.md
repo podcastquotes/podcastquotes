@@ -10,8 +10,9 @@ Development Install
 ### Obtain dependencies
 ```pip install --allow-all-external -r requirements.txt```
 
-### Use podcastquotes settings skeleton
+### Use podcastquotes settings and site_settings skeleton
 ```cp ./podcastquotes/settings.py.skel ./podcastquotes/settings.py```
+```cp ./podcastquotes/site_settings.py.skel ./podcastquotes/site_settings.py```
 
 ### Init database
 ```./manage.py syncdb```
