@@ -6,7 +6,7 @@
 
   <div class="pq-title">
     <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-        <option value="/" selected="selected">All</option>
+        <option value="/" selected="selected">All Podcasts</option>
         <option value="/">My Podcasts</option>
         {% for podcast in podcasts %}
             <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
@@ -89,14 +89,6 @@
     <div class="pq-quote-profile-picture">
       <img src="/media/{{ quote.episode.podcast.image }}" />
     </div><!-- /.pq-quote-profile-picture -->
-   
-      <div class="pq-quote-upper-button color-follow">
-        Follow
-      </div><!-- /.pq-quote-upper-button -->
-    
-    <div class="pq-quote-date">
-      01/07/13 
-    </div>
     
     <div class="pq-quote-header-inside">
     
@@ -105,14 +97,24 @@
               {{ quote.episode.podcast.title }}
           </a>
       </div><!-- /.pq-quote-podcast-name -->
-      
+    
+    </div><!-- /.pq-quote-header-inside -->
+    
+    <div class="pq-quote-header-row">
+    
+    <div class="pq-quote-date-home">
+      01/07/13 
+    </div>
+    
+    <div class="pq-quote-header-inside">
       <div class="pq-quote-podcast-episode">
           <a href="/episodes/{{ quote.episode.id }}">
               {{ quote.episode.title }}
           </a>
       </div><!-- /.pq-quote-podcast-episode -->
-    
     </div><!-- /.pq-quote-header-inside -->
+    
+    </div>
     
     <hr style="clear:left;" />
     
@@ -304,7 +306,7 @@
       </div><!-- /.pq-xs-quote-bottom-button -->
       
       <div class="pq-xs-quote-time">
-        Aired:01/07/13 - Starts: 1:23:45
+        Aired: {{ quote.episode.publication_date }} - Starts: {{ quote.converted_time_begins }}
       </div>
       
       <div class="clearfix">

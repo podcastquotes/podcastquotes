@@ -1,6 +1,6 @@
 from django.db import models
 from time import time
-from datetime import date, timedelta
+from datetime import date
 from django.core.urlresolvers import reverse
 
 # This doesn't belong here
@@ -38,6 +38,9 @@ class Episode(models.Model):
     # duration = what type of field for length of episode data? needs to match up with format for quote.time_quote_begins and quote.time_quote_ends
     # keywords = ...
     
+    def all_episodes(self):
+       return Episode.objects.filter(podcast__id=self.id)
+    
     def all_episode_quotes(self):
        return Quote.objects.filter(episode__id=self.id)
     
@@ -72,6 +75,18 @@ class Quote(models.Model):
     # submitted_by = ...
     # vote = ...
     
+    def converted_time_begins(self):
+        m, s = divmod(self.time_quote_begins, 60)
+        h, m = divmod(m, 60)
+        print "%d:%02d:%02d" % (h, m, s)
+        return "%d:%02d:%02d" % (h, m, s)
+        
+    def converted_time_ends(self):
+        m, s = divmod(self.time_quote_ends, 60)
+        h, m = divmod(m, 60)
+        print "%d:%02d:%02d" % (h, m, s)
+        return "%d:%02d:%02d" % (h, m, s)
+        
     def get_absolute_url(self):
         return reverse('home')
     

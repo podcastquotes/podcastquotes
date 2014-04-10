@@ -205,7 +205,7 @@ body {
 }
 
 .pq-breadcrumbs {
-    margin:10px 0 25px 0;
+    margin:5px 0 25px 0;
 }
 
 .pq-share {
@@ -223,7 +223,7 @@ body {
 
 .pq-nav-active {
     display:inline-block;
-    margin:5px 10px 0 0;
+    margin:10px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #111;
     color:#B25900;
@@ -234,7 +234,7 @@ body {
 .pq-nav {
     display:inline-block;
     background-color:#ddd;
-    margin:5px 10px 0 0;
+    margin:10px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #111;
     color:#111;
@@ -324,7 +324,7 @@ body {
 @media (min-width:768px) and (max-width:991px) {
     .pq-votes-shown {
         float:right;
-        margin:9px 5px 0 0;
+        margin:14px 5px 0 0;
         font-size:18px;
         font-weight:bold;
         color:#111;
@@ -334,7 +334,7 @@ body {
 @media (min-width:992px) {
     .pq-votes-shown {
         float:right;
-        margin:9px 15px 0 0;
+        margin:14px 15px 0 0;
         font-size:18px;
         font-weight:bold;
         color:#111;
@@ -395,23 +395,21 @@ body {
 
 @media (max-width:991px) {
     .pq-podcast-header {
-        margin:0 0 25px 0;
-        padding:25px 20px 20px 15px;
-        border:1px dotted #444;
+        margin:0 20px 0 0;
+        padding:15x 0 30px 0;
     }
 }
 
 @media (min-width:992px) {
     .pq-podcast-header {
-        margin:0 15px 25px 0;
-        padding:20px 20px 20px 15px;
-        border:1px dotted #444;
+        margin:0 20px 0 0;
+        padding:15px 0 30px 0;
     }
 }
 
 .pq-podcast-title {
     float:left;
-    margin:0 15px 5px 5px;
+    margin:0 0 15px 5px;
     font-size:22px;
     font-weight:bold;
     color:#111;
@@ -435,21 +433,21 @@ body {
 }
 
 .pq-podcast-profile-picture img {
-    height:130px;
-    width:130px;
+    height:150px;
+    width:150px;
 }
 
 .pq-podcast-header-info-left {
     clear:left;
     overflow:hidden;
-    margin:0 0 5px 5px;
+    margin:10px 5px;
     font-size:16px;
 }
 
 .pq-podcast-header-info-right {
     clear:right;
     float:right;
-    margin:0 0 5px 0;
+    margin:0 5px;
     font-size:16px;
 }
 
@@ -467,16 +465,17 @@ body {
 
 @media (max-width:991px) {
     .pq-episode-header {
-        margin:15px 0 0 0;
-        padding:20px 0 0 0;
+        margin:0 20px 0 0;
+        padding:30px 0;
+        border-top:1px dotted #ddd;
     }
 }
 
 @media (min-width:992px) {
     .pq-episode-header {
-        margin:15px 0 0 0;
-        padding:20px 0 0 0;
-        border-top:1px dashed #888;
+        margin:0 20px 0 0;
+        padding:30px 0;
+        border-top:1px dotted #ddd;
     }
 }
 
@@ -490,7 +489,7 @@ body {
 .pq-episode-profile-picture {
     float:left;
     margin:0 5px;
-    max-width:130px;
+    width:150px;
 }
 
 .pq-episode-profile-picture img {
@@ -498,8 +497,9 @@ body {
 
 .pq-episode-title {
     float:left;
-    margin:-10px 15px 10px 5px;
-    font-size:20px;
+    margin:-5px 0 15px 5px;
+    font-size:22px;
+    font-weight:bold;
     color:#111;
 }
 
@@ -511,14 +511,14 @@ body {
 .pq-episode-header-info-left {
     clear:left;
     overflow:hidden;
-    margin:0 0 5px 5px;
+    margin:10px 5px;
     font-size:16px;
 }
 
 .pq-episode-header-info-right {
-    clear:both;
+    clear:left;
     float:right;
-    margin:0 15px 5px 0;
+    margin:0 5px;
     font-size:16px;
 }
 
@@ -589,17 +589,17 @@ body {
 
 @media (max-width:991px) {
     .pq-quote {
-        margin:30px 0 0 0;
-        padding:15px;
-        border:1px dotted #444;
+        margin:20px 15px 40px 0;
+        padding:20px 15px 25px 15px;
+        border:1px dotted #aaa;
     }
 }
 
 @media (min-width:992px) {
     .pq-quote {
-        margin:30px 15px 0 0;
-        padding:20px 15px;
-        border:1px dotted #444;
+        margin:20px 15px 40px 0;
+        padding:20px 15px 25px 15px;
+        border:1px dotted #aaa;
     }
 }
 
@@ -660,11 +660,12 @@ body {
 
 .pq-quote-votes {
     float:left;
-    margin:-5px 44px -5px 21px;
+    margin:-5px 44px -5px 6px;
     height:100%;
 }
 
 .pq-quote-upvote-button {
+    margin:2px 0 0 0;
     font-size:36px;
     color:#222;
 }
@@ -730,9 +731,17 @@ body {
     color:#444;
 }
 
+.pq-quote-date-home {
+    clear:right;
+    float:right;
+    margin:3px 0 0 0;
+    font-size:16px;
+    color:#444;
+}
+
 .pq-quote-bottom {
     clear:right;
-    margin:0 0 0 26px;
+    margin:0 0 0 12px;
 }
 
 .pq-quote-bottom-button {
@@ -751,9 +760,9 @@ body {
 }
 
 .pq-xs-quote {
-    margin:25px 0 0 0;
-    padding:10px 15px;
-    border:1px solid #777;
+    margin:20px 0 40px 0;
+    padding:25px 15px 25px 15px;
+    border:1px dotted #aaa;
 }
 
 .pq-xs-quote-profile-picture {
@@ -772,7 +781,7 @@ body {
 
 .pq-xs-quote-podcast-name {
     float:left;
-    margin:-2px 0 0 0;
+    margin:-2px 0 5px 0;
     font-size:20px;
     font-weight:bold;
 }
@@ -780,7 +789,6 @@ body {
 .pq-xs-quote-podcast-episode {
     float:left;
     clear:left;
-    margin:5px 0 0 0;
     font-size:16px;
 }
 
@@ -855,13 +863,13 @@ body {
     margin:5px 20px 15px 0;
 }
 
-@media (max-width:678px) {
+@media (max-width:699px) {
     .pq-xs-quote-time {
         display:none;
     }
 }
 
-@media (min-width:679px) {
+@media (min-width:700px) {
     .pq-xs-quote-time {
         font-size:14px;
         color:#333;
@@ -1015,7 +1023,11 @@ body {
         border-left:1px solid #555;
     }
 }
-    
+
+.pq-footer a {
+    color:#111;
+}
+
 @media (max-width:991px) {
     .pq-footer-brand {
         float:left;

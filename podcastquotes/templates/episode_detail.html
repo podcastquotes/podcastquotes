@@ -32,7 +32,14 @@
         <div class="pq-podcast-header-box">
         
             <div class="pq-podcast-title">
-                {{ episode.podcast.title }} <i class="fa fa-chevron-down"></i>
+                <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+                    <option value="/podcasts/{{ episode.podcast.id }}" selected="selected">{{ episode.podcast.title }}</option>
+                    <option value="/">All Podcasts</option>
+                    <option value="/">My Podcasts</option>
+                    {% for podcast in episode.podcast.all_podcasts %}
+                        <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+                    {% endfor %}
+                </select>
             </div><!-- /.pq-title -->
               
             <div class="pq-podcast-social-media">
@@ -59,16 +66,21 @@
       
       <div class="clearfix">
       </div>
-
-  <div class="pq-episode-header">
+  
+  </div><!-- /.pq-podcast-header -->
+  
+    <div class="pq-episode-header">
       
       <div class="pq-episode-profile-picture">
           <img class="img-responsive" src="/media/{{ episode.image }}" />
       </div><!-- /.pq-episode-profile-picture -->
-
-      <div class="pq-episode-header-button bg-yellow">
-          Episode
-      </div><!-- /.pq-episode-header-button -->
+      
+      <a href="{{ episode.episode_link }}">
+          <div class="pq-episode-header-button bg-yellow">
+              Episode
+          </div><!-- /.pq-episode-header-button -->
+      </a>
+          
       
       <div class="pq-episode-clip">
           <i class="fa fa-volume-up"></i>
@@ -81,9 +93,15 @@
       <div class="pq-episode-header-box">
           
               <div class="pq-episode-title">
-                  {{ episode.title }} <i class="fa fa-chevron-down"></i>
+                  <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+                      <option value="/episodes/{{ episode.id }}" selected="selected">{{ episode.title }}</option>
+                      <option value="/podcasts/{{ episode.podcast.id }}">All Podcasts</option>
+                      {% for episode in episode.all_episodes %}
+                          <option value="/episodes/{{ episode.id }}">{{ episode.title }}</option>
+                      {% endfor %}
+                  </select>
               </div><!-- /.pq-episode-title -->
-          
+
               <div class="pq-episode-header-info-right">
                   <strong>Length:</strong> 2:59:30
               </div><!-- /.pq-episode-header-info -->
@@ -110,8 +128,6 @@
       </div>
       
   </div><!-- /.pq-episode-header -->
-  
-  </div><!-- /.pq-podcast-header -->
   
   <div class="pq-votes-shown">
       Listener Votes <i class="fa fa-chevron-down"></i>
@@ -201,14 +217,14 @@
     
     </div><!-- /.pq-quote-votes -->
     
-    {{ quote.converted_time_begins }}
+    
     
     <div class="pq-quote-big-box">
       
       <div class="pq-quote-clip">
       
         <div class="pq-quote-clip-time">
-            Starts: 1:23:45 
+            Starts: {{ quote.converted_time_begins }} 
         </div>
  
         <div class="pq-quote-clip-buttons">
@@ -348,7 +364,7 @@
       </div><!-- /.pq-xs-quote-bottom-button -->
       
       <div class="pq-xs-quote-time">
-        Aired:01/07/13 - Starts: 1:23:45
+        Starts: {{ quote.converted_time_begins }}
       </div>
       
       <div class="clearfix">
