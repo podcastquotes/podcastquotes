@@ -142,16 +142,15 @@
                 
                 <hr />
 
-                <div class="pq-menu-options">
-                
-                  <div class="pq-menu-option">
-                    {{ all_podcasts }}
-                    <a href="">{% for podcast in all_podcasts %}
-                    {{ podcast.name }}{% endfor %}</a>
-                    
-                  </div>
-
-                </div><!-- /.pq-menu-options -->
+        <div class="pq-menu-options">
+         {% for podcast in podcasts %}        
+          <div class="pq-menu-option">
+            <a href="/podcasts/{{ podcast.id}}">
+              - {{ podcast.title }}
+            </a>
+          </div><!-- /.pq-menu-option -->
+         {% endfor %}
+        </div>
                 
               </div><!-- /.pq-menu -->
               

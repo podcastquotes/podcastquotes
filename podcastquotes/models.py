@@ -35,6 +35,8 @@ class Episode(models.Model):
     description = models.TextField(blank=True)
     episode_link = models.URLField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    video_link = models.URLField(blank=True) 
+    audio_link = models.URLField(blank=True)
     # guests = ...
     # duration = what type of field for length of episode data? needs to match up with format for quote.time_quote_begins and quote.time_quote_ends
     # keywords = ...

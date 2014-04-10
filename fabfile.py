@@ -15,11 +15,12 @@ env.use_ssh_config = True
 
 
 # SERVER VALUES
-REPO_DIR = None
-APP_DIR = None
-DJANGO_PROJECT = None
-VIRTUALENV = None
-SITE_SETTINGS = None
+# SERVER VALUES
+REPO_DIR = '/home/oceancron/git/podcastquotes'
+APP_DIR = '/home/oceancron/webapps/podcastquotes'
+DJANGO_PROJECT = APP_DIR+'/django_project'
+VIRTUALENV = APP_DIR+'/venv'
+SITE_SETTINGS = APP_DIR + '/site_settings.py'
 
 if None in [REPO_DIR, APP_DIR, DJANGO_PROJECT, VIRTUALENV, 
     SITE_SETTINGS]:

@@ -40,6 +40,11 @@ class PodcastUpdateView(UpdateView):
     model = Podcast
     form_class = PodcastForm
     template_name = 'podcast_form.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(PodcastUpdateView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        return context
 
 class PodcastDeleteView(DeleteView):
     model = Podcast
@@ -67,6 +72,11 @@ class EpisodeUpdateView(UpdateView):
     model = Episode
     form_class = EpisodeForm
     template_name = 'episode_form.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(EpisodeUpdateView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        return context
 
 class EpisodeDeleteView(DeleteView):
     model = Episode
