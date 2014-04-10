@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
+
 class Podcast(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)

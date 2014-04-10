@@ -53,6 +53,11 @@ class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = "episode"
 
+    def get_context_data(self, **kwargs):
+        context = super(EpisodeDetailView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        return context
+
 class EpisodeCreateView(CreateView):
     model = Episode
     form_class = EpisodeCreateForm

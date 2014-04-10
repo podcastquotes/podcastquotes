@@ -87,8 +87,6 @@
         
         {% endblock %}<!-- / block extraspace -->
         
-        {% block side %}
-
         <div class="col-md-3">
           <div class="row">
             <div class="col-sm-6 col-md-12">
@@ -104,6 +102,8 @@
             </div><!-- /.col-sm-6 -->
             
           </div><!-- /.row -->
+        
+        {% block advertisement %}
           
           <div class="row">
             <div class="col-sm-6 col-md-12">
@@ -113,6 +113,13 @@
                 donate button
               </div><!-- /.pq-advertisement-or-whatever -->
             </div><!-- /.col-sm-6 .col-md-12 -->
+          </div><!-- /.row -->
+          
+        {% endblock %}
+        
+        {% block menu %}
+          
+          <div class="row">
           
             <div class="col-sm-6 col-md-12">
             
@@ -127,7 +134,7 @@
                 </div><!-- /.pq-menu-advanced -->
 
                 <div class="pq-menu-pulldown">
-                  Categories <i class="fa fa-chevron-down"></i>
+                  All Podcasts <i class="fa fa-chevron-down"></i>
                 </div><!-- /.pq-menu-pulldown -->
                 
                 <div class="clearfix">
@@ -136,25 +143,14 @@
                 <hr />
 
                 <div class="pq-menu-options">
-                  Bill Burr's Monday Morning Podcast<br />
-                  The Drunken Taoist<br />
-                  The Duncan Trussell Family Hour<br />
-                  The Greg Fitzsimmons Experience<br />
-                  Harmontown<br />
-                  The Joe Rogan Experience<br />
-                  Bill Burr's Monday Morning Podcast<br />
-                  The Drunken Taoist<br />
-                  The Duncan Trussell Family Hour<br />
-                  The Greg Fitzsimmons Experience<br />
-                  Harmontown<br />
-                  The Joe Rogan Experience<br />
-                  Bill Burr's Monday Morning Podcast<br />
-                  The Drunken Taoist<br />
-                  The Duncan Trussell Family Hour<br />
-                  The Greg Fitzsimmons Experience<br />
-                  Harmontown<br />
-                  The Joe Rogan Experience<br />
-                  etc.
+                
+                  <div class="pq-menu-option">
+                    {{ all_podcasts }}
+                    <a href="">{% for podcast in all_podcasts %}
+                    {{ podcast.name }}{% endfor %}</a>
+                    
+                  </div>
+
                 </div><!-- /.pq-menu-options -->
                 
               </div><!-- /.pq-menu -->
@@ -162,15 +158,15 @@
             </div><!-- /.col-sm-6 .col-md-12 -->
 
           </div><!-- /.row -->
-          
-        </div><!-- /.col-md-3 -->
-        
-        {% endblock %}<!-- / block side -->
 
-      </div><!-- /.row -->
+        {% endblock %}<!-- / block menu -->
+  
+        </div><!-- /.col-md-3 -->
+
+    </div><!-- /.row -->
 
   </div><!-- /.pq-container -->
-
+  
   {% block footer %}
   
   <div class="pq-footer">

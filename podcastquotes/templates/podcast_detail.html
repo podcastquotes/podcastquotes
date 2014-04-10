@@ -45,7 +45,7 @@
                     <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
                 </div><!-- /.pq-podcast-social-media -->
               
-                  <div class="pq-podcast-header-info-right">
+                  <div class="pq-podcast-header-info-right-1">
                       2,345 listeners
                   </div><!-- /.pq-podcast-header-info -->
                   
@@ -53,7 +53,7 @@
                       <strong>Category:</strong> Comedy
                   </div><!-- /.pq-podcast-header-info -->
                   
-                  <div class="pq-podcast-header-info-right">
+                  <div class="pq-podcast-header-info-right-2">
                       <a href="/podcasts/{{ podcast.id }}">{{ podcast.all_podcast_quotes.count }} quotes</a>
                   </div><!-- /.pq-podcast-header-info -->
                   
@@ -142,7 +142,7 @@
   <div class="pq-quote hidden-xs visible-sm visible-md visible-lg">
   
     <div class="pq-quote-date">
-        01/07/13 
+        <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
     </div>
     
     <div class="pq-quote-header-inside">
@@ -350,3 +350,79 @@
 </div><!-- /.col-md-9 -->
 
 {% endblock %}<!-- / block main -->
+
+{% block menu %}
+  
+  <div class="row">
+  
+    <div class="col-sm-6 col-md-12">
+    
+      <div class="pq-menu">
+        
+        <div class="pq-menu-title">
+          Podcasts
+        </div><!-- /.pq-menu-title -->
+        
+        <div class="pq-menu-advanced">
+          advanced
+        </div><!-- /.pq-menu-advanced -->
+
+        <div class="pq-menu-pulldown">
+          All Podcasts <i class="fa fa-chevron-down"></i>
+        </div><!-- /.pq-menu-pulldown -->
+        
+        <div class="clearfix">
+        </div>
+        
+        <hr />
+
+        <div class="pq-menu-options">
+         {% for podcast in podcasts %}        
+          <div class="pq-menu-option">
+            <a href="/podcasts/{{ podcast.id}}">
+              - {{ podcast.title }}
+            </a>
+          </div><!-- /.pq-menu-option -->
+         {% endfor %}
+        </div><!-- /.pq-menu-options -->
+
+        </div><!-- /.pq-menu -->
+      
+      <div class="pq-menu">
+        
+        <div class="pq-menu-title">
+          Episodes
+        </div><!-- /.pq-menu-title -->
+        
+        <div class="pq-menu-advanced">
+          advanced
+        </div><!-- /.pq-menu-advanced -->
+
+        <div class="pq-menu-pulldown">
+          Chronological <i class="fa fa-chevron-down"></i>
+        </div><!-- /.pq-menu-pulldown -->
+        
+        <div class="clearfix">
+        </div>
+        
+        <hr />
+
+        <div class="pq-menu-options">
+         {% for episode in podcast.episode_set.all %}        
+          <div class="pq-menu-option">
+            <a href="/episodes/{{ episode.id}}">
+              - {{ episode.title }}
+            </a>
+          </div><!-- /.pq-menu-option -->
+         {% endfor %}
+        </div>
+
+        </div><!-- /.pq-menu-options -->
+        
+      </div><!-- /.pq-menu -->
+      
+    </div><!-- /.col-sm-6 .col-md-12 -->
+
+  </div><!-- /.row -->
+
+{% endblock %}<!-- / block menu -->

@@ -8,6 +8,7 @@ db.sqlite3
 # No media and static files
 media/
 static/
+uploaded_files/
 
 *.pyc
 google-analytics.js
