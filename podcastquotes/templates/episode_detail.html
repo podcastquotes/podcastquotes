@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+
+{% block main %}
+    
+<div class="col-md-9">
+
+  <div class="pq-breadcrumbs">
+      <a href="/">Home</a> > <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.title }}</a> > {{ episode.title }}
+  </div><!-- /.pq-breadcrumbs -->
+  
+  <div class="pq-podcast-header">
+
+        <div class="pq-podcast-profile-picture">
+            <img src="../../static/img/The_Drunken_Taoist.jpg" />
+        </div><!-- /.pq-podcast-profile-picture -->
+        
+          <div class="pq-podcast-header-button color-share">
+              Share
+          </div><!-- /.pq-podcast-headerbutton -->
+          
+          <a href="{{ episode.podcast.donate_url }}">
+              <div class="pq-podcast-header-button color-donate">
+                  Donate
+              </div><!-- /.pq-podcast-headerbutton -->
+          </a>
+          
+          <div class="pq-podcast-header-button color-follow">
+              Follow
+          </div><!-- /.pq-podcast-header-button -->
+          
+        
+        <div class="pq-podcast-header-box">
+        
+            <div class="pq-podcast-title">
+                {{ episode.podcast.title }} <i class="fa fa-chevron-down"></i>
+            </div><!-- /.pq-title -->
+              
+            <div class="pq-podcast-social-media">
+                <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
+            </div><!-- /.pq-podcast-social-media -->
+          
+              <div class="pq-podcast-header-info-right">
+                  2,345 listeners
+              </div><!-- /.pq-podcast-header-info -->
+              
+              <div class="pq-podcast-header-info-left">
+                  <strong>Category:</strong> Comedy
+              </div><!-- /.pq-podcast-header-info -->
+              
+              <div class="pq-podcast-header-info-right">
+                  <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.all_podcast_quotes.count }} quotes</a>
+              </div><!-- /.pq-podcast-header-info -->
+              
+              <div class="pq-podcast-header-info-left">
+                  <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
+              </div><!-- /.pq-podcast-header-info -->
+              
+          </div><!-- /.pq-podcast-header-box -->
+      
+      <div class="clearfix">
+      </div>
+
+
+  
+  <div class="pq-episode-header">
+      
+      <div class="pq-episode-profile-picture">
+          <img class="img-responsive" src="/static/img/The_Drunken_Taoist_episode_26.jpg" />
+      </div><!-- /.pq-episode-profile-picture -->
+
+      <div class="pq-episode-header-button bg-yellow">
+          Episode
+      </div><!-- /.pq-episode-header-button -->
+      
+      <div class="pq-episode-clip">
+          <i class="fa fa-volume-up"></i>
+      </div>
+      
+      <div class="pq-episode-clip">
+          <i class="fa fa-film"></i>
+      </div>
+      
+      <div class="pq-episode-header-box">
+          
+              <div class="pq-episode-title">
+                  {{ episode.title }} <i class="fa fa-chevron-down"></i>
+              </div><!-- /.pq-episode-title -->
+          
+              <div class="pq-episode-header-info-right">
+                  <strong>Length:</strong> 2:59:30
+              </div><!-- /.pq-episode-header-info -->
+              
+              <div class="pq-episode-header-info-left">
+                  <strong>Guest:</strong> Duncan Trussell
+              </div><!-- /.pq-episode-header-info -->
+              
+              <div class="pq-episode-header-info-right">
+                  <a href="/episodes/{{ episode.id }}">{{ episode.quote_set.count }} quotes</a>
+              </div><!-- /.pq-episode-header-info -->
+              
+              <div class="pq-episode-header-info-left">
+                  <strong>Released:</strong> 01/01/2013
+              </div><!-- /.pq-episode-header-info -->
+              
+              <div class="pq-episode-header-info-full">
+                  <strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus metus purus, adipiscing ac tortor sit amet, laoreet sagittis sem. Mauris eu imperdiet urna, in gravida justo.
+              </div><!-- /.pq-episode-header-info -->
+
+      </div><!-- /.pq-episode-header-box -->
+      
+      <div class="clearfix">
+      </div>
+      
+  </div><!-- /.pq-episode-header -->
+  
+  </div><!-- /.pq-podcast-header -->
+  
+  <div class="pq-votes-shown">
+      Listener Votes <i class="fa fa-chevron-down"></i>
+  </div><!-- /.pq-votes-shown -->
+  
+  <div class="hidden-xs visible-sm visible-md visible-lg">
+  
+    <div class="pq-nav-active">
+        hot
+    </div><!-- /.pq-nav-active -->
+
+    <div class="pq-nav">
+        not
+    </div><!-- /.pq-nav -->
+
+    <div class="pq-nav">
+        new
+    </div><!-- /.pq-nav -->
+    
+    <div class="pq-nav">
+       controversial
+    </div><!-- /.pq-nav -->
+    
+    <div class="pq-nav">
+        top
+    </div><!-- /.pq-nav -->
+    
+    <div class="pq-nav pq-nav-disappear-2">
+        bottom
+    </div><!-- /.pq-nav -->
+    
+    <div class="pq-nav pq-nav-disappear-1">
+        stats
+    </div><!-- /.pq-nav -->
+    
+    <div class="pq-nav">
+        more
+    </div><!-- /.pq-nav -->
+    
+  </div><!-- /.hidden-xs .visible-sm .visible-md .visible-lg -->
+  
+  <div class="visible-xs hidden-sm hidden-md hidden-lg pq-xs-navs">
+    
+      <div class="pq-xs-nav-active">
+          hot
+      </div>
+    
+      <div class="pq-xs-nav">
+          not
+      </div>
+      
+      <span class="pq-nav-disappear-4">
+        <div class="pq-xs-nav">
+            new
+        </div>
+      </span>
+      
+      <span class="pq-nav-disappear-3">
+        <div class="pq-xs-nav">
+            top
+        </div>
+      </span>
+      
+      <div class="pq-xs-nav">
+          more
+      </div>
+  
+  </div><!-- /.visible-xs .hidden-sm .hidden-md .hidden-lg -->
+  
+  {% for quote in episode.all_episode_quotes %}
+
+  <div class="pq-quote hidden-xs visible-sm visible-md visible-lg">
+    
+    <div class="pq-quote-votes">
+    
+      <div class="pq-quote-upvote-button">
+          <i class="fa fa-arrow-circle-o-up"></i>
+      </div><!-- /.pq-quote-upvote-button -->
+      
+      <div class="pq-quote-vote-total">
+          123
+      </div><!-- /.pq-quote-vote-total -->
+      
+      <div class="pq-quote-downvote-button">
+        <i class="fa fa-arrow-circle-o-down"></i>
+      </div><!-- /.pq-quote-downvote-button -->
+    
+    </div><!-- /.pq-quote-votes -->
+    
+    <div class="pq-quote-big-box">
+      
+      <div class="pq-quote-clip">
+      
+        <div class="pq-quote-clip-time">
+            Starts: 1:23:45 
+        </div>
+ 
+        <div class="pq-quote-clip-buttons">
+        
+            <div class="pq-quote-clip-button">
+              <i class="fa fa-volume-up"></i>
+            </div><!-- /.pq-quote-clip-button -->
+            
+            <div class="pq-quote-clip-button">
+              <i class="fa fa-film"></i>
+            </div><!-- /.pq-quote-clip-button -->
+            
+            <div class="pq-quote-clip-player">
+            </div><!-- /.pq-quote-clip-player -->
+        
+        </div><!-- /.pq-quote-clip-buttons -->
+      
+      </div><!-- /.pq-quote-clip -->
+      
+      <div class="pq-quote-inside">
+      
+        <div class="pq-quote-text">
+          {{ quote.text }}
+        </div><!-- /.pq-quote-text -->
+        
+      </div><!-- /.pq-quote-inside -->
+      
+      <div class="pq-quote-bottom">
+      
+        <div class="pq-quote-bottom-button">
+          9 comments
+        </div><!-- /.pq-quote-bottom-button -->
+
+        <div class="pq-quote-bottom-button">
+          share
+        </div><!-- /.pq-quote-bottom-button -->
+        
+        <div class="pq-quote-bottom-button">
+          save
+        </div><!-- /.pq-quote-bottom-button -->
+
+        <div class="pq-quote-bottom-button">
+          correct
+        </div><!-- /.pq-quote-bottom-button -->
+
+        <div class="pq-quote-bottom-button">
+          more
+        </div><!-- /.pq-quote-bottom-button -->
+
+        <div class="pq-quote-time-posted">
+          posted 5 hours ago by mcluhan123
+        </div><!-- /.pq-quote-time-posted -->
+
+      </div><!-- /.pq-quote-bottom -->
+
+      <div class="clearfix">
+      </div>
+      
+    </div><!-- /.pq-quote-big-box -->
+
+  </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
+  
+  <div class="pq-xs-quote visible-xs hidden-sm hidden-md hidden-lg">
+
+    <div class="pq-xs-quote-inside">
+    
+      <div class="pq-xs-quote-text">
+        {{ quote.text }}
+      </div><!-- /.pq-xs-quote-text -->
+    
+    </div><!-- /.pq-xs-quote-inside -->
+
+    <div class="pq-xs-quote-date">
+      01/07/13
+    </div>    
+
+    <div class="pq-xs-quote-time-posted">
+       posted 5 hours ago by <span class="text-blue">mcluhan123
+    </div>
+    
+    <div class="pq-xs-quote-button-row">
+    
+      <div class="pq-xs-quote-clip-button">
+        <i class="fa fa-film"></i>
+      </div><!-- /.pq-xs-quote-clip-button -->
+
+      <div class="pq-xs-quote-clip-button" style="margin-left:15px">
+        <i class="fa fa-volume-up"></i>
+      </div><!-- /.pq-xs-quote-clip-button -->
+      
+      <div class="pq-xs-quote-votes">
+      
+        <div class="pq-xs-quote-upvote-button">
+          <i class="fa fa-arrow-circle-o-up"></i>
+        </div><!-- /.pq-xs-quote-upvote-button -->
+      
+        <div class="pq-xs-quote-vote-total">
+          123
+        </div><!-- /.pq-xs-quote-vote-total -->
+        
+        <div class="pq-xs-quote-downvote-button">
+          <i class="fa fa-arrow-circle-o-down"></i>
+        </div><!-- /.pq-xs-quote-downvote-button -->
+        
+      </div><!-- /.pq-xs-quote-votes -->
+    
+    </div><!-- /.pq-xs-quote-button-row -->
+    
+    <div class="pq-xs-quote-bottom">
+      
+      <div class="pq-xs-quote-bottom-button">
+        9 comments
+      </div><!-- /.pq-xs-quote-bottom-button -->
+      
+      <span class="pq-xs-quote-bottom-button-disappear-3">
+        <div class="pq-xs-quote-bottom-button">
+          save
+        </div><!-- /.pq-xs-quote-bottom-button -->
+      </span>
+      
+      <span class="pq-xs-quote-bottom-button-disappear-2">
+          <a href="{{ episode.podcast.donate_url }}">
+              <div class="pq-xs-quote-bottom-button text-orange">
+                donate
+              </div><!-- /.pq-xs-quote-bottom-button -->
+          </a>
+      </span>
+      
+      <span class="pq-xs-quote-bottom-button-disappear-1">
+          <div class="pq-xs-quote-bottom-button">
+              share
+          </div><!-- /.pq-xs-quote-bottom-button -->
+      </span>
+    
+      <div class="pq-xs-quote-bottom-button">
+        more
+      </div><!-- /.pq-xs-quote-bottom-button -->
+      
+      <div class="pq-xs-quote-time">
+        Aired:01/07/13 - Starts: 1:23:45
+      </div>
+      
+      <div class="clearfix">
+      </div>
+      
+    </div><!-- /.pq-xs-quote-bottom -->
+    
+  </div><!-- /.pq-quote-xs visible-xs hidden-sm hidden-md hidden-lg -->
+  {% endfor %}<!-- / for episode in podcast.episode_set.all -->
+
+</div><!-- /.col-md-9 -->
+
+{% endblock %}<!-- / block main -->

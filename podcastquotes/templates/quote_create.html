@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block main %}
+    
+<div class="col-md-7">
+
+  <div class="pq-title">
+    Post a New Quote <i class="fa fa-pencil"></i>
+  </div><!-- /.pq-title -->
+  
+<div class="pq-form">
+  
+    <form method="post" action="" enctype="multipart/form-data" role="form">
+      {% csrf_token %}
+      {% if personquoted_form.errors or tag_form.errors or quote_form.errors %}
+        <p>Please correct the following fields:</p>
+      {% endif %}
+
+      <div class="pq-form-input">
+        {% if quote_form.episode.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label" for="episode" {% if quote_form.episode.errors %} class="error" {% endif %}>Episode</label>
+        {{ quote_form.episode }}
+      </div><!-- /.pq-form-input -->
+
+      <div class="pq-form-input">
+        {% if personquoted_form.person.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label" for="personquoted" {% if personquoted_form.person.errors %} class="error"{% endif %}>Who are you quoting?</label>
+        {{ personquoted_form.person }}
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
+        {% if quote_form.text.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label" for="text" {% if quote_form.text.errors %} class="error" {% endif %}>Quote</label>
+        {{ quote_form.text }}
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
+        <div class="row">
+          <div class="col-sm-6">
+          {% if quote_form.time_quote_begins.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="time_quote_begins" {% if quote_form.time_quote_begins.errors %} class="error" {% endif %}>Time Quote Begins</label>
+          {{ quote_form.time_quote_begins }}
+          </div><!-- /.col-sm-6 -->
+
+          <div class="col-sm-6 xs-margin-top-20">
+          {% if quote_form.time_quote_ends.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label-optional" for="time_quote_ends" {% if quote_form.time_quote_ends.errors %} class="error" {% endif %}>Time Quote Ends <small>(optional)</label>
+          {{ quote_form.time_quote_ends }}
+          </div><!-- /.col-sm-6 -->
+        </div><!-- /.row -->
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
+        {% if tag_form.tag.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label-optional" for="tag" {% if tag_form.tag.errors %} class="error" {% endif %}>Tags <small>(optional)</small></label>
+        {{ tag_form.tag }}
+      </div><!-- /.pq-form-input -->
+
+      <div class="pq-form-buttons">
+        <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
+        <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>
+      </div><!-- /.pq-form-input -->
+      
+      <div class="clearfix">
+      </div>
+      
+    </form>
+
+</div><!-- /.pq-form -->
+  
+      
+
+</div><!-- /.col-md-7 -->
+  
+{% endblock %}<!-- / block main -->
+
+{% block extraspace %}
+    <div class="col-md-2">
+    </div><!-- /.col-md-2 -->
+{% endblock %}
+
+{% block side %}
+
+<div class="col-md-3">
+  
+  <div class="pq-advertisement-or-whatever">
+    advertisement<br />
+    or<br />
+    donate button
+  </div><!-- /.pq-advertisement-or-whatever -->
+  
+  <div class="pq-menu">
+    
+    <div class="pq-menu-title">
+      Podcasts
+    </div><!-- /.pq-menu-title -->
+    
+    <div class="pq-menu-advanced">
+      advanced
+    </div><!-- /.pq-menu-advanced -->
+
+    <div class="pq-menu-pulldown">
+      Categories <i class="fa fa-chevron-down"></i>
+    </div><!-- /.pq-menu-pulldown -->
+    
+    <div class="clearfix">
+    </div>
+    
+    <hr />
+
+    <div class="pq-menu-options">
+      Bill Burr's Monday Morning Podcast<br />
+      The Drunken Taoist<br />
+      The Duncan Trussell Family Hour<br />
+      The Greg Fitzsimmons Experience<br />
+      Harmontown<br />
+      The Joe Rogan Experience<br />
+      Bill Burr's Monday Morning Podcast<br />
+      The Drunken Taoist<br />
+      The Duncan Trussell Family Hour<br />
+      The Greg Fitzsimmons Experience<br />
+      Harmontown<br />
+      The Joe Rogan Experience<br />
+      Bill Burr's Monday Morning Podcast<br />
+      The Drunken Taoist<br />
+      The Duncan Trussell Family Hour<br />
+      The Greg Fitzsimmons Experience<br />
+      Harmontown<br />
+      The Joe Rogan Experience<br />
+      etc.
+    </div><!-- /.pq-menu-options -->
+    
+  </div><!-- /.pq-menu -->
+
+</div><!-- /.col-sm-4 .col-md-4 .col-lg-3 -->
+        
+{% endblock %}
+        
+      </div><!-- /.row -->
+
+    </div><!-- /.pq-container -->
+    
+    <div class="pq-footer">
+
+          <div class="pq-footer-brand">
+            <a href="index.html">PodcastQuotes <i class="fa fa-rss"></i></a>
+          </div>
+        
+          <div class="pq-footer-nav sm-clear-left">
+            about
+          </div>
+          
+          <div class="pq-footer-nav text-orange sm-clear-left">
+            claim your page
+          </div>
+          
+          
+          <div class="pq-footer-nav sm-clear-left">
+            contact
+          </div>
+          
+      <div class="pq-footer-social-icon sm-clear-left">
+        <i class="fa fa-facebook-square"></i>
+      </div>
+      
+      <div class="pq-footer-social-icon">
+        <i class="fa fa-twitter-square"></i>
+      </div>
+      
+      <div class="pq-footer-social-icon">
+        <i class="fa fa-github-square"></i>
+      </div>
+          
+          <div class="clearfix">
+          </div>
+
+    </div><!-- /.pq-footer -->
+       
+  </body>
+
+</html>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block main %}
+    
+<div class="col-md-7">
+
+    <div class="pq-title">
+      Add a Podcast <i class="fa fa-chevron-down"></i>
+    </div><!-- /.pq-title -->
+      
+    <div class="pq-form">
+      
+        <form method="post" action="" enctype="multipart/form-data" role="form">
+            {% csrf_token %}
+            {% if podcast_form.errors %}
+              <p>Please correct the following fields:</p>
+            {% endif %}
+
+            <div class="pq-form-input">
+              {% if podcast_form.title.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="title" {% if podcast_form.title.errors %} class="error" {% endif %}>Title</label>
+              {{ podcast_form.title }}
+            </div><!-- /.pq-form-input -->
+
+            <div class="pq-form-input">
+              {% if podcast_form.description.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="description" {% if podcast_form.description.errors %} class="error"{% endif %}>Description</label>
+              {{ podcast_form.description }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if podcast_form.image.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="image" {% if podcast_form.image.errors %} class="error" {% endif %}>Image</label>
+              {{ podcast_form.image }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if podcast_form.homepage.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="homepage" {% if podcast_form.homepage.errors %} class="error" {% endif %}>Home Page</label>
+              {{ podcast_form.homepage }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if podcast_form.donate_url.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="donate_url" {% if podcast_form.donate_url.errors %} class="error" {% endif %}>Donation Page</label>
+              {{ podcast_form.donate_url }}
+            </div><!-- /.pq-form-input -->
+
+            <div class="pq-form-buttons">
+              <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
+              <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>
+            </div><!-- /.pq-form-input -->
+            
+            <div class="clearfix">
+            </div>
+            
+        </form>
+      
+    </div><!-- /.pq-form -->
+
+</div><!-- /..col-md-7 -->
+
+{% endblock %}<!-- / block main -->
+
+{% block extraspace %}
+    <div class="col-md-2">
+    </div><!-- /.col-md-2 -->
+{% endblock %}<!-- / block extraspace -->

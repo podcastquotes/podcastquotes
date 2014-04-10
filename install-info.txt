@@ -1,0 +1,9 @@
+install
+
+django-crispy-forms
+
+pip install --upgrade django-crispy-forms
+
+
+
+Add crispy_forms to your INSTALLED_APPS in settings.py

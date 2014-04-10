@@ -1,0 +1,99 @@
+***QUOTE FILTERS***
+
+hot - trending algorithm, along the lines of reddit's algorithm, showing the most upvoted quotes within the past X hours/days
+
+not - reverse of the "hot" filter, showing the most downvoted quotes within the past X hours/days
+
+controversial - along the lines of reddit's algorithm, showing the most evenly upvoted & downvoted quotes within the past X hours/days
+    
+ghosts - show random quotes that have 0 votes
+    
+new - display quotes in chronological order (like reddit does)
+
+old - display quotes in reverse chronological order
+
+birthdays - display quotes that were spoken on or released on the same day in a previous year or today
+
+top - display quotes that have received the most overall upvotes, include a sub-filter (like reddit does) so you can filter the top quotes over the past hour, past 24 hours, past week, past month, past year, or custom range
+
+bottom - reverse of the "top" filter, uses the same sub-filter as "top"
+
+mainstream - display quotes that have received the most overall upvotes and downvotes
+
+custom - tbd, advanced user-customizable filters
+
+
+
+***VOTE FILTERS***
+
+All Votes - show all votes, no filter
+
+Verified Votes - show only the votes of verified user accounts...eventually it may be desirable for this to be the smart default vote filter, since "All Votes" can be more easily manipulated
+
+Listener Votes - show only the votes of listeners of the podcast that is quoted
+
+Anonymous Votes - show only the votes of anonymous user accounts
+
+Troll Votes - show only the votes of user accounts that have been labeled by community or self-identified as a "Troll"
+
+Unverified Votes - show only the votes of unverified user accounts
+
+
+
+***PAGES***
+
+home - AKA quote_list, display and filter all quotes
+
+podcast_create - connect an RSS feed to PodcastQuotes, the creator of a PodcastQuotes page DOES NOT automatically become the moderator of that page, a podcast page does not have a moderator until the podcaster claims it
+
+podcast_remove - remove a podcast from PodcastQuotes, only a moderator of the podcast can remove it
+
+podcast_update - edit a podcast profile
+
+podcast_update_promo - edit the promos/advertisements that appear on the podcast page, its episode pages, and its quote pages
+
+podcast_detail - show a podcast and all quotes from that podcast
+
+podcast_list - show all podcasts, and filter them based on stats such as 'categories', 'most quotes in the past 7 days', 'most listeners', 'most new listeners', etc.
+
+episode_create - (possibly unnecessary, since podcasts and their episodes will be added/updated by RSS feeds)
+
+episode_remove - remove an episode from PodcastQuotes, only a moderator of the podcast can remove it
+
+episode_update - edit an episode profile
+
+episode_update_promo - if set, overrides podcast_update_promo, edit the promos/advertisements that appear on the episode page, and its quote pages
+
+episode_detail - show an episode and all quotes from that episode
+
+episode_list - show all episodes, and filter them based on stats such as 'most quotes in the past 7 days', 'most upvotes in the past 7 days', 'most downvotes in the past 7 days', etc.
+
+quote_create - add a new quote
+
+quote_remove - remove a quote
+
+quote_update - edit a quote
+
+quote_detail - show a quote and all comments (like the full page with comments on reddit)
+
+quote_list - AKA the "home" page, display and filter all quotes
+
+account_create - create a new user account
+
+account_remove - remove your user account, removal could be temporary, or could be a full delete (or the nearest thing possible) from the PQ database
+
+account_update - edit your user account
+
+account_detail - show a user profile, show all quotes the user submitted, all comments the user submitted, all podcasts the user submitted, and (if user opts to share them) all upvotes/downvotes the user submitted
+
+account_list - AKA the "stats" page, show all user profiles, and filter based on 'most quotes submitted in the past 7 days', 'most upvotes received in the past 7 days', 'most downvotes received in the past 7 days', 'region', 'sex', 'income level', you know, any robust profile information users decide to share that we could run filters through
+
+about - about PodcastQuotes
+
+claim your page - allow podcasters to request moderator powers (and the ability to select advertisements and collect 100% of the revenue) of their PodcastQuotes podcast page
+
+stats - AKA the "account_list" page
+
+wiki - a wiki of PodcastQuotes organizational policies, information, governing documents, etc.
+
+contact - email form, Github profile, Facebook profile, Twitter profile, Linkedin profile, Google+ profile, etc.

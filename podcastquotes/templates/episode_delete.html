@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <div class="col-md-7">
+
+        <p>Are you sure you want to delete "{{ episode.title }}"?</p>
+
+        <form method="post" action="{% url 'episode_delete' pk=episode.pk %}">
+          {% csrf_token %}
+          <a href="{% url 'episode_detail' pk=episode.pk %}">Go back</a> 
+          <p><input type="submit" value="Confirm deletion" /></p>
+        </form> 
+
+    </div><!-- /.col-md-7 -->
+
+{% endblock %}
