@@ -1,10 +1,32 @@
 body {
-    max-width:1220px;
+
     margin:0 auto;
     background-color:#fcfcfc;
     font-family:"Roboto", Arial, sans-serif;
     font-size:16px;
     color:#111;
+}
+
+@media (max-width:991px) {
+    .pq-navbar-container {
+        margin:0 auto;
+        padding:0 15px;
+    }
+}
+
+@media (min-width:992px) and (max-width:1149px) {
+    .pq-navbar-container {
+        margin:0 auto;
+        padding:0 10px;
+    }
+}
+
+@media (min-width:1150px) {
+    .pq-navbar-container {
+        max-width:1360px;
+        margin:0 auto;
+        padding:0 30px;
+    }
 }
 
 @media (max-width:991px) {
@@ -14,9 +36,18 @@ body {
     }
 }
 
-@media (min-width:992px) {
+@media (min-width:992px) and (max-width:1149px) {
     .pq-container {
-        padding:0 20px;
+        margin:0 auto;
+        padding:0 30px;
+    }
+}
+
+@media (min-width:1150px) {
+    .pq-container {
+        max-width:1360px;
+        margin:0 auto;
+        padding:0 50px;
     }
 }
 
@@ -37,7 +68,7 @@ body {
     .pq-navbar {
         background-color:#ddd;
         padding:10px 15px;
-        margin:0 0 25px 0;
+        margin:0 auto 25px auto;
         border-right:1px solid #555;
         border-bottom:1px solid #555;
         border-left:1px solid #555;
@@ -47,7 +78,7 @@ body {
 @media (max-width:1219px) {
     .navbar {
             background-color:#ddd;
-            padding:5px 15px;
+            padding:5px 0px;
             margin:0 0 20px 0;
             border-bottom:1px solid #555;
             border-radius:0;
@@ -58,7 +89,7 @@ body {
 @media (min-width:1220px) {
     .navbar {
             background-color:#ddd;
-            padding:5px 15px;
+            padding:5px 0px;
             margin:0 0 15px 0;
             border-right:1px solid #555;
             border-bottom:1px solid #555;
@@ -205,7 +236,8 @@ body {
 }
 
 .pq-breadcrumbs {
-    margin:5px 0 25px 0;
+    margin:5px 0 20px 0;
+    font-size:15px;
 }
 
 .pq-share {
@@ -213,12 +245,24 @@ body {
     margin:10px 40px 0 0;
 }
 
-.pq-title {
-    clear:left;
-    margin:0 15px 20px 0;
-    font-size:24px;
-    font-weight:bold;
-    color:#111;
+@media (max-width:991px) {
+    .pq-title {
+        clear:left;
+        margin:10px 0px 20px 0;
+        font-size:24px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-title {
+        clear:left;
+        margin:10px 30px 20px 0;
+        font-size:24px;
+        font-weight:bold;
+        color:#111;
+    }
 }
 
 .pq-nav-active {
@@ -314,7 +358,7 @@ body {
     .pq-votes-shown {
         clear:both;
         float:left;
-        margin:-5px 5px 0 0;
+        margin:5px 0;
         font-size:18px;
         font-weight:bold;
         color:#111;
@@ -324,7 +368,7 @@ body {
 @media (min-width:768px) and (max-width:991px) {
     .pq-votes-shown {
         float:right;
-        margin:14px 5px 0 0;
+        margin:14px 10px 0 0;
         font-size:18px;
         font-weight:bold;
         color:#111;
@@ -334,7 +378,7 @@ body {
 @media (min-width:992px) {
     .pq-votes-shown {
         float:right;
-        margin:14px 15px 0 0;
+        margin:14px 35px 0 0;
         font-size:18px;
         font-weight:bold;
         color:#111;
@@ -395,15 +439,14 @@ body {
 
 @media (max-width:991px) {
     .pq-podcast-header {
-        margin:0 20px 0 0;
-        padding:15x 0 30px 0;
+        padding:15x 0 0 0;
     }
 }
 
 @media (min-width:992px) {
     .pq-podcast-header {
-        margin:0 20px 0 0;
-        padding:15px 0 30px 0;
+        margin:0 30px 0 0;
+        padding:15px 0 0 0;
     }
 }
 
@@ -417,7 +460,7 @@ body {
 
 .pq-podcast-header-box {
     overflow:hidden;
-    padding:0 30px 0 25px;
+    padding:0 30px 20px 25px;
 }
 
 .pq-podcast-social-media {
@@ -429,7 +472,7 @@ body {
 
 .pq-podcast-profile-picture {
     float:left;
-    margin:0 5px;
+    margin:0 5px 0 0;
 }
 
 .pq-podcast-profile-picture img {
@@ -467,15 +510,15 @@ body {
     .pq-episode-header {
         margin:0 20px 0 0;
         padding:30px 0;
-        border-top:1px dotted #ddd;
+        border-top:1px dashed #ccc;
     }
 }
 
 @media (min-width:992px) {
     .pq-episode-header {
-        margin:0 20px 0 0;
+        margin:0 30px 0 0;
         padding:30px 0;
-        border-top:1px dotted #ddd;
+        border-top:1px dashed #ccc;
     }
 }
 
@@ -589,7 +632,7 @@ body {
 
 @media (max-width:991px) {
     .pq-quote {
-        margin:20px 15px 40px 0;
+        margin:20px 0 40px 0;
         padding:20px 15px 25px 15px;
         border:1px dotted #aaa;
     }
@@ -597,7 +640,7 @@ body {
 
 @media (min-width:992px) {
     .pq-quote {
-        margin:20px 15px 40px 0;
+        margin:20px 30px 40px 0;
         padding:20px 15px 25px 15px;
         border:1px dotted #aaa;
     }
@@ -609,8 +652,8 @@ body {
 }
 
 .pq-quote-profile-picture img {
-    width:75px;
-    height:75px;
+    width:55px;
+    height:55px;
 }
 
 .pq-quote-upper-button {
@@ -628,7 +671,7 @@ body {
     clear:right;
     float:right;
     margin:5px 0 0 0;
-    font-size:16px;
+    font-size:18px;
     color:#333;
 }
 
@@ -646,7 +689,7 @@ body {
 
 .pq-quote-podcast-episode {
     margin:5px 0 0 1px;
-    font-size:17px;
+    font-size:18px;
 }
 
 .pq-quote hr {
@@ -727,7 +770,7 @@ body {
     clear:right;
     float:right;
     margin:3px 0 0 0;
-    font-size:16px;
+    font-size:18px;
     color:#444;
 }
 
@@ -760,8 +803,8 @@ body {
 }
 
 .pq-xs-quote {
-    margin:20px 0 40px 0;
-    padding:25px 15px 25px 15px;
+    margin:30px 0;
+    padding:20px 15px 20px 15px;
     border:1px dotted #aaa;
 }
 
@@ -771,8 +814,8 @@ body {
 }
 
 .pq-xs-quote-profile-picture img {
-    width:75px;
-    height:75px;
+    width:55px;
+    height:55px;
 }
 
 .pq-xs-quote-header-inside {
@@ -789,7 +832,7 @@ body {
 .pq-xs-quote-podcast-episode {
     float:left;
     clear:left;
-    font-size:16px;
+    font-size:18px;
 }
 
 .pq-xs-quote hr {
@@ -934,7 +977,7 @@ body {
         display:block;
         text-align:center;
         padding:10px 0;
-        margin:0 0 15px 0;
+        margin:0 0 20px 0;
         background-color:#ddd;
         border:1px solid #555;
         border-top-left-radius:10px;
@@ -1007,7 +1050,7 @@ body {
 @media (max-width:1219px) {
     .pq-footer {
         background-color:#ddd;
-        padding:15px;
+        padding:15px 0;
         margin:80px 0 0 0;
         border-top:1px solid #555;
     }
@@ -1016,7 +1059,7 @@ body {
 @media (min-width:1220px) {
     .pq-footer {
         background-color:#ddd;
-        padding:15px;
+        padding:15px 0;
         margin:80px 0 0 0;
         border-top:1px solid #555;
         border-right:1px solid #555;

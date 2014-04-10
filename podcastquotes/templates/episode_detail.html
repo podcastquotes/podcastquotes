@@ -95,7 +95,7 @@
               <div class="pq-episode-title">
                   <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
                       <option value="/episodes/{{ episode.id }}" selected="selected">{{ episode.title }}</option>
-                      <option value="/podcasts/{{ episode.podcast.id }}">All Podcasts</option>
+                      <option value="/podcasts/{{ episode.podcast.id }}">All {{ episode.podcast.title }} Podcasts</option>
                       {% for episode in episode.all_episodes %}
                           <option value="/episodes/{{ episode.id }}">{{ episode.title }}</option>
                       {% endfor %}
