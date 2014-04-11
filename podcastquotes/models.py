@@ -40,7 +40,7 @@ class Podcast(models.Model):
 class Episode(models.Model):
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
-    publication_date = models.DateField()
+    publication_date = models.DateField(blank=True)
     description = models.TextField(blank=True)
     episode_link = models.URLField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
@@ -90,7 +90,7 @@ class Episode(models.Model):
         
         return '<iframe width="%s" height="%s" src="http://www.youtube.com/embed/%s?wmode=opaque" frameborder="0" allowfullscreen></iframe>' % (width, height, id)
         
-        # many thanks to Amit Agarwal aka @labnol for this snazzy YouTube parser   
+        # many thanks to Amit Agarwal aka @labnol for this snazzy YouTube parser, video_id, parse
         # https://gist.github.com/trojkat/1989762 
         # https://labnol.googlecode.com/files/youtube.js
 
@@ -124,10 +124,10 @@ class Tag(models.Model):
         return unicode(self.tag)
         
 class Quote(models.Model):
+    text = models.TextField()
+    persons_quoted = models.ManyToManyField(PersonQuoted, blank=True)
     episode = models.ForeignKey(Episode)
-    persons_quoted = models.ManyToManyField(PersonQuoted)
-    text = models.TextField(blank=True)
-    time_quote_begins = models.IntegerField()
+    time_quote_begins = models.IntegerField(blank=True)
     time_quote_ends = models.IntegerField(blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     # submitted_by = ...

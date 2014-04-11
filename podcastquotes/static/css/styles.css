@@ -573,7 +573,7 @@ body {
 .pq-episode-profile-picture {
     float:left;
     width:150px;
-    margin:0 5px 0 0;
+    margin:0 5px 5px 0;
     padding:5px;
     border:1px solid #ccc;
     border-radius:10px;
@@ -585,7 +585,7 @@ body {
 
 .pq-episode-title {
     float:left;
-    margin:-5px 0 15px 5px;
+    margin:-5px 0 20px 5px;
     font-size:22px;
     font-weight:bold;
     color:#111;
@@ -641,7 +641,6 @@ body {
 }
 
 .pq-quote-edit-button {
-    clear:right;
     float:right;
     width:70px;
     padding:3px 0;
@@ -766,10 +765,6 @@ body {
     border-top:1px solid #ddd;
 }
 
-.pq-quote-big-box {
-    margin:0 0 0 70px;
-}
-
 .pq-quote-votes {
     float:left;
     margin:-5px 44px -5px 6px;
@@ -792,13 +787,9 @@ body {
     color:#222;
 }
 
-.pq-quote-clip {
-    clear:right;
-    float:right;
-}
-
 .pq-quote-clip-buttons {
     clear:right;
+    float:right;
 }
 
 .pq-quote-clip-button {
@@ -820,14 +811,12 @@ body {
 
 .pq-quote-inside {
     max-width:600px;
-    overflow:hidden;
-    padding:10px 0 0 0;
 }
 
 .pq-quote-text {
-    clear:both;
+    clear:left;
     font-size:16px;
-    margin:10px 20px 15px 0;
+    margin:5px 20px 15px 80px;
 }
 
 .pq-quote-clip-time {
@@ -854,9 +843,14 @@ body {
     color:#444;
 }
 
+.pq-quote-buttons {
+    float:right;
+    margin:0 0 0 15px;
+}
+
 .pq-quote-bottom {
     clear:right;
-    margin:0 0 0 12px;
+    margin:0 0 0 80px;
 }
 
 .pq-quote-bottom-button {
@@ -974,6 +968,7 @@ body {
 }
 
 .pq-xs-quote-text {
+    clear:left;
     font-size:16px;
     margin:5px 20px 15px 0;
 }
@@ -1261,6 +1256,7 @@ a {
 }
 
 .youtube {
+    float:left;
 }
 
 .video-container {

@@ -85,7 +85,8 @@
   {% for quote in quotes %}
   
   <div class="pq-quote hidden-xs visible-sm visible-md visible-lg">
-  
+    
+    {% if quote.episode.podcast.title %}
     <div class="pq-quote-profile-picture">
       <img src="{{ MEDIA_URL}}{{ quote.episode.podcast.image }}" />
     </div><!-- /.pq-quote-profile-picture -->
@@ -99,33 +100,41 @@
       </div><!-- /.pq-quote-podcast-name -->
     
     </div><!-- /.pq-quote-header-inside -->
+    {% endif %}
     
+    
+    {% if quote.episode.title or quote.episode.publication_date %}
     <div class="pq-quote-header-row">
     
-    <div class="pq-quote-date-home">
-      <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
-    </div><!-- pq-quote-date-home -->
+        <div class="pq-quote-date-home">
+          <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
+        </div><!-- pq-quote-date-home -->
+        
+        <div class="pq-quote-header-inside">
+          <div class="pq-quote-podcast-episode">
+              <a href="/episodes/{{ quote.episode.id }}">
+                  {{ quote.episode.title }}
+              </a>
+          </div><!-- /.pq-quote-podcast-episode -->
+        </div><!-- /.pq-quote-header-inside -->
     
-    <div class="pq-quote-header-inside">
-      <div class="pq-quote-podcast-episode">
-          <a href="/episodes/{{ quote.episode.id }}">
-              {{ quote.episode.title }}
-          </a>
-      </div><!-- /.pq-quote-podcast-episode -->
-    </div><!-- /.pq-quote-header-inside -->
+    </div><!-- /.pq-quote-header-row -->
+    {% endif %}
     
-    </div>
-    
+    {% if quote.episode.podcast.title or quote.episode.title or quote.episode.publication_date %}
     <hr style="clear:left;" />
+    {% endif %}
+    
+    
     
     <div class="pq-quote-votes">
     
       <div class="pq-quote-upvote-button">
-        <i class="fa fa-arrow-circle-o-up"></i>
+          <i class="fa fa-arrow-circle-o-up"></i>
       </div><!-- /.pq-quote-upvote-button -->
       
       <div class="pq-quote-vote-total">
-        123
+          123
       </div><!-- /.pq-quote-vote-total -->
       
       <div class="pq-quote-downvote-button">
@@ -133,46 +142,45 @@
       </div><!-- /.pq-quote-downvote-button -->
     
     </div><!-- /.pq-quote-votes -->
-    
-    <div class="pq-quote-big-box">
+      
+      <div class="pq-quote-buttons">
+      
+      <a href="/quotes/edit/{{ quote.id }}">
+        <div class="pq-quote-edit-button color-edit">
+          Edit
+        </div>
+      </a>
+      
+        <div class="pq-quote-clip-time">
+            Starts: {{ quote.converted_time_begins }} 
+        </div>
+ 
+        <div class="pq-quote-clip-buttons">
         
-        <a href="/quotes/edit/{{ quote.id }}">
-          <div class="pq-quote-edit-button color-edit">
-            Edit
-          </div>
-        </a>
-    
-        <div class="pq-quote-clip">
-          
-            <div class="pq-quote-clip-time">
-                Starts: 1:23:45 
-            </div>
-     
-            <div class="pq-quote-clip-buttons">
+            <div class="pq-quote-clip-button">
+              <i class="fa fa-volume-up"></i>
+            </div><!-- /.pq-quote-clip-button -->
             
-                <div class="pq-quote-clip-button">
-                  <i class="fa fa-volume-up"></i>
-                </div><!-- /.pq-quote-clip-button -->
-                
-                <div class="pq-quote-clip-button">
-                  <i class="fa fa-film"></i>
-                </div><!-- /.pq-quote-clip-button -->
-                
-                <div class="pq-quote-clip-player">
-                </div><!-- /.pq-quote-clip-player -->
-            
-            </div><!-- /.pq-quote-clip-buttons -->
-          
-          </div><!-- /.pq-quote-clip -->
+            <div class="pq-quote-clip-button">
+              <i class="fa fa-film"></i>
+            </div><!-- /.pq-quote-clip-button -->
+        
+        </div><!-- /.pq-quote-clip-buttons -->
+        
+        <div class="clearfix">
+        </div>
+        
+      </div><!-- /.pq-quote-buttons -->
       
       <div class="pq-quote-inside">
-      
-          <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&" style="width:425px;height:266px;margin-bottom:65px;"></div>
-
+        
+        {% if quote.time_quote_begins and quote.episode.video_link %}
+        <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&" style="width:425px;height:266px;margin-bottom:65px;">
+        </div>
+        {% endif %}
+        
         <div class="pq-quote-text">
           {{ quote.text }}
-          
-          
         </div><!-- /.pq-quote-text -->
         
       </div><!-- /.pq-quote-inside -->
@@ -186,13 +194,13 @@
         <div class="pq-quote-bottom-button">
           share
         </div><!-- /.pq-quote-bottom-button -->
-
+        
         <div class="pq-quote-bottom-button">
           save
         </div><!-- /.pq-quote-bottom-button -->
-        
+
         <div class="pq-quote-bottom-button">
-            follow
+          correct
         </div><!-- /.pq-quote-bottom-button -->
 
         <div class="pq-quote-bottom-button">
@@ -207,18 +215,19 @@
 
       <div class="clearfix">
       </div>
-      
-    </div><!-- /.pq-quote-big-box -->
 
   </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
+
   
   <div class="pq-xs-quote visible-xs hidden-sm hidden-md hidden-lg">
     
+    {% if quote.episode.podcast.title %}
     <div class="pq-xs-quote-profile-picture">
       <img src="/media/{{ quote.episode.podcast.image }}" />
     </div><!-- /.pq-xs-quote-profile-picture -->
+    {% endif %}
     
-
+    {% if quote.episode.podcast.title or quote.episode.title %}
     <div class="pq-xs-quote-header-inside">
     
       <div class="pq-xs-quote-podcast-name">
@@ -238,8 +247,14 @@
     </div>
     
     <hr />
+    {% endif %}
 
     <div class="pq-xs-quote-inside">
+    
+      {% if quote.time_quote_begins and quote.episode.video_link %}
+      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&" style="width:300px;height:187px;margin-bottom:55px;">
+      </div>
+      {% endif %}
     
       <div class="pq-xs-quote-text">
         {{ quote.text }}
