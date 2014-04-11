@@ -39,7 +39,7 @@ class PodcastCreateView(CreateView):
 class PodcastUpdateView(UpdateView):
     model = Podcast
     form_class = PodcastForm
-    template_name = 'podcast_form.html'
+    template_name = 'podcast_update.html'
     
     def get_context_data(self, **kwargs):
         context = super(PodcastUpdateView, self).get_context_data(**kwargs)
@@ -71,7 +71,7 @@ class EpisodeCreateView(CreateView):
 class EpisodeUpdateView(UpdateView):
     model = Episode
     form_class = EpisodeForm
-    template_name = 'episode_form.html'
+    template_name = 'episode_update.html'
     
     def get_context_data(self, **kwargs):
         context = super(EpisodeUpdateView, self).get_context_data(**kwargs)
@@ -93,14 +93,18 @@ class QuoteDetailView(DetailView):
 class QuoteUpdateView(UpdateView):
     model = Quote
     form_class = QuoteForm
-    template_name = 'quote_form.html'
+    template_name = 'quote_update.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuoteUpdateView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        return context
 
 class QuoteDeleteView(DeleteView):
     model = Quote
     success_url = reverse_lazy('home')
     template_name = 'quote_delete.html'
-
-
+    
 def podcast_detail(request):
     return render_to_response('podcast_detail.html',
                               {'podcasts': Podcast.objects.all(),

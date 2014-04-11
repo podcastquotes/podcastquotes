@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block main %}
+    
+<div class="col-md-7">
+
+    <div class="pq-title">
+      Add an Episode <i class="fa fa-chevron-down"></i>
+    </div><!-- /.pq-title -->
+      
+    <div class="pq-form">
+      
+        <form method="post" action="" enctype="multipart/form-data" role="form">
+            {% csrf_token %}
+            {% if form.errors %}
+              <p>Please correct the following fields:</p>
+            {% endif %}
+
+            <div class="pq-form-input">
+              {% if form.podcast.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="podcast" {% if podcast_form.podcast.errors %} class="error" {% endif %}>Podcast</label>
+              {{ form.podcast }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.title.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="title" {% if podcast_form.title.errors %} class="error" {% endif %}>Title</label>
+              {{ form.title }}
+            </div><!-- /.pq-form-input -->
+
+            <div class="pq-form-input">
+              {% if form.publication_date.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="publication_date" {% if form.publication_date.errors %} class="error"{% endif %}>Publication Date</label>
+              {{ form.publication_date }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.description.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="description" {% if form.description.errors %} class="error" {% endif %}>Description</label>
+              {{ form.description }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.episode_link.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="episode_link" {% if form.episode_link.errors %} class="error" {% endif %}>Episode Link</label>
+              {{ form.episode_link }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.video_link.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="video_link" {% if form.video_link.errors %} class="error" {% endif %}>YouTube Video URL</label>
+              {{ form.video_link }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.audio_link.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="audio_link" {% if form.audio_link.errors %} class="error" {% endif %}>YouTube Audio URL</label>
+              {{ form.audio_link }}
+            </div><!-- /.pq-form-input -->
+
+            <div class="pq-form-buttons">
+              <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
+              <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>
+            </div><!-- /.pq-form-input -->
+            
+            <div class="clearfix">
+            </div>
+            
+        </form>
+      
+    </div><!-- /.pq-form -->
+
+</div><!-- /..col-md-7 -->
+
+{% endblock %}<!-- / block main -->
+
+{% block extraspace %}
+    <div class="col-md-2">
+    </div><!-- /.col-md-2 -->
+{% endblock %}<!-- / block extraspace -->

@@ -135,6 +135,12 @@
     </div><!-- /.pq-quote-votes -->
     
     <div class="pq-quote-big-box">
+        
+        <a href="/quotes/edit/{{ quote.id }}">
+          <div class="pq-quote-edit-button color-edit">
+            Edit
+          </div>
+        </a>
     
         <div class="pq-quote-clip">
           
@@ -161,8 +167,12 @@
       
       <div class="pq-quote-inside">
       
+          <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&" style="width:425px;height:266px;margin-bottom:65px;"></div>
+
         <div class="pq-quote-text">
           {{ quote.text }}
+          
+          
         </div><!-- /.pq-quote-text -->
         
       </div><!-- /.pq-quote-inside -->

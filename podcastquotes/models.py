@@ -2,6 +2,12 @@ from django.db import models
 from time import time
 from datetime import date
 from django.core.urlresolvers import reverse
+import urlparse
+
+from urlparse import urlparse, parse_qs
+ 
+from django.template import Template, Context
+from django.conf import settings
 
 # This doesn't belong here
 def get_upload_file_name(instance, filename):
@@ -18,6 +24,9 @@ class Podcast(models.Model):
     # categories = ...
     # keywords = ...
     # followers = ...
+    
+    def get_absolute_url(self):
+        return reverse('podcast_detail', kwargs={'pk': self.pk})
 
     def all_podcasts(self):
        return Podcast.objects.all()
@@ -40,6 +49,52 @@ class Episode(models.Model):
     # guests = ...
     # duration = what type of field for length of episode data? needs to match up with format for quote.time_quote_begins and quote.time_quote_ends
     # keywords = ...
+ 
+    def video_id(self):
+        """
+        Examples:
+        - http://youtu.be/SA2iWivDJiE
+        - http://www.youtube.com/watch?v=_oPAwA_Udwc&feature=feedu
+        - http://www.youtube.com/embed/SA2iWivDJiE
+        - http://www.youtube.com/v/SA2iWivDJiE?version=3&amp;hl=en_US
+        """
+        query = urlparse(self.video_link)
+        if query.hostname == 'youtu.be':
+            return query.path[1:]
+        if query.hostname in ('www.youtube.com', 'youtube.com'):
+            if query.path == '/watch':
+                p = parse_qs(query.query)
+                return p['v'][0]
+            if query.path[:7] == '/embed/':
+                return query.path.split('/')[2]
+            if query.path[:3] == '/v/':
+                return query.path.split('/')[2]
+        return None
+     
+     
+    def parse(kwargs):
+        url = kwargs.get('url')
+        if not url:
+            return "[Add video url]"
+         
+        id = video_id(url)
+         
+        if id is None:
+            return "[Bad url]"
+         
+        width = int(kwargs.get('width', getattr(settings, 'SHORTCODES_YOUTUBE_WIDTH', 425)))
+        height = int(kwargs.get('height', getattr(settings, 'SHORTCODES_YOUTUBE_HEIGHT', 0)))
+         
+        if height == 0:
+            height = int(round(width / 425.0 * 344.0))
+        
+        return '<iframe width="%s" height="%s" src="http://www.youtube.com/embed/%s?wmode=opaque" frameborder="0" allowfullscreen></iframe>' % (width, height, id)
+        
+        # many thanks to Amit Agarwal aka @labnol for this snazzy YouTube parser   
+        # https://gist.github.com/trojkat/1989762 
+        # https://labnol.googlecode.com/files/youtube.js
+
+
     
     def all_episodes(self):
        return Episode.objects.filter(podcast__id=self.id)

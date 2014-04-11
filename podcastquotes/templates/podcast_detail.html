@@ -27,19 +27,25 @@
               <div class="pq-podcast-header-button color-follow">
                   Follow
               </div><!-- /.pq-podcast-header-button -->
+              
+              <a href="/podcasts/edit/{{ podcast.id }}">
+                <div class="pq-podcast-header-button color-edit">
+                    Edit
+                </div><!-- /.pq-podcast-header-button -->
+              </a>
             
             <div class="pq-podcast-header-box">
             
-  <div class="pq-podcast-title">
-    <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-        <option value="/podcasts/{{ podcast.id }}" selected="selected">{{ podcast.title }}</option>
-        <option value="/">All Podcasts</option>
-        <option value="/">My Podcasts</option>
-        {% for podcast in podcasts %}
-            <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
-        {% endfor %}
-    </select>
-  </div><!-- /.pq-title -->
+                <div class="pq-podcast-title">
+                  <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+                      <option value="/podcasts/{{ podcast.id }}" selected="selected">{{ podcast.title }}</option>
+                      <option value="/">All Podcasts</option>
+                      <option value="/">My Podcasts</option>
+                      {% for podcast in podcasts %}
+                          <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+                      {% endfor %}
+                  </select>
+                </div><!-- /.pq-title -->
                   
                 <div class="pq-podcast-social-media">
                     <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
@@ -60,6 +66,10 @@
                   <div class="pq-podcast-header-info-left">
                       <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
                   </div><!-- /.pq-podcast-header-info -->
+                  
+                  <div class="pq-podcast-header-info-full">
+                    <strong>Description:</strong> {{ podcast.description }}
+                  </div><!-- /.pq-episode-header-info-full -->
                  
               </div><!-- /.pq-podcast-header-box -->
           
@@ -175,6 +185,12 @@
     
     <div class="pq-quote-big-box">
     
+      <a href="/quotes/edit/{{ quote.id }}">
+        <div class="pq-quote-edit-button color-edit">
+          Edit
+        </div>
+      </a>
+    
       <div class="pq-quote-clip">
       
         <div class="pq-quote-clip-time">
@@ -198,6 +214,7 @@
       
       </div><!-- /.pq-quote-clip -->
       
+
       <div class="pq-quote-inside">
       
         <div class="pq-quote-text">

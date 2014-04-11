@@ -28,6 +28,12 @@
               Follow
           </div><!-- /.pq-podcast-header-button -->
           
+          <a href="/podcasts/edit/{{ episode.podcast.id }}">
+            <div class="pq-podcast-header-button color-edit">
+                Edit
+            </div><!-- /.pq-podcast-header-button -->
+          </a>
+          
         
         <div class="pq-podcast-header-box">
         
@@ -62,6 +68,10 @@
                   <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
               </div><!-- /.pq-podcast-header-info -->
               
+              <div class="pq-podcast-header-info-full">
+                  <strong>Description:</strong> {{ episode.podcast.description }}
+              </div><!-- /.pq-episode-header-info -->
+              
           </div><!-- /.pq-podcast-header-box -->
       
       <div class="clearfix">
@@ -79,6 +89,12 @@
           <div class="pq-episode-header-button bg-yellow">
               Episode
           </div><!-- /.pq-episode-header-button -->
+      </a>
+      
+      <a href="/episodes/edit/{{ episode.id }}">
+        <div class="pq-episode-header-button color-edit">
+            Edit
+        </div><!-- /.pq-episode-header-button -->
       </a>
           
       
@@ -220,6 +236,12 @@
     
     
     <div class="pq-quote-big-box">
+      
+      <a href="/quotes/edit/{{ quote.id }}">
+        <div class="pq-quote-edit-button color-edit">
+          Edit
+        </div>
+      </a>
       
       <div class="pq-quote-clip">
       

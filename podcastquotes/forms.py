@@ -18,6 +18,13 @@ class PodcastForm(forms.ModelForm):
     
     class Meta:
         model = Podcast
+        exclude = ('',)
+        widgets = {
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
+            'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+        }
         
 class EpisodeCreateForm(forms.ModelForm):
     
@@ -36,6 +43,16 @@ class EpisodeForm(forms.ModelForm):
     
     class Meta:
         model = Episode
+        exclude = ('',)
+        widgets = {
+            'podcast': forms.Select(attrs={'class':'form-control', 'placeholder':''}),
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
+            'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':''}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
+            'episode_link': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'video_link': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'audio_link': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+        }
 
 class QuoteForm(forms.ModelForm):
 
