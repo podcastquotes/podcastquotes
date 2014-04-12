@@ -54,11 +54,6 @@ class EpisodeForm(forms.ModelForm):
             'audio_link': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
-class QuoteForm(forms.ModelForm):
-
-    class Meta:
-        model = Quote
-
 class QuoteCreateForm(forms.ModelForm):
     
     class Meta:
@@ -70,7 +65,12 @@ class QuoteCreateForm(forms.ModelForm):
             'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
             'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
-        
+
+class QuoteForm(forms.ModelForm):
+
+    class Meta:
+        model = Quote        
+
 class PersonQuotedCreateForm(forms.ModelForm):
 
     class Meta:

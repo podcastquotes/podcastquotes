@@ -13,7 +13,6 @@ from django.conf import settings
 def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
-
 class Podcast(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -71,7 +70,6 @@ class Episode(models.Model):
                 return query.path.split('/')[2]
         return None
      
-     
     def parse(kwargs):
         url = kwargs.get('url')
         if not url:
@@ -94,8 +92,6 @@ class Episode(models.Model):
         # https://gist.github.com/trojkat/1989762 
         # https://labnol.googlecode.com/files/youtube.js
 
-
-    
     def all_episodes(self):
        return Episode.objects.filter(podcast__id=self.id)
     
