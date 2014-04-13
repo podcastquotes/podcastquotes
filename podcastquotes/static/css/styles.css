@@ -632,11 +632,12 @@ body {
 }
 
 .pq-quote-edit-button {
+    clear:right;
     float:right;
     width:70px;
     padding:3px 0;
     text-align:center;
-    margin:5px 0 10px 0;
+    margin:0 0 10px 10px;
     border:1px solid #555;
     border-radius:15px;
     font-size:14px;
@@ -654,7 +655,7 @@ body {
 @media (max-width:991px) {
     .pq-quote {
         margin:20px 0 40px 0;
-        padding:20px 15px 25px 15px;
+        padding:20px 15px 20px 15px;
         border:1px dotted #aaa;
     }
 }
@@ -662,7 +663,7 @@ body {
 @media (min-width:992px) {
     .pq-quote {
         margin:20px 25px 40px 0;
-        padding:20px 15px 25px 15px;
+        padding:15px 15px 20px 15px;
         border:1px dotted #aaa;
     }
 }
@@ -688,14 +689,6 @@ body {
     font-size:14px;
 }
 
-.pq-quote-date-released {
-    clear:right;
-    float:right;
-    margin:5px 0 0 0;
-    font-size:18px;
-    color:#333;
-}
-
 .pq-quote-header-inside {
     max-width:580px;
     display:inline-block;
@@ -710,17 +703,31 @@ body {
 
 .pq-quote-podcast-episode {
     margin:5px 0 0 1px;
-    font-size:18px;
+    font-size:16px;
+}
+
+.pq-quote-date {
+    clear:right;
+    float:right;
+    font-size:16px;
+    color:#444;
+}
+
+.pq-quote-date-home {
+    clear:right;
+    float:right;
+    font-size:16px;
+    color:#444;
 }
 
 .pq-quote hr {
-    margin:10px 0;
+    margin:10px 0 15px 0;
     border-top:1px solid #ddd;
 }
 
 .pq-quote-votes {
     float:left;
-    margin:-5px 44px -5px 6px;
+    margin:-8px 44px -5px 6px;
     height:100%;
 }
 
@@ -759,37 +766,28 @@ body {
 }
 
 .pq-quote-inside {
-    max-width:600px;
+    overflow:hidden;
 }
 
-.pq-quote-text {
-    clear:left;
-    font-size:16px;
-    margin:5px 20px 15px 80px;
+.pq-quote-summary {
+    max-width:600px;
+    margin:0 0 10px 0;
+    font-size:18px;
+    font-weight:bold;
 }
 
 .pq-quote-clip-time {
-    clear:right;
-    float:right;
-    margin:5px 0 5px 0;
-    font-size:14px;
-    color:#444;
+    clear:left;
+    font-size:15px;
+    margin:0 0 15px 0;
+    color:#111;
 }
 
-.pq-quote-date {
-    clear:right;
-    float:right;
-    margin:3px 0 0 0;
-    font-size:18px;
-    color:#444;
-}
-
-.pq-quote-date-home {
-    clear:right;
-    float:right;
-    margin:3px 0 0 0;
+.pq-quote-text {
+    max-width:600px;
+    clear:left;
     font-size:16px;
-    color:#444;
+    margin:0 0 15px 0;
 }
 
 .pq-quote-buttons {
@@ -797,9 +795,17 @@ body {
     margin:0 0 0 15px;
 }
 
+.pq-quote-time-posted {
+    clear:left;
+    float:left;
+    margin:0 0 15px 0;
+    font-size:14px;
+    color:#444;
+}
+
 .pq-quote-bottom {
     clear:right;
-    margin:0 0 0 80px;
+    margin:0 0 0 82px;
 }
 
 .pq-quote-bottom-button {
@@ -807,14 +813,7 @@ body {
     margin:0 20px 0 0;
     font-size:14px;
     font-weight:bold;
-    color:#555;
-}
-
-.pq-quote-time-posted {
-    float:right;
-    margin:2px 0 0 0;
-    font-size:14px;
-    color:#333;
+    color:#444;
 }
 
 .pq-xs-quote {
@@ -847,7 +846,7 @@ body {
 .pq-xs-quote-podcast-episode {
     float:left;
     clear:left;
-    font-size:18px;
+    font-size:16px;
 }
 
 .pq-xs-quote hr {
@@ -864,24 +863,24 @@ body {
 
 .pq-xs-quote-votes {
     float:left;
-    margin:-5px 0 0 0;
+    margin:0 0 5px 0;
 }
 
 .pq-xs-quote-upvote-button {
     float:left;
-    font-size:36px;
+    font-size:40px;
     color:#222;
 }
 
 .pq-xs-quote-vote-total {
     float:left;
-    margin:14px 15px 0 15px;
-    font-size:18px;
+    margin:19px 15px 0 15px;
+    font-size:16px;
 }
 
 .pq-xs-quote-downvote-button {
     float:left;
-    font-size:36px;
+    font-size:40px;
     color:#222;
 }
 
@@ -910,6 +909,7 @@ body {
 .pq-xs-quote-inside {
     clear:both;
     overflow:hidden;
+    padding:5px 0 0 0
 }
 
 .pq-xs-quote-text {
@@ -1237,8 +1237,41 @@ a {
     color:#286596;
 }
 
+.youtube-margin {
+    float:left;
+}
+
+.youtube-img-preview {
+    max-width:200px;
+}
+
 .youtube {
     float:left;
+    margin:0 0 20px 0;
+}
+
+@media (max-width:499px) {
+    .iframe-size {
+        width:100%;
+        height:220px;
+        margin:0 0 10px 0;
+    }
+}
+
+@media (min-width:500px) and (max-width:767px) {
+    .iframe-size {
+        width:100%;
+        height:300px;
+        margin:0 0 10px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .iframe-size {
+        width:476px;
+        height:300px;
+        margin:0 0 10px 0;
+    }
 }
 
 .video-container {
@@ -1250,7 +1283,6 @@ a {
     padding-top: 30px; height: 0; overflow: hidden;
 }
 
- 
 .video-container iframe,
 .video-container object,
 .video-container embed {

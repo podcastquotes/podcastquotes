@@ -90,8 +90,8 @@
         <div class="col-md-3">
           <div class="row">
             <div class="col-sm-6 col-md-12">
-              <a href="/add-a-quote" class="pq-side-button">
-                Post a new quote
+              <a href="/quotes/create/" class="pq-side-button">
+                Add a quote
               </a>
             </div><!-- /.col-sm-6 -->
             
@@ -222,16 +222,21 @@ for (var i=0; i<videos.length; i++) {
   var youtubeOnlyId = youtube.id.substring(0,11);
   
   // Based on the YouTube ID, we can easily find the thumbnail image
+  
+  var preview = document.createElement("div");
+  preview.setAttribute("class", "youtube-margin")
+  
   var img = document.createElement("img");
   img.setAttribute("src", "http://i.ytimg.com/vi/"
                           + youtubeOnlyId + "/hqdefault.jpg");
-  img.setAttribute("class", "img-responsive", "margin-top-5");
+  img.setAttribute("class", "youtube-img-preview");
   
  
   // Overlay the Play icon to make it look like a video player
   var circle = document.createElement("div");
   circle.setAttribute("class","circle");  
   
+  youtube.appendChild(preview);
   youtube.appendChild(img);
   youtube.appendChild(circle);
   
@@ -245,8 +250,7 @@ for (var i=0; i<videos.length; i++) {
         + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
     
     // The height and width of the iFrame should be the same as parent
-    iframe.style.width  = this.style.width;
-    iframe.style.height = this.style.height;
+    iframe.setAttribute("class", "iframe-size");
       
     // Replace the YouTube thumbnail with YouTube HTML5 Player
     this.parentNode.replaceChild(iframe, this);

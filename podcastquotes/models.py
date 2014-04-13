@@ -41,10 +41,11 @@ class Episode(models.Model):
     title = models.CharField(max_length=200)
     publication_date = models.DateField(blank=True)
     description = models.TextField(blank=True)
-    episode_link = models.URLField(blank=True)
+    episode_url = models.URLField(blank=True)
+    donate_url = models.URLField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
-    video_link = models.URLField(blank=True) 
-    audio_link = models.URLField(blank=True)
+    video_url = models.URLField(blank=True) 
+    audio_url = models.URLField(blank=True)
     # guests = ...
     # duration = what type of field for length of episode data? needs to match up with format for quote.time_quote_begins and quote.time_quote_ends
     # keywords = ...
@@ -57,7 +58,7 @@ class Episode(models.Model):
         - http://www.youtube.com/embed/SA2iWivDJiE
         - http://www.youtube.com/v/SA2iWivDJiE?version=3&amp;hl=en_US
         """
-        query = urlparse(self.video_link)
+        query = urlparse(self.video_url)
         if query.hostname == 'youtu.be':
             return query.path[1:]
         if query.hostname in ('www.youtube.com', 'youtube.com'):
@@ -120,7 +121,8 @@ class Tag(models.Model):
         return unicode(self.tag)
         
 class Quote(models.Model):
-    text = models.TextField()
+    summary = models.CharField(max_length=100, blank=True)
+    text = models.TextField(blank=True)
     persons_quoted = models.ManyToManyField(PersonQuoted, blank=True)
     episode = models.ForeignKey(Episode)
     time_quote_begins = models.IntegerField(blank=True)

@@ -47,7 +47,7 @@ urlpatterns = patterns('',
             context_object_name='episode'),
         name='episode_detail',),
     
-    url(r'^add-a-quote/$', 'podcastquotes.views.quote_create',
+    url(r'^quotes/create/', 'podcastquotes.views.quote_create',
         name='create_quote',),
         
     url(r'^quotes/edit/(?P<pk>\d+)/$', QuoteUpdateView.as_view(),

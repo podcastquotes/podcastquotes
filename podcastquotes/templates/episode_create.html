@@ -41,9 +41,21 @@
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-              {% if episode_form.episode_link.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label" for="episode_link" {% if episode_form.episode_link.errors %} class="error" {% endif %}>Episode Link</label>
-              {{ episode_form.episode_link }}
+              {% if episode_form.episode_url.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="episode_url" {% if episode_form.episode_url.errors %} class="error" {% endif %}>Homepage Episode URL</label>
+              {{ episode_form.episode_url }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if episode_form.video_url.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="video_url" {% if episode_form.video_url.errors %} class="error" {% endif %}>YouTube Video URL</label>
+              {{ episode_form.video_url }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if episode_form.audio_url.errors %}<p class="error">{% endif %}
+              <label class="pq-form-label" for="audio_url" {% if episode_form.audio_url.errors %} class="error" {% endif %}>Audio URL</label>
+              {{ episode_form.audio_url }}
             </div><!-- /.pq-form-input -->
 
             <div class="pq-form-buttons">

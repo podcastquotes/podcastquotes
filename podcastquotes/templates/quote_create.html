@@ -29,6 +29,12 @@
       </div><!-- /.pq-form-input -->
       
       <div class="pq-form-input">
+        {% if quote_form.summary.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label" for="summary" {% if quote_form.summary.errors %} class="error"{% endif %}>Quote Summary (max 100 characters)</label>
+        {{ quote_form.summary }}
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
         {% if quote_form.text.errors %}<p class="error">{% endif %}
         <label class="pq-form-label" for="text" {% if quote_form.text.errors %} class="error" {% endif %}>Quote</label>
         {{ quote_form.text }}
