@@ -121,7 +121,7 @@ class Tag(models.Model):
         return unicode(self.tag)
         
 class Quote(models.Model):
-    summary = models.CharField(max_length=100, blank=True)
+    summary = models.CharField(max_length=116, blank=True)
     text = models.TextField(blank=True)
     persons_quoted = models.ManyToManyField(PersonQuoted, blank=True)
     episode = models.ForeignKey(Episode)

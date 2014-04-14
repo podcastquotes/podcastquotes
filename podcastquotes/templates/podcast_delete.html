@@ -2,16 +2,20 @@
 
 {% block main %}
 
-    <div class="col-md-7">
+<div class="col-md-7">
 
-        <p>Are you sure you want to delete "{{ podcast.title }}"?</p>
+  <p>Are you sure you want to delete "{{ podcast.title }}"?</p>
 
-        <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
-          {% csrf_token %}
-          <a href="{% url 'podcast_detail' pk=podcast.pk %}">Go back</a> 
-          <p><input type="submit" value="Confirm deletion" /></p>
-        </form> 
+  <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
+    {% csrf_token %}
+    <a href="{% url 'podcast_detail' pk=podcast.pk %}">
+      Go back
+    </a> 
+    <p>
+      <input type="submit" value="Confirm deletion" />
+    </p>
+  </form> 
 
-    </div><!-- /.col-md-7 -->
+</div><!-- /.col-md-7 -->
 
 {% endblock %}

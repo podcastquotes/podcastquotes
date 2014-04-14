@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
   
-  <head>
+<head>
+
     <title>PodcastQuotes</title>
     
     <meta charset=”utf-8” /> 
@@ -20,7 +21,6 @@
     
     <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet' type='text/css'> -->
 
-    
     <link href="{% static 'font-awesome-4.0.3/css/font-awesome.min.css' %}" type="text/css" rel="stylesheet">
     
     <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
@@ -28,148 +28,140 @@
     
     <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
-    
-  </head>
   
-  <body>
-  
-    {% block navbar %}
+</head>
 
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="pq-navbar-container">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            
-            <div class="pq-brand">
+<body>
+  
+  {% block navbar %}
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="pq-navbar-container">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="pq-brand">
             <a href="/"><strong>PodcastQuotes</strong> <i class="fa fa-rss rss-icon-disappear"></i></a>
-            </div><!-- /.pq-brand -->
-
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left"  role="search">
-              <div class="form-group">
-                <input type="text" class="pq-search-input" placeholder="Search">
+          </div><!-- /.pq-brand -->
+        </div><!-- /.navbar-header -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-left"  role="search">
+            <div class="form-group">
+              <input type="text" class="pq-search-input" placeholder="Search">
               <button type="submit" class="pq-search-button"><i class="fa fa-search"></i></button>
               <div class="pq-search-options">
                 advanced<br />
                 options
               </div><!-- /.pq-search-options -->
-              </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Login</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </div><!-- /.pq-navbar-container -->
-    </nav>
-      
-    {% endblock %}
+            </div><!-- /.form-group -->
+          </form><!-- /.navbar-form navbar-left -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </div><!-- /.pq-navbar-container -->
+  </nav><!-- /.navbar navbar-default -->
+  
+  {% endblock %}
     
-    <div class="pq-container">
+  <div class="pq-container">
+    <div class="row">
+    
+      {% block main %}
       
-      <div class="row">
+      {% endblock %}<!-- / block main -->
       
-        {% block main %}
-        
-        {% endblock %}<!-- / block main -->
-        
-        {% block extraspace %}
-        
-        {% endblock %}<!-- / block extraspace -->
-        
-        <div class="col-md-3">
-          <div class="row">
-            <div class="col-sm-6 col-md-12">
-              <a href="/quotes/create/" class="pq-side-button">
-                Add a quote
-              </a>
-            </div><!-- /.col-sm-6 -->
-            
-            <div class="col-sm-6 col-md-12">
-              <div class="pq-side-button">
-                Request a podcast
-              </div><!-- /.pq-side-button -->
-            </div><!-- /.col-sm-6 -->
-            
-          </div><!-- /.row -->
+      {% block extraspace %}
+      
+      {% endblock %}<!-- / block extraspace -->
+      
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-sm-6 col-md-12">
+            <a href="/quotes/create/" class="pq-side-button">
+              Add a quote
+            </a>
+          </div><!-- /.col-sm-6 -->
+          
+          <div class="col-sm-6 col-md-12">
+            <div class="pq-side-button">
+              Request a podcast
+            </div><!-- /.pq-side-button -->
+          </div><!-- /.col-sm-6 -->
+        </div><!-- /.row -->
         
         {% block advertisement %}
           
-          <div class="row">
-            <div class="col-sm-6 col-md-12">
-              <div class="pq-advertisement-or-whatever">
-                advertisement<br />
-                or<br />
-                donate button
-              </div><!-- /.pq-advertisement-or-whatever -->
-            </div><!-- /.col-sm-6 .col-md-12 -->
-          </div><!-- /.row -->
-          
-        {% endblock %}
+        <div class="row">
+          <div class="col-sm-6 col-md-12">
+            <div class="pq-advertisement-or-whatever">
+              advertisement<br />
+              or<br />
+              donate button
+            </div><!-- /.pq-advertisement-or-whatever -->
+          </div><!-- /.col-sm-6 .col-md-12 -->
+        </div><!-- /.row -->
         
+        {% endblock %}<!-- / block advertisement -->
+      
         {% block menu %}
-          
-          <div class="row">
-          
-            <div class="col-sm-6 col-md-12">
+        
+        <div class="row">
+          <div class="col-sm-6 col-md-12">
+            <div class="pq-menu">
             
-              <div class="pq-menu">
-                
-                <div class="pq-menu-title">
-                  Podcasts
-                </div><!-- /.pq-menu-title -->
-                
-                <div class="pq-menu-advanced">
-                  advanced
-                </div><!-- /.pq-menu-advanced -->
-
-                <div class="pq-menu-pulldown">
-                  All Podcasts <i class="fa fa-chevron-down"></i>
-                </div><!-- /.pq-menu-pulldown -->
-                
-                <div class="clearfix">
-                </div>
-                
-                <hr />
-
-        <div class="pq-menu-options">
-         {% for podcast in podcasts %}        
-          <div class="pq-menu-option">
-            <a href="/podcasts/{{ podcast.id}}">
-              - {{ podcast.title }}
-            </a>
-          </div><!-- /.pq-menu-option -->
-         {% endfor %}
-        </div>
-                
-              </div><!-- /.pq-menu -->
+              <div class="pq-menu-title">
+                Podcasts
+              </div><!-- /.pq-menu-title -->
               
-            </div><!-- /.col-sm-6 .col-md-12 -->
+              <div class="pq-menu-advanced">
+                advanced
+              </div><!-- /.pq-menu-advanced -->
 
-          </div><!-- /.row -->
+              <div class="pq-menu-pulldown">
+                All Podcasts <i class="fa fa-chevron-down"></i>
+              </div><!-- /.pq-menu-pulldown -->
+              
+              <div class="clearfix">
+              </div>
+              
+              <hr />
+
+              <div class="pq-menu-options">
+                {% for podcast in podcasts %}        
+                <div class="pq-menu-option">
+                  <a href="/podcasts/{{ podcast.id}}">
+                    - {{ podcast.title }}
+                  </a>
+                </div><!-- /.pq-menu-option -->
+                {% endfor %}
+              </div><!-- /.pq-menu-options -->
+            
+            </div><!-- /.pq-menu -->
+            
+          </div><!-- /.col-sm-6 .col-md-12 -->
+        </div><!-- /.row -->
 
         {% endblock %}<!-- / block menu -->
-  
-        </div><!-- /.col-md-3 -->
 
+      </div><!-- /.col-md-3 -->
     </div><!-- /.row -->
-
   </div><!-- /.pq-container -->
   
   {% block footer %}
   
   <div class="pq-footer">
+    
     <div class="pq-navbar-container">
+      
       <div class="pq-footer-brand">
         <a href="/">PodcastQuotes <i class="fa fa-rss"></i></a>
       </div>
@@ -181,7 +173,6 @@
       <div class="pq-footer-nav text-orange sm-clear-left">
         claim your page
       </div>
-      
       
       <div class="pq-footer-nav sm-clear-left">
         contact
@@ -202,63 +193,62 @@
       <div class="clearfix">
       </div>
       
-    </div><!-- /.pq-navbar-footer -->
+    </div><!-- /.pq-navbar-container -->
 
   </div><!-- /.pq-footer -->
   
   {% endblock %}<!-- / block footer -->
-  
-<!-- Include the JavaScript only once -->
- 
-<script>
- 
-// Find all the YouTube video embedded on a page
-var videos = document.getElementsByClassName("youtube");
- 
-for (var i=0; i<videos.length; i++) {
-  
-  var youtube = videos[i];
-  
-  var youtubeOnlyId = youtube.id.substring(0,11);
-  
-  // Based on the YouTube ID, we can easily find the thumbnail image
-  
-  var preview = document.createElement("div");
-  preview.setAttribute("class", "youtube-margin")
-  
-  var img = document.createElement("img");
-  img.setAttribute("src", "http://i.ytimg.com/vi/"
-                          + youtubeOnlyId + "/hqdefault.jpg");
-  img.setAttribute("class", "youtube-img-preview");
-  
- 
-  // Overlay the Play icon to make it look like a video player
-  var circle = document.createElement("div");
-  circle.setAttribute("class","circle");  
-  
-  youtube.appendChild(preview);
-  youtube.appendChild(img);
-  youtube.appendChild(circle);
-  
-  // Attach an onclick event to the YouTube Thumbnail
-  youtube.onclick = function() {
- 
-    // Create an iFrame with autoplay set to true
-    var iframe = document.createElement("iframe");
-    iframe.setAttribute("src",
-          "https://www.youtube.com/embed/" + this.id
-        + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
-    
-    // The height and width of the iFrame should be the same as parent
-    iframe.setAttribute("class", "iframe-size");
+
+  <!-- Include the JavaScript only once -->
+  <script>
+   
+    // Find all the YouTube video embedded on a page
+    var videos = document.getElementsByClassName("youtube");
+     
+    for (var i=0; i<videos.length; i++) {
       
-    // Replace the YouTube thumbnail with YouTube HTML5 Player
-    this.parentNode.replaceChild(iframe, this);
- 
-  };
-}
- 
-</script>
+      var youtube = videos[i];
+      
+      var youtubeOnlyId = youtube.id.substring(0,11);
+      
+      // Based on the YouTube ID, we can easily find the thumbnail image
+      
+      var preview = document.createElement("div");
+      preview.setAttribute("class", "youtube-margin")
+      
+      var img = document.createElement("img");
+      img.setAttribute("src", "http://i.ytimg.com/vi/"
+                              + youtubeOnlyId + "/hqdefault.jpg");
+      img.setAttribute("class", "youtube-img-preview");
+      
+     
+      // Overlay the Play icon to make it look like a video player
+      var circle = document.createElement("div");
+      circle.setAttribute("class","circle");  
+      
+      youtube.appendChild(preview);
+      youtube.appendChild(img);
+      youtube.appendChild(circle);
+      
+      // Attach an onclick event to the YouTube Thumbnail
+      youtube.onclick = function() {
+     
+        // Create an iFrame with autoplay set to true
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src",
+              "https://www.youtube.com/embed/" + this.id
+            + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
+        
+        // The height and width of the iFrame should be the same as parent
+        iframe.setAttribute("class", "iframe-size");
+          
+        // Replace the YouTube thumbnail with YouTube HTML5 Player
+        this.parentNode.replaceChild(iframe, this);
+     
+      };
+    }
+   
+  </script>
   
   </body>
 

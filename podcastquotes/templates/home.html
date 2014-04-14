@@ -6,11 +6,11 @@
 
   <div class="pq-title">
     <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-        <option value="/" selected="selected">All Podcasts</option>
-        <option value="/">My Podcasts</option>
-        {% for podcast in podcasts %}
-            <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
-        {% endfor %}
+      <option value="/" selected="selected">All Podcasts</option>
+      <option value="/">My Podcasts</option>
+      {% for podcast in podcasts %}
+      <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+      {% endfor %}
     </select>
   </div><!-- /.pq-title -->
   
@@ -56,29 +56,29 @@
   
   <div class="visible-xs hidden-sm hidden-md hidden-lg pq-xs-navs">
     
-      <div class="pq-xs-nav-active">
-        hot
-      </div>
+    <div class="pq-xs-nav-active">
+      hot
+    </div>
+
+    <div class="pq-xs-nav">
+      not
+    </div>
     
+    <span class="pq-nav-disappear-4">
       <div class="pq-xs-nav">
-        not
+        new
       </div>
-      
-      <span class="pq-nav-disappear-4">
-        <div class="pq-xs-nav">
-          new
-        </div>
-      </span>
-      
-      <span class="pq-nav-disappear-3">
-        <div class="pq-xs-nav">
-          top
-        </div>
-      </span>
-      
+    </span>
+    
+    <span class="pq-nav-disappear-3">
       <div class="pq-xs-nav">
-        more
+        top
       </div>
+    </span>
+    
+    <div class="pq-xs-nav">
+      more
+    </div>
   
   </div><!-- /.visible-xs .hidden-sm .hidden-md .hidden-lg -->
   
@@ -94,29 +94,28 @@
     <div class="pq-quote-header-inside">
     
       <div class="pq-quote-podcast-name">
-          <a href="podcasts/{{ quote.episode.podcast.id }}">
-              {{ quote.episode.podcast.title }}
-          </a>
+        <a href="podcasts/{{ quote.episode.podcast.id }}">
+          {{ quote.episode.podcast.title }}
+        </a>
       </div><!-- /.pq-quote-podcast-name -->
     
     </div><!-- /.pq-quote-header-inside -->
     {% endif %}
     
-    
     {% if quote.episode.title or quote.episode.publication_date %}
     <div class="pq-quote-header-row">
     
-        <div class="pq-quote-date-home">
-          <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
-        </div><!-- pq-quote-date-home -->
-        
-        <div class="pq-quote-header-inside">
-          <div class="pq-quote-podcast-episode">
-              <a href="/episodes/{{ quote.episode.id }}">
-                  {{ quote.episode.title }}
-              </a>
-          </div><!-- /.pq-quote-podcast-episode -->
-        </div><!-- /.pq-quote-header-inside -->
+      <div class="pq-quote-date-home">
+        <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
+      </div><!-- pq-quote-date-home -->
+      
+      <div class="pq-quote-header-inside">
+        <div class="pq-quote-podcast-episode">
+          <a href="/episodes/{{ quote.episode.id }}">
+            {{ quote.episode.title }}
+          </a>
+        </div><!-- /.pq-quote-podcast-episode -->
+      </div><!-- /.pq-quote-header-inside -->
     
     </div><!-- /.pq-quote-header-row -->
     {% endif %}
@@ -125,16 +124,14 @@
     <hr style="clear:left;" />
     {% endif %}
     
-    
-    
     <div class="pq-quote-votes">
     
       <div class="pq-quote-upvote-button">
-          <i class="fa fa-arrow-circle-o-up"></i>
+        <i class="fa fa-arrow-circle-o-up"></i>
       </div><!-- /.pq-quote-upvote-button -->
       
       <div class="pq-quote-vote-total">
-          123
+        123
       </div><!-- /.pq-quote-vote-total -->
       
       <div class="pq-quote-downvote-button">
@@ -145,23 +142,23 @@
       
       <div class="pq-quote-buttons">
       
-      <a href="#">
-        <div class="pq-quote-edit-button color-share">
-          Share
-        </div>
-      </a>
-      
-      <a href="{{ quote.episode.podcast.donate_url }}">
-        <div class="pq-quote-edit-button color-donate">
-          Donate
-        </div>
-      </a>
-      
-      <a href="/quotes/edit/{{ quote.id }}">
-        <div class="pq-quote-edit-button color-edit">
-          Edit
-        </div>
-      </a>
+        <a href="#">
+          <div class="pq-quote-edit-button color-share">
+            Share
+          </div>
+        </a>
+        
+        <a href="{{ quote.episode.podcast.donate_url }}">
+          <div class="pq-quote-edit-button color-donate">
+            Donate
+          </div>
+        </a>
+        
+        <a href="/quotes/edit/{{ quote.id }}">
+          <div class="pq-quote-edit-button color-edit">
+            Edit
+          </div>
+        </a>
         
         <div class="clearfix">
         </div>
@@ -179,22 +176,22 @@
         {% if quote.converted_time_begins or quote.converted_time_ends %}
         <div class="pq-quote-clip-time">
         {% endif %}
-        {% if quote.converted_time_begins %}
-        Starts: {{ quote.converted_time_begins }}
-        {% endif %}
-        {% if quote.converted_time_begins and quote.converted_time_ends %}
-        &nbsp - &nbsp
-        {% endif %}
-        {% if quote.converted_time_ends %}
-        Ends: {{ quote.converted_time_ends }}
-        {% endif %}
+          {% if quote.converted_time_begins %}
+          Starts: {{ quote.converted_time_begins }}
+          {% endif %}
+          {% if quote.converted_time_begins and quote.converted_time_ends %}
+          &nbsp - &nbsp
+          {% endif %}
+          {% if quote.converted_time_ends %}
+          Ends: {{ quote.converted_time_ends }}
+          {% endif %}
         {% if quote.converted_time_begins or quote.converted_time_ends %}
         </div>
         {% endif %}
         
         {% if quote.time_quote_begins and quote.episode.video_url %}
-          <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-          </div>
+        <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+        </div>
         {% endif %}
         
         <div class="pq-quote-text">
@@ -236,12 +233,11 @@
 
   </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
 
-  
   <div class="pq-xs-quote visible-xs hidden-sm hidden-md hidden-lg">
     
     {% if quote.episode.podcast.title %}
     <div class="pq-xs-quote-profile-picture">
-      <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}" />
+      <img src="{{ MEDIA_URL }}{{ quote.episode.podcast.image }}" />
     </div><!-- /.pq-xs-quote-profile-picture -->
     {% endif %}
     
@@ -249,7 +245,9 @@
     <div class="pq-xs-quote-header-inside">
     
       <div class="pq-xs-quote-podcast-name">
-        <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast.title }}</a>
+        <a href="/podcasts/{{ quote.episode.podcast.id }}">
+          {{ quote.episode.podcast.title }}
+        </a>
       </div><!-- /.pq-xs-quote-podcast-name -->
       
       <div class="pq-xs-quote-podcast-episode">
@@ -284,15 +282,15 @@
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       <div class="pq-quote-clip-time">
       {% endif %}
-      {% if quote.converted_time_begins %}
-      Starts: {{ quote.converted_time_begins }}
-      {% endif %}
-      {% if quote.converted_time_begins and quote.converted_time_ends %}
-      &nbsp - &nbsp
-      {% endif %}
-      {% if quote.converted_time_ends %}
-      Ends: {{ quote.converted_time_ends }}
-      {% endif %}
+        {% if quote.converted_time_begins %}
+        Starts: {{ quote.converted_time_begins }}
+        {% endif %}
+        {% if quote.converted_time_begins and quote.converted_time_ends %}
+        &nbsp - &nbsp
+        {% endif %}
+        {% if quote.converted_time_ends %}
+        Ends: {{ quote.converted_time_ends }}
+        {% endif %}
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       </div>
       {% endif %}
@@ -379,45 +377,43 @@
 
 {% block menu %}
   
-  <div class="row">
+<div class="row">
+
+  <div class="col-sm-6 col-md-12">
   
-    <div class="col-sm-6 col-md-12">
-    
-      <div class="pq-menu">
-        
-        <div class="pq-menu-title">
-          Podcasts
-        </div><!-- /.pq-menu-title -->
-        
-        <div class="pq-menu-advanced">
-          advanced
-        </div><!-- /.pq-menu-advanced -->
-
-        <div class="pq-menu-pulldown">
-          All Podcasts <i class="fa fa-chevron-down"></i>
-        </div><!-- /.pq-menu-pulldown -->
-        
-        <div class="clearfix">
-        </div>
-        
-        <hr />
-
-        <div class="pq-menu-options">
-         {% for podcast in podcasts %}        
-          <div class="pq-menu-option">
-            <a href="/podcasts/{{ podcast.id}}">
-              - {{ podcast.title }}
-            </a>
-          </div><!-- /.pq-menu-option -->
-         {% endfor %}
-        </div>
-
-        </div><!-- /.pq-menu-options -->
-        
-      </div><!-- /.pq-menu -->
+    <div class="pq-menu">
       
-    </div><!-- /.col-sm-6 .col-md-12 -->
+      <div class="pq-menu-title">
+        Podcasts
+      </div><!-- /.pq-menu-title -->
+      
+      <div class="pq-menu-advanced">
+        advanced
+      </div><!-- /.pq-menu-advanced -->
 
-  </div><!-- /.row -->
+      <div class="pq-menu-pulldown">
+        All Podcasts <i class="fa fa-chevron-down"></i>
+      </div><!-- /.pq-menu-pulldown -->
+      
+      <div class="clearfix">
+      </div>
+      
+      <hr />
+
+      <div class="pq-menu-options">
+       {% for podcast in podcasts %}        
+        <div class="pq-menu-option">
+          <a href="/podcasts/{{ podcast.id}}">
+            - {{ podcast.title }}
+          </a>
+        </div><!-- /.pq-menu-option -->
+       {% endfor %}
+      </div><!-- /.pq-menu-options -->
+
+    </div><!-- /.pq-menu -->
+    
+  </div><!-- /.col-sm-6 .col-md-12 -->
+
+</div><!-- /.row -->
 
 {% endblock %}<!-- / block menu -->

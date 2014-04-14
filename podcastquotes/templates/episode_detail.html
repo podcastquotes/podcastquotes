@@ -5,215 +5,216 @@
 <div class="col-md-9">
 
   <div class="pq-breadcrumbs">
-      <a href="/">Home</a> > <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.title }}</a> > {{ episode.title }}
+    <a href="/">Home</a> > <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.title }}</a> > {{ episode.title }}
   </div><!-- /.pq-breadcrumbs -->
   
   <div class="pq-podcast-header">
 
-        <a href="/podcasts/{{ episode.podcast.id }}">
-          <div class="pq-podcast-profile-picture">
-              <img src="{{MEDIA_URL}}{{ episode.podcast.image }}" />
-          </div><!-- /.pq-podcast-profile-picture -->
-        </a>
+    <a href="/podcasts/{{ episode.podcast.id }}">
+      <div class="pq-podcast-profile-picture">
+        <img src="{{MEDIA_URL}}{{ episode.podcast.image }}" />
+      </div><!-- /.pq-podcast-profile-picture -->
+    </a>
+    
+    <div class="pq-podcast-header-button color-share">
+      Share
+    </div><!-- /.pq-podcast-headerbutton -->
+    
+    <a href="{{ episode.podcast.donate_url }}">
+      <div class="pq-podcast-header-button color-donate">
+        Donate
+      </div><!-- /.pq-podcast-headerbutton -->
+    </a>
+    
+    <div class="pq-podcast-header-button color-follow">
+      Follow
+    </div><!-- /.pq-podcast-header-button -->
+    
+    <a href="/podcasts/edit/{{ episode.podcast.id }}">
+      <div class="pq-podcast-header-button color-edit">
+        Edit
+      </div><!-- /.pq-podcast-header-button -->
+    </a>
+          
+    <div class="pq-podcast-header-box">
+    
+      <div class="pq-podcast-title">
+          
+        <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+          <option value="/podcasts/{{ episode.podcast.id }}" selected="selected">{{ episode.podcast.title }}</option>
+          <option value="/">All Podcasts</option>
+          <option value="/">My Podcasts</option>
+          {% for podcast in episode.podcast.all_podcasts %}
+          <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+          {% endfor %}
+        </select>
+
+      </div><!-- /.pq-title -->
         
-          <div class="pq-podcast-header-button color-share">
-              Share
-          </div><!-- /.pq-podcast-headerbutton -->
-          
-          <a href="{{ episode.podcast.donate_url }}">
-              <div class="pq-podcast-header-button color-donate">
-                  Donate
-              </div><!-- /.pq-podcast-headerbutton -->
-          </a>
-          
-          <div class="pq-podcast-header-button color-follow">
-              Follow
-          </div><!-- /.pq-podcast-header-button -->
-          
-          <a href="/podcasts/edit/{{ episode.podcast.id }}">
-            <div class="pq-podcast-header-button color-edit">
-                Edit
-            </div><!-- /.pq-podcast-header-button -->
-          </a>
-          
-        
-        <div class="pq-podcast-header-box">
-        
-            <div class="pq-podcast-title">
-                <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-                    <option value="/podcasts/{{ episode.podcast.id }}" selected="selected">{{ episode.podcast.title }}</option>
-                    <option value="/">All Podcasts</option>
-                    <option value="/">My Podcasts</option>
-                    {% for podcast in episode.podcast.all_podcasts %}
-                        <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
-                    {% endfor %}
-                </select>
-            </div><!-- /.pq-title -->
-              
-            <div class="pq-podcast-social-media">
-                <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
-            </div><!-- /.pq-podcast-social-media -->
-          
-              <div class="pq-podcast-header-info-right-1">
-                  2,345 listeners
-              </div><!-- /.pq-podcast-header-info -->
-              
-              <div class="pq-podcast-header-info-left">
-                  <strong>Category:</strong> Comedy
-              </div><!-- /.pq-podcast-header-info -->
-              
-              <div class="pq-podcast-header-info-right-2">
-                  <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.all_podcast_quotes.count }} quotes</a>
-              </div><!-- /.pq-podcast-header-info -->
-              
-              <div class="pq-podcast-header-info-left">
-                  <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
-              </div><!-- /.pq-podcast-header-info -->
-              
-              <div class="pq-podcast-header-info-full">
-                  <strong>Description:</strong> {{ episode.podcast.description }}
-              </div><!-- /.pq-episode-header-info -->
-              
-          </div><!-- /.pq-podcast-header-box -->
+      <div class="pq-podcast-social-media">
+        <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
+      </div><!-- /.pq-podcast-social-media -->
       
-      <div class="clearfix">
-      </div>
+      <div class="pq-podcast-header-info-right-1">
+        2,345 listeners
+      </div><!-- /.pq-podcast-header-info -->
+      
+      <div class="pq-podcast-header-info-left">
+        <strong>Category:</strong> Comedy
+      </div><!-- /.pq-podcast-header-info -->
+      
+      <div class="pq-podcast-header-info-right-2">
+        <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.all_podcast_quotes.count }} quotes</a>
+      </div><!-- /.pq-podcast-header-info -->
+      
+      <div class="pq-podcast-header-info-left">
+        <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
+      </div><!-- /.pq-podcast-header-info -->
+      
+      <div class="pq-podcast-header-info-full">
+        <strong>Description:</strong> {{ episode.podcast.description }}
+      </div><!-- /.pq-episode-header-info -->
+          
+    </div><!-- /.pq-podcast-header-box -->
+      
+    <div class="clearfix">
+    </div>
   
   </div><!-- /.pq-podcast-header -->
   
-    <div class="pq-episode-header">
-      
-      <a href="/episodes/{{ episode.id }}">
-        <div class="pq-episode-profile-picture">
-            <img class="img-responsive" src="{{MEDIA_URL}}{{ episode.image }}" />
-        </div><!-- /.pq-episode-profile-picture -->
-      </a>
-      
-      <a href="{{ episode.episode_url }}">
-          <div class="pq-episode-header-button bg-yellow">
-              Episode
-          </div><!-- /.pq-episode-header-button -->
-      </a>
-      
-      <a href="/episodes/edit/{{ episode.id }}">
-        <div class="pq-episode-header-button color-edit">
-            Edit
-        </div><!-- /.pq-episode-header-button -->
-      </a>
-          
-      
-      <div class="pq-episode-clip">
-          <i class="fa fa-volume-up"></i>
-      </div>
-      
-      <div class="pq-episode-clip">
-          <i class="fa fa-film"></i>
-      </div>
-      
-      <div class="pq-episode-header-box">
-          
-              <div class="pq-episode-title">
-                  <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-                      <option value="/episodes/{{ episode.id }}" selected="selected">{{ episode.title }}</option>
-                      <option value="/podcasts/{{ episode.podcast.id }}">All {{ episode.podcast.title }} Podcasts</option>
-                      {% for episode in episode.all_episodes %}
-                          <option value="/episodes/{{ episode.id }}">{{ episode.title }}</option>
-                      {% endfor %}
-                  </select>
-              </div><!-- /.pq-episode-title -->
+  <div class="pq-episode-header">
+    
+    <a href="/episodes/{{ episode.id }}">
+      <div class="pq-episode-profile-picture">
+        <img class="img-responsive" src="{{MEDIA_URL}}{{ episode.image }}" />
+      </div><!-- /.pq-episode-profile-picture -->
+    </a>
+    
+    <a href="{{ episode.episode_url }}">
+      <div class="pq-episode-header-button bg-yellow">
+        Episode
+      </div><!-- /.pq-episode-header-button -->
+    </a>
+    
+    <a href="/episodes/edit/{{ episode.id }}">
+      <div class="pq-episode-header-button color-edit">
+        Edit
+      </div><!-- /.pq-episode-header-button -->
+    </a>
+        
+    
+    <div class="pq-episode-clip">
+      <i class="fa fa-volume-up"></i>
+    </div>
+    
+    <div class="pq-episode-clip">
+      <i class="fa fa-film"></i>
+    </div>
+    
+    <div class="pq-episode-header-box">
+        
+      <div class="pq-episode-title">
+        <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+            <option value="/episodes/{{ episode.id }}" selected="selected">{{ episode.title }}</option>
+            <option value="/podcasts/{{ episode.podcast.id }}">All {{ episode.podcast.title }} Podcasts</option>
+            {% for episode in episode.all_episodes %}
+                <option value="/episodes/{{ episode.id }}">{{ episode.title }}</option>
+            {% endfor %}
+        </select>
+      </div><!-- /.pq-episode-title -->
 
-              <div class="pq-episode-header-info-right">
-                  <strong>Length:</strong> 2:59:30
-              </div><!-- /.pq-episode-header-info -->
-              
-              <div class="pq-episode-header-info-left">
-                  <strong>Aired:</strong> {{ episode.publication_date }}
-              </div><!-- /.pq-episode-header-info -->
-              
-              <div class="pq-episode-header-info-right">
-                  <a href="/episodes/{{ episode.id }}">{{ episode.quote_set.count }} quotes</a>
-              </div><!-- /.pq-episode-header-info -->
-              
-              <div class="pq-episode-header-info-left">
-                  <strong>Guest:</strong> Duncan Trussell
-              </div><!-- /.pq-episode-header-info -->
-              
-              <div class="pq-episode-header-info-full">
-                  <strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus metus purus, adipiscing ac tortor sit amet, laoreet sagittis sem. Mauris eu imperdiet urna, in gravida justo.
-              </div><!-- /.pq-episode-header-info -->
+      <div class="pq-episode-header-info-right">
+        <strong>Length:</strong> 2:59:30
+      </div><!-- /.pq-episode-header-info -->
+      
+      <div class="pq-episode-header-info-left">
+        <strong>Aired:</strong> {{ episode.publication_date }}
+      </div><!-- /.pq-episode-header-info -->
+      
+      <div class="pq-episode-header-info-right">
+        <a href="/episodes/{{ episode.id }}">{{ episode.quote_set.count }} quotes</a>
+      </div><!-- /.pq-episode-header-info -->
+      
+      <div class="pq-episode-header-info-left">
+        <strong>Guest:</strong> Duncan Trussell
+      </div><!-- /.pq-episode-header-info -->
+      
+      <div class="pq-episode-header-info-full">
+        <strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus metus purus, adipiscing ac tortor sit amet, laoreet sagittis sem. Mauris eu imperdiet urna, in gravida justo.
+      </div><!-- /.pq-episode-header-info -->
 
-      </div><!-- /.pq-episode-header-box -->
-      
-      <div class="clearfix">
-      </div>
-      
+    </div><!-- /.pq-episode-header-box -->
+    
+    <div class="clearfix">
+    </div>
+    
   </div><!-- /.pq-episode-header -->
   
   <div class="pq-votes-shown">
-      Listener Votes <i class="fa fa-chevron-down"></i>
+    Listener Votes <i class="fa fa-chevron-down"></i>
   </div><!-- /.pq-votes-shown -->
   
   <div class="hidden-xs visible-sm visible-md visible-lg">
   
     <div class="pq-nav-active">
-        hot
+      hot
     </div><!-- /.pq-nav-active -->
 
     <div class="pq-nav">
-        not
+      not
     </div><!-- /.pq-nav -->
 
     <div class="pq-nav">
-        new
+      new
     </div><!-- /.pq-nav -->
     
     <div class="pq-nav">
-       controversial
+      controversial
     </div><!-- /.pq-nav -->
     
     <div class="pq-nav">
-        top
+      top
     </div><!-- /.pq-nav -->
     
     <div class="pq-nav pq-nav-disappear-2">
-        bottom
+      bottom
     </div><!-- /.pq-nav -->
     
     <div class="pq-nav pq-nav-disappear-1">
-        stats
+      stats
     </div><!-- /.pq-nav -->
     
     <div class="pq-nav">
-        more
+      more
     </div><!-- /.pq-nav -->
     
   </div><!-- /.hidden-xs .visible-sm .visible-md .visible-lg -->
   
   <div class="visible-xs hidden-sm hidden-md hidden-lg pq-xs-navs">
     
-      <div class="pq-xs-nav-active">
-          hot
-      </div>
+    <div class="pq-xs-nav-active">
+      hot
+    </div>
+  
+    <div class="pq-xs-nav">
+      not
+    </div>
     
+    <span class="pq-nav-disappear-4">
       <div class="pq-xs-nav">
-          not
+        new
       </div>
-      
-      <span class="pq-nav-disappear-4">
-        <div class="pq-xs-nav">
-            new
-        </div>
-      </span>
-      
-      <span class="pq-nav-disappear-3">
-        <div class="pq-xs-nav">
-            top
-        </div>
-      </span>
-      
+    </span>
+    
+    <span class="pq-nav-disappear-3">
       <div class="pq-xs-nav">
-          more
+        top
       </div>
+    </span>
+    
+    <div class="pq-xs-nav">
+      more
+    </div>
   
   </div><!-- /.visible-xs .hidden-sm .hidden-md .hidden-lg -->
   
@@ -224,11 +225,11 @@
     <div class="pq-quote-votes">
     
       <div class="pq-quote-upvote-button">
-          <i class="fa fa-arrow-circle-o-up"></i>
+        <i class="fa fa-arrow-circle-o-up"></i>
       </div><!-- /.pq-quote-upvote-button -->
       
       <div class="pq-quote-vote-total">
-          123
+        123
       </div><!-- /.pq-quote-vote-total -->
       
       <div class="pq-quote-downvote-button">
@@ -237,8 +238,8 @@
     
     </div><!-- /.pq-quote-votes -->
       
-      <div class="pq-quote-buttons">
-      
+    <div class="pq-quote-buttons">
+    
       <a href="/quotes/edit/{{ quote.id }}">
         <div class="pq-quote-edit-button color-share">
           Share
@@ -256,23 +257,23 @@
           Edit
         </div>
       </a>
-        
-        <div class="clearfix">
-        </div>
-        
-      </div><!-- /.pq-quote-buttons -->
       
-      <div class="pq-quote-inside">
-        
-        {% if quote.summary %}
-        <div class="pq-quote-summary">
-          {{ quote.summary }}
-        </div><!-- /.pq-quote-summary -->
-        {% endif %}
-        
-        {% if quote.converted_time_begins or quote.converted_time_ends %}
-        <div class="pq-quote-clip-time">
-        {% endif %}
+      <div class="clearfix">
+      </div>
+      
+    </div><!-- /.pq-quote-buttons -->
+      
+    <div class="pq-quote-inside">
+      
+      {% if quote.summary %}
+      <div class="pq-quote-summary">
+        {{ quote.summary }}
+      </div><!-- /.pq-quote-summary -->
+      {% endif %}
+      
+      {% if quote.converted_time_begins or quote.converted_time_ends %}
+      <div class="pq-quote-clip-time">
+      {% endif %}
         {% if quote.converted_time_begins %}
         Starts: {{ quote.converted_time_begins }}
         {% endif %}
@@ -282,51 +283,51 @@
         {% if quote.converted_time_ends %}
         Ends: {{ quote.converted_time_ends }}
         {% endif %}
-        {% if quote.converted_time_begins or quote.converted_time_ends %}
-        </div>
-        {% endif %}
-        
-        {% if quote.time_quote_begins and quote.episode.video_url %}
-          <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-          </div>
-        {% endif %}
-        
-        <div class="pq-quote-text">
-          {{ quote.text }}
-        </div><!-- /.pq-quote-text -->
-        
-        <div class="pq-quote-time-posted">
-          posted 5 hours ago by mcluhan123
-        </div><!-- /.pq-quote-time-posted -->
-        
-      </div><!-- /.pq-quote-inside -->
-      
-      <div class="pq-quote-bottom">
-      
-        <div class="pq-quote-bottom-button">
-          9 comments
-        </div><!-- /.pq-quote-bottom-button -->
-        
-        <div class="pq-quote-bottom-button">
-          save
-        </div><!-- /.pq-quote-bottom-button -->
-
-        <div class="pq-quote-bottom-button">
-          follow
-        </div><!-- /.pq-quote-bottom-button -->
-
-        <div class="pq-quote-bottom-button">
-          correct
-        </div><!-- /.pq-quote-bottom-button -->
-
-        <div class="pq-quote-bottom-button">
-          more
-        </div><!-- /.pq-quote-bottom-button -->
-
-      </div><!-- /.pq-quote-bottom -->
-
-      <div class="clearfix">
+      {% if quote.converted_time_begins or quote.converted_time_ends %}
       </div>
+      {% endif %}
+      
+      {% if quote.time_quote_begins and quote.episode.video_url %}
+      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+      </div>
+      {% endif %}
+      
+      <div class="pq-quote-text">
+        {{ quote.text }}
+      </div><!-- /.pq-quote-text -->
+      
+      <div class="pq-quote-time-posted">
+        posted 5 hours ago by mcluhan123
+      </div><!-- /.pq-quote-time-posted -->
+      
+    </div><!-- /.pq-quote-inside -->
+      
+    <div class="pq-quote-bottom">
+    
+      <div class="pq-quote-bottom-button">
+        9 comments
+      </div><!-- /.pq-quote-bottom-button -->
+      
+      <div class="pq-quote-bottom-button">
+        save
+      </div><!-- /.pq-quote-bottom-button -->
+
+      <div class="pq-quote-bottom-button">
+        follow
+      </div><!-- /.pq-quote-bottom-button -->
+
+      <div class="pq-quote-bottom-button">
+        correct
+      </div><!-- /.pq-quote-bottom-button -->
+
+      <div class="pq-quote-bottom-button">
+        more
+      </div><!-- /.pq-quote-bottom-button -->
+
+    </div><!-- /.pq-quote-bottom -->
+
+    <div class="clearfix">
+    </div>
 
   </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
   
@@ -343,19 +344,18 @@
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       <div class="pq-quote-clip-time">
       {% endif %}
-      {% if quote.converted_time_begins %}
-      Starts: {{ quote.converted_time_begins }}
-      {% endif %}
-      {% if quote.converted_time_begins and quote.converted_time_ends %}
-      &nbsp - &nbsp
-      {% endif %}
-      {% if quote.converted_time_ends %}
-      Ends: {{ quote.converted_time_ends }}
-      {% endif %}
+        {% if quote.converted_time_begins %}
+        Starts: {{ quote.converted_time_begins }}
+        {% endif %}
+        {% if quote.converted_time_begins and quote.converted_time_ends %}
+        &nbsp - &nbsp
+        {% endif %}
+        {% if quote.converted_time_ends %}
+        Ends: {{ quote.converted_time_ends }}
+        {% endif %}
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       </div>
       {% endif %}
-      
       
       {% if quote.time_quote_begins and quote.episode.video_url %}
       <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
@@ -405,17 +405,17 @@
       </span>
       
       <span class="pq-xs-quote-bottom-button-disappear-2">
-          <a href="{{ episode.podcast.donate_url }}">
-              <div class="pq-xs-quote-bottom-button text-orange">
-                donate
-              </div><!-- /.pq-xs-quote-bottom-button -->
-          </a>
+        <a href="{{ episode.podcast.donate_url }}">
+          <div class="pq-xs-quote-bottom-button text-orange">
+            donate
+          </div><!-- /.pq-xs-quote-bottom-button -->
+        </a>
       </span>
       
       <span class="pq-xs-quote-bottom-button-disappear-1">
-          <div class="pq-xs-quote-bottom-button">
-              share
-          </div><!-- /.pq-xs-quote-bottom-button -->
+        <div class="pq-xs-quote-bottom-button">
+          share
+        </div><!-- /.pq-xs-quote-bottom-button -->
       </span>
     
       <div class="pq-xs-quote-bottom-button">
@@ -440,76 +440,72 @@
 
 {% block menu %}
   
-  <div class="row">
+<div class="row">
+  <div class="col-sm-6 col-md-12">
   
-    <div class="col-sm-6 col-md-12">
-    
-      <div class="pq-menu">
-        
-        <div class="pq-menu-title">
-          Podcasts
-        </div><!-- /.pq-menu-title -->
-        
-        <div class="pq-menu-advanced">
-          advanced
-        </div><!-- /.pq-menu-advanced -->
-
-        <div class="pq-menu-pulldown">
-          All Podcasts <i class="fa fa-chevron-down"></i>
-        </div><!-- /.pq-menu-pulldown -->
-        
-        <div class="clearfix">
-        </div>
-        
-        <hr />
-
-        <div class="pq-menu-options">
-         {% for podcast in podcasts %}        
-          <div class="pq-menu-option">
-            <a href="/podcasts/{{ podcast.id}}">
-              - {{ podcast.title }}
-            </a>
-          </div><!-- /.pq-menu-option -->
-         {% endfor %}
-        </div><!-- /.pq-menu-options -->
-
-        </div><!-- /.pq-menu -->
-    
-      <div class="pq-menu">
-        
-        <div class="pq-menu-title">
-          Episodes
-        </div><!-- /.pq-menu-title -->
-        
-        <div class="pq-menu-advanced">
-          advanced
-        </div><!-- /.pq-menu-advanced -->
-
-        <div class="pq-menu-pulldown">
-          Chronological <i class="fa fa-chevron-down"></i>
-        </div><!-- /.pq-menu-pulldown -->
-        
-        <div class="clearfix">
-        </div>
-        
-        <hr />
-
-        <div class="pq-menu-options">
-         {% for episode in episode.podcast.episode_set.all %}        
-          <div class="pq-menu-option">
-            <a href="/episodes/{{ episode.id}}">
-              - {{ episode.title }}
-            </a>
-          </div><!-- /.pq-menu-option -->
-         {% endfor %}
-        </div>
-
-        </div><!-- /.pq-menu-options -->
-        
-      </div><!-- /.pq-menu -->
+    <div class="pq-menu">
       
-    </div><!-- /.col-sm-6 .col-md-12 -->
+      <div class="pq-menu-title">
+        Podcasts
+      </div><!-- /.pq-menu-title -->
+      
+      <div class="pq-menu-advanced">
+        advanced
+      </div><!-- /.pq-menu-advanced -->
 
-  </div><!-- /.row -->
+      <div class="pq-menu-pulldown">
+        All Podcasts <i class="fa fa-chevron-down"></i>
+      </div><!-- /.pq-menu-pulldown -->
+      
+      <div class="clearfix">
+      </div>
+      
+      <hr />
+
+      <div class="pq-menu-options">
+       {% for podcast in podcasts %}        
+        <div class="pq-menu-option">
+          <a href="/podcasts/{{ podcast.id}}">
+            - {{ podcast.title }}
+          </a>
+        </div><!-- /.pq-menu-option -->
+       {% endfor %}
+      </div><!-- /.pq-menu-options -->
+
+    </div><!-- /.pq-menu -->
+  
+    <div class="pq-menu">
+      
+      <div class="pq-menu-title">
+        Episodes
+      </div><!-- /.pq-menu-title -->
+      
+      <div class="pq-menu-advanced">
+        advanced
+      </div><!-- /.pq-menu-advanced -->
+
+      <div class="pq-menu-pulldown">
+        Chronological <i class="fa fa-chevron-down"></i>
+      </div><!-- /.pq-menu-pulldown -->
+      
+      <div class="clearfix">
+      </div>
+      
+      <hr />
+
+      <div class="pq-menu-options">
+       {% for episode in episode.podcast.episode_set.all %}        
+        <div class="pq-menu-option">
+          <a href="/episodes/{{ episode.id}}">
+            - {{ episode.title }}
+          </a>
+        </div><!-- /.pq-menu-option -->
+       {% endfor %}
+      </div><!-- /.pq-menu-options -->
+
+    </div><!-- /.pq-menu -->
+
+  </div><!-- /.col-sm-6 .col-md-12 -->
+</div><!-- /.row -->
 
 {% endblock %}<!-- / block menu -->
