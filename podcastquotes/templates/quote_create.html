@@ -12,7 +12,7 @@
     
     <form method="post" action="" enctype="multipart/form-data" role="form">
       {% csrf_token %}
-      {% if personquoted_form.errors or tag_form.errors or quote_form.errors %}
+      {% if quote_form.errors %}
       <p>Please correct the following fields:</p>
       {% endif %}
 
@@ -21,16 +21,10 @@
         <label class="pq-form-label" for="episode" {% if quote_form.episode.errors %} class="error" {% endif %}>Episode</label>
         {{ quote_form.episode }}
       </div><!-- /.pq-form-input -->
-
-      <div class="pq-form-input">
-        {% if personquoted_form.person.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="personquoted" {% if personquoted_form.person.errors %} class="error"{% endif %}>Who are you quoting?</label>
-        {{ personquoted_form.person }}
-      </div><!-- /.pq-form-input -->
       
       <div class="pq-form-input">
         {% if quote_form.summary.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="summary" {% if quote_form.summary.errors %} class="error"{% endif %}>Quote Summary (max 100 characters)</label>
+        <label class="pq-form-label" for="summary" {% if quote_form.summary.errors %} class="error"{% endif %}>Summary of quote</label>
         {{ quote_form.summary }}
       </div><!-- /.pq-form-input -->
       
@@ -44,24 +38,18 @@
         <div class="row">
           <div class="col-sm-6">
             {% if quote_form.time_quote_begins.errors %}<p class="error">{% endif %}
-            <label class="pq-form-label" for="time_quote_begins" {% if quote_form.time_quote_begins.errors %} class="error" {% endif %}>Time Quote Begins</label>
+            <label class="pq-form-label" for="time_quote_begins" {% if quote_form.time_quote_begins.errors %} class="error" {% endif %}>Time quote begins</label>
             {{ quote_form.time_quote_begins }}
           </div><!-- /.col-sm-6 -->
 
           <div class="col-sm-6 xs-margin-top-20">
             {% if quote_form.time_quote_ends.errors %}<p class="error">{% endif %}
-            <label class="pq-form-label-optional" for="time_quote_ends" {% if quote_form.time_quote_ends.errors %} class="error" {% endif %}>Time Quote Ends <small>(optional)</label>
+            <label class="pq-form-label-optional" for="time_quote_ends" {% if quote_form.time_quote_ends.errors %} class="error" {% endif %}>Time quote ends <small>(optional)</label>
             {{ quote_form.time_quote_ends }}
           </div><!-- /.col-sm-6 xs-margin-top-20 -->
           
         </div><!-- /.row -->
         
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if tag_form.tag.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label-optional" for="tag" {% if tag_form.tag.errors %} class="error" {% endif %}>Tags <small>(optional)</small></label>
-        {{ tag_form.tag }}
       </div><!-- /.pq-form-input -->
 
       <div class="pq-form-buttons">

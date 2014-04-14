@@ -84,6 +84,36 @@
           
   </div><!-- /.pq-podcast-header -->
     
+  <div class="pq-episode-header">
+    
+ 
+      {% if episode.video_url %}
+      <div class="youtube" id="{{ episode.video_id }}?">
+      </div>
+      {% else %}
+      <div class="youtube-img-empty">
+        Select an episode:
+      </div>
+      {% endif %}
+ 
+    <div class="pq-episode-header-box">
+        
+      <div class="pq-episode-title">
+        <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+            <option value="#" selected="selected">All episodes</option>
+            {% for episode in podcast.episode_set.all %}
+            <option value="/episodes/{{ episode.id }}">{{ episode.title }}</option>
+            {% endfor %}
+        </select>
+      </div><!-- /.pq-episode-title -->
+
+    </div><!-- /.pq-episode-header-box -->
+    
+    <div class="clearfix">
+    </div>
+    
+  </div><!-- /.pq-episode-header -->
+    
   <div class="pq-votes-shown">
       Listener Votes <i class="fa fa-chevron-down"></i>
   </div><!-- /.pq-votes-shown -->
@@ -419,75 +449,67 @@
 {% endblock %}<!-- / block main -->
 
 {% block menu %}
+
+<div class="pq-menu">
   
-<div class="row">
-
-  <div class="col-sm-6 col-md-12">
+  <div class="pq-menu-title">
+    Podcasts
+  </div><!-- /.pq-menu-title -->
   
-    <div class="pq-menu">
-      
-      <div class="pq-menu-title">
-        Podcasts
-      </div><!-- /.pq-menu-title -->
-      
-      <div class="pq-menu-advanced">
-        advanced
-      </div><!-- /.pq-menu-advanced -->
+  <div class="pq-menu-advanced">
+    advanced
+  </div><!-- /.pq-menu-advanced -->
 
-      <div class="pq-menu-pulldown">
-        All Podcasts <i class="fa fa-chevron-down"></i>
-      </div><!-- /.pq-menu-pulldown -->
-      
-      <div class="clearfix">
-      </div>
-      
-      <hr />
-
-      <div class="pq-menu-options">
-       {% for podcast in podcasts %}        
-        <div class="pq-menu-option">
-          <a href="/podcasts/{{ podcast.id}}">
-            - {{ podcast.title }}
-          </a>
-        </div><!-- /.pq-menu-option -->
-       {% endfor %}
-      </div><!-- /.pq-menu-options -->
-
-    </div><!-- /.pq-menu -->
-    
-    <div class="pq-menu">
-      
-      <div class="pq-menu-title">
-        Episodes
-      </div><!-- /.pq-menu-title -->
-      
-      <div class="pq-menu-advanced">
-        advanced
-      </div><!-- /.pq-menu-advanced -->
-
-      <div class="pq-menu-pulldown">
-        Chronological <i class="fa fa-chevron-down"></i>
-      </div><!-- /.pq-menu-pulldown -->
-      
-      <div class="clearfix">
-      </div>
-      
-      <hr />
-
-      <div class="pq-menu-options">
-       {% for episode in podcast.episode_set.all %}        
-        <div class="pq-menu-option">
-          <a href="/episodes/{{ episode.id}}">
-            - {{ episode.title }}
-          </a>
-        </div><!-- /.pq-menu-option -->
-       {% endfor %}
-      </div><!-- /.pq-menu-options -->
-
-    </div><!-- /.pq-menu -->
-      
-  </div><!-- /.col-sm-6 .col-md-12 -->
+  <div class="pq-menu-pulldown">
+    All Podcasts <i class="fa fa-chevron-down"></i>
+  </div><!-- /.pq-menu-pulldown -->
   
-</div><!-- /.row -->
+  <div class="clearfix">
+  </div>
+  
+  <hr />
+
+  <div class="pq-menu-options">
+   {% for podcast in podcasts %}        
+    <div class="pq-menu-option">
+      <a href="/podcasts/{{ podcast.id}}">
+        - {{ podcast.title }}
+      </a>
+    </div><!-- /.pq-menu-option -->
+   {% endfor %}
+  </div><!-- /.pq-menu-options -->
+
+</div><!-- /.pq-menu -->
+
+<div class="pq-menu">
+  
+  <div class="pq-menu-title">
+    Episodes
+  </div><!-- /.pq-menu-title -->
+  
+  <div class="pq-menu-advanced">
+    advanced
+  </div><!-- /.pq-menu-advanced -->
+
+  <div class="pq-menu-pulldown">
+    Chronological <i class="fa fa-chevron-down"></i>
+  </div><!-- /.pq-menu-pulldown -->
+  
+  <div class="clearfix">
+  </div>
+  
+  <hr />
+
+  <div class="pq-menu-options">
+   {% for episode in podcast.episode_set.all %}        
+    <div class="pq-menu-option">
+      <a href="/episodes/{{ episode.id}}">
+        - {{ episode.title }}
+      </a>
+    </div><!-- /.pq-menu-option -->
+   {% endfor %}
+  </div><!-- /.pq-menu-options -->
+
+</div><!-- /.pq-menu -->
 
 {% endblock %}<!-- / block menu -->

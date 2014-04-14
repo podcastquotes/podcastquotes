@@ -39,7 +39,7 @@ class Podcast(models.Model):
 class Episode(models.Model):
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
-    publication_date = models.DateField(blank=True)
+    publication_date = models.DateField(null=True, blank=True)
     description = models.TextField(blank=True)
     episode_url = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
@@ -98,36 +98,37 @@ class Episode(models.Model):
     
     def all_episode_quotes(self):
        return Quote.objects.filter(episode__id=self.id)
-    
+
+    def get_absolute_url(self):
+        return reverse('episode_detail', kwargs={'pk': self.pk})
+
     def __unicode__(self):
         return u'%s - %s' % (self.podcast.title, self.title)
 
-class PersonQuoted(models.Model):
-    person = models.CharField(max_length=100)
-    
-    def get_absolute_url(self):
-        return reverse('home')
+# class Speaker(models.Model):
+#    name = models.CharField(max_length=100)
+#    
+#    def get_absolute_url(self):
+#        return reverse('home')
+#        
+#    def __unicode__(self):
+#        return unicode(self.name)
         
-    def __unicode__(self):
-        return unicode(self.person)
-        
-class Tag(models.Model):
-    tag = models.CharField(max_length=100)
-    
-    def get_absolute_url(self):
-        return reverse('home')
-    
-    def __unicode__(self):
-        return unicode(self.tag)
+# class Tag(models.Model):
+#    tag = models.CharField(max_length=100)
+#    
+#    def get_absolute_url(self):
+#        return reverse('home')
+#    
+#    def __unicode__(self):
+#        return unicode(self.tag)
         
 class Quote(models.Model):
+    episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=116, blank=True)
     text = models.TextField(blank=True)
-    persons_quoted = models.ManyToManyField(PersonQuoted, blank=True)
-    episode = models.ForeignKey(Episode)
     time_quote_begins = models.IntegerField(blank=True)
     time_quote_ends = models.IntegerField(blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
     # submitted_by = ...
     # vote = ...
     

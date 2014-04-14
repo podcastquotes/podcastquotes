@@ -4,12 +4,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
-from podcastquotes.models import Podcast, Episode, PersonQuoted, Tag, Quote
+from podcastquotes.models import Podcast, Episode, Quote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
 from podcastquotes.forms import QuoteCreateForm, QuoteForm
-from podcastquotes.forms import PersonQuotedCreateForm
-from podcastquotes.forms import TagCreateForm
 
 
 def home(request):
@@ -99,21 +97,15 @@ class EpisodeDeleteView(DeleteView):
 
 def quote_create(request):
     if request.method == "POST":
-        pform = PersonQuotedCreateForm(request.POST, instance=PersonQuoted())
-        tform = TagCreateForm(request.POST, instance=Tag())
         qform = QuoteCreateForm(request.POST, instance=Quote())
-        if pform.is_valid() and tform.is_valid() and qform.is_valid():
-            new_personquoted = pform.save()
-            new_tag = tform.save()
+        if qform.is_valid():
             new_quote = qform.save()
             return HttpResponseRedirect('/')
         else:
             raise Http404
     else:
-        pform = PersonQuotedCreateForm(instance=PersonQuoted())
-        tform = TagCreateForm(instance=Tag())
         qform = QuoteCreateForm(instance=Quote())
-    return render_to_response('quote_create.html', {'personquoted_form': pform, 'tag_form': tform, 'quote_form': qform}, context_instance=RequestContext(request))
+    return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
 
 class QuoteListView(ListView):
     model = Quote

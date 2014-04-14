@@ -233,9 +233,18 @@ body {
     color:#333;
 }
 
-.pq-breadcrumbs {
-    margin:5px 0 20px 0;
-    font-size:15px;
+@media (max-width:991px) {
+    .pq-breadcrumbs {
+        margin:5px 0 30px 0;
+        font-size:15px;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-breadcrumbs {
+        margin:5px 0 15px 0;
+        font-size:15px;
+    }
 }
 
 @media (max-width:991px) {
@@ -260,7 +269,7 @@ body {
 
 .pq-nav-active {
     display:inline-block;
-    margin:10px 10px 15px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #111;
     color:#B25900;
@@ -271,7 +280,7 @@ body {
 .pq-nav {
     display:inline-block;
     background-color:#ddd;
-    margin:10px 10px 15px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #111;
     color:#111;
@@ -476,7 +485,7 @@ body {
 
 .pq-podcast-profile-picture {
     float:left;
-    margin:0 5px 0 0;
+    margin:0 5px 5px 0;
     padding:5px;
     border:1px solid #ccc;
     border-radius:10px;
@@ -492,8 +501,8 @@ body {
 
 @media (min-width:768px) {
     .pq-podcast-profile-picture img {
-        height:140px;
-        width:140px;
+        height:170px;
+        width:170px;
         border-radius:10px;
     }
 }
@@ -501,7 +510,7 @@ body {
 .pq-podcast-header-info-left {
     clear:left;
     overflow:hidden;
-    margin:10px 5px;
+    margin:10px 5px 15px 5px;
     font-size:16px;
 }
 
@@ -521,7 +530,6 @@ body {
 
 .pq-podcast-header-info-full {
     clear:left;
-    max-width:500px;
     overflow:hidden;
     margin:0 15px 5px 5px;
     font-size:16px;
@@ -563,8 +571,8 @@ body {
 
 .pq-episode-profile-picture {
     float:left;
-    width:150px;
-    margin:0 5px 5px 0;
+    width:180px;
+    margin:0 30px 10px 0;
     padding:5px;
     border:1px solid #ccc;
     border-radius:10px;
@@ -572,11 +580,12 @@ body {
 
 .pq-episode-profile-picture img {
     border-radius:10px;
+    max-width:170px;
 }
 
 .pq-episode-title {
     float:left;
-    margin:-5px 0 20px 5px;
+    margin:-5px 0 20px 0;
     font-size:22px;
     font-weight:bold;
     color:#111;
@@ -584,7 +593,7 @@ body {
 
 @media (max-width:767px) {
     .pq-episode-header-box {
-        clear:left;
+        clear:both;
         overflow:hidden;
         padding:20px 15px 0 0px;
     }
@@ -593,29 +602,28 @@ body {
 @media (min-width:768px) {
     .pq-episode-header-box {
         overflow:hidden;
-        padding:5px 15px 0 25px;
+        padding:5px 15px 0 5px;
     }
 }
 
 .pq-episode-header-info-left {
     clear:left;
     overflow:hidden;
-    margin:10px 5px;
+    margin:10px 5px 15px 0;
     font-size:16px;
 }
 
 .pq-episode-header-info-right {
     clear:left;
     float:right;
-    margin:0 5px;
+    margin:0 0 0 5px;
     font-size:16px;
 }
 
 .pq-episode-header-info-full {
     clear:left;
-    max-width:500px;
     overflow:hidden;
-    margin:0 15px 5px 5px;
+    margin:0 15px 5px 0;
     font-size:16px;
 }
 
@@ -1242,12 +1250,21 @@ a {
 }
 
 .youtube-img-preview {
-    max-width:200px;
+    width:173px;
+}
+
+.youtube-img-empty {
+    width:183px;
+    float:left;
+    margin:5px 29px 25px 0;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
 }
 
 .youtube {
     float:left;
-    margin:0 0 20px 0;
+    margin:0 29px 20px 0;
 }
 
 @media (max-width:499px) {

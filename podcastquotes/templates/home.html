@@ -377,43 +377,35 @@
 
 {% block menu %}
   
-<div class="row">
-
-  <div class="col-sm-6 col-md-12">
+<div class="pq-menu">
   
-    <div class="pq-menu">
-      
-      <div class="pq-menu-title">
-        Podcasts
-      </div><!-- /.pq-menu-title -->
-      
-      <div class="pq-menu-advanced">
-        advanced
-      </div><!-- /.pq-menu-advanced -->
+  <div class="pq-menu-title">
+    Podcasts
+  </div><!-- /.pq-menu-title -->
+  
+  <div class="pq-menu-advanced">
+    advanced
+  </div><!-- /.pq-menu-advanced -->
 
-      <div class="pq-menu-pulldown">
-        All Podcasts <i class="fa fa-chevron-down"></i>
-      </div><!-- /.pq-menu-pulldown -->
-      
-      <div class="clearfix">
-      </div>
-      
-      <hr />
+  <div class="pq-menu-pulldown">
+    All Podcasts <i class="fa fa-chevron-down"></i>
+  </div><!-- /.pq-menu-pulldown -->
+  
+  <div class="clearfix">
+  </div>
+  
+  <hr />
 
-      <div class="pq-menu-options">
-       {% for podcast in podcasts %}        
-        <div class="pq-menu-option">
-          <a href="/podcasts/{{ podcast.id}}">
-            - {{ podcast.title }}
-          </a>
-        </div><!-- /.pq-menu-option -->
-       {% endfor %}
-      </div><!-- /.pq-menu-options -->
+  <div class="pq-menu-options">
+   {% for podcast in podcasts %}        
+    <div class="pq-menu-option">
+      <a href="/podcasts/{{ podcast.id}}">
+        - {{ podcast.title }}
+      </a>
+    </div><!-- /.pq-menu-option -->
+   {% endfor %}
+  </div><!-- /.pq-menu-options -->
 
-    </div><!-- /.pq-menu -->
-    
-  </div><!-- /.col-sm-6 .col-md-12 -->
-
-</div><!-- /.row -->
+</div><!-- /.pq-menu -->
 
 {% endblock %}<!-- / block menu -->
