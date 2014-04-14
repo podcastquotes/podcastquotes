@@ -13,9 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Import values that ought to change per deployment.
-from site_settings import (DATABASES, EMAIL_BACKEND, STATIC_URL, 
-    STATIC_ROOT, MEDIA_URL, MEDIA_ROOT, SECRET_KEY, DEBUG, 
-    TEMPLATE_DEBUG, ALLOWED_HOSTS)
+from site_settings import *
 
 # Application definition
 
