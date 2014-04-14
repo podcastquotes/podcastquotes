@@ -242,7 +242,7 @@ body {
 
 @media (min-width:992px) {
     .pq-breadcrumbs {
-        margin:5px 0 15px 0;
+        margin:5px 0 20px 0;
         font-size:15px;
     }
 }
@@ -455,7 +455,7 @@ body {
 
 .pq-podcast-title {
     float:left;
-    margin:0 0 15px 5px;
+    margin:0 0 15px 0;
     font-size:22px;
     font-weight:bold;
     color:#111;
@@ -472,37 +472,35 @@ body {
 @media (min-width:768px) {
     .pq-podcast-header-box {
         overflow:hidden;
-        padding:0 30px 20px 25px;
+        padding:0 15px 20px 30px;
     }
 }
 
 .pq-podcast-social-media {
     clear:left;
-    margin:0 0 5px 7px;
-    font-size:24px;
+    margin:0 10 5px 0;
+    font-size:28px;
     color:#333;
 }
 
 .pq-podcast-profile-picture {
     float:left;
-    margin:0 5px 5px 0;
-    padding:5px;
-    border:1px solid #ccc;
+    margin:0 10px 5px 0;
     border-radius:10px;
 }
 
 @media (max-width:767px) {
     .pq-podcast-profile-picture img {
-        height:170px;
-        width:170px;
+        height:180px;
+        width:180px;
         border-radius:10px;
     }
 }
 
 @media (min-width:768px) {
     .pq-podcast-profile-picture img {
-        height:170px;
-        width:170px;
+        height:180px;
+        width:180px;
         border-radius:10px;
     }
 }
@@ -510,14 +508,14 @@ body {
 .pq-podcast-header-info-left {
     clear:left;
     overflow:hidden;
-    margin:10px 5px 15px 5px;
+    margin:10px 5px 15px 0;
     font-size:16px;
 }
 
 .pq-podcast-header-info-right-1 {
     clear:right;
     float:right;
-    margin:5px 0 0 5px;
+    margin:5px 0 0 0;
     font-size:16px;
 }
 
@@ -531,7 +529,7 @@ body {
 .pq-podcast-header-info-full {
     clear:left;
     overflow:hidden;
-    margin:0 15px 5px 5px;
+    margin:0 0 5px 0px;
     font-size:16px;
 }
 
@@ -562,25 +560,17 @@ body {
     }
 }
 
-.pq-episode-clip {
-    float:right;
-    clear:right;
-    margin:10px 0 -5px 0;
-    font-size:32px;
-}
-
 .pq-episode-profile-picture {
     float:left;
     width:180px;
-    margin:0 30px 10px 0;
-    padding:5px;
+    margin:0 40px 10px 0;
     border:1px solid #ccc;
     border-radius:10px;
 }
 
 .pq-episode-profile-picture img {
     border-radius:10px;
-    max-width:170px;
+    max-width:180px;
 }
 
 .pq-episode-title {
@@ -595,14 +585,14 @@ body {
     .pq-episode-header-box {
         clear:both;
         overflow:hidden;
-        padding:20px 15px 0 0px;
+        padding:20px 0px 0 0px;
     }
 }
 
 @media (min-width:768px) {
     .pq-episode-header-box {
         overflow:hidden;
-        padding:5px 15px 0 5px;
+        padding:5px 15px 0 0;
     }
 }
 
@@ -623,7 +613,7 @@ body {
 .pq-episode-header-info-full {
     clear:left;
     overflow:hidden;
-    margin:0 15px 5px 0;
+    margin:0 0 5px 0;
     font-size:16px;
 }
 
@@ -1250,13 +1240,15 @@ a {
 }
 
 .youtube-img-preview {
-    width:173px;
+    width:180px;
+    margin:0 10px 0 0;
+    border-radius:10px;
 }
 
 .youtube-img-empty {
     width:183px;
     float:left;
-    margin:5px 29px 25px 0;
+    margin:5px 30px 25px 0;
     text-align:center;
     font-size:18px;
     font-weight:bold;
@@ -1264,7 +1256,7 @@ a {
 
 .youtube {
     float:left;
-    margin:0 29px 20px 0;
+    margin:0 30px 20px 0;
 }
 
 @media (max-width:499px) {
@@ -1287,7 +1279,7 @@ a {
     .iframe-size {
         width:476px;
         height:300px;
-        margin:0 0 10px 0;
+        margin:0 0 20px 0;
     }
 }
 
