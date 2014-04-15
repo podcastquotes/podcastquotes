@@ -34,6 +34,7 @@ body {
 
 .pq-container a:hover {
     color:#666;
+    text-decoration:none;
 }
 
 @media (max-width:991px) {
@@ -455,7 +456,7 @@ body {
 
 .pq-podcast-title {
     float:left;
-    margin:0 0 15px 0;
+    margin:0 0 10px 0;
     font-size:22px;
     font-weight:bold;
     color:#111;
@@ -478,7 +479,7 @@ body {
 
 .pq-podcast-social-media {
     clear:left;
-    margin:0 10 5px 0;
+    margin:0 10px 5px 0;
     font-size:28px;
     color:#333;
 }
@@ -1246,10 +1247,10 @@ a {
 }
 
 .youtube-img-empty {
-    width:183px;
+    width:180px;
     float:left;
-    margin:5px 30px 25px 0;
-    text-align:center;
+    margin:5px 40px 25px 0;
+    text-align:right;
     font-size:18px;
     font-weight:bold;
 }

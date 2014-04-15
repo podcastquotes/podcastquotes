@@ -36,16 +36,46 @@
         
         <div class="pq-form-input">
           {% if podcast_form.homepage.errors %}<p class="error">{% endif %}
-          <label class="pq-form-label" for="homepage" {% if podcast_form.homepage.errors %} class="error" {% endif %}>Home Page</label>
+          <label class="pq-form-label" for="homepage" {% if podcast_form.homepage.errors %} class="error" {% endif %}>Home Page URL</label>
           {{ podcast_form.homepage }}
         </div><!-- /.pq-form-input -->
         
         <div class="pq-form-input">
           {% if podcast_form.donate_url.errors %}<p class="error">{% endif %}
-          <label class="pq-form-label" for="donate_url" {% if podcast_form.donate_url.errors %} class="error" {% endif %}>Donation Page</label>
+          <label class="pq-form-label" for="donate_url" {% if podcast_form.donate_url.errors %} class="error" {% endif %}>Donation Page URL</label>
           {{ podcast_form.donate_url }}
         </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+          {% if podcast_form.twitter_url.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="twitter_url" {% if podcast_form.twitter_url.errors %} class="error" {% endif %}>Twitter Page URL</label>
+          {{ podcast_form.twitter_url }}
+        </div><!-- /.pq-form-input -->
 
+        <div class="pq-form-input">
+          {% if podcast_form.facebook_url.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="facebook_url" {% if podcast_form.facebook_url.errors %} class="error" {% endif %}>Facebook Page URL</label>
+          {{ podcast_form.facebook_url }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+          {% if podcast_form.instagram_url.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="instagram_url" {% if podcast_form.instagram_url.errors %} class="error" {% endif %}>Instagram Page URL</label>
+          {{ podcast_form.instagram_url }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+          {% if podcast_form.google_plus_url.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="google_plus_url" {% if podcast_form.google_plus_url.errors %} class="error" {% endif %}>Google+ Page URL</label>
+          {{ podcast_form.google_plus_url }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+          {% if podcast_form.youtube_url.errors %}<p class="error">{% endif %}
+          <label class="pq-form-label" for="youtube_url" {% if podcast_form.youtube_url.errors %} class="error" {% endif %}>YouTube Channel URL</label>
+          {{ podcast_form.youtube_url }}
+        </div><!-- /.pq-form-input -->
+        
         <div class="pq-form-buttons">
           <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
           <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>

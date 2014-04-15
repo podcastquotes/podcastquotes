@@ -104,10 +104,12 @@
     
     {% if quote.episode.title or quote.episode.publication_date %}
     <div class="pq-quote-header-row">
-    
+      
+      {% if quote.episode.publication_date %}
       <div class="pq-quote-date-home">
         <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
       </div><!-- pq-quote-date-home -->
+      {% endif %}
       
       <div class="pq-quote-header-inside">
         <div class="pq-quote-podcast-episode">
@@ -148,13 +150,15 @@
           </div>
         </a>
         
+        {% if quote.episode.podcast.donate_url %}
         <a href="{{ quote.episode.podcast.donate_url }}">
           <div class="pq-quote-edit-button color-donate">
             Donate
           </div>
         </a>
+        {% endif %}
         
-        <a href="/quotes/edit/{{ quote.id }}">
+        <a href="#">
           <div class="pq-quote-edit-button color-edit">
             Edit
           </div>

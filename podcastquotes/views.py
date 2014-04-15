@@ -19,8 +19,10 @@ def home(request):
 
 def podcast_create(request):
     if request.method == "POST":
-        pform = PodcastCreateForm(request.POST, instance=Podcast())
+        pform = PodcastCreateForm(request.POST, request.FILES, instance=Podcast())
         if pform.is_valid():
+            image = Podcast(image=request.FILES['image'])
+            new_podcast = pform.save(commit=False)
             new_podcast = pform.save()
             return HttpResponseRedirect('/')
         else:
@@ -58,8 +60,9 @@ class PodcastDeleteView(DeleteView):
 
 def episode_create(request):
     if request.method == "POST":
-        eform = EpisodeCreateForm(request.POST, instance=Episode())
+        eform = EpisodeCreateForm(request.POST, request.FILES, instance=Episode())
         if eform.is_valid():
+            image = Episode(image=request.FILES['image'])
             new_episode = eform.save()
             return HttpResponseRedirect('/')
         else:

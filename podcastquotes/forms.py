@@ -12,6 +12,11 @@ class PodcastCreateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'twitter_url': forms.URLInput(attrs={'class':'form-control', 'placeholder':''}),
+            'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
 class PodcastForm(forms.ModelForm):
@@ -24,6 +29,11 @@ class PodcastForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'twitter_url': forms.URLInput(attrs={'class':'form-control', 'placeholder':''}),
+            'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
         
 class EpisodeCreateForm(forms.ModelForm):
@@ -63,9 +73,9 @@ class QuoteCreateForm(forms.ModelForm):
         widgets = {
             'episode': forms.Select(attrs={'class':'form-control'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 116 characters'}),
-            'text': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:). Use quotation marks (" ") accordingly, and ellipses (...) if you skip ahead in the quote."'}),
-            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
-            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
+            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'in total seconds'}),
+            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'in total seconds'}),
         }
 
 class QuoteForm(forms.ModelForm):

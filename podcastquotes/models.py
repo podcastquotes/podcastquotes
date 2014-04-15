@@ -19,6 +19,11 @@ class Podcast(models.Model):
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     homepage = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
+    twitter_url = models.URLField(blank=True)
+    facebook_url = models.URLField(blank=True)
+    instagram_url = models.URLField(blank=True)
+    google_plus_url = models.URLField(blank=True)
+    youtube_url = models.URLField(blank=True)
     # hosts = ...
     # categories = ...
     # keywords = ...
@@ -127,8 +132,8 @@ class Quote(models.Model):
     episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=116, blank=True)
     text = models.TextField(blank=True)
-    time_quote_begins = models.IntegerField(blank=True)
-    time_quote_ends = models.IntegerField(blank=True)
+    time_quote_begins = models.IntegerField(null=True, blank=True)
+    time_quote_ends = models.IntegerField(null=True, blank=True)
     # submitted_by = ...
     # vote = ...
     

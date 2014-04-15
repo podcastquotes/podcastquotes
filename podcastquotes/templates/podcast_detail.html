@@ -20,11 +20,13 @@
       Share
     </div><!-- /.pq-podcast-headerbutton -->
     
+    {% if quote.episode.podcast.donate_url %}
     <a href="{{ podcast.donate_url }}">
       <div class="pq-podcast-header-button color-donate">
         Donate
       </div><!-- /.pq-podcast-headerbutton -->
     </a>
+    {% endif %}
     
     <div class="pq-podcast-header-button color-follow">
       Follow
@@ -52,7 +54,36 @@
       </div><!-- /.pq-title -->
         
       <div class="pq-podcast-social-media">
-        <i class="fa fa-home"></i>&nbsp <i class="fa fa-facebook-square"></i>&nbsp <i class="fa fa-twitter-square"></i>&nbsp <i class="fa fa-instagram"></i>&nbsp <i class="fa fa-google-plus-square"></i>&nbsp <i class="fa fa-youtube-square"></i>
+        {% if podcast.homepage %}
+        <a href="{{ podcast.homepage }}" target="_blank">
+          <i class="fa fa-home"></i>&nbsp
+        </a>
+        {% endif %}
+        {% if podcast.twitter_url %}
+        <a href="{{ podcast.twitter_url }}" target="_blank">
+          <i class="fa fa-twitter-square"></i>&nbsp
+        </a>
+        {% endif %}
+        {% if podcast.facebook_url %}
+        <a href="{{ podcast.facebook_url }}" target="_blank">
+          <i class="fa fa-facebook-square"></i>&nbsp
+        </a>
+        {% endif %}
+        {% if podcast.instagram_url %}
+        <a href="{{ podcast.instagram_url }}" target="_blank">
+          <i class="fa fa-instagram"></i>&nbsp
+        </a>
+        {% endif %}
+        {% if podcast.google_plus_url %}
+        <a href="{{ podcast.google_plus_url }}" target="_blank">
+          <i class="fa fa-google-plus-square"></i>&nbsp 
+        </a>
+        {% endif %}
+        {% if podcast.youtube_url %}
+        <a href="{{ podcast.youtube_url }}" target="_blank">
+          <i class="fa fa-youtube-square"></i>
+        </a>
+        {% endif %}
       </div><!-- /.pq-podcast-social-media -->
     
       <div class="pq-podcast-header-info-right-1">
@@ -70,7 +101,7 @@
       </div><!-- /.pq-podcast-header-info -->
       
       <div class="pq-podcast-header-info-left">
-          <strong>Hosts:</strong> Daniele Bolelli, Rich Evirs
+          <strong>Hosts:</strong> Host Name 1, Host Name 2
       </div><!-- /.pq-podcast-header-info -->
       
       <div class="pq-podcast-header-info-full">
@@ -188,10 +219,12 @@
     
     {% if quote.episode.title or quote.episode.publication_date %}
     <div class="pq-quote-header-row">
-    
+      
+      {% if quote.episode.publication_date %}
       <div class="pq-quote-date-home">
         <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.publication_date }}</a>
       </div><!-- pq-quote-date-home -->
+      {% endif %}
       
       <div class="pq-quote-header-inside">
         <div class="pq-quote-podcast-episode">
@@ -226,19 +259,21 @@
       
     <div class="pq-quote-buttons">
       
-      <a href="/quotes/edit/{{ quote.id }}">
+      <a href="#">
         <div class="pq-quote-edit-button color-share">
           Share
         </div>
       </a>
       
-      <a href="/quotes/edit/{{ quote.id }}">
+      {% if quote.episode.podcast.donate_url %}
+      <a href="{{ quote.episode.podcast.donate_url}}">
         <div class="pq-quote-edit-button color-donate">
           Donate
         </div>
       </a>
+      {% endif %}
       
-      <a href="/quotes/edit/{{ quote.id }}">
+      <a href="#">
         <div class="pq-quote-edit-button color-edit">
           Edit
         </div>
@@ -418,6 +453,7 @@
         </div><!-- /.pq-xs-quote-bottom-button -->
       </span>
       
+      {% if quote.episode.podcast.donate_url %}
       <span class="pq-xs-quote-bottom-button-disappear-2">
         <a href="{{ podcast.donate_url }}">  
           <div class="pq-xs-quote-bottom-button text-orange">
@@ -425,6 +461,7 @@
           </div><!-- /.pq-xs-quote-bottom-button -->
         </a>
       </span>
+      {% endif %}
       
       <span class="pq-xs-quote-bottom-button-disappear-1">
         <div class="pq-xs-quote-bottom-button text-green">
