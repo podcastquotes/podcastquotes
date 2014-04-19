@@ -1246,13 +1246,26 @@ a {
     border-radius:10px;
 }
 
-.youtube-img-empty {
-    width:180px;
-    float:left;
-    margin:5px 40px 25px 0;
-    text-align:right;
-    font-size:18px;
-    font-weight:bold;
+@media (max-width:991px) {
+    .youtube-img-empty {
+        width:180px;
+        float:left;
+        margin:5px 40px 25px 0;
+        text-align:left;
+        font-size:18px;
+        font-weight:bold;
+    }
+}
+
+@media (min-width:992px) {
+    .youtube-img-empty {
+        width:180px;
+        float:left;
+        margin:5px 40px 25px 0;
+        text-align:right;
+        font-size:18px;
+        font-weight:bold;
+    }
 }
 
 .youtube {

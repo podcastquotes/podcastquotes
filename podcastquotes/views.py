@@ -98,9 +98,18 @@ class EpisodeDeleteView(DeleteView):
     success_url = reverse_lazy('home')
     template_name = 'episode_delete.html'
 
+
+def getSec(hhmmss):
+    l = map(int, hhmmss.split(':'))
+    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
+
 def quote_create(request):
     if request.method == "POST":
         qform = QuoteCreateForm(request.POST, instance=Quote())
+        begins_with_delims = qform.data['time_quote_begins']
+        qform.data['time_quote_begins'] = getSec(begins_with_delims)
+        ends_with_delims = qform.data['time_quote_ends']
+        qform.data['time_quote_ends'] = getSec(ends_with_delims)
         if qform.is_valid():
             new_quote = qform.save()
             return HttpResponseRedirect('/')
@@ -109,7 +118,7 @@ def quote_create(request):
     else:
         qform = QuoteCreateForm(instance=Quote())
     return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
-
+    
 class QuoteListView(ListView):
     model = Quote
 

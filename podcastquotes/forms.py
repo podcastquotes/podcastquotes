@@ -74,8 +74,8 @@ class QuoteCreateForm(forms.ModelForm):
             'episode': forms.Select(attrs={'class':'form-control'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 116 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
-            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'in total seconds'}),
-            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'in total seconds'}),
+            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
+            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
 
 class QuoteForm(forms.ModelForm):
