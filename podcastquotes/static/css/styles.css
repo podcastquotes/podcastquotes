@@ -6,23 +6,37 @@ body {
     color:#111;
 }
 
-@media (max-width:991px) {
+@media (max-width:450px) {
     .pq-container {
         margin:0 auto;
         padding:0 15px;
     }
 }
 
+@media (min-width:451px) and (max-width:767px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 25px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 30px;
+    }
+}
+
 @media (min-width:992px) and (max-width:1149px) {
     .pq-container {
         margin:0 auto;
-        padding:0 15px 0 30px;
+        padding:0 20px 0 30px;
     }
 }
 
 @media (min-width:1150px) {
     .pq-container {
-        max-width:1360px;
+        max-width:1260px;
         margin:0 auto;
         padding:0 20px 0 40px;
     }
@@ -654,7 +668,7 @@ body {
 @media (max-width:991px) {
     .pq-quote {
         margin:20px 0 40px 0;
-        padding:20px 15px 20px 15px;
+        padding:15px 15px 5px 15px;
         border:1px dotted #aaa;
     }
 }
@@ -662,7 +676,7 @@ body {
 @media (min-width:992px) {
     .pq-quote {
         margin:20px 25px 40px 0;
-        padding:15px 15px 20px 15px;
+        padding:15px 15px 5px 15px;
         border:1px dotted #aaa;
     }
 }
@@ -770,8 +784,8 @@ body {
 
 .pq-quote-summary {
     max-width:600px;
-    margin:0 0 10px 0;
-    font-size:18px;
+    margin:0 0 20px 0;
+    font-size:20px;
     font-weight:bold;
 }
 
@@ -817,7 +831,7 @@ body {
 
 .pq-xs-quote {
     margin:30px 0;
-    padding:20px 15px 20px 15px;
+    padding:15px 15px 5px 15px;
     border:1px dotted #aaa;
 }
 

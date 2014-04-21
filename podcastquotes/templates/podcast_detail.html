@@ -28,15 +28,19 @@
     </a>
     {% endif %}
     
+    <!--
     <div class="pq-podcast-header-button color-follow">
       Follow
-    </div><!-- /.pq-podcast-header-button -->
+    </div>
+    -->
     
+    <!--
     <a href="/podcasts/edit/{{ podcast.id }}">
       <div class="pq-podcast-header-button color-edit">
         Edit
-      </div><!-- /.pq-podcast-header-button -->
+      </div>
     </a>
+    -->
     
     <div class="pq-podcast-header-box">
 
@@ -144,10 +148,12 @@
     </div>
     
   </div><!-- /.pq-episode-header -->
-    
+  
+  <!--
   <div class="pq-votes-shown">
       Listener Votes <i class="fa fa-chevron-down"></i>
-  </div><!-- /.pq-votes-shown -->
+  </div>
+  -->
   
   <div class="hidden-xs visible-sm visible-md visible-lg">
   
@@ -214,7 +220,7 @@
   </div><!-- /.visible-xs .hidden-sm .hidden-md .hidden-lg -->
   
   {% for quote in podcast.all_podcast_quotes %}
-
+  
   <div class="pq-quote hidden-xs visible-sm visible-md visible-lg">
     
     {% if quote.episode.title or quote.episode.publication_date %}
@@ -237,7 +243,7 @@
     </div><!-- /.pq-quote-header-row -->
     {% endif %}
     
-    {% if quote.episode.title or quote.episode.publication_date %}
+    {% if quote.episode.podcast.title or quote.episode.title or quote.episode.publication_date %}
     <hr style="clear:left;" />
     {% endif %}
     
@@ -257,109 +263,113 @@
     
     </div><!-- /.pq-quote-votes -->
       
-    <div class="pq-quote-buttons">
+      <div class="pq-quote-buttons">
       
-      <a href="#">
-        <div class="pq-quote-edit-button color-share">
-          Share
-        </div>
-      </a>
-      
-      {% if quote.episode.podcast.donate_url %}
-      <a href="{{ quote.episode.podcast.donate_url}}">
-        <div class="pq-quote-edit-button color-donate">
-          Donate
-        </div>
-      </a>
-      {% endif %}
-      
-      <a href="#">
-        <div class="pq-quote-edit-button color-edit">
-          Edit
-        </div>
-      </a>
+        <a href="#">
+          <div class="pq-quote-edit-button color-share">
+            Share
+          </div>
+        </a>
         
+        {% if quote.episode.podcast.donate_url %}
+        <a href="{{ quote.episode.podcast.donate_url }}">
+          <div class="pq-quote-edit-button color-donate">
+            Donate
+          </div>
+        </a>
+        {% endif %}
+        
+        <!--
+        <a href="#">
+          <div class="pq-quote-edit-button color-edit">
+            Edit
+          </div>
+        </a>
+        -->
+        
+        <div class="clearfix">
+        </div>
+        
+      </div><!-- /.pq-quote-buttons -->
+      
+      <div class="pq-quote-inside">
+        
+        {% if quote.summary %}
+        <div class="pq-quote-summary">
+          {{ quote.summary }}
+        </div><!-- /.pq-quote-summary -->
+        {% endif %}
+        
+        {% if quote.time_quote_begins and quote.episode.video_url %}
+        <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+        </div>
+        {% endif %}
+        
+        {% if quote.converted_time_begins or quote.converted_time_ends %}
+        <div class="pq-quote-clip-time">
+        {% endif %}
+          {% if quote.converted_time_begins %}
+          Starts: {{ quote.converted_time_begins }}
+          {% endif %}
+          {% if quote.converted_time_begins and quote.converted_time_ends %}
+          &nbsp - &nbsp
+          {% endif %}
+          {% if quote.converted_time_ends %}
+          Ends: {{ quote.converted_time_ends }}
+          {% endif %}
+        {% if quote.converted_time_begins or quote.converted_time_ends %}
+        </div>
+        {% endif %}
+        
+        <div class="pq-quote-text">
+          {{ quote.text }}
+        </div><!-- /.pq-quote-text -->
+        
+        <!--
+        <div class="pq-quote-time-posted">
+          posted 5 hours ago by mcluhan123
+        </div><!-- /.pq-quote-time-posted -->
+        
+      </div><!-- /.pq-quote-inside -->
+      
+      <!--
+      <div class="pq-quote-bottom">
+      
+        <div class="pq-quote-bottom-button">
+          9 comments
+        </div>
+        
+        <div class="pq-quote-bottom-button">
+          save
+        </div>
+
+        <div class="pq-quote-bottom-button">
+          follow
+        </div>
+
+        <div class="pq-quote-bottom-button">
+          correct
+        </div>
+
+        <div class="pq-quote-bottom-button">
+          more
+        </div>
+
+      </div><!-- /.pq-quote-bottom -->
+
       <div class="clearfix">
       </div>
-        
-    </div><!-- /.pq-quote-buttons -->
-      
-    <div class="pq-quote-inside">
-      
-      {% if quote.summary %}
-      <div class="pq-quote-summary">
-        {{ quote.summary }}
-      </div><!-- /.pq-quote-summary -->
-      {% endif %}
-      
-      {% if quote.converted_time_begins or quote.converted_time_ends %}
-      <div class="pq-quote-clip-time">
-      {% endif %}
-        {% if quote.converted_time_begins %}
-        Starts: {{ quote.converted_time_begins }}
-        {% endif %}
-        {% if quote.converted_time_begins and quote.converted_time_ends %}
-        &nbsp - &nbsp
-        {% endif %}
-        {% if quote.converted_time_ends %}
-        Ends: {{ quote.converted_time_ends }}
-        {% endif %}
-      {% if quote.converted_time_begins or quote.converted_time_ends %}
-      </div>
-      {% endif %}
-      
-      {% if quote.time_quote_begins and quote.episode.video_url %}
-      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-      </div>
-      {% endif %}
-      
-      <div class="pq-quote-text">
-        {{ quote.text }}
-      </div><!-- /.pq-quote-text -->
-      
-      <div class="pq-quote-time-posted">
-        posted 5 hours ago by mcluhan123
-      </div><!-- /.pq-quote-time-posted -->
-      
-    </div><!-- /.pq-quote-inside -->
-      
-    <div class="pq-quote-bottom">
-    
-      <div class="pq-quote-bottom-button">
-        9 comments
-      </div><!-- /.pq-quote-bottom-button -->
-      
-      <div class="pq-quote-bottom-button">
-        save
-      </div><!-- /.pq-quote-bottom-button -->
-
-      <div class="pq-quote-bottom-button">
-        follow
-      </div><!-- /.pq-quote-bottom-button -->
-
-      <div class="pq-quote-bottom-button">
-        correct
-      </div><!-- /.pq-quote-bottom-button -->
-
-      <div class="pq-quote-bottom-button">
-        more
-      </div><!-- /.pq-quote-bottom-button -->
-
-    </div><!-- /.pq-quote-bottom -->
-
-    <div class="clearfix">
-    </div>
 
   </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
-  
+
   <div class="pq-xs-quote visible-xs hidden-sm hidden-md hidden-lg">
     
-    {% if quote.episode.title or quote.episode_publication_date %}
+    {% if quote.episode.title %}
     <div class="pq-xs-quote-header-inside">
-      
+    
       <div class="pq-xs-quote-podcast-episode">
-        <a href="/episodes/{{ quote.episode.pk }}">
-          {{ quote.episode.title }} 
+        <a href="/episodes/{{ quote.episode.id }}">
+          {{ quote.episode.title }}
           {% if quote.episode.title and quote.episode.publication_date %}
           -
           {% endif %}
@@ -379,13 +389,18 @@
     {% endif %}
 
     <div class="pq-xs-quote-inside">
-    
+      
       {% if quote.summary %}
       <div class="pq-quote-summary">
         {{ quote.summary }}
       </div><!-- /.pq-quote-summary -->
       {% endif %}
       
+      {% if quote.time_quote_begins and quote.episode.video_url %}
+      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+      </div>
+      {% endif %}
+
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       <div class="pq-quote-clip-time">
       {% endif %}
@@ -401,24 +416,19 @@
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       </div>
       {% endif %}
-    
-      {% if quote.time_quote_begins and quote.episode.video_url %}
-      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-      </div>
-      {% endif %}
-    
+      
       <div class="pq-xs-quote-text">
         {{ quote.text }}
       </div><!-- /.pq-xs-quote-text -->
     
-    </div><!-- /.pq-xs-quote-inside -->  
+    </div><!-- /.pq-xs-quote-inside -->
     
+    <!--
     <div class="pq-xs-quote-time-posted">
-      posted 5 hours ago by <span class="text-blue">mcluhan123</span>
+       posted 5 hours ago by <span class="text-blue">mcluhan123
     </div>
+    -->
     
-    <div class="pq-xs-quote-button-row">
-      
       <div class="pq-xs-quote-votes">
       
         <div class="pq-xs-quote-upvote-button">
@@ -435,51 +445,50 @@
         
       </div><!-- /.pq-xs-quote-votes -->
     
-    </div><!-- /.pq-xs-quote-button-row -->
-    
+    <!--
     <div class="pq-xs-quote-bottom">
       
       <div class="pq-xs-quote-bottom-button">
         9 comments
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <div class="pq-xs-quote-bottom-button">
         share
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <span class="pq-xs-quote-bottom-button-disappear-3">
         <div class="pq-xs-quote-bottom-button">
           save
-        </div><!-- /.pq-xs-quote-bottom-button -->
+        </div>
       </span>
       
-      {% if quote.episode.podcast.donate_url %}
       <span class="pq-xs-quote-bottom-button-disappear-2">
-        <a href="{{ podcast.donate_url }}">  
-          <div class="pq-xs-quote-bottom-button text-orange">
-            donate
-          </div><!-- /.pq-xs-quote-bottom-button -->
-        </a>
+        <div class="pq-xs-quote-bottom-button text-orange">
+          donate
+        </div>
       </span>
-      {% endif %}
       
       <span class="pq-xs-quote-bottom-button-disappear-1">
         <div class="pq-xs-quote-bottom-button text-green">
           follow
-        </div><!-- /.pq-xs-quote-bottom-button -->
+        </div>
       </span>
     
       <div class="pq-xs-quote-bottom-button">
         more
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <div class="clearfix">
       </div>
       
     </div><!-- /.pq-xs-quote-bottom -->
     
+    <div class="clearfix">
+    </div>
+    
   </div><!-- /.pq-quote-xs visible-xs hidden-sm hidden-md hidden-lg -->
-  {% endfor %}<!-- / for episode in podcast.episode_set.all -->
+  
+  {% endfor %}<!-- / for quote in quote.all -->
 
 </div><!-- /.col-md-9 -->
 

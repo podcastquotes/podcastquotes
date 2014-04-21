@@ -16,7 +16,7 @@ def home(request):
                               'episodes': Episode.objects.all(),
                               'quotes': Quote.objects.all()},
                               context_instance=RequestContext(request))
-
+"""
 def podcast_create(request):
     if request.method == "POST":
         pform = PodcastCreateForm(request.POST, request.FILES, instance=Podcast())
@@ -30,10 +30,7 @@ def podcast_create(request):
     else:
         pform = PodcastCreateForm(instance=Podcast())
     return render_to_response('podcast_create.html', {'podcast_form': pform}, context_instance=RequestContext(request))
-
-class PodcastListView(ListView):
-    model = Podcast
-
+"""
 class PodcastDetailView(DetailView):
     model = Podcast
     context_object_name = 'podcast'
@@ -42,7 +39,7 @@ class PodcastDetailView(DetailView):
         context = super(PodcastDetailView, self).get_context_data(**kwargs)
         context['podcasts'] = Podcast.objects.all()
         return context
-
+"""
 class PodcastUpdateView(UpdateView):
     model = Podcast
     form_class = PodcastForm
@@ -70,10 +67,7 @@ def episode_create(request):
     else:
         eform = EpisodeCreateForm(instance=Episode())
     return render_to_response('episode_create.html', {'episode_form': eform}, context_instance=RequestContext(request))
-    
-class EpisodeListView(ListView):
-    model = Episode
-
+"""
 class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = "episode"
@@ -82,7 +76,7 @@ class EpisodeDetailView(DetailView):
         context = super(EpisodeDetailView, self).get_context_data(**kwargs)
         context['podcasts'] = Podcast.objects.all()
         return context
-
+"""
 class EpisodeUpdateView(UpdateView):
     model = Episode
     form_class = EpisodeForm
@@ -97,12 +91,7 @@ class EpisodeDeleteView(DeleteView):
     model = Episode
     success_url = reverse_lazy('home')
     template_name = 'episode_delete.html'
-
-
-def getSec(hhmmss):
-    l = map(int, hhmmss.split(':'))
-    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
-
+"""
 def quote_create(request):
     if request.method == "POST":
         qform = QuoteCreateForm(request.POST, instance=Quote())
@@ -118,14 +107,11 @@ def quote_create(request):
     else:
         qform = QuoteCreateForm(instance=Quote())
     return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
-    
-class QuoteListView(ListView):
-    model = Quote
 
 class QuoteDetailView(DetailView):
     model = Quote
     context_object_name = "quote"
-
+"""
 class QuoteUpdateView(UpdateView):
     model = Quote
     form_class = QuoteForm
@@ -140,3 +126,4 @@ class QuoteDeleteView(DeleteView):
     model = Quote
     success_url = reverse_lazy('home')
     template_name = 'quote_delete.html'
+"""

@@ -14,9 +14,11 @@
     </select>
   </div><!-- /.pq-title -->
   
+  <!--
   <div class="pq-votes-shown">
     Listener Votes <i class="fa fa-chevron-down"></i>
   </div><!-- /.pq-votes-shown -->
+  -->
   
   <div class="hidden-xs visible-sm visible-md visible-lg">
   
@@ -158,11 +160,13 @@
         </a>
         {% endif %}
         
+        <!--
         <a href="#">
           <div class="pq-quote-edit-button color-edit">
             Edit
           </div>
         </a>
+        -->
         
         <div class="clearfix">
         </div>
@@ -175,6 +179,11 @@
         <div class="pq-quote-summary">
           {{ quote.summary }}
         </div><!-- /.pq-quote-summary -->
+        {% endif %}
+        
+        {% if quote.time_quote_begins and quote.episode.video_url %}
+        <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+        </div>
         {% endif %}
         
         {% if quote.converted_time_begins or quote.converted_time_ends %}
@@ -193,42 +202,39 @@
         </div>
         {% endif %}
         
-        {% if quote.time_quote_begins and quote.episode.video_url %}
-        <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-        </div>
-        {% endif %}
-        
         <div class="pq-quote-text">
           {{ quote.text }}
         </div><!-- /.pq-quote-text -->
         
+        <!--
         <div class="pq-quote-time-posted">
           posted 5 hours ago by mcluhan123
         </div><!-- /.pq-quote-time-posted -->
         
       </div><!-- /.pq-quote-inside -->
       
+      <!--
       <div class="pq-quote-bottom">
       
         <div class="pq-quote-bottom-button">
           9 comments
-        </div><!-- /.pq-quote-bottom-button -->
+        </div>
         
         <div class="pq-quote-bottom-button">
           save
-        </div><!-- /.pq-quote-bottom-button -->
+        </div>
 
         <div class="pq-quote-bottom-button">
           follow
-        </div><!-- /.pq-quote-bottom-button -->
+        </div>
 
         <div class="pq-quote-bottom-button">
           correct
-        </div><!-- /.pq-quote-bottom-button -->
+        </div>
 
         <div class="pq-quote-bottom-button">
           more
-        </div><!-- /.pq-quote-bottom-button -->
+        </div>
 
       </div><!-- /.pq-quote-bottom -->
 
@@ -283,6 +289,11 @@
       </div><!-- /.pq-quote-summary -->
       {% endif %}
       
+      {% if quote.time_quote_begins and quote.episode.video_url %}
+      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
+      </div>
+      {% endif %}
+
       {% if quote.converted_time_begins or quote.converted_time_ends %}
       <div class="pq-quote-clip-time">
       {% endif %}
@@ -299,23 +310,18 @@
       </div>
       {% endif %}
       
-      {% if quote.time_quote_begins and quote.episode.video_url %}
-      <div class="youtube" id="{{ quote.episode.video_id }}?start={{ quote.time_quote_begins }}&">
-      </div>
-      {% endif %}
-    
       <div class="pq-xs-quote-text">
         {{ quote.text }}
       </div><!-- /.pq-xs-quote-text -->
     
     </div><!-- /.pq-xs-quote-inside -->
     
+    <!--
     <div class="pq-xs-quote-time-posted">
        posted 5 hours ago by <span class="text-blue">mcluhan123
     </div>
+    -->
     
-    <div class="pq-xs-quote-button-row">
-      
       <div class="pq-xs-quote-votes">
       
         <div class="pq-xs-quote-upvote-button">
@@ -332,44 +338,46 @@
         
       </div><!-- /.pq-xs-quote-votes -->
     
-    </div><!-- /.pq-xs-quote-button-row -->
-    
+    <!--
     <div class="pq-xs-quote-bottom">
       
       <div class="pq-xs-quote-bottom-button">
         9 comments
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <div class="pq-xs-quote-bottom-button">
         share
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <span class="pq-xs-quote-bottom-button-disappear-3">
         <div class="pq-xs-quote-bottom-button">
           save
-        </div><!-- /.pq-xs-quote-bottom-button -->
+        </div>
       </span>
       
       <span class="pq-xs-quote-bottom-button-disappear-2">
         <div class="pq-xs-quote-bottom-button text-orange">
           donate
-        </div><!-- /.pq-xs-quote-bottom-button -->
+        </div>
       </span>
       
       <span class="pq-xs-quote-bottom-button-disappear-1">
         <div class="pq-xs-quote-bottom-button text-green">
           follow
-        </div><!-- /.pq-xs-quote-bottom-button -->
+        </div>
       </span>
     
       <div class="pq-xs-quote-bottom-button">
         more
-      </div><!-- /.pq-xs-quote-bottom-button -->
+      </div>
       
       <div class="clearfix">
       </div>
       
     </div><!-- /.pq-xs-quote-bottom -->
+    
+    <div class="clearfix">
+    </div>
     
   </div><!-- /.pq-quote-xs visible-xs hidden-sm hidden-md hidden-lg -->
   
