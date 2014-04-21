@@ -92,8 +92,6 @@ class Episode(models.Model):
         if height == 0:
             height = int(round(width / 425.0 * 344.0))
         
-        return '<iframe width="%s" height="%s" src="http://www.youtube.com/embed/%s?wmode=opaque" frameborder="0" allowfullscreen></iframe>' % (width, height, id)
-        
         # many thanks to Amit Agarwal aka @labnol for this snazzy YouTube parser, video_id, parse
         # https://gist.github.com/trojkat/1989762 
         # https://labnol.googlecode.com/files/youtube.js
