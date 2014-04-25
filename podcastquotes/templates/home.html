@@ -143,7 +143,7 @@
           
           {% if quote.episode.publication_date %}
             <div class="pq-quote-clip-time">
-              {{ quote.episode.publication_date }}
+              {{ quote.episode.publication_date|date:'m/d/y' }}
             </div>
           {% endif %}
           
