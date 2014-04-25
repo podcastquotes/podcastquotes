@@ -37,7 +37,6 @@
 
   <nav class="navbar navbar-default" role="navigation">
     <div class="pq-navbar-container">
-      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -56,43 +55,32 @@
             <li><a href="#">Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
     </div><!-- /.pq-navbar-container -->
   </nav><!-- /.navbar navbar-default -->
   
   {% endblock %}
-    
+  
   <div class="pq-container">
-    <div class="row">
     
-      {% block main %}
+  {% block breadcrumbs %}
+  {% endblock %}
+    
+    <div class="row">
       
-      {% endblock %}<!-- / block main -->
+      <div class="col-md-11">
       
-      {% block extraspace %}
-      
-      {% endblock %}<!-- / block extraspace -->
-      
-      <div class="col-md-3">
-            
-        <a href="/quotes/create/" class="pq-side-button">
-          Add a quote
-        </a>
-        
-        {% block advertisement %}
+          {% block main %}
           
-        <div class="pq-advertisement-or-whatever">
-          advertisement<br />
-          or<br />
-          donate button
-        </div><!-- /.pq-advertisement-or-whatever -->
-        
-        {% endblock %}<!-- / block advertisement -->
+          {% endblock %}<!-- / block main -->
+          
+      </div><!-- /.col-md-12 -->
+
+      <div class="col-md-5">
       
-        {% block menu %}
-        
+      {% block menu %}
+      
         <div class="pq-menu">
-        
+          
           <div class="pq-menu-title">
             Podcasts
           </div><!-- /.pq-menu-title -->
@@ -111,25 +99,57 @@
           <hr />
 
           <div class="pq-menu-options">
-          
-            {% for podcast in podcasts %}        
+           {% for podcast in podcasts %}        
             <div class="pq-menu-option">
               <a href="/podcasts/{{ podcast.id}}">
                 - {{ podcast.title }}
               </a>
             </div><!-- /.pq-menu-option -->
-            {% endfor %}
-          
+           {% endfor %}
           </div><!-- /.pq-menu-options -->
-        
+
         </div><!-- /.pq-menu -->
 
-        {% endblock %}<!-- / block menu -->
+        <div class="pq-menu">
+          
+          <div class="pq-menu-title">
+            Episodes
+          </div><!-- /.pq-menu-title -->
+          
+          <div class="pq-menu-advanced">
+            advanced
+          </div><!-- /.pq-menu-advanced -->
 
-      </div><!-- /.col-md-3 -->
+          <div class="pq-menu-pulldown">
+            Chronological <i class="fa fa-chevron-down"></i>
+          </div><!-- /.pq-menu-pulldown -->
+          
+          <div class="clearfix">
+          </div>
+          
+          <hr />
+
+          <div class="pq-menu-options">
+           {% for episode in episode.podcast.episode_set.all %}        
+            <div class="pq-menu-option">
+              <a href="/episodes/{{ episode.id}}">
+                - {{ episode.title }}
+              </a>
+            </div><!-- /.pq-menu-option -->
+           {% endfor %}
+          </div><!-- /.pq-menu-options -->
+
+        </div><!-- /.pq-menu -->
+        
+      {% endblock %}<!-- / block menu -->
+      
+      </div><!-- /.col-md-4 -->
+    
+    <div class="clearfix">
+    </div>
     
     </div><!-- /.row -->
-    
+  
   </div><!-- /.pq-container -->
   
   {% block footer %}
