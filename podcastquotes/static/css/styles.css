@@ -648,11 +648,11 @@ body {
 .pq-quote-podcast-name {
     margin:0 0 10px 0;
     font-size:16px;
-    color:#111;
+    color:#444;
 }
 
 .pq-quote-podcast-name a {
-    color:#111;
+    color:#444;
 }
 
 .pq-quote-episode-name {
@@ -660,11 +660,11 @@ body {
     float:left;
     margin:0 0 10px 0;
     font-size:16px;
-    color:#111;
+    color:#444;
 }
 
 .pq-quote-episode-name a {
-    color:#111;
+    color:#444;
 }
 
 .pq-quote-clip-time {
@@ -672,7 +672,7 @@ body {
     float:left;
     font-size:16px;
     margin:0 0 10px 0;
-    color:#111;
+    color:#444;
 }
 
 .pq-quote-divider {

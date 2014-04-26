@@ -97,7 +97,7 @@ class Episode(models.Model):
         # https://labnol.googlecode.com/files/youtube.js
 
     def all_episodes(self):
-       return Episode.objects.filter(podcast__id=self.id)
+       return Episode.objects.filter(podcast__id=self.podcast.id)
     
     def all_episode_quotes(self):
        return Quote.objects.filter(episode__id=self.id)
