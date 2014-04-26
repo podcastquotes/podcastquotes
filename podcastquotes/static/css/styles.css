@@ -627,52 +627,39 @@ body {
     color:#bbb;
 }
 
-@media (max-width:850px) {
-    .pq-quote-info {
-        clear:left;
-    }
-}
-
-@media (min-width:851px) {
-    .pq-quote-info {
-        overflow:hidden;
-        padding:0 0 0 30px;
-    }
-}
-
-.pq-quote-info-cleared {
+.pq-quote-summary {
     clear:left;
     overflow:hidden;
+    padding:0 0 10px 0;
+    font-weight:bold;
 }
 
-.pq-quote-podcast-name {
-    margin:0 0 10px 0;
-    font-size:16px;
-    color:#444;
+@media (max-width:400px) {
+    .pq-quote-summary {
+        font-size:18px;
+    }
 }
 
-.pq-quote-podcast-name a {
-    color:#444;
+@media (min-width:401px) and (max-width:500px) {
+    .pq-quote-summary {
+        font-size:20px
+    }
 }
 
-.pq-quote-episode-name {
+@media (min-width:501px) {
+    .pq-quote-summary {
+        font-size:22px;
+    }
+}
+
+.pq-quote-details {
     clear:left;
-    float:left;
-    margin:0 0 10px 0;
-    font-size:16px;
-    color:#444;
+    margin:0 0 15px 0;
+    color:#555;
 }
 
-.pq-quote-episode-name a {
-    color:#444;
-}
-
-.pq-quote-clip-time {
-    clear:left;
-    float:left;
-    font-size:16px;
-    margin:0 0 10px 0;
-    color:#444;
+.pq-quote-details a {
+    color:#555;
 }
 
 .pq-quote-divider {
@@ -832,31 +819,6 @@ body {
 
 .pq-quote-inside {
     overflow:hidden;
-}
-
-.pq-quote-summary {
-    clear:left;
-    overflow:hidden;
-    padding:0 0 20px 0;
-    font-weight:bold;
-}
-
-@media (max-width:400px) {
-    .pq-quote-summary {
-        font-size:18px;
-    }
-}
-
-@media (min-width:401px) and (max-width:500px) {
-    .pq-quote-summary {
-        font-size:20px
-    }
-}
-
-@media (min-width:501px) {
-    .pq-quote-summary {
-        font-size:22px;
-    }
 }
 
 .pq-quote-text {
@@ -1153,7 +1115,7 @@ a {
 
 @media (min-width:401px) {
     .youtube-img-preview {
-        width:200px;
+        max-width:250px;
     }
 }
 

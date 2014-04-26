@@ -105,6 +105,11 @@
           </div><!-- /.pq-quote-summary -->
           {% endif %}
           
+          <div class="pq-quote-details">
+            {% if quote.episode.podcast.title %} <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast.title }}</a> {% endif %} > {% if quote.episode.title %} <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.title }}</a> {% endif %} {% if quote.episode.publication_date %} &nbsp &nbsp <small>{{ quote.episode.publication_date }}</small> {% endif %}
+            <br />
+          </div>
+          
           {% if quote.time_quote_begins and quote.episode.video_url %}
           
               <div class="youtube-box" id="youtube{{ forloop.counter }}">
@@ -113,6 +118,15 @@
               </div>
           
           {% endif %}
+          
+          <div class="pq-quote-details">
+            {% if quote.converted_time_begins %}
+              Starts: {{ quote.converted_time_begins }} 
+            {% endif %}
+            {% if quote.converted_time_begins and quote.converted_time_ends %}
+               - Ends: {{ quote.converted_time_ends }} 
+            {% endif %}
+          </div>
           
           <div class="pq-quote-buttons-xs">
           
@@ -137,47 +151,6 @@
               </div>
               
           </div><!-- /.pq-quote-buttons-xs -->
-          
-        <div class="pq-quote-info" id="pq-quote-info-{{ forloop.counter }}">
-          {% if quote.episode.podcast.title %}
-            <div class="pq-quote-podcast-name">
-              <a href="/podcasts/{{ quote.episode.podcast.id }}">
-                {{ quote.episode.podcast.title }}
-              </a>
-            </div><!-- /.pq-quote-podcast-name -->
-          {% endif %}
-          
-          {% if quote.episode.title or quote.episode.publication_date %}
-              <div class="pq-quote-episode-name">
-                <a href="/episodes/{{ quote.episode.id }}">
-                  Episode: {{ quote.episode.title }} 
-                </a>
-              </div><!-- /.pq-quote-episode-name -->
-          {% endif %}
-          
-          {% if quote.episode.publication_date %}
-            <div class="pq-quote-clip-time">
-              {{ quote.episode.publication_date|date:'m/d/y' }}
-            </div>
-          {% endif %}
-          
-          {% if quote.converted_time_begins or quote.converted_time_ends %}
-          <div class="pq-quote-clip-time">
-          {% endif %}
-            {% if quote.converted_time_begins %}
-            Starts: {{ quote.converted_time_begins }}
-            {% endif %}
-            {% if quote.converted_time_begins and quote.converted_time_ends %}
-            -
-            {% endif %}
-            {% if quote.converted_time_ends %}
-            Ends: {{ quote.converted_time_ends }}
-            {% endif %}
-          {% if quote.converted_time_begins or quote.converted_time_ends %}
-          </div><!-- /.pq-quote-clip-time -->
-          {% endif %}
-          
-        </div><!-- /.pq-quote-info -->
         
         <script>
           $('#youtube{{ forloop.counter }}').click(function() {
