@@ -2,8 +2,6 @@
 
 {% block main %}
     
-<div class="col-md-7">
-
   <div class="pq-title">
     Post a New Quote <i class="fa fa-pencil"></i>
   </div><!-- /.pq-title -->
@@ -24,25 +22,19 @@
       
       <div class="pq-form-input">
         {% if quote_form.summary.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label-optional" for="summary" {% if quote_form.summary.errors %} class="error"{% endif %}>Summary of quote <small>(optional)</small></label>
+        <label class="pq-form-label" for="summary" {% if quote_form.summary.errors %} class="error"{% endif %}>Summary of quote</label>
         {{ quote_form.summary }}
       </div><!-- /.pq-form-input -->
       
-      <div class="pq-form-input">
-        {% if quote_form.text.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label-optional" for="text" {% if quote_form.text.errors %} class="error" {% endif %}>Quote <small>(optional)</small></label>
-        {{ quote_form.text }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
+     <div class="pq-form-input">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-8">
             {% if quote_form.time_quote_begins.errors %}<p class="error">{% endif %}
-            <label class="pq-form-label-optional" for="time_quote_begins" {% if quote_form.time_quote_begins.errors %} class="error" {% endif %}>Time quote begins <small>(optional)</small></label>
+            <label class="pq-form-label" for="time_quote_begins" {% if quote_form.time_quote_begins.errors %} class="error" {% endif %}>Time quote begins</label>
             {{ quote_form.time_quote_begins }}
-          </div><!-- /.col-sm-6 -->
+          </div><!-- /.col-sm-8 -->
 
-          <div class="col-sm-6 xs-margin-top-20">
+          <div class="col-sm-8 xs-margin-top-20">
             {% if quote_form.time_quote_ends.errors %}<p class="error">{% endif %}
             <label class="pq-form-label-optional" for="time_quote_ends" {% if quote_form.time_quote_ends.errors %} class="error" {% endif %}>Time quote ends <small>(optional)</small></label>
             {{ quote_form.time_quote_ends }}
@@ -50,6 +42,12 @@
           
         </div><!-- /.row -->
         
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
+        {% if quote_form.text.errors %}<p class="error">{% endif %}
+        <label class="pq-form-label-optional" for="text" {% if quote_form.text.errors %} class="error" {% endif %}>Quote <small>(optional)</small></label>
+        {{ quote_form.text }}
       </div><!-- /.pq-form-input -->
 
       <div class="pq-form-buttons">
@@ -63,69 +61,5 @@
     </form>
 
   </div><!-- /.pq-form -->
-
-</div><!-- /.col-md-7 -->
   
-{% endblock %}<!-- / block main -->
-
-{% block extraspace %}
-<div class="col-md-2">
-</div><!-- /.col-md-2 -->
-{% endblock %}
-
-{% block side %}
-
-<div class="col-md-3">
-  
-  <div class="pq-advertisement-or-whatever">
-    advertisement<br />
-    or<br />
-    donate button
-  </div><!-- /.pq-advertisement-or-whatever -->
-  
-  <div class="pq-menu">
-    
-    <div class="pq-menu-title">
-      Podcasts
-    </div><!-- /.pq-menu-title -->
-    
-    <div class="pq-menu-advanced">
-      advanced
-    </div><!-- /.pq-menu-advanced -->
-
-    <div class="pq-menu-pulldown">
-      Categories <i class="fa fa-chevron-down"></i>
-    </div><!-- /.pq-menu-pulldown -->
-    
-    <div class="clearfix">
-    </div>
-    
-    <hr />
-
-    <div class="pq-menu-options">
-      Bill Burr's Monday Morning Podcast<br />
-      The Drunken Taoist<br />
-      The Duncan Trussell Family Hour<br />
-      The Greg Fitzsimmons Experience<br />
-      Harmontown<br />
-      The Joe Rogan Experience<br />
-      Bill Burr's Monday Morning Podcast<br />
-      The Drunken Taoist<br />
-      The Duncan Trussell Family Hour<br />
-      The Greg Fitzsimmons Experience<br />
-      Harmontown<br />
-      The Joe Rogan Experience<br />
-      Bill Burr's Monday Morning Podcast<br />
-      The Drunken Taoist<br />
-      The Duncan Trussell Family Hour<br />
-      The Greg Fitzsimmons Experience<br />
-      Harmontown<br />
-      The Joe Rogan Experience<br />
-      etc.
-    </div><!-- /.pq-menu-options -->
-    
-  </div><!-- /.pq-menu -->
-
-</div><!-- /.col-md-3 -->
-        
 {% endblock %}<!-- / block main -->

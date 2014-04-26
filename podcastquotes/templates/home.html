@@ -97,6 +97,10 @@
                   1,234
               </div>
               
+              <div class="pq-quote-date">
+                  {{ quote.episode.publication_date|date:'m/d/y' }}
+              </div>
+              
           </div><!-- /.pq-quote-buttons -->
           
           {% if quote.summary %}
@@ -124,8 +128,11 @@
               Starts: {{ quote.converted_time_begins }} 
             {% endif %}
             {% if quote.converted_time_begins and quote.converted_time_ends %}
-               - Ends: {{ quote.converted_time_ends }} 
+              - Ends: {{ quote.converted_time_ends }} 
             {% endif %}
+            <span class="pq-quote-date-xs">
+              - Aired: {{ quote.episode.publication_date|date:'m/d/y' }}
+            </span>
           </div>
           
           <div class="pq-quote-buttons-xs">

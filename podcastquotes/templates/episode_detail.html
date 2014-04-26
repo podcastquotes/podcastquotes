@@ -213,6 +213,10 @@
                   1,234
               </div>
               
+              <div class="pq-quote-date">
+                  {{ quote.episode.publication_date|date:'m/d/y' }}
+              </div>
+              
           </div><!-- /.pq-quote-buttons -->
           
           {% if quote.summary %}
@@ -235,9 +239,36 @@
               Starts: {{ quote.converted_time_begins }} 
             {% endif %}
             {% if quote.converted_time_begins and quote.converted_time_ends %}
-               - Ends: {{ quote.converted_time_ends }} 
+              - Ends: {{ quote.converted_time_ends }} 
             {% endif %}
+            <span class="pq-quote-date-xs">
+              - Aired: {{ quote.episode.publication_date|date:'m/d/y' }}
+            </span>
           </div>
+          
+          <div class="pq-quote-buttons-xs">
+          
+              <div class="pq-quote-upvote-xs">
+                  <i class="fa fa-arrow-up"></i>
+              </div>
+              
+              <div class="pq-quote-vote-total-xs">
+                  -234
+              </div>
+              
+              <div class="pq-quote-downvote-xs">
+                  <i class="fa fa-arrow-down"></i>
+              </div>
+              
+              <div class="pq-quote-comments-xs">
+                  <i class="fa fa-comment"></i>
+              </div>
+              
+              <div class="pq-quote-comments-total-xs">
+                  1,234
+              </div>
+              
+          </div><!-- /.pq-quote-buttons-xs -->
         
         <script>
           $('#youtube{{ forloop.counter }}').click(function() {

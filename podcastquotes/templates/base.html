@@ -79,9 +79,11 @@
       
       {% block menu %}
         
-        <div class="pq-side-button">
-            Add a Quote
-        </div>
+        <a href="{% url 'create_quote' %}">
+          <div class="pq-side-button">
+              Add a Quote
+          </div>
+        </a>
         
         <div class="pq-menu">
           
