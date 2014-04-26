@@ -1119,6 +1119,34 @@ a {
     color:#286596;
 }
 
+.circle {
+    position:absolute;
+    font-size:70px;
+    color:#444;
+    opacity:0.9;
+}
+
+@media (max-width:350px) {
+    .circle {
+        margin:27px 0 0 54px;
+    }
+}
+
+@media (min-width:351px) and (max-width:400px) {
+    .circle {
+        margin:44px 0 0 73px;
+    }
+}
+
+@media (min-width:401px) {
+    .circle {
+        margin:63px 0 0 99px;
+    }
+}
+
+.preview {
+}
+
 .youtube-margin {
     float:left;
 }
