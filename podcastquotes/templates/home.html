@@ -6,7 +6,7 @@
 {% block main %}
 
    <div class="pq-title">
-      <select class="form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+      <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
         <option value="/" selected="selected">All Podcasts</option>
         <option value="/">My Podcasts</option>
         {% for podcast in podcasts %}
@@ -29,15 +29,15 @@
         not
       </div><!-- /.pq-nav -->
 
-      <div class="pq-nav">
-        new
-      </div><!-- /.pq-nav -->
-      
-      <div class="pq-nav">
+      <div class="pq-nav pq-nav-disappear-5">
         controversial
       </div><!-- /.pq-nav -->
       
-      <div class="pq-nav">
+      <div class="pq-nav pq-nav-disappear-4">
+        new
+      </div><!-- /.pq-nav -->
+      
+      <div class="pq-nav pq-nav-disappear-3">
         top
       </div><!-- /.pq-nav -->
       
@@ -49,9 +49,23 @@
         stats
       </div><!-- /.pq-nav -->
       
-      <div class="pq-nav">
-        more
-      </div><!-- /.pq-nav -->
+      <div class="btn-group">
+        <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
+          more <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li class="pq-nav-appear-5"><a href="#">controversial</a></li>
+          <li class="pq-nav-appear-4"><a href="#">new</a></li>
+          <li class="pq-nav-appear-3"><a href="#">top</a></li>
+          <li class="pq-nav-appear-2"><a href="#">bottom</a></li>
+          <li class="pq-nav-appear-1"><a href="#">stats</a></li>
+          <li><a href="#">mainstream</a></li>
+          <li><a href="#">ghosts</a></li>
+          <li><a href="#">birthdays</a></li>
+          <li class="divider"></li>
+          <li><a href="#">custom</a></li>
+        </ul>
+      </div>
       
     <div class="row">
   
@@ -93,11 +107,11 @@
           
           {% if quote.time_quote_begins and quote.episode.video_url %}
           
-          <div id="youtube{{ forloop.counter }}">
-            <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=medium&start={{ quote.time_quote_begins }}&autoplay=1&modestbranding=1&showinfo=0">
+              <div class="youtube-box" id="youtube{{ forloop.counter }}">
+                <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=medium&start={{ quote.time_quote_begins }}&autoplay=1&modestbranding=1&showinfo=0">
+                </div>
               </div>
-          </div>
-            
+          
           {% endif %}
           
           <div class="pq-quote-buttons-xs">
@@ -127,7 +141,7 @@
         <div class="pq-quote-info" id="pq-quote-info-{{ forloop.counter }}">
           {% if quote.episode.podcast.title %}
             <div class="pq-quote-podcast-name">
-              <a href="podcasts/{{ quote.episode.podcast.id }}">
+              <a href="/podcasts/{{ quote.episode.podcast.id }}">
                 {{ quote.episode.podcast.title }}
               </a>
             </div><!-- /.pq-quote-podcast-name -->
@@ -163,12 +177,6 @@
           </div><!-- /.pq-quote-clip-time -->
           {% endif %}
           
-          {% if quote.text %}
-          <div class="pq-quote-text">
-            {{ quote.text }}
-          </div><!-- /.pq-quote-text -->
-          {% endif %}
-          
         </div><!-- /.pq-quote-info -->
         
         <script>
@@ -177,6 +185,12 @@
               $('#pq-quote-info-{{ forloop.counter }}').removeClass('pq-quote-info');
           });
         </script>
+        
+          {% if quote.text %}
+          <div class="pq-quote-text">
+            {{ quote.text }}
+          </div><!-- /.pq-quote-text -->
+          {% endif %}
 
             <div class="pq-quote-bottom">
             
@@ -201,11 +215,6 @@
         </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
 
       </div><!-- /.col-sm-6 .col-md-4 -->
-
-      {% if forloop.counter|divisibleby:2 %}
-      <div class="clearfix">
-      </div>
-      {% endif %}
 
       {% endfor %}<!-- / for quote in quote.all -->
       

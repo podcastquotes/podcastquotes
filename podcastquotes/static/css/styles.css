@@ -9,7 +9,7 @@ body {
 @media (max-width:550px) {
     .pq-container {
         margin:0 auto;
-        padding:0 15px;
+        padding:0 20px;
     }
 }
 
@@ -60,18 +60,18 @@ body {
 }
 
 .pq-navbar {
-    background-color:#ddd;
+    background-color:#eee;
     padding:10px 0;
     margin:0 0 20px 0;
-    border-bottom:1px solid #555;
+    border-bottom:1px solid #888;
 }
 
 .navbar {
-        background-color:#ddd;
-        margin:0 0 25px 0;
-        border-bottom:1px solid #555;
+        background-color:#e7e7e7;
+        margin:0 0 20px 0;
+        border-bottom:1px solid #888;
         border-radius:0;
-        color:#555;
+        color:#111;
 }
 
 
@@ -95,8 +95,8 @@ body {
 
 @media (max-width:767px) {
     .navbar-default .navbar-form {
-        border-top:0px solid #999;
-        border-bottom:1px solid #999;
+        border-top:0px solid #888;
+        border-bottom:1px solid #888;
         box-shadow:0 0 0 0;
     }
 }
@@ -172,43 +172,85 @@ body {
     display:inline-block;
     margin:5px 10px 0 0;
     padding:3px 10px;
-    border:1px solid #111;
+    border:1px solid #888;
+    border-radius:3px;
     color:#B25900;
     font-size:16px;
     font-weight:bold;
 }
 
+.btn-group {
+    vertical-align:top;
+}
+
 .pq-nav {
     display:inline-block;
-    background-color:#ddd;
+    background-color:#eee;
     margin:5px 10px 0 0;
     padding:3px 10px;
-    border:1px solid #111;
+    border:1px solid #888;
+    border-radius:3px;
     color:#111;
     font-size:16px;
     font-weight:bold;
 }
 
-@media (max-width:1230px) {
+@media (max-width:1000px) {
     .pq-nav-disappear-1 {
         display:none;
     }
 }
 
-@media (max-width:1040px) {
+@media (min-width:1000px) {
+    .pq-nav-appear-1 {
+        display:none;
+    }
+}
+
+@media (max-width:900px) {
     .pq-nav-disappear-2 {
         display:none;
     }
 }
 
-@media (max-width:370px) {
+@media (min-width:900px) {
+    .pq-nav-appear-2 {
+        display:none;
+    }
+}
+
+@media (max-width:520px) {
     .pq-nav-disappear-3 {
         display:none;
     }
 }
 
-@media (max-width:320px) {
+@media (min-width:520px) {
+    .pq-nav-appear-3 {
+        display:none;
+    }
+}
+
+@media (max-width:460px) {
     .pq-nav-disappear-4 {
+        display:none;
+    }
+}
+
+@media (min-width:460px) {
+    .pq-nav-appear-4 {
+        display:none;
+    }
+}
+
+@media (max-width:400px) {
+    .pq-nav-disappear-5 {
+        display:none;
+    }
+}
+
+@media (min-width:400px) {
+    .pq-nav-appear-5 {
         display:none;
     }
 }
@@ -299,99 +341,60 @@ body {
 
 @media (max-width:991px) {
     .pq-podcast-header {
+        margin-top:5px;
         margin-bottom:25px;
-        padding:25px 15px;
-        border:1px dotted #aaa;
+        padding-bottom:25px;
+        border-bottom:1px solid #ddd;
     }
 }
 
 @media (min-width:992px) {
     .pq-podcast-header {
+        margin-top:5px;
         margin-bottom:25px;
-        padding:25px 20px;
-        border:1px dotted #aaa;
+        padding-bottom:25px;
+        border-bottom:1px solid #ddd;
     }
 }
 
-.pq-podcast-title {
-    float:left;
-    margin:0 0 10px 0;
-    font-size:22px;
-    font-weight:bold;
-    color:#111;
+@media (max-width:767px) {
+    .pq-podcast-title {
+        float:left;
+        clear:left;
+        width:100%;
+        margin:0 0 10px 0;
+        font-size:22px;
+        font-weight:bold;
+        color:#111;
+    }
 }
 
-@media (max-width:767px) {
+@media (min-width:768px) {
+    .pq-podcast-title {
+        float:left;
+        clear:left;
+        width:100%;
+        margin:0 0 10px 0;
+        font-size:22px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+    
+@media (max-width:550px) {
     .pq-podcast-header-box {
         clear:left;
         overflow:hidden;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:551px) {
     .pq-podcast-header-box {
         overflow:hidden;
-        padding:0 0 0 20px;
     }
 }
 
-.pq-podcast-social-media {
-    clear:left;
-    margin:0 10px 5px 0;
-    font-size:28px;
-    color:#333;
-}
-
-.pq-podcast-profile-picture {
-    float:left;
-    margin:0 15px 0 0;
-    border-radius:10px;
-}
-
-@media (max-width:767px) {
-    .pq-podcast-profile-picture img {
-        height:180px;
-        width:180px;
-        border-radius:10px;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-podcast-profile-picture img {
-        height:180px;
-        width:180px;
-        border-radius:10px;
-    }
-}
-
-.pq-podcast-header-info-left {
-    clear:left;
-    overflow:hidden;
-    margin:10px 5px 10px 0;
-    font-size:16px;
-}
-
-.pq-podcast-header-info-right-1 {
-    clear:right;
-    float:right;
-    margin:5px 0 0 0;
-    font-size:16px;
-}
-
-.pq-podcast-header-info-right-2 {
-    clear:right;
-    float:right;
-    margin:-1px 0 0 0;
-    font-size:16px;
-}
-
-.pq-podcast-header-info-full {
-    clear:left;
-    overflow:hidden;
-    font-size:16px;
-}
-
-.pq-podcast-header-button {
+.pq-share-button {
     float:right;
     clear:right;
     width:70px;
@@ -401,6 +404,123 @@ body {
     border:1px solid #555;
     border-radius:15px;
     font-size:14px;
+}
+
+.pq-podcast-buttons {
+    float:right;
+    margin:0 0 0 25px;
+}
+
+.pq-podcast-button {
+    clear:right;
+    float:right;
+    width:70px;
+    padding:2px 0;
+    text-align:center;
+    margin:0 0 10px 0;
+    border:1px solid #555;
+    border-radius:15px;
+    font-size:14px;
+}
+
+.pq-podcast-social-media {
+    clear:left;
+    padding:0 0 5px 0;
+    font-size:28px;
+    color:#333;
+}
+
+@media (max-width:767px) {
+    .pq-podcast-profile-picture {
+        float:left;
+        margin:0 25px 10px 0;
+        border-radius:10px;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-podcast-profile-picture {
+        float:left;
+        margin:0 25px 10px 0;
+        border-radius:10px;
+    }
+}
+
+@media (max-width:500px) {
+    .pq-podcast-profile-picture img {
+        height:160px;
+        width:160px;
+        border-radius:10px;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-profile-picture img {
+        height:100px;
+        width:100px;
+        border-radius:10px;
+    }
+}
+
+.pq-podcast-selector {
+    height:40px;
+    line-height:40px;
+    border:1px solid #aaa;
+    margin:0 0 15px 0;
+    font-size:18px;
+}
+
+.pq-episode-selector {
+    height:40px;
+    line-height:40px;
+    border:1px solid #aaa;
+    margin:0 0 10px 0;
+    font-size:18px;
+}
+
+.pq-podcast-header-info {
+    clear:both;
+}
+
+.pq-podcast-header-info-left {
+    clear:left;
+    margin:5px 5px 10px 0;
+    font-size:15px;
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-1 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-1 {
+        clear:left;
+        float:right;
+        font-size:15px;
+    }
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-2 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-2 {
+        clear:right;
+        float:right;
+        margin:-5px 0 0 0;
+        font-size:15px;
+    }
+}
+
+.pq-podcast-header-info-full {
+    clear:left;
+    overflow:hidden;
+    font-size:15px;
 }
 
 @media (max-width:991px) {
@@ -497,9 +617,8 @@ body {
 }
 
 .pq-quote {
-    margin:0 0 10px 0;
-    padding:15px 0;
-    border-bottom:1px solid #ddd;
+    padding:25px 0 20px 0;
+    border-bottom:1px dotted #ddd;
 }
 
 .pq-quote-counter {
@@ -508,13 +627,13 @@ body {
     color:#bbb;
 }
 
-@media (max-width:767px) {
+@media (max-width:850px) {
     .pq-quote-info {
         clear:left;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:851px) {
     .pq-quote-info {
         overflow:hidden;
         padding:0 0 0 30px;
@@ -528,9 +647,8 @@ body {
 
 .pq-quote-podcast-name {
     margin:0 0 10px 0;
-    font-size:18px;
+    font-size:16px;
     color:#111;
-    font-weight:bold;
 }
 
 .pq-quote-podcast-name a {
@@ -742,7 +860,7 @@ body {
 }
 
 .pq-quote-text {
-    max-width:600px;
+    max-width:650px;
     clear:left;
     font-size:16px;
     margin:0 0 20px 0;
@@ -756,46 +874,28 @@ body {
 .pq-quote-bottom-button {
     display:inline-block;
     margin:0 25px 0 0;
-    font-size:16px;
+    font-size:15px;
     font-weight:bold;
     color:#444;
 }
 
-@media (max-width:991px) {
-    .pq-side-button {
-        display:block;
-        text-align:center;
-        padding:10px 0;
-        margin:25px 0;
-        background-color:#ddd;
-        border:1px dotted #555;
-        font-size:20px;
-        font-weight:bold;
-        color:#111;
-        text-decoration:none;
-    }
-}
-
-@media (min-width:992px) {
-    .pq-side-button {
-        display:block;
-        text-align:center;
-        padding:10px 0;
-        margin:5px 0 20px 0;
-        background-color:#ddd;
-        border:1px solid #555;
-        border-top-left-radius:10px;
-        border-bottom-left-radius:10px;
-        font-size:20px;
-        font-weight:bold;
-        color:#111;
-        text-decoration:none;
-    }
+.pq-side-button {
+    display:block;
+    text-align:center;
+    padding:10px 0;
+    margin:-1px 0 25px 0;
+    background-color:#eee;
+    border:1px solid #888;
+    border-radius:3px;
+    font-size:20px;
+    font-weight:bold;
+    color:#111;
+    text-decoration:none;
 }
     
 .pq-side-button:hover {
-    background-color:#eee;
-    color:#555;
+    background-color:#eaeaea;
+    color:#070707;
     text-decoration:none;
 }
 
@@ -818,7 +918,7 @@ body {
 }
     
 .pq-menu {
-    margin:0 0 30px 0;
+    margin:0 0 25px 0;
     padding:10px;
     border:1px dotted #777;
 }
@@ -1053,7 +1153,7 @@ a {
 
 @media (min-width:401px) {
     .youtube-img-preview {
-        width:250px;
+        width:200px;
     }
 }
 
@@ -1111,24 +1211,45 @@ a {
     }
 }
 
-@media (min-width:651px) and (max-width:767px) {
+@media (min-width:651px) and (max-width:700px) {
     .iframe-size {
         width:500px;
         height:315px;
     }
 }
 
-@media (min-width:768px) and (max-width:850px) {
+@media (min-width:701px) and (max-width:768px) {
     .iframe-size {
-        width:500px;
-        height:315px;
+        width:550px;
+        height:347px;
     }
 }
 
-@media (min-width:851px) and (max-width:950px) {
+@media (min-width:769px) and (max-width:800px) {
     .iframe-size {
-        width:500px;
-        height:315px;
+        width:350px;
+        height:221px;
+    }
+}
+
+@media (min-width:801px) and (max-width:850px) {
+    .iframe-size {
+        width:400px;
+        height:252px;
+    }
+}
+
+@media (min-width:851px) and (max-width:900px) {
+    .iframe-size {
+        width:450px;
+        height:284px;
+    }
+}
+
+@media (min-width:901px) and (max-width:950px) {
+    .iframe-size {
+        width:450px;
+        height:284px;
     }
 }
 
