@@ -113,7 +113,7 @@
 
         
         <div class="pq-podcast-header-info-right-2">
-            <strong>{{ episode.all_episode_quotes.count }} quotes</strong>
+            <strong>{{ episode.podcast.all_podcast_quotes.count }} quotes</strong>
         </div><!-- /.pq-podcast-header-info -->
         
         <div class="pq-podcast-header-info-left">
@@ -121,10 +121,31 @@
         </div><!-- /.pq-podcast-header-info -->
         
         <div class="pq-podcast-header-info-full">
-            <strong>Description:</strong> {{ podcast.description }}
+            <strong>Description:</strong> {{ episode.podcast.description }}
         </div><!-- /.pq-episode-header-info-full -->
-      
+        
+        <div class="pq-episode-divider">
+        </div>
+        
+        <div class="pq-podcast-header-info-left">
+            <big><strong>Episode:</strong> #484 - Alexis Ohanian</big>
+        </div>
+        
+        <div class="pq-podcast-header-info-right-3">
+          <strong>{{ episode.all_episode_quotes.count }} quotes </strong>
+        </div><!-- /.pq-podcast-header-info -->
+        
+        <div class="pq-podcast-header-info-left">
+            <strong>Guests:</strong> Guest Name 1, Guest Name 2
+        </div><!-- /.pq-podcast-header-info -->
+        
+        <div class="pq-podcast-header-info-full">
+            <strong>Description:</strong> {{ episode.description }}
+        </div><!-- /.pq-episode-header-info-full -->
+          
       </div><!-- /.pq-podcast-info -->
+        
+      
           
     <div class="clearfix">
     </div>
@@ -175,6 +196,7 @@
           <li class="pq-nav-appear-3"><a href="#">top</a></li>
           <li class="pq-nav-appear-2"><a href="#">bottom</a></li>
           <li class="pq-nav-appear-1"><a href="#">stats</a></li>
+          <li><a href="#">transcription</a></li>
           <li><a href="#">mainstream</a></li>
           <li><a href="#">ghosts</a></li>
           <li><a href="#">birthdays</a></li>

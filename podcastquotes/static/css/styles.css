@@ -137,14 +137,14 @@ body {
 @media (max-width:991px) {
     .pq-breadcrumbs {
         padding:0 0 20px 0;
-        font-size:15px;
+        font-size:16px;
     }
 }
 
 @media (min-width:992px) {
     .pq-breadcrumbs {
         padding:0 0 20px 0;
-        font-size:15px;
+        font-size:16px;
     }
 }
 
@@ -322,9 +322,11 @@ body {
 }
 
 .form-control {
-    color:#111;
+    height:38px;
     vertical-align:top;
     border:1px solid #555;
+    color:#111;
+    font-size:16px;
 }
 
 .form-quote-input {
@@ -431,15 +433,15 @@ body {
     color:#333;
 }
 
-@media (max-width:767px) {
+@media (max-width:500px) {
     .pq-podcast-profile-picture {
         float:left;
-        margin:0 25px 10px 0;
+        margin:0 25px 30px 0;
         border-radius:10px;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:501px) {
     .pq-podcast-profile-picture {
         float:left;
         margin:0 25px 10px 0;
@@ -486,7 +488,7 @@ body {
 .pq-podcast-header-info-left {
     clear:left;
     margin:5px 5px 10px 0;
-    font-size:15px;
+    font-size:16px;
 }
 
 @media (max-width:500px) {
@@ -499,7 +501,7 @@ body {
     .pq-podcast-header-info-right-1 {
         clear:left;
         float:right;
-        font-size:15px;
+        font-size:16px;
     }
 }
 
@@ -514,7 +516,22 @@ body {
         clear:right;
         float:right;
         margin:-5px 0 0 0;
-        font-size:15px;
+        font-size:16px;
+    }
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-3 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-3 {
+        clear:right;
+        float:right;
+        margin:-5px 0 0 0;
+        font-size:16px;
     }
 }
 
@@ -522,7 +539,7 @@ body {
     clear:left;
     max-width:500px;
     overflow:hidden;
-    font-size:15px;
+    font-size:16px;
 }
 
 @media (max-width:991px) {
@@ -538,6 +555,12 @@ body {
         padding:30px 0;
         border-top:1px dashed #ccc;
     }
+}
+
+.pq-episode-divider {
+    margin:15px 0 0 0;
+    padding:10px 0 0 0;
+    border-top:1px solid #ddd;
 }
 
 .pq-episode-profile-picture {
@@ -1099,6 +1122,14 @@ body {
     background-color:#E177A7;
 }
 
+.btn {
+   font-size:16px;
+}
+
+.btn-danger {
+    color:#eee;
+}
+
 .bg-yellow {
     background:#FFFFDF;
 }
@@ -1124,6 +1155,7 @@ a {
     font-size:70px;
     color:#444;
     opacity:0.9;
+    cursor:pointer;
 }
 
 @media (max-width:350px) {
@@ -1155,6 +1187,7 @@ a {
     float:left;
     clear:left;
     border-radius:10px;
+    cursor:pointer;
 }
 
 @media (max-width:350px) {
