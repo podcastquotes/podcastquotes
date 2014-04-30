@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from podcastquotes.models import Podcast, Episode, Quote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
@@ -39,7 +40,7 @@ def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
     return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
  
-
+@login_required
 def quote_create(request):
     if request.method == "POST":
         qform = QuoteCreateForm(request.POST, instance=Quote())
