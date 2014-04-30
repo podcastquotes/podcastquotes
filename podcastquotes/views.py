@@ -4,7 +4,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import logout
 from podcastquotes.models import Podcast, Episode, Quote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
@@ -17,10 +16,6 @@ def home(request):
                               'episodes': Episode.objects.all(),
                               'quotes': Quote.objects.all()},
                               context_instance=RequestContext(request))
-
-def logout_view(request):
-    logout(request)
-    return redirect('home')
                               
 class PodcastDetailView(DetailView):
     model = Podcast
