@@ -2,6 +2,7 @@ from django.db import models
 from time import time
 from datetime import date
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 import urlparse
 
 from urlparse import urlparse, parse_qs
@@ -130,6 +131,8 @@ class Quote(models.Model):
     episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=200)
     text = models.TextField(blank=True)
+    submitted_by = models.ForeignKey(User)
+    submitted_time = models.DateTimeField(auto_now_add=True)
     time_quote_begins = models.IntegerField(null=True, blank=True)
     time_quote_ends = models.IntegerField(null=True, blank=True)
     # submitted_by = ...

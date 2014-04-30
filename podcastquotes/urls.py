@@ -3,7 +3,7 @@ from podcastquotes.models import Podcast, Episode, Quote
 from podcastquotes.views import home
 from podcastquotes.views import PodcastDetailView
 from podcastquotes.views import EpisodeDetailView
-from podcastquotes.views import quote_create, QuoteDetailView
+from podcastquotes.views import quote_create
 from django.contrib import admin
 admin.autodiscover()
 

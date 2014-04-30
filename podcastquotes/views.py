@@ -10,7 +10,6 @@ from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
 from podcastquotes.forms import QuoteCreateForm, QuoteForm
 
-
 def home(request):
     return render_to_response('home.html',
                               {'podcasts': Podcast.objects.all(),
@@ -56,7 +55,3 @@ def quote_create(request):
     else:
         qform = QuoteCreateForm(instance=Quote())
     return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
-
-class QuoteDetailView(DetailView):
-    model = Quote
-    context_object_name = "quote"
