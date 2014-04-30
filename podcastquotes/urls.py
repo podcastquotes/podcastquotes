@@ -21,24 +21,6 @@ urlpatterns = patterns('',
             context_object_name='podcast'),
         name='podcast_detail',),
 
-    # url(r'^podcasts/create', 'podcastquotes.views.podcast_create',
-    #    name='podcast_create',),
-    
-    # url(r'^podcasts/edit/(?P<pk>\d+)/$', PodcastUpdateView.as_view(),
-    #    name = 'podcast_update',),
-    
-    # url(r'^podcasts/delete/(?P<pk>\d+)/$', PodcastDeleteView.as_view(),
-    #    name = 'podcast_delete',),
-    
-    # url(r'^episodes/create', 'podcastquotes.views.episode_create',
-    #    name='episode_create',),
-
-    # url(r'^episodes/edit/(?P<pk>\d+)/$', EpisodeUpdateView.as_view(),
-    #    name = 'episode_update',),
-
-    # url(r'^episodes/delete/(?P<pk>\d+)/$', EpisodeDeleteView.as_view(),
-    #    name = 'episode_delete',),
-
     url(r'^episodes/(?P<pk>\d+)/$', 
         EpisodeDetailView.as_view(
             model=Episode,
@@ -48,9 +30,8 @@ urlpatterns = patterns('',
     
     url(r'^quotes/create/', 'podcastquotes.views.quote_create',
         name='create_quote',),
-
-    # url(r'^quotes/edit/(?P<pk>\d+)/$', QuoteUpdateView.as_view(),
-    #    name = 'quote_update',),
+        
+    url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>\d+)/$', 'podcastquotes.views.vote', name='quote_vote'),
    
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     

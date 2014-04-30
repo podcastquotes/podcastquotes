@@ -1,11 +1,12 @@
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from podcastquotes.models import Podcast, Episode, Quote
+from django.contrib.auth.models import User
+from podcastquotes.models import Podcast, Episode, Quote, Vote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
 from podcastquotes.forms import QuoteCreateForm, QuoteForm
@@ -16,7 +17,17 @@ def home(request):
                               'episodes': Episode.objects.all(),
                               'quotes': Quote.objects.all()},
                               context_instance=RequestContext(request))
-                              
+
+@login_required
+def vote(request, quote_id, vote_type_id):
+    q = get_object_or_404(Quote, pk=quote_id)
+    v = get_object_or_404(User, pk=request.user.id)
+    t = vote_type_id
+    vote, created = Vote.objects.get_or_create(voter=v, quote=q)
+    vote.vote_type = t
+    vote.save()
+    return HttpResponseRedirect('/')
+
 class PodcastDetailView(DetailView):
     model = Podcast
     context_object_name = 'podcast'
