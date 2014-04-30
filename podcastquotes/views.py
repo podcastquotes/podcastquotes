@@ -92,6 +92,12 @@ class EpisodeDeleteView(DeleteView):
     success_url = reverse_lazy('home')
     template_name = 'episode_delete.html'
 """
+
+def getSec(hhmmss):
+    l = map(int, hhmmss.split(':'))
+    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
+ 
+
 def quote_create(request):
     if request.method == "POST":
         qform = QuoteCreateForm(request.POST, instance=Quote())

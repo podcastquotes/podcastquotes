@@ -690,6 +690,7 @@ body {
     .pq-quote-details {
         clear:left;
         margin:0 0 15px 0;
+        font-size:14px;
         color:#555;
     }
 }

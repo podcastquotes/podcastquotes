@@ -128,7 +128,7 @@ class Episode(models.Model):
         
 class Quote(models.Model):
     episode = models.ForeignKey(Episode)
-    summary = models.CharField(max_length=200, blank=True)
+    summary = models.CharField(max_length=200)
     text = models.TextField(blank=True)
     time_quote_begins = models.IntegerField(null=True, blank=True)
     time_quote_ends = models.IntegerField(null=True, blank=True)

@@ -53,6 +53,10 @@ urlpatterns = patterns('',
     #    name = 'quote_update',),
    
     url(r'^admin/', include(admin.site.urls)),
+    
+    # Allauth urls
+    (r'^accounts/', include('allauth.urls')),
+
 )
 
 # Serve static
