@@ -25,6 +25,7 @@
     
     <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static '/static/css/css-social-buttons-master/css/zocial.css' %}" type="text/css" rel="stylesheet">
     
     <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
@@ -52,7 +53,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Login</a></li>
+            {% if request.user.is_authenticated %}
+                <li>
+                    <div class="pq-navbar-dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown">
+                        {{ request.user.username }} <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">Add a Quote</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logout">Sign Out</a></li>
+                      </ul>
+                    </div>
+                </li>
+            {% else %}
+                <li><a href="/accounts/login">Login</a></li>
+            {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.pq-navbar-container -->

@@ -52,6 +52,8 @@ urlpatterns = patterns('',
     # url(r'^quotes/edit/(?P<pk>\d+)/$', QuoteUpdateView.as_view(),
     #    name = 'quote_update',),
    
+    url(r'^logout/$', 'podcastquotes.views.logout_view', name='logout'),
+   
     url(r'^admin/', include(admin.site.urls)),
     
     # Allauth urls

@@ -105,6 +105,10 @@ body {
     box-shadow:0 0 0 0;
 }
 
+.pq-navbar-dropdown {
+    margin:10px;
+}
+
 @media (max-width:370px) {
     .rss-icon-disappear {
         display:none;
@@ -291,7 +295,66 @@ body {
     margin:20px 0 25px 0;
     padding:10px 15px 30px 15px;
     background-color:#eee;
-    border:1px solid #777;
+    border:1px solid #aaa;
+}
+
+.pq-form a {
+    color:#428bca;
+}
+
+.pq-form a:hover {
+    color:#444;
+}
+
+.pq-form-login {
+    max-width:500px;
+    margin:20px 0 25px 0;
+    padding:10px 15px 30px 15px;
+    background-color:#eee;
+    border:1px solid #aaa;
+}
+
+.pq-form-login a {
+    color:#777;
+}
+
+.pq-form-login a:hover {
+    color:#444;
+}
+
+.pq-form-title {
+    clear:left;
+    margin:0 0 15px 0;
+    font-size:24px;
+    font-weight:bold;
+    color:#111;
+}
+
+.pq-form-socialaccounts {
+    clear:both;
+    padding:20px 0 0 0;
+}
+
+.pq-form-remember {
+    clear:right;
+    float:right;
+    margin:0 0 0 10px;
+}
+
+.pq-form-forgot {
+    clear:left;
+    float:left;
+    margin:5px 0 0 0;
+}
+
+.pq-form-signup {
+    clear:left;
+    float:left;
+    margin:20px 0 0 0;
+}
+
+.pq-form-signup a {
+    color:#428bca;
 }
 
 .pq-form-label {
@@ -309,7 +372,18 @@ body {
 }
 
 .pq-form-buttons {
+    clear:right;
     padding:20px 0 0 0;
+}
+
+.pq-form-divider {
+    clear:both;
+    margin:30px 0;
+    border-top:1px solid #ccc;
+}
+
+.pq-form-captcha {
+    margin:5px 0 0 -5px;
 }
 
 @media (max-width:767px) {
@@ -1147,6 +1221,10 @@ body {
     color:#479847;
 }
 
+.text-red {
+    color:#EE2C2C;
+}
+
 a {
     color:#286596;
 }
@@ -1345,3 +1423,7 @@ a {
     height: 100%;
 }
 - See more at: http://avexdesigns.com/responsive-youtube-embed/#sthash.evY3RZZE.dpuf
+
+.socialaccount_provider button {
+    font-size:16px;
+}
