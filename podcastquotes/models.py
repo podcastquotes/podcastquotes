@@ -25,10 +25,6 @@ class Podcast(models.Model):
     instagram_url = models.URLField(blank=True)
     google_plus_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
-    # hosts = ...
-    # categories = ...
-    # keywords = ...
-    # followers = ...
     
     def get_absolute_url(self):
         return reverse('podcast_detail', kwargs={'pk': self.pk})
@@ -109,24 +105,6 @@ class Episode(models.Model):
     def __unicode__(self):
         return u'%s - %s' % (self.podcast.title, self.title)
 
-# class Speaker(models.Model):
-#    name = models.CharField(max_length=100)
-#    
-#    def get_absolute_url(self):
-#        return reverse('home')
-#        
-#    def __unicode__(self):
-#        return unicode(self.name)
-        
-# class Tag(models.Model):
-#    tag = models.CharField(max_length=100)
-#    
-#    def get_absolute_url(self):
-#        return reverse('home')
-#    
-#    def __unicode__(self):
-#        return unicode(self.tag)
-        
 class Quote(models.Model):
     episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=200)
@@ -155,3 +133,20 @@ class Quote(models.Model):
     
     def __unicode__(self):
         return u'%s - %s' % (self.episode.podcast.title, self.episode.title)
+        
+class Vote(models.Model):
+    voter = models.ForeignKey(User)
+    quote = models.ForeignKey(Quote)
+    UPVOTE = 1
+    DOWNVOTE = 2
+    VOTE_CHOICES = (
+        (UPVOTE, 'Upvote'),
+        (DOWNVOTE, 'Downvote'),
+    )
+    vote_type = models.IntegerField(choices=VOTE_CHOICES)
+    
+    class Meta:
+        unique_together = (('voter', 'quote'),)
+    
+    def __unicode__(self):
+        return "Vote by: " + str(self.voter)
