@@ -190,14 +190,14 @@
               <div class="pq-quote-bottom-button">
                 save
               </div>
-
-              <div class="pq-quote-bottom-button text-orange">
-                donate
-              </div>
               
-              <div class="pq-quote-bottom-button">
-                more
-              </div>
+              {% if quote.episode.podcast.donate_url %}
+                  <a href="{{ quote.episode.podcast.donate_url }}" target="_blank">
+                      <div class="pq-quote-bottom-button text-orange">
+                        donate
+                      </div>
+                  </a>
+              {% endif %}
 
             </div><!-- /.pq-quote-bottom -->
 

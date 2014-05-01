@@ -28,11 +28,13 @@
           </div>
         </a>
         
-        <a href="{{ podcast.donate_url }}">
-          <div class="pq-podcast-button color-donate">
-            Donate
-          </div>
-        </a>
+        {% if quote.episode.podcast.donate_url %}
+            <a href="{{ podcast.donate_url }}">
+              <div class="pq-podcast-button color-donate">
+                Donate
+              </div>
+            </a>
+        {% endif %}
         
         <a href="/podcasts/edit/{{ podcast.id }}">
           <div class="pq-podcast-button color-edit">
