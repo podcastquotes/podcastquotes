@@ -102,21 +102,15 @@
     
     <div class="row">
       
-      <div class="col-sm-11">
-      
-          {% block breadcrumbs %}
-          {% endblock %}
-      
-          {% block main %}
-          
-          {% endblock %}<!-- / block main -->
-          
-      </div><!-- /.col-md-12 -->
+      {% block breadcrumbs %}
+      {% endblock %}
+  
+      {% block main %}
+      {% endblock %}<!-- / block main -->
 
+      {% block menu %}
       <div class="col-sm-5">
       
-      {% block menu %}
-        
         <a href="{% url 'create_quote' %}">
           <div class="pq-side-button">
               Add a Quote
@@ -176,11 +170,11 @@
           </div><!-- /.pq-menu-options -->
 
         </div><!-- /.pq-menu -->
+
+      </div><!-- /.col-sm-5 -->
         
       {% endblock %}<!-- / block menu -->
       
-      </div><!-- /.col-md-4 -->
-    
     <div class="clearfix">
     </div>
     

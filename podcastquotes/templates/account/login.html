@@ -8,6 +8,8 @@
 
 {% block main %}
 
+<div class="col-sm-16">
+
   <div class="pq-form-login">
   
     <div class="pq-form-title">
@@ -91,11 +93,12 @@
     <p>{% blocktrans %}If you have not created an account yet, then please
     <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
     {% endif %}
-
-
-
     
-  </div><!-- /.pq-form -->
-  
+  </div><!-- /.pq-form-login -->
 
+</div><!-- /.col-sm-11 -->
+
+{% endblock %}
+
+{% block menu %}
 {% endblock %}

@@ -7,87 +7,94 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block main %}
+    <div class="col-sm-16">
+    
+        <div class="pq-form-login">
+        
+          <div class="pq-form-title">
+            {% trans "Sign up" %}
+          </div><!-- /.pq-form-title -->
 
-  <div class="pq-form">
-  
-    <div class="pq-form-title">
-      {% trans "Sign up" %}
-    </div><!-- /.pq-form-title -->
+          <p>{% blocktrans %}Already have an account? <a href="{{ login_url }}">Sign in now</a>.{% endblocktrans %}</p>
 
-    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      
-      <div class="pq-form-input">
-        {% if form.username.errors %}
-          <div class="text-red">{{ form.username.errors }}</div>
-        {% endif %}
-        <label class="pq-form-label" for="username">
-          Username
-        </label>
-        <input type="text" class="form-control" name="username" />
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.email.errors %}
-          <div class="text-red">{{ form.email.errors }}</div>
-        {% endif %}
-        <label class="pq-form-label" for="email">
-          Email
-        </label>
-        <input type="email" class="form-control" name="email" />
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.password1.errors %}
-          <div class="text-red">{{ form.password1.errors }}</div>
-        {% endif %}
-        <label class="pq-form-label" for="password1">
-          Password
-        </label>
-        <input type="password" class="form-control" name="password1" />
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.password2.errors %}
-          <div class="text-red">{{ form.password2.errors }}</div>
-        {% endif %}
-        <label class="pq-form-label" for="password2">
-          Password <small>(confirm)</small>
-        </label>
-        <input type="password" class="form-control" name="password2" />
-        <input name="confirmation_key" type="hidden" />
-      </div><!-- /.pq-form-input -->
-      
-      {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      
-      
-      <div class="pq-form-input">
-        <label class="pq-form-label" for="review_text">
-          Please prove that you're human.
-        </label>
-        <div class="pq-form-captcha">
-            {{ form.captcha }}
-            {% if form.captcha.errors %}
-              <div class="text-red">{{ form.captcha.errors }}</div>
+          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            
+            <div class="pq-form-input">
+              {% if form.username.errors %}
+                <div class="text-red">{{ form.username.errors }}</div>
+              {% endif %}
+              <label class="pq-form-label" for="username">
+                Username
+              </label>
+              <input type="text" class="form-control" name="username" />
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.email.errors %}
+                <div class="text-red">{{ form.email.errors }}</div>
+              {% endif %}
+              <label class="pq-form-label" for="email">
+                Email
+              </label>
+              <input type="email" class="form-control" name="email" />
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.password1.errors %}
+                <div class="text-red">{{ form.password1.errors }}</div>
+              {% endif %}
+              <label class="pq-form-label" for="password1">
+                Password
+              </label>
+              <input type="password" class="form-control" name="password1" />
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
+              {% if form.password2.errors %}
+                <div class="text-red">{{ form.password2.errors }}</div>
+              {% endif %}
+              <label class="pq-form-label" for="password2">
+                Password <small>(confirm)</small>
+              </label>
+              <input type="password" class="form-control" name="password2" />
+              <input name="confirmation_key" type="hidden" />
+            </div><!-- /.pq-form-input -->
+            
+            {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
+            
+            
+            <div class="pq-form-input">
+              <label class="pq-form-label" for="review_text">
+                Please prove that you're human.
+              </label>
+              <div class="pq-form-captcha">
+                  {{ form.captcha }}
+                  {% if form.captcha.errors %}
+                    <div class="text-red">{{ form.captcha.errors }}</div>
+                  {% endif %}
+              </div>
+            </div><!-- /.pq-form-input -->
+            
+            <button type="submit" class="btn btn-small btn-primary pq-form-button">{% trans "Sign Up" %}</button>
+            
+            <a href="/" style="color:#eee;" class="btn btn-small btn-danger text-light-grey pq-form-button">Cancel</a>
+            
+            <div class="clearfix">
+            </div>
+
+          </form>
+            
+        </div><!-- /.pq-form-login -->
+
+        <div class="clearfix">
         </div>
-      </div><!-- /.pq-form-input -->
-      
-      <button type="submit" class="btn btn-small btn-primary pq-form-button">{% trans "Sign Up" %}</button>
-      
-      <div class="clearfix">
-      </div>
 
-    </form>
-      
-  </div><!-- /.pq-form -->
-
-<div class="clearfix">
-</div>
-  
+    </div><!-- /.col-sm-16 -->
 
 {% endblock %}<!-- /block main -->
+
+{% block menu %}
+{% endblock %}
