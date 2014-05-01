@@ -55,6 +55,26 @@
           <ul class="nav navbar-nav navbar-right">
             {% if request.user.is_authenticated %}
                 <li>
+                    <div class="pq-navbar-link">
+                        My Profile
+                    </div>
+                </li>
+                <li>
+                    <div class="pq-navbar-link">
+                        Add a Quote
+                    </div>
+                </li>
+                <li>
+                    <div class="pq-navbar-link">
+                        Settings
+                    </div>
+                </li>
+                <li>
+                    <div class="pq-navbar-link">
+                        Sign Out
+                    </div>
+                </li>
+                <li>
                     <div class="pq-navbar-dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown">
                         {{ request.user.username }} <span class="caret"></span>

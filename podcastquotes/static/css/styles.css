@@ -67,7 +67,7 @@ body {
 }
 
 .navbar {
-        background-color:#e7e7e7;
+        background-color:#eee;
         margin:0 0 20px 0;
         border-bottom:1px solid #888;
         border-radius:0;
@@ -105,8 +105,42 @@ body {
     box-shadow:0 0 0 0;
 }
 
-.pq-navbar-dropdown {
-    margin:10px;
+@media (max-width:767px) {
+    .pq-navbar-dropdown {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-navbar-dropdown {
+        margin:12px 10px 10px 0;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .pq-navbar-dropdown a {
+        color:#111;
+        text-decoration:none;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-navbar-link {
+        margin:12px 60px 15px 0;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .pq-navbar-link a {
+        color:#111;
+        text-decoration:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-navbar-link {
+        display:none;
+    }
 }
 
 @media (max-width:370px) {
@@ -1007,48 +1041,46 @@ body {
     color:#444;
 }
 
-.pq-side-button {
-    display:block;
-    text-align:center;
-    padding:10px 0;
-    margin:-1px 0 25px 0;
-    background-color:#eee;
-    border:1px solid #888;
-    border-radius:3px;
-    font-size:20px;
-    font-weight:bold;
-    color:#111;
-    text-decoration:none;
-}
-    
-.pq-side-button:hover {
-    background-color:#eaeaea;
-    color:#070707;
-    text-decoration:none;
+@media (max-width:767px) {
+    .pq-side-button {
+        display:none;
+    }
 }
 
-@media (max-width:991px) {
-    .pq-advertisement-or-whatever {
+@media (min-width:768px) {
+    .pq-side-button {
+        display:block;
         text-align:center;
-        border:1px solid #555;
+        padding:10px 0;
+        margin:-1px 0 25px 0;
+        background-color:#eee;
+        border:1px solid #888;
+        border-radius:3px;
+        font-size:20px;
+        font-weight:bold;
+        color:#111;
+        text-decoration:none;
+    }
+        
+    .pq-side-button:hover {
+        background-color:#eaeaea;
+        color:#070707;
+        text-decoration:none;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-menu {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-menu {
         margin:0 0 25px 0;
-        padding:40px 15px;
+        padding:10px;
+        border:1px dotted #777;
     }
-}
-
-@media (min-width:992px) {
-    .pq-advertisement-or-whatever {
-        text-align:center;
-        border:1px solid #555;
-        margin:5px 0 20px 0;
-        padding:40px 15px;
-    }
-}
-    
-.pq-menu {
-    margin:0 0 25px 0;
-    padding:10px;
-    border:1px dotted #777;
 }
 
 .pq-menu-title {
@@ -1084,7 +1116,7 @@ body {
 
 @media (max-width:1219px) {
     .pq-footer {
-        background-color:#ddd;
+        background-color:#eee;
         padding:15px 0;
         margin:80px 0 0 0;
         border-top:1px solid #555;
