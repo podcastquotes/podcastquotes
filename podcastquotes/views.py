@@ -5,7 +5,9 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
+from django.utils.decorators import method_decorator
 from django.db.models import Sum
 from podcastquotes.models import Podcast, Episode, Quote, Vote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
@@ -43,6 +45,10 @@ class PodcastCreateView(CreateView):
     model = Podcast
     form_class = PodcastCreateForm
     context_object_name = 'podcast'
+    
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PodcastCreateView, self).dispatch(*args, **kwargs)
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
