@@ -142,17 +142,21 @@
           
           <div class="pq-quote-buttons-xs">
           
-              <div class="pq-quote-upvote-xs">
-                  <i class="fa fa-arrow-up"></i>
-              </div>
+              <a href="/quotes/vote/{{ quote.id }}/1/">
+                  <div class="pq-quote-upvote-xs">
+                      <i class="fa fa-arrow-up"></i>
+                  </div>
+              </a>
               
               <div class="pq-quote-vote-total-xs">
-                  -234
+                  {{ quote.vote_score}}
               </div>
               
-              <div class="pq-quote-downvote-xs">
-                  <i class="fa fa-arrow-down"></i>
-              </div>
+              <a href="/quotes/vote/{{ quote.id }}/-1/">
+                  <div class="pq-quote-downvote-xs">
+                      <i class="fa fa-arrow-down"></i>
+                  </div>
+              </a>
               
               <div class="pq-quote-comments-xs">
                   <i class="fa fa-comment"></i>
