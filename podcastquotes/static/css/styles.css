@@ -611,7 +611,6 @@ body {
 
 .pq-podcast-header-info-full {
     clear:left;
-    max-width:500px;
     overflow:hidden;
     font-size:16px;
 }

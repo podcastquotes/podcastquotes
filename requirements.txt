@@ -3,3 +3,4 @@ argparse==1.2.1
 wsgiref==0.1.2
 django-allauth==2.2.5
 django-recaptcha==1.0.0
+feedparser==5.1.3

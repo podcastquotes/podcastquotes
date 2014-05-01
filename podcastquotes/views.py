@@ -11,6 +11,7 @@ from podcastquotes.models import Podcast, Episode, Quote, Vote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
 from podcastquotes.forms import QuoteCreateForm, QuoteForm
+import feedparser
 
 def home(request):
     return render_to_response('home.html',
@@ -38,6 +39,22 @@ class PodcastDetailView(DetailView):
         context['podcasts'] = Podcast.objects.all()
         return context
 
+class PodcastCreateView(CreateView):
+    model = Podcast
+    form_class = PodcastCreateForm
+    context_object_name = 'podcast'
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        rss_url = form.cleaned_data['rss_url']
+        feed = feedparser.parse(rss_url).feed
+        self.object.title = feed.title
+        self.object.description = feed.description
+        self.object.homepage = feed.link
+        print feed.author_detail
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+        
 class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = "episode"
@@ -50,7 +67,7 @@ class EpisodeDetailView(DetailView):
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
     return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
- 
+
 @login_required
 def quote_create(request):
     if request.method == "POST":

@@ -15,7 +15,8 @@ def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 class Podcast(models.Model):
-    title = models.CharField(max_length=200)
+    rss_url = models.URLField(blank=True)
+    title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     homepage = models.URLField(blank=True)

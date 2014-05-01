@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from podcastquotes.models import Podcast, Episode, Quote
 from podcastquotes.views import home
-from podcastquotes.views import PodcastDetailView
+from podcastquotes.views import PodcastDetailView, PodcastCreateView
 from podcastquotes.views import EpisodeDetailView
 from podcastquotes.views import quote_create
 from django.contrib import admin
@@ -13,6 +13,13 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     
     url(r'^$', 'podcastquotes.views.home', name='home'),
+    
+    url(r'^podcasts/create/$', 
+        PodcastCreateView.as_view(
+            model=Podcast,
+            template_name='podcast_create.html',
+            context_object_name='podcast'),
+        name='podcast_create',),
     
     url(r'^podcasts/(?P<pk>\d+)/$', 
         PodcastDetailView.as_view(
