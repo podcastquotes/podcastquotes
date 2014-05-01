@@ -19,7 +19,7 @@ def home(request):
     return render_to_response('home.html',
                              {'podcasts': Podcast.objects.all(),
                              'episodes': Episode.objects.all(),
-                             'quotes': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')},
+                             'quotes': Quote.objects.annotate(vote_total=Sum('vote__vote_type')).order_by('-vote_total')},
                              context_instance=RequestContext(request))
 
 @login_required
