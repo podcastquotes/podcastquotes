@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     url(r'^quotes/create/', 'podcastquotes.views.quote_create',
         name='create_quote',),
         
-    url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>\d+)/$', 'podcastquotes.views.vote', name='quote_vote'),
+    url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>-?\d+)/$', 'podcastquotes.views.vote', name='quote_vote'),
    
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     

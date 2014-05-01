@@ -292,7 +292,7 @@ body {
 
 .pq-form {
     max-width:600px;
-    margin:20px 0 25px 0;
+    margin:10px 0 25px 0;
     padding:10px 15px 30px 15px;
     background-color:#eee;
     border:1px solid #aaa;
@@ -308,7 +308,7 @@ body {
 
 .pq-form-login {
     max-width:500px;
-    margin:20px 0 25px 0;
+    margin:10px 0 25px 0;
     padding:10px 15px 30px 15px;
     background-color:#eee;
     border:1px solid #aaa;

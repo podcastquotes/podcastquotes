@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Sum
 from podcastquotes.models import Podcast, Episode, Quote, Vote
 from podcastquotes.forms import PodcastCreateForm, PodcastForm
 from podcastquotes.forms import EpisodeCreateForm, EpisodeForm
@@ -13,10 +14,10 @@ from podcastquotes.forms import QuoteCreateForm, QuoteForm
 
 def home(request):
     return render_to_response('home.html',
-                              {'podcasts': Podcast.objects.all(),
-                              'episodes': Episode.objects.all(),
-                              'quotes': Quote.objects.all()},
-                              context_instance=RequestContext(request))
+                             {'podcasts': Podcast.objects.all(),
+                             'episodes': Episode.objects.all(),
+                             'quotes': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')},
+                             context_instance=RequestContext(request))
 
 @login_required
 def vote(request, quote_id, vote_type_id):

@@ -113,8 +113,10 @@ class Quote(models.Model):
     submitted_time = models.DateTimeField(auto_now_add=True)
     time_quote_begins = models.IntegerField(null=True, blank=True)
     time_quote_ends = models.IntegerField(null=True, blank=True)
-    # submitted_by = ...
-    # vote = ...
+    
+    def vote_score(self):
+        return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
+
     
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
@@ -138,7 +140,7 @@ class Vote(models.Model):
     voter = models.ForeignKey(User)
     quote = models.ForeignKey(Quote)
     UPVOTE = 1
-    DOWNVOTE = 2
+    DOWNVOTE = -1
     VOTE_CHOICES = (
         (UPVOTE, 'Upvote'),
         (DOWNVOTE, 'Downvote'),
@@ -150,3 +152,4 @@ class Vote(models.Model):
     
     def __unicode__(self):
         return "Vote by: " + str(self.voter)
+        
