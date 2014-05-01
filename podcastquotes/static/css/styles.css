@@ -138,7 +138,13 @@ body {
     color:#333;
 }
 
-@media (max-width:991px) {
+@media (max-width:550px) {
+    .pq-breadcrumbs {
+        display:none;
+    }
+}
+
+@media (min-width:551px) and (max-width:991px) {
     .pq-breadcrumbs {
         padding:0 0 20px 0;
         font-size:16px;
@@ -471,16 +477,44 @@ body {
     }
 }
 
-.pq-share-button {
-    float:right;
-    clear:right;
-    width:70px;
-    padding:2px 0;
-    text-align:center;
-    margin:0 0 10px 15px;
-    border:1px solid #555;
-    border-radius:15px;
-    font-size:14px;
+@media (max-width:550px) {
+    .pq-share-button {
+        display:none;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-share-button {
+        float:right;
+        clear:right;
+        width:70px;
+        padding:2px 0;
+        text-align:center;
+        margin:0 0 10px 15px;
+        border:1px solid #555;
+        border-radius:15px;
+        font-size:14px;
+    }
+}
+
+@media (max-width:550px) {
+    .pq-share-button-xs {
+        float:right;
+        clear:right;
+        width:70px;
+        padding:3px 0;
+        text-align:center;
+        margin:0 0 15px 0;
+        border:1px solid #555;
+        border-radius:15px;
+        font-size:14px;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-share-button-xs {
+        display:none;
+    }
 }
 
 .pq-podcast-buttons {
@@ -500,6 +534,13 @@ body {
     font-size:14px;
 }
 
+@media (max-width:550px) {
+    .pq-podcast-button {
+        margin:0 0 15px 0;
+        padding:3px 0;
+    }
+}
+
 .pq-podcast-social-media {
     clear:left;
     padding:0 0 5px 0;
@@ -507,15 +548,15 @@ body {
     color:#333;
 }
 
-@media (max-width:500px) {
+@media (max-width:550px) {
     .pq-podcast-profile-picture {
         float:left;
-        margin:0 25px 30px 0;
+        margin:0 0 30px 0;
         border-radius:10px;
     }
 }
 
-@media (min-width:501px) {
+@media (min-width:551px) {
     .pq-podcast-profile-picture {
         float:left;
         margin:0 25px 10px 0;
@@ -523,7 +564,7 @@ body {
     }
 }
 
-@media (max-width:500px) {
+@media (max-width:550px) {
     .pq-podcast-profile-picture img {
         height:160px;
         width:160px;
@@ -531,7 +572,7 @@ body {
     }
 }
 
-@media (min-width:501px) {
+@media (min-width:551px) {
     .pq-podcast-profile-picture img {
         height:100px;
         width:100px;
