@@ -5,100 +5,31 @@
   
 <head>
 
-    <title>PodcastQuotes</title>
-    
-    <meta charset=”utf-8” /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <meta name="description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with listeners of your podcast. Raise money for your podcast. Inspired by reddit." />
-    
-    <link rel="publisher" href="" />
-    
-    <meta property="og:url" content="http://www.podcastquotes.com" />
-    <meta property="og:title" content="PodcastQuotes" />
-    <meta property="og:description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with your podcast listeners. Raise money for your podcast. Inspired by reddit." />
-    <meta property="og:image" content="" />
-    
-    <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet' type='text/css'> -->
+<meta charset=”utf-8”> 
 
+<title>PodcastQuotes - Top Podcast Clips and Highlights</title>
 
-    <link href="{% static 'css/meyer_reset.css' %}" type="text/css" rel="stylesheet">
-    
-    <link href="{% static 'font-awesome-4.0.3/css/font-awesome.min.css' %}" type="text/css" rel="stylesheet">
-    
-    <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet">
-    <link href="{% static '/static/css/css-social-buttons-master/css/zocial.css' %}" type="text/css" rel="stylesheet">
-    <link href="{% static 'css/styles.css' %}" type="text/css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with listeners of your podcast. Raise money for your podcast. Inspired by reddit.">
 
+<link rel="publisher" href="">
+
+<meta property="og:url" content="http://www.podcastquotes.com">
+<meta property="og:title" content="PodcastQuotes">
+<meta property="og:description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with your podcast listeners. Raise money for your podcast. Inspired by reddit.">
+<meta property="og:image" content="">
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet'>
+
+<link href="{% static 'css/master.css' %}" rel="stylesheet">
     
-    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-  
 </head>
 
 <body>
   
   {% block navbar %}
 
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="pq-navbar-container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="pq-brand">
-            <a href="/"><strong>PodcastQuotes</strong> <i class="fa fa-rss rss-icon-disappear"></i></a>
-          </div><!-- /.pq-brand -->
-        </div><!-- /.navbar-header -->
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            {% if request.user.is_authenticated %}
-                <li>
-                    <div class="pq-navbar-link">
-                        My Profile
-                    </div>
-                </li>
-                <li>
-                    <div class="pq-navbar-link">
-                        Add a Quote
-                    </div>
-                </li>
-                <li>
-                    <div class="pq-navbar-link">
-                        Settings
-                    </div>
-                </li>
-                <li>
-                    <div class="pq-navbar-link">
-                        Sign Out
-                    </div>
-                </li>
-                <li>
-                    <div class="pq-navbar-dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown">
-                        {{ request.user.username }} <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">Add a Quote</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout">Sign Out</a></li>
-                      </ul>
-                    </div>
-                </li>
-            {% else %}
-                <li><a href="/accounts/login">Login</a></li>
-            {% endif %}
-          </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.pq-navbar-container -->
-  </nav><!-- /.navbar navbar-default -->
+    {% include 'navbar.html' %}
   
   {% endblock %}
   
@@ -112,7 +43,7 @@
       {% block main %}
       {% endblock %}<!-- / block main -->
 
-      {% block menu %}
+      {% block sidebar %}
       <div class="col-sm-5">
       
         <a href="{% url 'create_quote' %}">
@@ -177,7 +108,7 @@
 
       </div><!-- /.col-sm-5 -->
         
-      {% endblock %}<!-- / block menu -->
+      {% endblock %}<!-- / block sidebar -->
       
     <div class="clearfix">
     </div>
@@ -187,99 +118,13 @@
   </div><!-- /.pq-container -->
   
   {% block footer %}
-  
-  <div class="pq-footer">
-    
-    <div class="pq-navbar-container">
-      
-      <div class="pq-footer-brand">
-        <a href="/">PodcastQuotes <i class="fa fa-rss"></i></a>
-      </div>
-
-      <div class="pq-footer-nav sm-clear-left">
-        about
-      </div>
-      
-      <div class="pq-footer-nav text-orange sm-clear-left">
-        claim your page
-      </div>
-      
-      <div class="pq-footer-nav sm-clear-left">
-        contact
-      </div>
-          
-      <div class="pq-footer-social-icon sm-clear-left">
-        <a href="https://www.facebook.com/pages/PodcastQuotes/265156636997638"><i class="fa fa-facebook-square"></i></a>
-      </div>
-      
-      <div class="pq-footer-social-icon">
-        <a href="https://www.twitter.com/pod_quotes/"><i class="fa fa-twitter-square"></i></a>
-      </div>
-      
-      <div class="pq-footer-social-icon">
-        <a href="https://www.github.com/podcastquotes/podcastquotes/"><i class="fa fa-github-square"></i></a>
-      </div>
-          
-      <div class="clearfix">
-      </div>
-      
-    </div><!-- /.pq-navbar-container -->
-
-  </div><!-- /.pq-footer -->
-  
+      {% include 'footer.html' %}
   {% endblock %}<!-- / block footer -->
-
-  <!-- Include the JavaScript only once -->
-  <script>
-   
-    // Find all the YouTube video embedded on a page
-    var videos = document.getElementsByClassName("youtube");
-     
-    for (var i=0; i<videos.length; i++) {
-      
-      var youtube = videos[i];
-      
-      var youtubeOnlyId = youtube.id.substring(0,11);
-      
-      // Based on the YouTube ID, we can easily find the thumbnail image
-      
-      var preview = document.createElement("div");
-      preview.setAttribute("class", "preview");
-      
-      var img = document.createElement("img");
-      img.setAttribute("src", "http://i.ytimg.com/vi/"
-                              + youtubeOnlyId + "/hqdefault.jpg");
-      img.setAttribute("class", "youtube-img-preview");
-      
-     
-      // Overlay the Play icon to make it look like a video player
-      var circle = document.createElement("i");
-      circle.setAttribute("class","circle fa fa-play-circle-o");  
-      
-      youtube.appendChild(preview);
-      youtube.appendChild(img);
-      preview.appendChild(circle);
-      
-      // Attach an onclick event to the YouTube Thumbnail
-      youtube.onclick = function() {
-     
-        // Create an iFrame with autoplay set to true
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("src",
-              "https://www.youtube.com/embed/" + this.id
-            + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
-        
-        // The height and width of the iFrame should be the same as parent
-        iframe.setAttribute("class", "iframe-size");
-          
-        // Replace the YouTube thumbnail with YouTube HTML5 Player
-        this.parentNode.replaceChild(iframe, this);
-     
-      };
-    }
-   
-  </script>
   
   </body>
 
+  <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/youtube.js' %}"></script>
+    
 </html>

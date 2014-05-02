@@ -1,0 +1,63 @@
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="pq-navbar-container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div class="pq-brand">
+                <a href="/"><strong>PodcastQuotes</strong> <i class="fa fa-rss rss-icon-disappear"></i></a>
+              </div><!-- /.pq-brand -->
+            </div><!-- /.navbar-header -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <div class="pq-navbar-link">
+                            My Profile
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pq-navbar-link">
+                            Add a Quote
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pq-navbar-link">
+                            Settings
+                        </div>
+                    </li>
+                    <li>
+                       <div class="pq-navbar-link">
+                           <a href="/logout">
+                               Sign Out
+                           </a>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="pq-navbar-dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            {{ request.user.username }} <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">Add a Quote</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Sign Out</a></li>
+                          </ul>
+                        </div>
+                    </li>
+                {% else %}
+                    <li><a href="/accounts/login">Login</a></li>
+                {% endif %}
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.pq-navbar-container -->
+    </nav><!-- /.navbar navbar-default -->
+</header>

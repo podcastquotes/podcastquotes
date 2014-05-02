@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-<div class="col-sm-11">
+
     {% block breadcrumbs %}
+    <div class="col-sm-11">
       <div class="pq-share-button color-share">
         Share
-      </div><!-- /.pq-podcast-headerbutton -->
+      </div>
 
       <div class="pq-breadcrumbs">
           <a href="/">Home</a> > <a href="/podcasts/{{ episode.podcast.id }}">{{ episode.podcast.title }}</a> > {{ episode.title }}
@@ -123,7 +124,7 @@
             
             <div class="pq-podcast-header-info-full">
                 <strong>Description:</strong> {{ episode.podcast.description }}
-            </div><!-- /.pq-episode-header-info-full -->
+            </div><!-- /.pq-podcast-header-info-full -->
             
             <div class="pq-episode-divider">
             </div>
@@ -142,7 +143,7 @@
             
             <div class="pq-podcast-header-info-full">
                 <strong>Description:</strong> {{ episode.description }}
-            </div><!-- /.pq-episode-header-info-full -->
+            </div><!-- /.pq-podcast-header-info-full -->
               
           </div><!-- /.pq-podcast-info -->
             
@@ -333,7 +334,5 @@
           {% endfor %}<!-- / for quote in quote.all -->
           
         </div><!-- /.row -->
-
+    </div><!-- /.col-sm-11 -->
     {% endblock %}<!-- / block main -->
-    
-</div><!-- /.col-sm-11 -->
