@@ -1,0 +1,43 @@
+"""
+This file should contain the configuration values which reflect
+the server environment this application is in. Values such as database,
+paths, debug settings.
+"""
+import os
+import sys
+from settings import BASE_DIR
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+RECAPTCHA_PUBLIC_KEY = 'changeme'
+RECAPTCHA_PRIVATE_KEY = 'changeme'
+
+# Where can the browser find the static files?
+STATIC_URL = '/static/'
+
+# Where on the server filesystem are these static files?
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# Where can the browser find the media files (uploaded files)?
+MEDIA_URL = '/media/'
+
+# Where on the server filesystem are these media files?
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# CHANGE THIS TO BE UNIQUE ON EACH DEPLOYMENT
+SECRET_KEY = 'd4(k72p7w7cfm30hy58+ul2z%+k0rplz&79*p&i(t^54__8k6!'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = []

@@ -1,0 +1,1479 @@
+/*******************************************************
+********************************************************
+
+Website Name: PodcastQuotes
+Website URL: podcastquotes.com
+License: GNU General Public License
+License URL: http://www.gnu.org/licenses/agpl-3.0.html
+
+********************************************************
+*******************************************************/
+
+/****************************************
+*****************************************
+
+Color Guide
+
+# Black (text): #111
+# Dark Gray (headings): #444
+# Mid Gray: #888
+# Light Gray: #bbb
+# Very Light Gray: #eee
+# Off-White: #fcfcfc
+# Mid Blue (links): #428bca
+
+*****************************************
+****************************************/
+
+/****************************************
+*****************************************
+Typography Guide
+
+Headings - Roboto (?px - ?px)
+Body - Roboto 16px
+... - ...
+
+*****************************************
+****************************************/
+
+/**************************************************
+***************************************************
+THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MITCH
+0. CSS Reset ------------------- All Files
+1. Universal Styles ------------ All Files
+2. Header & Nav Styles --------- (not sure what's supposed to go here)
+3. Main Body Styles ------------
+4. Quote Styles ----------------
+5. Sidebar Styles --------------
+6. YouTube Player Styles ------- 
+7. Footer Styles --------------- 
+8. Comment & Form Styles ------- 
+***************************************************
+**************************************************/
+
+/******************************
+*******************************
+0. CSS Reset
+*******************************
+******************************/
+
+/* Found in /static/css/meyer_reset.css */
+
+/******************************
+*******************************
+1. Universal Styles
+*******************************
+******************************/
+
+body {
+    margin:0 auto;
+    background-color:#fcfcfc;
+    font-family:"Roboto", Arial, sans-serif;
+    font-size:16px;
+    color:#111;
+}
+
+.dropdown-toggle {
+    text-align:left;
+}
+
+.width-100percent {
+    width:100%;
+}
+
+.remove-bold {
+    font-weight:normal;
+}
+
+.margin-20-right {
+    margin:0 20px 0 0;
+}
+
+@media (max-width:991px) {
+    .sm-clear-left {
+        clear:left;
+    }
+}
+
+.clear-both {
+    clear:both;
+}
+
+.color-share {
+    background-color:#99B3FF;
+}
+
+.color-donate {
+    background-color:#FFAD5D;
+}
+
+.color-follow {
+    background-color:#8CCC8C;
+}
+
+.color-edit {
+    background-color:#E177A7;
+}
+
+.btn {
+   font-size:16px;
+}
+
+.btn-danger {
+    color:#eee;
+}
+
+.bg-yellow {
+    background:#FFFFDF;
+}
+
+.text-orange {
+    color:#D56A00;
+}
+
+.text-blue {
+    color:#446596;
+}
+
+.text-green {
+    color:#479847;
+}
+
+.text-red {
+    color:#EE2C2C;
+}
+
+a {
+    color:#286596;
+}
+
+/******************************
+*******************************
+2. Header & Nav Styles
+*******************************
+******************************/
+
+@media (max-width:991px) {
+    .pq-navbar-container {
+        margin:0 auto;
+        padding:0 5px 0 20px;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-navbar-container {
+        max-width:1100px;
+        margin:0 auto;
+        padding:0 20px;
+    }
+}
+
+.pq-navbar {
+    background-color:#eee;
+    padding:10px 0;
+    margin:0 0 20px 0;
+    border-bottom:1px solid #888;
+}
+
+.navbar {
+        background-color:#eee;
+        margin:0 0 20px 0;
+        border-bottom:1px solid #888;
+        border-radius:0;
+        color:#111;
+}
+
+
+.navbar-default .navbar-nav > li > a {
+    margin-top:-3px;
+    color:#333;
+    font-weight:bold;
+}
+
+.navbar-default .navbar-toggle {
+    border-color:#999;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:#555;
+}
+
+.navbar-default .navbar-collapse {
+    border-color:#999;
+}
+
+@media (max-width:767px) {
+    .navbar-default .navbar-form {
+        border-top:0px solid #888;
+        border-bottom:1px solid #888;
+        box-shadow:0 0 0 0;
+    }
+}
+
+.navbar-form {
+    box-shadow:0 0 0 0;
+}
+
+@media (max-width:767px) {
+    .pq-navbar-dropdown {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-navbar-dropdown {
+        margin:12px 10px 10px 0;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .pq-navbar-dropdown a {
+        color:#111;
+        text-decoration:none;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-navbar-link {
+        margin:12px 60px 15px 0;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .pq-navbar-link a {
+        color:#111;
+        text-decoration:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-navbar-link {
+        display:none;
+    }
+}
+
+@media (max-width:370px) {
+    .rss-icon-disappear {
+        display:none;
+    }
+}
+
+.pq-brand {
+    margin:5px 40px 0 0;
+    float:left;
+    font-size:24px;
+}
+
+.pq-brand a {
+    color:#111;
+    text-decoration:none;
+}
+
+.pq-brand a:hover {
+    color:#555;
+}
+
+.pq-login {
+    float:right;   
+    margin:0 30px 0 0;
+    font-size:16px;
+    font-weight:bold;
+    color:#333;
+}
+
+/******************************
+*******************************
+3. Main Body Styles
+*******************************
+******************************/
+
+@media (max-width:550px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 20px;
+    }
+}
+
+@media (min-width:551px) and (max-width:767px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 20px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 20px;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-container {
+        max-width:1100px;
+        margin:0 auto;
+        padding:0 20px;
+    }
+}
+
+.pq-container a {
+    color:#111;
+}
+
+.pq-container a:hover {
+    color:#666;
+    text-decoration:none;
+}
+
+@media (max-width:550px) {
+    .pq-breadcrumbs {
+        display:none;
+    }
+}
+
+@media (min-width:551px) and (max-width:991px) {
+    .pq-breadcrumbs {
+        padding:0 0 20px 0;
+        font-size:16px;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-breadcrumbs {
+        padding:0 0 20px 0;
+        font-size:16px;
+    }
+}
+
+@media (max-width:991px) {
+    .pq-title {
+        clear:left;
+        margin:0 0 25px 0;
+        font-size:24px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-title {
+        clear:left;
+        margin:0 0 25px 0;
+        font-size:24px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+.pq-nav-active {
+    display:inline-block;
+    margin:5px 10px 0 0;
+    padding:3px 10px;
+    border:1px solid #888;
+    border-radius:3px;
+    color:#B25900;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.btn-group {
+    vertical-align:top;
+}
+
+.pq-nav {
+    display:inline-block;
+    background-color:#eee;
+    margin:5px 10px 0 0;
+    padding:3px 10px;
+    border:1px solid #888;
+    border-radius:3px;
+    color:#111;
+    font-size:16px;
+    font-weight:bold;
+}
+
+@media (max-width:1000px) {
+    .pq-nav-disappear-1 {
+        display:none;
+    }
+}
+
+@media (min-width:1000px) {
+    .pq-nav-appear-1 {
+        display:none;
+    }
+}
+
+@media (max-width:900px) {
+    .pq-nav-disappear-2 {
+        display:none;
+    }
+}
+
+@media (min-width:900px) {
+    .pq-nav-appear-2 {
+        display:none;
+    }
+}
+
+@media (max-width:520px) {
+    .pq-nav-disappear-3 {
+        display:none;
+    }
+}
+
+@media (min-width:520px) {
+    .pq-nav-appear-3 {
+        display:none;
+    }
+}
+
+@media (max-width:460px) {
+    .pq-nav-disappear-4 {
+        display:none;
+    }
+}
+
+@media (min-width:460px) {
+    .pq-nav-appear-4 {
+        display:none;
+    }
+}
+
+@media (max-width:400px) {
+    .pq-nav-disappear-5 {
+        display:none;
+    }
+}
+
+@media (min-width:400px) {
+    .pq-nav-appear-5 {
+        display:none;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-votes-shown {
+        clear:both;
+        float:left;
+        margin:5px 0;
+        font-size:18px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .pq-votes-shown {
+        float:right;
+        margin:14px 10px 0 0;
+        font-size:18px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-votes-shown {
+        float:right;
+        margin:14px 35px 0 0;
+        font-size:18px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (max-width:991px) {
+    .pq-podcast-header {
+        margin-top:5px;
+        margin-bottom:25px;
+        padding-bottom:25px;
+        border-bottom:1px solid #ddd;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-podcast-header {
+        margin-top:5px;
+        margin-bottom:25px;
+        padding-bottom:25px;
+        border-bottom:1px solid #ddd;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-podcast-title {
+        float:left;
+        clear:left;
+        width:100%;
+        margin:0 0 10px 0;
+        font-size:22px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-podcast-title {
+        float:left;
+        clear:left;
+        width:100%;
+        margin:0 0 10px 0;
+        font-size:22px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+    
+@media (max-width:550px) {
+    .pq-podcast-header-box {
+        clear:left;
+        overflow:hidden;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-podcast-header-box {
+        overflow:hidden;
+    }
+}
+
+@media (max-width:550px) {
+    .pq-share-button {
+        display:none;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-share-button {
+        float:right;
+        clear:right;
+        width:70px;
+        padding:2px 0;
+        text-align:center;
+        margin:-3px 0 10px 15px;
+        border:1px solid #555;
+        border-radius:15px;
+        font-size:14px;
+    }
+}
+
+@media (max-width:550px) {
+    .pq-share-button-xs {
+        float:right;
+        clear:right;
+        width:70px;
+        padding:3px 0;
+        text-align:center;
+        margin:0 0 15px 0;
+        border:1px solid #555;
+        border-radius:15px;
+        font-size:14px;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-share-button-xs {
+        display:none;
+    }
+}
+
+.pq-podcast-buttons {
+    float:right;
+    margin:0 0 0 25px;
+}
+
+.pq-podcast-button {
+    clear:right;
+    float:right;
+    width:70px;
+    padding:2px 0;
+    text-align:center;
+    margin:0 0 10px 0;
+    border:1px solid #555;
+    border-radius:15px;
+    font-size:14px;
+}
+
+@media (max-width:550px) {
+    .pq-podcast-button {
+        margin:0 0 15px 0;
+        padding:3px 0;
+    }
+}
+
+.pq-podcast-social-media {
+    clear:left;
+    padding:0 0 5px 0;
+    font-size:28px;
+    color:#333;
+}
+
+@media (max-width:550px) {
+    .pq-podcast-profile-picture {
+        float:left;
+        margin:0 0 30px 0;
+        border-radius:10px;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-podcast-profile-picture {
+        float:left;
+        margin:0 25px 10px 0;
+        border-radius:10px;
+    }
+}
+
+@media (max-width:550px) {
+    .pq-podcast-profile-picture img {
+        height:160px;
+        width:160px;
+        border-radius:10px;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-podcast-profile-picture img {
+        height:100px;
+        width:100px;
+        border-radius:10px;
+    }
+}
+
+.pq-podcast-selector {
+    height:40px;
+    line-height:40px;
+    border:1px solid #aaa;
+    margin:0 0 15px 0;
+    font-size:18px;
+}
+
+.pq-episode-selector {
+    height:40px;
+    line-height:40px;
+    border:1px solid #aaa;
+    margin:0 0 10px 0;
+    font-size:18px;
+}
+
+.pq-podcast-header-info {
+    clear:both;
+}
+
+.pq-podcast-header-info-left {
+    clear:left;
+    margin:5px 5px 10px 0;
+    font-size:16px;
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-1 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-1 {
+        clear:left;
+        float:right;
+        font-size:16px;
+    }
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-2 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-2 {
+        clear:right;
+        float:right;
+        margin:-5px 0 0 0;
+        font-size:16px;
+    }
+}
+
+@media (max-width:500px) {
+    .pq-podcast-header-info-right-3 {
+        display:none;
+    }
+}
+
+@media (min-width:501px) {
+    .pq-podcast-header-info-right-3 {
+        clear:right;
+        float:right;
+        margin:-5px 0 0 0;
+        font-size:16px;
+    }
+}
+
+.pq-podcast-header-info-full {
+    clear:left;
+    overflow:hidden;
+    font-size:16px;
+}
+
+.pq-episode-divider {
+    margin:15px 0 0 0;
+    padding:10px 0 0 0;
+    border-top:1px solid #ddd;
+}
+
+/******************************
+*******************************
+4. Quote Styles
+*******************************
+******************************/
+
+.pq-quote {
+    padding:25px 0 20px 0;
+    border-bottom:1px dotted #ddd;
+}
+
+.pq-quote-counter {
+    float:right;
+    font-size:14px;
+    color:#bbb;
+}
+
+.pq-quote-summary {
+    clear:left;
+    overflow:hidden;
+    padding:0 0 10px 0;
+    font-weight:bold;
+}
+
+@media (max-width:400px) {
+    .pq-quote-summary {
+        font-size:18px;
+    }
+}
+
+@media (min-width:401px) and (max-width:500px) {
+    .pq-quote-summary {
+        font-size:20px
+    }
+}
+
+@media (min-width:501px) {
+    .pq-quote-summary {
+        font-size:22px;
+    }
+}
+
+@media (max-width:450px) {
+    .pq-quote-details {
+        clear:left;
+        margin:0 0 15px 0;
+        font-size:14px;
+        color:#555;
+    }
+}
+
+@media (min-width:451px) {
+    .pq-quote-details {
+        clear:left;
+        margin:0 0 15px 0;
+        font-size:14px;
+        color:#555;
+    }
+}
+    
+.pq-quote-details a {
+    color:#555;
+}
+
+.pq-quote-divider {
+    clear:both;
+}
+
+.pq-quote hr {
+    clear:both;
+    padding:20px 0 0 0;
+}
+
+@media (max-width:450px) {
+    .pq-quote-buttons {
+        display:none;
+    }
+}
+
+@media (min-width:451px) {
+    .pq-quote-buttons {
+        float:right;
+        margin:5px 0 0 20px;
+    }
+}
+
+.pq-quote-upvote {
+    float:right;
+    text-align:center;
+    width:65px;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-vote-total {
+    clear:right;
+    float:right;
+    text-align:center;
+    width:65px;
+    margin:7px 0;
+    font-size:15px;
+    color:#444;
+}
+
+.pq-quote-downvote {
+    clear:right;
+    float:right;
+    text-align:center;
+    width:65px;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-comments {
+    clear:right;
+    float:right;
+    text-align:center;
+    width:65px;
+    margin:15px 0 0 0;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-comments-total {
+    clear:right;
+    float:right;
+    text-align:center;
+    width:65px;
+    margin:7px 0 20px 0;
+    font-size:15px;
+    color:#444;
+}
+
+@media (max-width:450px) {
+    .pq-quote-buttons-xs {
+        width:100%;
+        clear:left;
+        float:left;
+        margin:0 0 15px 0;
+    }
+}
+
+@media (min-width:451px) {
+    .pq-quote-buttons-xs {
+        display:none;
+    }
+}
+
+.pq-quote-upvote-xs {
+    float:left;
+    text-align:center;
+    width:55px;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-vote-total-xs {
+    float:left;
+    text-align:center;
+    margin:10px;
+    font-size:15px;
+    color:#777;
+}
+
+.pq-quote-downvote-xs{
+    float:left;
+    text-align:center;
+    width:55px;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-comments-xs {
+    float:right;
+    text-align:center;
+    width:55px;
+    padding:5px 0;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-comments-total-xs {
+    float:right;
+    text-align:center;
+    margin:10px 10px 0 0;
+    font-size:15px;
+    color:#444;
+}
+
+@media (max-width:450px) {
+    .pq-quote-date-xs {
+        font-size:14px;
+        color:#444;
+    }
+}
+
+@media (min-width:451px) {
+    .pq-quote-date-xs {
+        display:none;
+    }
+}
+
+@media (min-width:451px) {
+    .pq-quote-date {
+        clear:right;
+        float:right;
+        text-align:center;
+        width:65px;
+        font-size:13px;
+        color:#444;
+    }
+}
+
+.pq-quote-date a {
+    color:#444;
+}
+
+.pq-quote-inside {
+    overflow:hidden;
+}
+
+.pq-quote-text {
+    max-width:650px;
+    clear:left;
+    font-size:16px;
+    margin:0 0 20px 0;
+}
+
+.pq-quote-bottom {
+    clear:both;
+    padding:5px 0;
+}
+
+.pq-quote-bottom-button {
+    display:inline-block;
+    margin:0 25px 0 0;
+    font-size:15px;
+    font-weight:bold;
+    color:#444;
+}
+
+/******************************
+*******************************
+5. Sidebar Styles
+*******************************
+******************************/
+
+@media (max-width:767px) {
+    .pq-side-button {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-side-button {
+        display:block;
+        text-align:center;
+        padding:10px 0;
+        margin:-1px 0 25px 0;
+        background-color:#eee;
+        border:1px solid #888;
+        border-radius:3px;
+        font-size:20px;
+        font-weight:bold;
+        color:#111;
+        text-decoration:none;
+    }
+        
+    .pq-side-button:hover {
+        background-color:#eaeaea;
+        color:#070707;
+        text-decoration:none;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-menu {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-menu {
+        margin:0 0 25px 0;
+        padding:10px;
+        border:1px dotted #777;
+    }
+}
+
+.pq-menu-title {
+    font-size:20px;
+    font-weight:bold;
+}
+
+.pq-menu-pulldown {
+    color:#333;
+}
+
+.pq-menu-advanced {
+    float:right;
+    margin:1px 0 0 0;
+    font-size:14px;
+    color:#333;
+}
+
+.pq-menu hr {
+    margin:10px 0;
+    border-top:1px dotted #999;
+}
+
+.pq-menu-options {
+    height:275px;
+    overflow:auto;
+    font-size:15px;
+}
+
+.pq-menu-option {
+    margin:0 0 5px 0;
+}
+
+/******************************
+*******************************
+6. YouTube Player Styles
+*******************************
+******************************/
+
+.circle {
+    position:absolute;
+    font-size:70px;
+    color:#444;
+    opacity:0.9;
+    cursor:pointer;
+}
+
+@media (max-width:350px) {
+    .circle {
+        margin:27px 0 0 54px;
+    }
+}
+
+@media (min-width:351px) and (max-width:400px) {
+    .circle {
+        margin:44px 0 0 73px;
+    }
+}
+
+@media (min-width:401px) {
+    .circle {
+        margin:63px 0 0 99px;
+    }
+}
+
+.youtube-margin {
+    float:left;
+}
+
+.youtube-img-preview {
+    float:left;
+    clear:left;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+@media (max-width:350px) {
+    .youtube-img-preview {
+        width:160px;
+    }
+}
+
+@media (min-width:351px) and (max-width:400px) {
+    .youtube-img-preview {
+        width:200px;
+    }
+}
+
+@media (min-width:401px) {
+    .youtube-img-preview {
+        max-width:250px;
+    }
+}
+
+.youtube {
+    float:left;
+    clear:left;
+    margin:5px 0 20px 0;
+}
+
+.iframe-size {
+    float:left;
+    clear:left;
+    margin:5px 0 20px 0;
+}
+
+@media (max-width:400px) {
+    .iframe-size {
+        width:300px;
+        height:189px;
+    }
+}
+
+@media (min-width:401px) and (max-width:450px) {
+    .iframe-size {
+        width:350px;
+        height:221px;
+    }
+}
+
+@media (min-width:451px) and (max-width:500px) {
+    .iframe-size {
+        width:300px;
+        height:189px;
+    }
+}
+
+@media (min-width:501px) and (max-width:550px) {
+    .iframe-size {
+        width:350px;
+        height:221px;
+    }
+}
+
+@media (min-width:551px) and (max-width:600px) {
+    .iframe-size {
+        width:400px;
+        height:252px;
+    }
+}
+
+@media (min-width:601px) and (max-width:650px) {
+    .iframe-size {
+        width:450px;
+        height:284px;
+    }
+}
+
+@media (min-width:651px) and (max-width:700px) {
+    .iframe-size {
+        width:500px;
+        height:315px;
+    }
+}
+
+@media (min-width:701px) and (max-width:768px) {
+    .iframe-size {
+        width:550px;
+        height:347px;
+    }
+}
+
+@media (min-width:769px) and (max-width:800px) {
+    .iframe-size {
+        width:350px;
+        height:221px;
+    }
+}
+
+@media (min-width:801px) and (max-width:850px) {
+    .iframe-size {
+        width:400px;
+        height:252px;
+    }
+}
+
+@media (min-width:851px) and (max-width:900px) {
+    .iframe-size {
+        width:450px;
+        height:284px;
+    }
+}
+
+@media (min-width:901px) and (max-width:950px) {
+    .iframe-size {
+        width:450px;
+        height:284px;
+    }
+}
+
+@media (min-width:951px) and (max-width:1000px) {
+    .iframe-size {
+        width:500px;
+        height:315px;
+    }
+}
+
+@media (min-width:1001px) and (max-width:1079px) {
+    .iframe-size {
+        width:550px;
+        height:347px;
+    }
+}
+
+@media (min-width:1080px) {
+    .iframe-size {
+        width:600px;
+        height:379px;
+    }
+}
+
+
+/******************************
+*******************************
+7. Footer Styles
+*******************************
+******************************/
+
+@media (max-width:1219px) {
+    .pq-footer {
+        background-color:#eee;
+        padding:15px 0;
+        margin:80px 0 0 0;
+        border-top:1px solid #555;
+    }
+}
+
+@media (min-width:1220px) {
+    .pq-footer {
+        background-color:#ddd;
+        padding:15px 0;
+        margin:80px 0 0 0;
+        border-top:1px solid #555;
+        border-right:1px solid #555;
+        border-left:1px solid #555;
+    }
+}
+
+.pq-footer a {
+    color:#111;
+}
+
+@media (max-width:991px) {
+    .pq-footer-brand {
+        float:left;
+        margin:0 30px 5px 0;
+        font-size:24px;
+        font-weight:bold;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-footer-brand {
+        float:left;
+        margin:0 30px 0 0;
+        font-size:24px;
+        font-weight:bold;
+    }
+}
+
+.pq-footer-brand a {
+    color:#111;
+    text-decoration:none;
+}
+
+.pq-footer-brand a:hover {
+    color:#555;
+}
+
+@media (max-width:991px) {
+    .pq-footer-social-icon {
+        float:left;
+        margin:7px 15px 0 7px;
+        font-size:26px;
+        color:#111;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-footer-social-icon {
+        float:right;
+        margin:-2px 0 0 20px;
+        font-size:26px;
+        color:#111;
+    }
+}
+
+@media (max-width:991px) {
+    .pq-footer-nav {
+        float:left;
+        margin:0 5px;
+        padding:5px 0 5px 0;
+        font-size:16px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-footer-nav {
+        float:left;
+        margin:0 15px;
+        padding:5px 0 0 0;
+        font-size:16px;
+        font-weight:bold;
+        color:#111;
+    }
+}
+
+/******************************
+*******************************
+8. Form Styles
+*******************************
+******************************/
+
+.pq-form {
+    max-width:600px;
+    margin:10px 0 25px 0;
+    padding:10px 15px 30px 15px;
+    background-color:#f7f7f7;
+    border:1px solid #aaa;
+}
+
+.pq-form a {
+    color:#428bca;
+}
+
+.pq-form a:hover {
+    color:#444;
+}
+
+.pq-form-login {
+    max-width:500px;
+    margin:10px auto 25px auto;
+    padding:10px 15px 30px 15px;
+    background-color:#f7f7f7;
+    border:1px solid #aaa;
+    border-radius:5px;
+}
+
+.pq-form-login a {
+    color:#428bca;
+}
+
+.pq-form-login a:hover {
+    color:#333;
+}
+
+.pq-form-title {
+    clear:left;
+    margin:0 0 15px 0;
+    font-size:24px;
+    font-weight:bold;
+    color:#111;
+}
+
+.pq-form-socialaccounts {
+    clear:both;
+    padding:20px 0 0 0;
+}
+
+.pq-form-remember {
+    clear:right;
+    float:right;
+    margin:0 0 0 10px;
+}
+
+.pq-form-forgot {
+    clear:left;
+    float:left;
+    margin:5px 0 0 0;
+}
+
+.pq-form-signup {
+    clear:left;
+    float:left;
+    margin:20px 0 0 0;
+}
+
+.pq-form-signup a {
+    color:#428bca;
+}
+
+.pq-form-label {
+    font-size:18px;
+    font-weight:bold;
+}
+
+.pq-form-label-optional {
+    font-size:18px;
+    font-weight:normal;
+}
+
+.pq-form-input {
+    margin:0 0 15px 0;
+}
+
+.pq-form-buttons {
+    clear:right;
+    padding:20px 0 0 0;
+}
+
+.pq-form-divider {
+    clear:both;
+    margin:30px 0;
+    border-top:1px solid #ccc;
+}
+
+.pq-form-captcha {
+    margin:5px 0 20px -5px;
+}
+
+@media (max-width:767px) {
+    .xs-margin-top-20 {
+        margin-top:20px;
+    }
+}
+.form-group {
+    font-size:18px;
+}
+
+.form-control {
+    height:35px;
+    vertical-align:top;
+    border:1px solid #555;
+    color:#111;
+    font-size:16px;
+}
+
+.form-quote-input {
+    height:120px;
+    vertical-align:top;
+    margin:0;
+}
+
+.pq-form-button {
+    float:right;
+    margin:0 0 0 20px;
+    padding-right:40px;
+    padding-left:40px;
+}
+
+.form-button {
+    margin:10px 0 0 20px;
+}
+
+.pq-form-chevron {
+    float:right;
+    color:#555;
+}
