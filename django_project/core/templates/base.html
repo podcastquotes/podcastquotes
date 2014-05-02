@@ -4,114 +4,32 @@
 <html lang="en-US">
   
 <head>
-
 <meta charset=”utf-8”> 
-
 <title>PodcastQuotes - Top Podcast Clips and Highlights</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with listeners of your podcast. Raise money for your podcast. Inspired by reddit.">
-
 <link rel="publisher" href="">
-
-<meta property="og:url" content="http://www.podcastquotes.com">
-<meta property="og:title" content="PodcastQuotes">
-<meta property="og:description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with your podcast listeners. Raise money for your podcast. Inspired by reddit.">
-<meta property="og:image" content="">
-
+{% include 'facebook_open_graph.html' %}
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet'>
-
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
-    
 </head>
 
 <body>
   
   {% block navbar %}
-
-    {% include 'navbar.html' %}
-  
+      {% include 'navbar.html' %}
   {% endblock %}
   
   <div class="pq-container">
     
     <div class="row">
       
-      {% block breadcrumbs %}
-      {% endblock %}
-  
       {% block main %}
       {% endblock %}<!-- / block main -->
 
       {% block sidebar %}
-      <div class="col-sm-5">
-      
-        <a href="{% url 'create_quote' %}">
-          <div class="pq-side-button">
-              Add a Quote
-          </div>
-        </a>
-        
-        <div class="pq-menu">
-          
-          <div class="pq-menu-title">
-            Podcasts
-          </div><!-- /.pq-menu-title -->
-          
-          <div class="pq-menu-pulldown">
-            All Podcasts <i class="fa fa-chevron-down"></i>
-          </div><!-- /.pq-menu-pulldown -->
-          
-          <div class="clearfix">
-          </div>
-          
-          <hr />
-
-          <div class="pq-menu-options">
-           {% for podcast in podcasts %}        
-            <div class="pq-menu-option">
-              <a href="/podcasts/{{ podcast.id}}">
-                - {{ podcast.title }}
-              </a>
-            </div><!-- /.pq-menu-option -->
-           {% endfor %}
-          </div><!-- /.pq-menu-options -->
-
-        </div><!-- /.pq-menu -->
-
-        <div class="pq-menu">
-          
-          <div class="pq-menu-title">
-            Episodes
-          </div><!-- /.pq-menu-title -->
-          
-          <div class="pq-menu-pulldown">
-            Chronological <i class="fa fa-chevron-down"></i>
-          </div><!-- /.pq-menu-pulldown -->
-          
-          <div class="clearfix">
-          </div>
-          
-          <hr />
-
-          <div class="pq-menu-options">
-           {% for episode in episode.podcast.episode_set.all %}        
-            <div class="pq-menu-option">
-              <a href="/episodes/{{ episode.id}}">
-                - {{ episode.title }}
-              </a>
-            </div><!-- /.pq-menu-option -->
-           {% endfor %}
-          </div><!-- /.pq-menu-options -->
-
-        </div><!-- /.pq-menu -->
-
-      </div><!-- /.col-sm-5 -->
-        
+          {% include 'sidebar.html' %}
       {% endblock %}<!-- / block sidebar -->
-      
-    <div class="clearfix">
-    </div>
     
     </div><!-- /.row -->
   

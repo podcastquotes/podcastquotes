@@ -39,6 +39,7 @@ class PodcastDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PodcastDetailView, self).get_context_data(**kwargs)
         context['podcasts'] = Podcast.objects.all()
+        context['quotes'] = Quote.objects.filter(episode__podcast=self.get_object())
         return context
 
 class PodcastCreateView(CreateView):
@@ -64,10 +65,12 @@ class PodcastCreateView(CreateView):
 class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = "episode"
-
+    
     def get_context_data(self, **kwargs):
         context = super(EpisodeDetailView, self).get_context_data(**kwargs)
         context['podcasts'] = Podcast.objects.all()
+        context['podcast'] = Podcast.objects.filter(id=self.get_object().podcast.id)[0]
+        context['quotes'] = Quote.objects.filter(episode__id=self.get_object().id)
         return context
 
 def getSec(hhmmss):

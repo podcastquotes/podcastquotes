@@ -1,0 +1,119 @@
+<div class="pq-podcast-header">
+
+    <div class="pq-podcast-buttons">
+
+        <a href="#">
+          <div class="pq-podcast-button color-follow">
+            Follow
+          </div>
+        </a>
+        
+        <a href="{{ podcast.donate_url }}">
+          <div class="pq-podcast-button color-donate">
+            Donate
+          </div>
+        </a>
+        
+        <a href="/podcasts/edit/{{ podcast.id }}">
+          <div class="pq-podcast-button color-edit">
+            Edit
+          </div>
+        </a>
+        
+    </div><!-- /.pq-podcast-buttons -->
+
+    <a href="/podcasts/{{ podcast.id }}">
+      <div class="pq-podcast-profile-picture">
+          <img src="{{MEDIA_URL}}{{ podcast.image }}" />
+      </div><!-- /.pq-podcast-profile-picture -->
+    </a>
+
+    <div class="pq-podcast-header-box">
+        <div class="pq-podcast-title">
+          
+          <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+              <option value="/podcasts/{{ podcast.id }}" selected="selected">{{ podcast.title }}</option>
+              <option value="/">All Podcasts</option>
+              <option value="/">My Podcasts</option>
+              {% for podcast in podcasts %}
+                  <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+              {% endfor %}
+          </select>
+          
+          <select class="pq-episode-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+              {% if episode.title %}
+              <option value="/episodes/{{ podcast.episode.id }}" selected="selected">{{ episode.title }}</option>
+              <option value="/podcasts/{{ podcast.id }}">All Episodes</option>
+              {% else %}
+              <option value="/episodes/{{ podcast.episode.id }}" selected="selected">All Episodes</option>
+              {% endif %}
+              {% for episode in podcast.episode_set.all %}
+                  <option value="/episodes/{{ episode.id }}">
+                    {{ episode.title }}
+                  </option>
+              {% endfor %}
+          </select>
+          
+        </div><!-- /.pq-podcast-title -->
+      
+      </div><!-- /.pq-podcast-header-box -->
+      
+      <div class="pq-podcast-info">
+        
+        <div class="pq-podcast-social-media">
+          {% if podcast.homepage %}
+          <a href="{{ episode.podcast.homepage }}" target="_blank">
+            <i class="fa fa-home"></i>&nbsp
+          </a>
+          {% endif %}
+          {% if podcast.twitter_url %}
+          <a href="{{ episode.podcast.twitter_url }}" target="_blank">
+            <i class="fa fa-twitter-square"></i>&nbsp
+          </a>
+          {% endif %}
+          {% if podcast.facebook_url %}
+          <a href="{{ episode.podcast.facebook_url }}" target="_blank">
+            <i class="fa fa-facebook-square"></i>&nbsp
+          </a>
+          {% endif %}
+          {% if podcast.instagram_url %}
+          <a href="{{ episode.podcast.instagram_url }}" target="_blank">
+            <i class="fa fa-instagram"></i>&nbsp
+          </a>
+          {% endif %}
+          {% if podcast.google_plus_url %}
+          <a href="{{ episode.podcast.google_plus_url }}" target="_blank">
+            <i class="fa fa-google-plus-square"></i>&nbsp 
+          </a>
+          {% endif %}
+          {% if podcast.youtube_url %}
+          <a href="{{ episode.podcast.youtube_url }}" target="_blank">
+            <i class="fa fa-youtube-square"></i>
+          </a>
+          {% endif %}
+        </div><!-- /.pq-podcast-social-media -->
+        
+        <div class="pq-podcast-header-info-right-1">
+          <strong>2,345 listeners</strong>
+        </div><!-- /.pq-podcast-header-info -->
+        
+        <div class="pq-podcast-header-info-left">
+          <strong>Category:</strong> Comedy
+        </div><!-- /.pq-podcast-header-info -->
+
+        
+        <div class="pq-podcast-header-info-right-2">
+            <strong>{{ podcast.all_podcast_quotes.count }} quotes</strong>
+        </div><!-- /.pq-podcast-header-info -->
+        
+        <div class="pq-podcast-header-info-left">
+            <strong>Hosts:</strong> Host Name 1, Host Name 2
+        </div><!-- /.pq-podcast-header-info -->
+        
+        <div class="pq-podcast-header-info-full">
+            <strong>Description:</strong> {{ podcast.description }}
+        </div><!-- /.pq-podcast-header-info-full -->
+        
+    </div><!-- /.pq-podcast-info -->
+      
+</div><!-- /.pq-podcast-header -->

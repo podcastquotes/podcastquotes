@@ -1,0 +1,63 @@
+<div class="col-sm-5">
+      
+    <a href="{% url 'create_quote' %}">
+      <div class="pq-side-button">
+          Add a Quote
+      </div>
+    </a>
+
+    <div class="pq-menu">
+      
+      <div class="pq-menu-title">
+        Podcasts
+      </div><!-- /.pq-menu-title -->
+      
+      <div class="pq-menu-pulldown">
+        All Podcasts <i class="fa fa-chevron-down"></i>
+      </div><!-- /.pq-menu-pulldown -->
+      
+      <div class="clearfix">
+      </div>
+      
+      <hr />
+
+      <div class="pq-menu-options">
+       {% for podcast in podcasts %}        
+        <div class="pq-menu-option">
+          <a href="/podcasts/{{ podcast.id}}">
+            - {{ podcast.title }}
+          </a>
+        </div><!-- /.pq-menu-option -->
+       {% endfor %}
+      </div><!-- /.pq-menu-options -->
+
+    </div><!-- /.pq-menu -->
+
+    <div class="pq-menu">
+      
+      <div class="pq-menu-title">
+        Episodes
+      </div><!-- /.pq-menu-title -->
+      
+      <div class="pq-menu-pulldown">
+        Chronological <i class="fa fa-chevron-down"></i>
+      </div><!-- /.pq-menu-pulldown -->
+      
+      <div class="clearfix">
+      </div>
+      
+      <hr />
+
+      <div class="pq-menu-options">
+       {% for episode in episode.podcast.episode_set.all %}        
+        <div class="pq-menu-option">
+          <a href="/episodes/{{ episode.id}}">
+            - {{ episode.title }}
+          </a>
+        </div><!-- /.pq-menu-option -->
+       {% endfor %}
+      </div><!-- /.pq-menu-options -->
+
+    </div><!-- /.pq-menu -->
+
+</div><!-- /.col-sm-5 -->
