@@ -140,9 +140,11 @@ class Vote(models.Model):
     voter = models.ForeignKey(User)
     quote = models.ForeignKey(Quote)
     UPVOTE = 1
+    NOVOTE = 0
     DOWNVOTE = -1
     VOTE_CHOICES = (
         (UPVOTE, 'Upvote'),
+        (NOVOTE, 'Novote'),
         (DOWNVOTE, 'Downvote'),
     )
     vote_type = models.IntegerField(choices=VOTE_CHOICES)
