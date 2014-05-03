@@ -9,17 +9,29 @@
         <div class="pq-quote-buttons">
             
             <a href="/quotes/vote/{{ quote.id }}/1/">
-                <div class="pq-quote-upvote">
+                <div class="pq-quote-upvote
+                    {% for vote in quote.vote_set.all %}
+                        {% if user == vote.voter and vote.vote_type == 1 %}
+                            pq-quote-upvote-active
+                        {% endif %}
+                    {% endfor %}
+                ">
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </a>
             
             <div class="pq-quote-vote-total">
-                {{ quote.vote_score}}
+                {{ quote.vote_score }}
             </div>
             
             <a href="/quotes/vote/{{ quote.id }}/-1/">
-                <div class="pq-quote-downvote">
+                <div class="pq-quote-downvote
+                    {% for vote in quote.vote_set.all %}
+                        {% if user == vote.voter and vote.vote_type == -1 %}
+                            pq-quote-downvote-active
+                        {% endif %}
+                    {% endfor %}
+                ">
                     <i class="fa fa-arrow-down"></i>
                 </div>
             </a>

@@ -812,6 +812,14 @@ a {
     color:#444;
 }
 
+.pq-quote-upvote-active {
+    background-color:#FFB395;
+}
+
+.pq-quote-downvote-active {
+    background-color:#CCCCFF;
+}
+
 .pq-quote-vote-total {
     clear:right;
     float:right;
