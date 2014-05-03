@@ -47,7 +47,8 @@
         {% endif %}
         
         <div class="pq-quote-details">
-          {% if podcast.id|length < 1 %}
+          {% if podcast %}
+          {% else %}
               {% if quote.episode.podcast.title %}
                   <a href="/podcasts/{{ quote.episode.podcast.id }}">
                       {{ quote.episode.podcast.title }}
@@ -55,7 +56,8 @@
                   >
               {% endif %}
           {% endif %}
-          {% if episode.id|length < 1 %}
+          {% if episode %}
+          {% else %}
               {% if quote.episode.title %} 
                   <a href="/episodes/{{ quote.episode.id }}">
                       {{ quote.episode.title }}

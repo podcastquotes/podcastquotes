@@ -112,8 +112,8 @@ class Quote(models.Model):
     text = models.TextField(blank=True)
     submitted_by = models.ForeignKey(User)
     submitted_time = models.DateTimeField(auto_now_add=True)
-    time_quote_begins = models.IntegerField(null=True, blank=True)
-    time_quote_ends = models.IntegerField(null=True, blank=True)
+    time_quote_begins = models.IntegerField(blank=True)
+    time_quote_ends = models.IntegerField(blank=True)
     
     def vote_score(self):
         return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
@@ -145,10 +145,15 @@ class Vote(models.Model):
         (UPVOTE, 'Upvote'),
         (DOWNVOTE, 'Downvote'),
     )
-    vote_type = models.IntegerField(choices=VOTE_CHOICES, null=True)
+    vote_type = models.IntegerField(choices=VOTE_CHOICES)
     
     class Meta:
         unique_together = (('voter', 'quote'),)
+    
+    @classmethod
+    def create(cls, voter, quote, vote_type):
+        vote = cls(voter=voter, quote=quote, vote_type=vote_type)
+        return vote
     
     def __unicode__(self):
         return "Vote by: " + str(self.voter)

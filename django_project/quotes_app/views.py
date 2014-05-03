@@ -92,12 +92,15 @@ def getSec(hhmmss):
 def quote_create(request):
     if request.method == "POST":
         qform = QuoteCreateForm(request.POST, instance=Quote())
+        qform.data['submitted_by'] = request.user.id
         begins_with_delims = qform.data['time_quote_begins']
         qform.data['time_quote_begins'] = getSec(begins_with_delims)
         ends_with_delims = qform.data['time_quote_ends']
         qform.data['time_quote_ends'] = getSec(ends_with_delims)
         if qform.is_valid():
             new_quote = qform.save()
+            vote = Vote.create(voter=request.user, quote=new_quote, vote_type=1)
+            vote.save()
             return HttpResponseRedirect('/')
         else:
             raise Http404
