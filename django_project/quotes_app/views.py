@@ -26,9 +26,20 @@ def home(request):
 def vote(request, quote_id, vote_type_id):
     q = get_object_or_404(Quote, pk=quote_id)
     v = get_object_or_404(User, pk=request.user.id)
-    t = vote_type_id
+    t = int(vote_type_id)
     vote, created = Vote.objects.get_or_create(voter=v, quote=q)
-    vote.vote_type = t
+    print vote.vote_type
+    print t
+    if vote.vote_type == 1 and t == 1:
+        vote.vote_type = 0
+    elif vote.vote_type == 1 and t == -1:
+        vote.vote_type = -1
+    elif vote.vote_type == -1 and t == -1:
+        vote.vote_type = 0
+    elif vote.vote_type == -1 and t == 1:
+        vote.vote_type = 1
+    else:
+        vote.vote_type = t
     vote.save()
     return HttpResponseRedirect('/')
 
