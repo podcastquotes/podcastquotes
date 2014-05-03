@@ -118,7 +118,6 @@ class Quote(models.Model):
     def vote_score(self):
         return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
 
-    
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
         h, m = divmod(m, 60)

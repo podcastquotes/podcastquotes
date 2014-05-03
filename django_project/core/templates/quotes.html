@@ -1,3 +1,5 @@
+{% load quote_filters %}
+
 <div class="row">
           
     {% for quote in quotes %}
@@ -7,15 +9,9 @@
       <div class="pq-quote">
         
         <div class="pq-quote-buttons">
-            
+
             <a href="/quotes/vote/{{ quote.id }}/1/">
-                <div class="pq-quote-upvote
-                    {% for vote in quote.vote_set.all %}
-                        {% if user == vote.voter and vote.vote_type == 1 %}
-                            pq-quote-upvote-active
-                        {% endif %}
-                    {% endfor %}
-                ">
+                <div class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </a>
@@ -25,13 +21,7 @@
             </div>
             
             <a href="/quotes/vote/{{ quote.id }}/-1/">
-                <div class="pq-quote-downvote
-                    {% for vote in quote.vote_set.all %}
-                        {% if user == vote.voter and vote.vote_type == -1 %}
-                            pq-quote-downvote-active
-                        {% endif %}
-                    {% endfor %}
-                ">
+                <div class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}">
                     <i class="fa fa-arrow-down"></i>
                 </div>
             </a>
@@ -57,8 +47,21 @@
         {% endif %}
         
         <div class="pq-quote-details">
-          {% if quote.episode.podcast.title %} <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast.title }}</a> {% endif %} > {% if quote.episode.title %} <a href="/episodes/{{ quote.episode.id }}">{{ quote.episode.title }}</a> {% endif %}
-          <br />
+          {% if podcast.id|length < 1 %}
+              {% if quote.episode.podcast.title %}
+                  <a href="/podcasts/{{ quote.episode.podcast.id }}">
+                      {{ quote.episode.podcast.title }}
+                  </a>
+                  >
+              {% endif %}
+          {% endif %}
+          {% if episode.id|length < 1 %}
+              {% if quote.episode.title %} 
+                  <a href="/episodes/{{ quote.episode.id }}">
+                      {{ quote.episode.title }}
+                  </a>
+              {% endif %}
+          {% endif %}
         </div>
         
         {% if quote.time_quote_begins and quote.episode.video_url %}
