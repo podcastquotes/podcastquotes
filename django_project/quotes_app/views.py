@@ -1,3 +1,7 @@
+from time import mktime
+from datetime import datetime
+import calendar
+import pytz
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -21,6 +25,33 @@ def home(request):
                              'episodes': Episode.objects.all(),
                              'quotes': Quote.objects.annotate(vote_total=Sum('vote__vote_type')).order_by('-vote_total')},
                              context_instance=RequestContext(request))
+
+@login_required
+def update_feed(request, podcast_id):
+    p = get_object_or_404(Podcast, pk=podcast_id)
+    rss_feed = p.rss_url
+    feed = feedparser.parse(rss_feed)
+
+    for e in feed.entries:
+        e_guid = e.guid
+        episode, created = Episode.objects.get_or_create(podcast_id=podcast_id, guid=e_guid)
+        episode.title = e.title
+        print e.published_parsed
+        episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
+        episode.description = e.description
+        episode.episode_url = e.link
+        episode.save()
+
+    return HttpResponseRedirect(rss_feed)
+
+#    feed = feedparser.parse(rss_url)
+    
+#    info = []
+#    for entry in feed.entries:
+#        info.append(entry.title)
+#        print info
+#    return info
+
 
 @login_required
 def vote(request, quote_id, vote_type_id):

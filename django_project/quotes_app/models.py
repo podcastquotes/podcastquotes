@@ -35,6 +35,9 @@ class Podcast(models.Model):
     
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
+       
+    def episode_count(self):
+        return Episode.objects.filter(podcast_id=self.id).count()
     
     def __unicode__(self):
         return unicode(self.title)
@@ -42,7 +45,8 @@ class Podcast(models.Model):
 class Episode(models.Model):
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
-    publication_date = models.DateField(null=True, blank=True)
+    guid = models.URLField(blank=True)
+    publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
     episode_url = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)

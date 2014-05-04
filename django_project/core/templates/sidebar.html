@@ -1,11 +1,25 @@
 <div class="col-sm-5">
-      
+    
     <a href="{% url 'create_quote' %}">
       <div class="pq-side-button">
           Add a Quote
       </div>
     </a>
-
+    
+    <a href="/podcasts/create">
+      <div class="pq-side-button">
+          Add a Podcast
+      </div>
+    </a>
+    
+    {% if podcast %}
+    <a href="/podcasts/{{ podcast.id }}/update_feed">
+      <div class="pq-side-button">
+          Update This Feed
+      </div>
+    </a>
+    {% endif %}
+    
     <div class="pq-menu">
       
       <div class="pq-menu-title">

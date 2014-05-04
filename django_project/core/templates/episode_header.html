@@ -3,20 +3,16 @@
     <div class="pq-episode-info">
       
       <div class="pq-podcast-header-info-right-3">
-        <strong>{{ episode.publication_date }} </strong>
-      </div><!-- /.pq-podcast-header-info -->
-      
-      <div class="pq-podcast-header-info-left">
-          <big><strong>Episode:</strong> #484 - Alexis Ohanian</big>
-      </div>
-      
-      <div class="pq-podcast-header-info-right-3">
         <strong>{{ episode.all_episode_quotes.count }} quotes </strong>
       </div><!-- /.pq-podcast-header-info -->
       
+      <div class="pq-podcast-header-info-left" style="font-size:20px;">
+          <strong>Episode:</strong> {{ episode.title }}
+      </div>
+      
       <div class="pq-podcast-header-info-left">
-          <strong>Guests:</strong> Guest Name 1, Guest Name 2
-      </div><!-- /.pq-podcast-header-info -->
+          <strong>Date Released:</strong> {{ episode.publication_date|date:'m/d/y' }}
+      </div>
       
       <div class="pq-podcast-header-info-full">
           <strong>Description:</strong> {{ episode.description }}

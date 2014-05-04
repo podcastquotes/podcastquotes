@@ -25,6 +25,10 @@ urlpatterns = patterns('',
             context_object_name='podcast'),
         name='podcast_detail',),
 
+    url(r'^podcasts/(?P<podcast_id>\d+)/update_feed/$', 
+        'quotes_app.views.update_feed', 
+        name='update_feed',),
+        
     url(r'^episodes/(?P<pk>\d+)/$', 
         EpisodeDetailView.as_view(
             model=Episode,

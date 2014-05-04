@@ -697,7 +697,7 @@ a {
     .pq-podcast-header-info-right-3 {
         clear:right;
         float:right;
-        margin:-5px 0 0 0;
+        margin:5px 0 0 0;
         font-size:16px;
     }
 }
