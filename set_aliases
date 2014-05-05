@@ -1,0 +1,4 @@
+alias ls='ls --color=auto -I '\''*.pyc'\'''
+alias manage="python `pwd`/django_project/manage.py"
+alias autotest="py.test `pwd`/django_project --looponfail"
+export PYTHONPATH=`pwd`/django_project
