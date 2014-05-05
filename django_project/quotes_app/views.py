@@ -26,31 +26,17 @@ def home(request):
                              'quotes': Quote.objects.annotate(vote_total=Sum('vote__vote_type')).order_by('-vote_total')},
                              context_instance=RequestContext(request))
 
+from quotes_app.services import PodcastSyndicationService
+
+podcast_syndication_service = PodcastSyndicationService()
+
 @login_required
 def update_feed(request, podcast_id):
     p = get_object_or_404(Podcast, pk=podcast_id)
-    rss_feed = p.rss_url
-    feed = feedparser.parse(rss_feed)
 
-    for e in feed.entries:
-        e_guid = e.guid
-        episode, created = Episode.objects.get_or_create(podcast_id=podcast_id, guid=e_guid)
-        episode.title = e.title
-        print e.published_parsed
-        episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
-        episode.description = e.description
-        episode.episode_url = e.link
-        episode.save()
-
-    return HttpResponseRedirect(rss_feed)
-
-#    feed = feedparser.parse(rss_url)
+    podcast_syndication_service.collect_episodes(p)
     
-#    info = []
-#    for entry in feed.entries:
-#        info.append(entry.title)
-#        print info
-#    return info
+    return HttpResponseRedirect("/")
 
 
 @login_required
@@ -103,6 +89,9 @@ class PodcastCreateView(CreateView):
         print feed.author_detail
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+    
+    
+
         
 class EpisodeDetailView(DetailView):
     model = Episode
