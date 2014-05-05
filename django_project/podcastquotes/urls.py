@@ -37,7 +37,7 @@ urlpatterns = patterns('',
         name='episode_detail',),
     
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
-        name='create_quote',),
+        name='quote_create',),
         
     url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>-?\d+)/$', 'quotes_app.views.vote', name='quote_vote'),
    

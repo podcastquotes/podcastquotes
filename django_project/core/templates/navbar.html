@@ -18,41 +18,53 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     <li>
-                        <div class="pq-navbar-link">
+                        <div class="pq-xs-navbar-link">
                             My Profile
                         </div>
                     </li>
                     <li>
-                        <div class="pq-navbar-link">
+                        <div class="pq-xs-navbar-link">
                             Add a Quote
                         </div>
                     </li>
                     <li>
-                        <div class="pq-navbar-link">
+                        <div class="pq-xs-navbar-link">
                             Settings
                         </div>
                     </li>
                     <li>
-                       <div class="pq-navbar-link">
+                       <div class="pq-xs-navbar-link">
                            <a href="/logout">
                                Sign Out
                            </a>
                        </div>
                     </li>
+                    
                     <li>
-                        <div class="pq-navbar-dropdown">
+                        <div class="pq-navbar-dropdown-2">
+                          <a href="{% url 'quote_create' %}">
+                            Add Quote <i class="fa fa-comments-o"></i>
+                          </a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="pq-navbar-dropdown-1">
                           <a class="dropdown-toggle" data-toggle="dropdown">
-                            {{ request.user.username }} <span class="caret"></span>
+                            {{ request.user.username }} <i class="fa fa-caret-down"></i>
                           </a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Add a Quote</a></li>
+                            <li><a href="#">My Pages</a></li>
+                            <li><a href="#">Add Podcast</a></li>
+                            <li><a href="#">Add Episode</a></li>
                             <li><a href="#">Settings</a></li>
                             <li class="divider"></li>
                             <li><a href="/logout">Sign Out</a></li>
                           </ul>
                         </div>
                     </li>
+
                 {% else %}
                     <li><a href="/accounts/login">Login</a></li>
                 {% endif %}
