@@ -46,30 +46,33 @@
         </div><!-- /.pq-quote-summary -->
         {% endif %}
         
-        <div class="pq-quote-details">
-          {% if podcast %}
-          {% else %}
-              {% if quote.episode.podcast.title %}
-                  <a href="/podcasts/{{ quote.episode.podcast.id }}">
-                      {{ quote.episode.podcast.title }}
-                  </a>
-                  >
+        {% if episode %}
+        {% else %}
+            <div class="pq-quote-details">
+              {% if podcast %}
+              {% else %}
+                  {% if quote.episode.podcast.title %}
+                      <a href="/podcasts/{{ quote.episode.podcast.id }}">
+                          {{ quote.episode.podcast.title }}
+                      </a>
+                      >
+                  {% endif %}
               {% endif %}
-          {% endif %}
-          {% if episode %}
-          {% else %}
-              {% if quote.episode.title %} 
-                  <a href="/episodes/{{ quote.episode.id }}">
-                      {{ quote.episode.title }}
-                  </a>
+              {% if episode %}
+              {% else %}
+                  {% if quote.episode.title %} 
+                      <a href="/episodes/{{ quote.episode.id }}">
+                          {{ quote.episode.title }}
+                      </a>
+                  {% endif %}
               {% endif %}
-          {% endif %}
-        </div>
+            </div>
+        {% endif %}
         
         {% if quote.time_quote_begins and quote.episode.youtube_url %}
         
             <div class="youtube-box" id="youtube{{ forloop.counter }}">
-              <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=medium&start={{ quote.time_quote_begins }}&autoplay=1&modestbranding=1&showinfo=0">
+              <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
               </div>
             </div>
         
