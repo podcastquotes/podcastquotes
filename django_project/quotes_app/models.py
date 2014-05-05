@@ -39,6 +39,12 @@ class Podcast(models.Model):
     def episode_count(self):
         return Episode.objects.filter(podcast_id=self.id).count()
     
+    def all_episodes_with_youtube_urls(self):
+        return Episode.objects.filter(podcast__id=self.id).exclude(youtube_url__exact='')
+        
+    def all_episodes_with_youtube_urls_count(self):
+        return Episode.objects.filter(podcast__id=self.id).exclude(youtube_url__exact='').count()
+    
     def __unicode__(self):
         return unicode(self.title)
 
@@ -51,11 +57,8 @@ class Episode(models.Model):
     episode_url = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
-    video_url = models.URLField(blank=True) 
-    audio_url = models.URLField(blank=True)
-    # guests = ...
-    # duration = what type of field for length of episode data? needs to match up with format for quote.time_quote_begins and quote.time_quote_ends
-    # keywords = ...
+    youtube_url = models.URLField(blank=True)
+    # keywords = ... I think these are available in RSS feed episode data
  
     def video_id(self):
         """
@@ -65,7 +68,7 @@ class Episode(models.Model):
         - http://www.youtube.com/embed/SA2iWivDJiE
         - http://www.youtube.com/v/SA2iWivDJiE?version=3&amp;hl=en_US
         """
-        query = urlparse(self.video_url)
+        query = urlparse(self.youtube_url)
         if query.hostname == 'youtu.be':
             return query.path[1:]
         if query.hostname in ('www.youtube.com', 'youtube.com'):

@@ -49,7 +49,7 @@ class EpisodeCreateForm(forms.ModelForm):
             'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'video_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'audio_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
@@ -64,11 +64,15 @@ class EpisodeForm(forms.ModelForm):
             'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'video_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'audio_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
 class QuoteCreateForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super(QuoteCreateForm, self).__init__(*args, **kwargs)
+        self.fields['episode'].queryset = Episode.objects.exclude(youtube_url__exact='')
     
     class Meta:
         model = Quote
