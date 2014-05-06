@@ -8,23 +8,29 @@
           </div>
         </a>
         
+        {% if podcast.donate_url %}
         <a href="{{ podcast.donate_url }}">
           <div class="pq-podcast-button color-donate">
             Donate
           </div>
         </a>
+        {% endif %}
         
+        {% if request.user.is_superuser %}
         <a href="/podcasts/edit/{{ podcast.id }}">
           <div class="pq-podcast-button color-edit">
             Edit
           </div>
         </a>
+        {% endif %}
         
+        {% if request.user.is_superuser %}
         <a href="/podcasts/{{ podcast.id }}/update_feed">
           <div class="pq-podcast-button color-edit">
             Update
           </div>
         </a>
+        {% endif %}
         
     </div><!-- /.pq-podcast-buttons -->
 
