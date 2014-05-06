@@ -1058,19 +1058,21 @@ a {
 
 @media (min-width:768px) {
     .pq-menu {
-        margin:0 0 25px 0;
-        padding:10px;
-        border:1px dotted #777;
+        margin:0 0 40px 0;
+        padding:12px 15px 20px 15px;
+        border:1px solid #999;
     }
 }
 
 .pq-menu-title {
+    margin:0 0 5px 0;
     font-size:20px;
     font-weight:bold;
 }
 
 .pq-menu-pulldown {
     color:#333;
+    margin:0 0 10px 0;
 }
 
 .pq-menu-advanced {
@@ -1081,18 +1083,26 @@ a {
 }
 
 .pq-menu hr {
-    margin:10px 0;
-    border-top:1px dotted #999;
+    border-top:1px solid #bbb;
+    margin:0 0 10px 0;
 }
 
 .pq-menu-options {
-    height:275px;
+    height:285px;
     overflow:auto;
-    font-size:15px;
+    font-size:16px;
 }
 
 .pq-menu-option {
+    margin:5px 0 5px 0;
+    padding:10px 0 10px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.pq-menu-option-first {
     margin:0 0 5px 0;
+    padding:0 0 10px 0;
+    border-bottom:1px solid #ddd;
 }
 
 /******************************

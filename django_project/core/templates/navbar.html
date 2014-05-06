@@ -46,8 +46,8 @@
                     {% if request.user.is_superuser %}
                     <li>
                         <div class="pq-navbar-dropdown-2">
-                          <a href="{% url 'quote_create' %}">
-                            Update Podcast <i class="fa fa-rss"></i>
+                          <a href="{% url 'admin:index' %}">
+                            Admin Panel <i class="fa fa-gears"></i>
                           </a>
                         </div>
                     </li>
@@ -56,8 +56,8 @@
                     {% if request.user.is_superuser %}
                     <li>
                         <div class="pq-navbar-dropdown-2">
-                          <a href="{% url 'quote_create' %}">
-                            Update Episode <i class="fa fa-play"></i>
+                          <a href="{% url 'podcast_create' %}">
+                            Add Podcast <i class="fa fa-rss"></i>
                           </a>
                         </div>
                     </li>

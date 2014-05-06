@@ -36,7 +36,7 @@ class Podcast(models.Model):
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
        
-    def episode_count(self):
+    def all_episodes_count(self):
         return Episode.objects.filter(podcast_id=self.id).count()
     
     def all_episodes_with_youtube_urls(self):

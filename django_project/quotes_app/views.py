@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
@@ -67,6 +68,7 @@ class PodcastDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PodcastDetailView, self).get_context_data(**kwargs)
         context['podcasts'] = Podcast.objects.all()
+        context['episodes'] = Episode.objects.filter(podcast=self.get_object())
         context['quotes'] = Quote.objects.filter(episode__podcast=self.get_object())
         return context
 
@@ -83,11 +85,18 @@ class PodcastCreateView(CreateView):
         self.object = form.save(commit=False)
         rss_url = form.cleaned_data['rss_url']
         feed = feedparser.parse(rss_url).feed
+        try:
+            obj = Podcast.objects.get(title=feed.title)
+            url = obj.get_absolute_url()
+            return HttpResponseRedirect(url)
+        except ObjectDoesNotExist:
+            pass
         self.object.title = feed.title
         self.object.description = feed.description
         self.object.homepage = feed.link
-        print feed.author_detail
         self.object.save()
+        p = Podcast.objects.get(id=self.object.id)
+        podcast_syndication_service.collect_episodes(p)
         return HttpResponseRedirect(self.get_success_url())
     
     

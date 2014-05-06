@@ -1,13 +1,5 @@
 <div class="col-sm-5">
     
-    {% if podcast %}
-    <a href="/podcasts/{{ podcast.id }}/update_feed">
-      <div class="pq-side-button">
-          Update This Feed
-      </div>
-    </a>
-    {% endif %}
-    
     <div class="pq-menu">
       
       <div class="pq-menu-title">
@@ -25,11 +17,11 @@
 
       <div class="pq-menu-options">
        {% for podcast in podcasts %}        
-        <div class="pq-menu-option">
-          <a href="/podcasts/{{ podcast.id}}">
-            - {{ podcast.title }}
-          </a>
-        </div><!-- /.pq-menu-option -->
+       <a href="/podcasts/{{ podcast.id}}">
+         <div class="pq-menu-option{% if forloop.first %}-first{% endif %}">
+            {{ podcast.title }}
+         </div><!-- /.pq-menu-option -->
+       </a>
        {% endfor %}
       </div><!-- /.pq-menu-options -->
 
@@ -51,12 +43,12 @@
       <hr />
 
       <div class="pq-menu-options">
-       {% for episode in episode.podcast.episode_set.all %}        
-        <div class="pq-menu-option">
-          <a href="/episodes/{{ episode.id}}">
-            - {{ episode.title }}
-          </a>
-        </div><!-- /.pq-menu-option -->
+       {% for episode in episodes %}        
+         <a href="/episodes/{{ episode.id}}">
+           <div class="pq-menu-option{% if forloop.first %}-first{% endif %}">
+             {{ episode.title }}
+           </div><!-- /.pq-menu-option -->
+         </a>
        {% endfor %}
       </div><!-- /.pq-menu-options -->
 
