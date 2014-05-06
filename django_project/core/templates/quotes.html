@@ -1,4 +1,5 @@
 {% load quote_filters %}
+{% load static %}
 
 <div class="row">
           
@@ -124,15 +125,24 @@
         </div><!-- /.pull-left -->
       
         {% if quote.text %}
+        <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
+          {{ quote.text|truncatechars:250|linebreaks }}
+          <span class="pq-show-text" id="show-more-{{ forloop.counter }}">show more</span>
+        </div>
         <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
-          {{ quote.text }}
+          {{ quote.text|linebreaks }}
+          <span class="pq-show-text" id="show-less-{{ forloop.counter }}">show less</span>
         </div><!-- /.pq-quote-text -->
         {% endif %}
         
         <script>
-          $("#youtube-{{ forloop.counter }}").click(function() {
-              $("#pq-quote-text-{{ forloop.counter }}").removeClass("pq-quote-text");
-              $("#pq-quote-text-{{ forloop.counter }}").toggleClass("pq-quote-text-cleared");
+          $("#show-more-{{ forloop.counter }}").click(function() {
+              $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
+              $("#pq-quote-text-{{ forloop.counter }}").show();
+          });
+          $("#show-less-{{ forloop.counter }}").click(function() {
+              $("#pq-quote-text-{{ forloop.counter }}").hide();
+              $("#pq-quote-text-preview-{{ forloop.counter }}").show();
           });
         </script>
         

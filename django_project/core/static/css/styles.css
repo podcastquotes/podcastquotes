@@ -162,7 +162,7 @@ a {
 
 @media (min-width:992px) {
     .pq-navbar-container {
-        max-width:1100px;
+        max-width:1160px;
         margin:0 auto;
         padding:0 20px;
     }
@@ -329,7 +329,7 @@ a {
 
 @media (min-width:992px) {
     .pq-container {
-        max-width:1100px;
+        max-width:1160px;
         margin:0 auto;
         padding:0 20px;
     }
@@ -974,28 +974,33 @@ a {
 }
 
 .pq-quote-text {
-    max-width:650px;
+    clear:left;
+    display:none;
     font-size:16px;
+}
+
+.pq-quote-text-preview {
+    clear:left;
     overflow:hidden;
+    font-size:16px;
 }
 
 @media (max-width:991px) {
-    .pq-quote-text {
+    .pq-quote-text-preview {
         clear:left;
     }
 }
 
 @media (min-width:992px) {
-    .pq-quote-text {
+    .pq-quote-text-preview {
         padding:0 20px 20px 0;
     }
 }
 
-.pq-quote-text-cleared {
-    clear:left;
-    max-width:650px;
-    font-size:26px;
-    color:blue;
+.pq-show-text {
+    margin:0 0 10px 0;
+    font-size:14px;
+    cursor:pointer;
 }
 
 .pq-quote-bottom {

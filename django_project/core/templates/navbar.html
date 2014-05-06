@@ -1,3 +1,6 @@
+{% load quote_filters %}
+{% load static %}
+
 <header>
     <nav class="navbar navbar-default" role="navigation">
         <div class="pq-navbar-container">
@@ -40,6 +43,26 @@
                        </div>
                     </li>
                     
+                    {% if request.user.is_superuser %}
+                    <li>
+                        <div class="pq-navbar-dropdown-2">
+                          <a href="{% url 'quote_create' %}">
+                            Update Podcast <i class="fa fa-rss"></i>
+                          </a>
+                        </div>
+                    </li>
+                    {% endif %}
+                    
+                    {% if request.user.is_superuser %}
+                    <li>
+                        <div class="pq-navbar-dropdown-2">
+                          <a href="{% url 'quote_create' %}">
+                            Update Episode <i class="fa fa-play"></i>
+                          </a>
+                        </div>
+                    </li>
+                    {% endif %}
+                    
                     <li>
                         <div class="pq-navbar-dropdown-2">
                           <a href="{% url 'quote_create' %}">
@@ -73,3 +96,6 @@
         </div><!-- /.pq-navbar-container -->
     </nav><!-- /.navbar navbar-default -->
 </header>
+
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
