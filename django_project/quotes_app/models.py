@@ -15,6 +15,8 @@ def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 class Podcast(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     rss_url = models.URLField(blank=True)
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
@@ -30,6 +32,62 @@ class Podcast(models.Model):
     def get_absolute_url(self):
         return reverse('podcast_detail', kwargs={'pk': self.pk})
 
+    # Implement some kind of trending algorithm with exponential decay 
+    # def all_podcast_quotes_hot(self):
+    #    return Quote.objects.filter(episode__podcast=self).filter()
+    
+    # Reverse the hot algorithm results to determine not sorting
+    # def all_podcast_quotes_not(self):
+    #    return Quote.objects.filter(episode__podcast=self).filter()
+    
+    # Algorithm showing quotes that are diametrically in the middle 
+    # of hot/not, with higher ranking going to quotes with the most overall votes
+    # def all_podcast_quotes_controversial(self):
+    #    return Quote.objects.filter(episode__podcast=self).filter()
+    
+    # Return podcast quotes ordered by newest to oldest
+    def all_podcast_quotes_new(self):
+        return Quote.objects.filter(episode__podcast=self).order_by('-created_at')
+    
+    # Return podcast quotes ordered by highest score to lowest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_podcast_quotes_top(self):
+        return Quote.objects.filter(episode__podcast=self).annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    
+    # Return podcast quotes ordered by lowest score to highest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_podcast_quotes_bottom(self):
+        return Quote.objects.filter(episode__podcast=self).annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    
+    # Return podcast quotes ordered by the time the quote begins in the podcast
+    def all_podcast_quotes_transcription(self):
+        return Quote.objects.filter(episode__podcast=self).order_by('time_quote_begins')
+    
+    # Return podcast quotes ordered by total number of votes
+    def all_podcast_quotes_mainstream(self):
+        return Quote.objects.filter(episode__podcast=self).annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    
+    ### Return podcast quotes ordered by the ratio of upvotes to downvotes they have received
+    ### but are below a threshold of total votes...threshold could be 10% of the average
+    ### vote_total of the top mainstream quotes...or some better metric...
+    ### def all_podcast_quotes_underground(self):
+    ###     return Quote.objects.filter(episode__podcast=self)
+    
+    # Return podcast quotes that have received no votes
+    def all_podcast_quotes_ghosts(self):
+        return Quote.objects.filter(episode__podcast=self).annotate(vote_total=Count('vote__vote_type')).filter('vote_total')
+        
+    # Return podcast quotes that are from an episode that was published
+    # the same month and day as today
+    def all_podcast_quotes_birthdays(self):
+        return Quote.objects.filter(episode__podcast=self).filter(episode__publication_date=datetime.date.today())
+    
+    ###
+    ### Implement custom range filter solution
+    ###
+    
     def all_podcasts(self):
        return Podcast.objects.all()
     
@@ -49,6 +107,8 @@ class Podcast(models.Model):
         return unicode(self.title)
 
 class Episode(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
     guid = models.URLField(blank=True)
@@ -60,6 +120,64 @@ class Episode(models.Model):
     youtube_url = models.URLField(blank=True)
     # keywords = ... I think these are available in RSS feed episode data
  
+    # Implement some kind of trending algorithm with exponential decay 
+    # def all_episode_quotes_hot(self):
+    #    return Quote.objects.filter(episode=self).filter()
+    
+    # Reverse the hot algorithm results to determine not sorting
+    # def all_episode_quotes_not(self):
+    #    return Quote.objects.filter(episode=self).filter()
+    
+    # Algorithm showing quotes that are diametrically in the middle 
+    # of hot/not, with higher ranking going to quotes with the most overall votes
+    # def all_episode_quotes_controversial(self):
+    #    return Quote.objects.filter(episode=self).filter()
+    
+    # Return episode quotes ordered by newest to oldest
+    def all_episode_quotes_new(self):
+        return Quote.objects.filter(episode=self).order_by('-created_at')
+    
+    # Return episode quotes ordered by highest score to lowest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_episode_quotes_top(self):
+        return Quote.objects.filter(episode=self).annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    
+    # Return episode quotes ordered by lowest score to highest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_episode_quotes_bottom(self):
+        return Quote.objects.filter(episode=self).annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    
+    # Return episode quotes ordered by the time the quote begins in the podcast
+    def all_episode_quotes_transcription(self):
+        return Quote.objects.filter(episode=self).order_by('time_quote_begins')
+    
+    # Return episode quotes ordered by total number of votes
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_episode_quotes_mainstream(self):
+        return Quote.objects.filter(episode=self).annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    
+    ### Return episode quotes ordered by the ratio of upvotes to downvotes they have received
+    ### but are below a threshold of total votes...threshold could be 10% of the average
+    ### vote_total of the top mainstream quotes...or some better idea...
+    ### def all_episode_quotes_underground(self):
+    ###     return Quote.objects.filter(episode=self)
+    
+    # Return episode quotes that have received no votes
+    def all_episode_quotes_ghosts(self):
+        return Quote.objects.filter(episode=self).annotate(vote_total=Count('vote__vote_type')).filter('vote_total')
+        
+    # Return podcast quotes that are from an episode that was published
+    # the same month and day as today
+    def all_episode_quotes_birthdays(self):
+        return Quote.objects.filter(episode=self).filter(episode__publication_date=datetime.date.today())
+    
+    ###
+    ### Implement custom range filter solution
+    ###
+    
     def video_id(self):
         """
         Examples:
@@ -114,11 +232,12 @@ class Episode(models.Model):
         return u'%s - %s' % (self.podcast.title, self.title)
 
 class Quote(models.Model):
+    submitted_by = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=200)
     text = models.TextField(blank=True)
-    submitted_by = models.ForeignKey(User)
-    submitted_time = models.DateTimeField(auto_now_add=True)
     time_quote_begins = models.IntegerField(blank=True)
     time_quote_ends = models.IntegerField(blank=True)
     
@@ -136,7 +255,65 @@ class Quote(models.Model):
         h, m = divmod(m, 60)
         print "%d:%02d:%02d" % (h, m, s)
         return "%d:%02d:%02d" % (h, m, s)
+    
+    # Implement some kind of trending algorithm with exponential decay 
+    # def all_quotes_hot(self):
+    #    return Quote.objects.filter()
+    
+    # Reverse the hot algorithm results to determine not sorting
+    # def all_quotes_not(self):
+    #    return Quote.objects.filter()
+    
+    # Algorithm showing quotes that are diametrically in the middle 
+    # of hot/not, with higher ranking going to quotes with the most overall votes
+    # def all_quotes_controversial(self):
+    #    return Quote.objects.filter()
+    
+    # Return quotes ordered by newest to oldest
+    def all_quotes_new(self):
+        return Quote.objects.order_by('-created_at')
+    
+    # Return quotes ordered by highest score to lowest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_quotes_top(self):
+        return Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    
+    # Return quotes ordered by lowest score to highest score
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_quotes_bottom(self):
+        return Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    
+    # Return quotes ordered by the time the quote begins in the podcast
+    def all_quotes_transcription(self):
+        return Quote.objects.order_by('time_quote_begins')
+    
+    # Return quotes ordered by total number of votes
+    ### Eventually users should be able to check highest/lowest score
+    ### filtered by date range: past hour, past day, past week, past month, past year
+    def all_quotes_mainstream(self):
+        return Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    
+    ### Return quotes ordered by the ratio of upvotes to downvotes they have received
+    ### but are below a threshold of total votes...threshold could be 10% of the average
+    ### vote_total of the top mainstream quotes...or some better metric...
+    ### def all_quotes_underground(self):
+    ###     return Quote.objects.filter()
+    
+    # Return episode quotes that have received no votes
+    def all_episode_quotes_ghosts(self):
+        return Quote.objects.filter(episode=self).annotate(vote_total=Count('vote__vote_type')).filter('vote_total')
         
+    # Return podcast quotes that are from an episode that was published
+    # the same month and day as today
+    def all_episode_quotes_birthdays(self):
+        return Quote.objects.filter(episode=self).filter(episode__publication_date=datetime.date.today())
+    
+    ###
+    ### Implement custom range filter solution
+    ###
+    
     def get_absolute_url(self):
         return reverse('home')
     

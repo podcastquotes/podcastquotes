@@ -7,3 +7,5 @@ The Drunken Taoist - http://feeds.feedburner.com/TheDrunkenTaoistPodcast?format=
 The Bryan Callen Show - http://bryancallen.com/feed/
 The Joe Rogan Experience - http://joeroganexp.joerogan.libsynpro.com/rss
 Bill Burr's Monday Mornings Podcast - http://billburr.com/feed/podcast
+Rooster Teeth - http://s3.roosterteeth.com/podcasts/index.xml
+The Patch - http://s3.roosterteeth.com/podcasts/gaming-index.xml

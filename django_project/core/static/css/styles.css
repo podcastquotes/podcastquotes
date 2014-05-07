@@ -1072,7 +1072,7 @@ a {
 
 .pq-menu-pulldown {
     color:#333;
-    margin:0 0 10px 0;
+    padding:0 0 10px 0;
 }
 
 .pq-menu-advanced {
@@ -1084,7 +1084,7 @@ a {
 
 .pq-menu hr {
     border-top:1px solid #bbb;
-    margin:0 0 10px 0;
+    margin:-5px 0 0 0;
 }
 
 .pq-menu-options {
@@ -1094,14 +1094,7 @@ a {
 }
 
 .pq-menu-option {
-    margin:5px 0 5px 0;
-    padding:10px 0 10px 0;
-    border-bottom:1px solid #ddd;
-}
-
-.pq-menu-option-first {
-    margin:0 0 5px 0;
-    padding:0 0 10px 0;
+    padding:15px 0 15px 0;
     border-bottom:1px solid #ddd;
 }
 

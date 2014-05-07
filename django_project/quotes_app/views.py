@@ -128,7 +128,7 @@ def quote_create(request):
         qform.data['time_quote_ends'] = getSec(ends_with_delims)
         if qform.is_valid():
             new_quote = qform.save()
-            vote = Vote.create(voter=request.user, quote=new_quote, vote_type=1)
+            vote = Vote.create(voter=request.user, quote=new_quote, vote_type=0)
             vote.save()
             return HttpResponseRedirect('/')
         else:
