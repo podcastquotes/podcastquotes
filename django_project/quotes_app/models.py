@@ -248,15 +248,13 @@ class Quote(models.Model):
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
         h, m = divmod(m, 60)
-        print "%d:%02d:%02d" % (h, m, s)
         return "%d:%02d:%02d" % (h, m, s)
         
     def converted_time_ends(self):
         m, s = divmod(self.time_quote_ends, 60)
         h, m = divmod(m, 60)
-        print "%d:%02d:%02d" % (h, m, s)
         return "%d:%02d:%02d" % (h, m, s)
-
+        
     def get_absolute_url(self):
         return reverse('home')
     

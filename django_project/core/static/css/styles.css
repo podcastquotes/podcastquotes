@@ -980,6 +980,7 @@ a {
 
 .pq-quote-text {
     clear:left;
+    overflow:hidden;
     display:none;
     font-size:16px;
 }
@@ -998,12 +999,11 @@ a {
 
 @media (min-width:992px) {
     .pq-quote-text-preview {
-        padding:0 20px 20px 0;
+        padding:0 0 10px 0;
     }
 }
 
 .pq-show-text {
-    margin:0 0 10px 0;
     font-size:14px;
     cursor:pointer;
 }

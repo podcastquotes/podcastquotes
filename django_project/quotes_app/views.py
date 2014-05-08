@@ -108,7 +108,7 @@ def home_birthdays(request):
                  'episodes': Episode.objects.all(),
                  'all_quotes_birthdays': Quote.objects.filter(episode__publication_date=today),
                  'home_birthdays_is_active': Quote.objects.all().first()})
-                             
+                 
 from quotes_app.services import PodcastSyndicationService
 
 podcast_syndication_service = PodcastSyndicationService()
@@ -128,8 +128,6 @@ def vote(request, quote_id, vote_type_id):
     v = get_object_or_404(User, pk=request.user.id)
     t = int(vote_type_id)
     vote, created = Vote.objects.get_or_create(voter=v, quote=q)
-    print vote.vote_type
-    print t
     if vote.vote_type == 1 and t == 1:
         vote.vote_type = 0
     elif vote.vote_type == 1 and t == -1:
@@ -180,10 +178,7 @@ class PodcastCreateView(CreateView):
         p = Podcast.objects.get(id=self.object.id)
         podcast_syndication_service.collect_episodes(p)
         return HttpResponseRedirect(self.get_success_url())
-    
-    
 
-        
 class EpisodeDetailView(DetailView):
     model = Episode
     context_object_name = "episode"

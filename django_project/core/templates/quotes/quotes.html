@@ -118,17 +118,20 @@
             
         </div><!-- /.pull-left -->
       
-        {% if quote.text %}
-        <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-          {{ quote.text|truncatechars:250|linebreaks }}
-          <span class="pq-show-text" id="show-more-{{ forloop.counter }}">show more</span>
-        </div>
-        <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
-          {{ quote.text|linebreaks }}
-          <span class="pq-show-text" id="show-less-{{ forloop.counter }}">show less</span>
-        </div><!-- /.pq-quote-text -->
+        {% if quote.id|is_less_than_X_characters:251 %}
+            {{ quote.text|length }} TEXT IS LESS THAN 251 CHARACTERS
         {% endif %}
-        
+            {% if quote.text %}
+            <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
+              {{ quote.text|truncatechars:250|linebreaks }}
+              <span class="pq-show-text" id="show-more-{{ forloop.counter }}">show more</span>
+            </div>
+            <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
+              {{ quote.text|linebreaks }}
+              <span class="pq-show-text" id="show-less-{{ forloop.counter }}">show less</span>
+            </div><!-- /.pq-quote-text -->
+            {% endif %}
+
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
