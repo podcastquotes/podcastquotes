@@ -75,6 +75,12 @@
             
             {% endif %}
             
+            <script>
+              $("#youtube-{{ forloop.counter }}").click(function() {
+                  $("#pq-quote-text-preview-{{ forloop.counter }}").toggleClass("pq-quote-text-preview-cleared");
+              });
+            </script>
+            
             <div class="pq-quote-details">
               {% if quote.converted_time_begins %}
                 Starts: {{ quote.converted_time_begins }} 
@@ -117,18 +123,23 @@
         
             
         </div><!-- /.pull-left -->
-      
-        {% if quote.id|is_less_than_X_characters:251 %}
-            {{ quote.text|length }} TEXT IS LESS THAN 251 CHARACTERS
-        {% endif %}
+
             {% if quote.text %}
             <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-              {{ quote.text|truncatechars:250|linebreaks }}
-              <span class="pq-show-text" id="show-more-{{ forloop.counter }}">show more</span>
+              {{ quote.text|truncatechars:350|linebreaks }}
+              {% if not quote.id|is_less_than_X_characters:351 %}
+                  <div class="pq-show-text" id="show-more-{{ forloop.counter }}">
+                      show more
+                  </div>
+              {% endif %}
             </div>
             <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
               {{ quote.text|linebreaks }}
-              <span class="pq-show-text" id="show-less-{{ forloop.counter }}">show less</span>
+              {% if not quote.id|is_less_than_X_characters:351 %}
+                  <div class="pq-show-text" id="show-less-{{ forloop.counter }}">
+                      show less
+                  </div>
+              {% endif %}
             </div><!-- /.pq-quote-text -->
             {% endif %}
 

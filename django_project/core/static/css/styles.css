@@ -99,6 +99,10 @@ body {
     clear:both;
 }
 
+.clear-left {
+    clear:left;
+}
+
 .color-share {
     background-color:#99B3FF;
 }
@@ -986,9 +990,13 @@ a {
 }
 
 .pq-quote-text-preview {
-    clear:left;
+    padding:5px 0 0 0;
     overflow:hidden;
-    font-size:16px;
+}
+
+.pq-quote-text-preview-cleared {
+    padding:0;
+    clear:left;
 }
 
 @media (max-width:991px) {
@@ -999,13 +1007,14 @@ a {
 
 @media (min-width:992px) {
     .pq-quote-text-preview {
-        padding:0 0 10px 0;
     }
 }
 
 .pq-show-text {
+    padding:0 0 10px 0;
     font-size:14px;
     cursor:pointer;
+    color:#428bca;
 }
 
 .pq-quote-bottom {
