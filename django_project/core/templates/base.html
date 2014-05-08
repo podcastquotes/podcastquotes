@@ -27,9 +27,12 @@
     
     <div class="row">
       
-      {% block main %}
-      {% endblock %}<!-- / block main -->
+      {% block header %}
+      {% endblock %}<!-- / block header -->
 
+      {% block quotes %}
+      {% endblock %}
+      
       {% block sidebar %}
           {% include 'sidebar.html' %}
       {% endblock %}<!-- / block sidebar -->

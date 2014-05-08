@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %}
+      
+    <div class="col-sm-11">
+        {% include 'episode_breadcrumbs.html' %}
+      
+        {% include 'podcast_header.html' %}
+
+        {% include 'episode_header.html' %}
+              
+        {% include 'episode_filter_selector.html' %}
+        
+    {% endblock %}<!-- /block header -->
+    
+    {% block quotes %}
+        {% include 'quotes.html' %}
+        </div><!-- /.col-sm-11 -->
+    {% endblock %}<!-- / block quotes -->

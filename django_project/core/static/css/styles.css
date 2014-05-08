@@ -734,6 +734,7 @@ a {
 ******************************/
 
 .pq-quote {
+    clear:both;
     padding:25px 0 20px 0;
     border-bottom:1px dotted #ddd;
 }

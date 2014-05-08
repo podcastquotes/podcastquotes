@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block main %}
+{% block header %}
 
 <div class="col-sm-11">
 
@@ -8,7 +8,7 @@
 
   <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
     {% csrf_token %}
-    <a href="{% url 'podcast_detail' pk=podcast.pk %}">
+    <a href="{% url 'podcast_top' pk=podcast.pk %}">
       Go back
     </a> 
     <p>

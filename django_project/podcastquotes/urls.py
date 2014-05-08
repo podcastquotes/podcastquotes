@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from quotes_app.models import Podcast, Episode, Quote
-from quotes_app.views import home
+from quotes_app.views import home_top
 from quotes_app.views import PodcastDetailView, PodcastCreateView
 from quotes_app.views import EpisodeDetailView
 from quotes_app.views import quote_create
@@ -9,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
  
-    url(r'^$', 'quotes_app.views.home', name='home'),
+    url(r'^$', 'quotes_app.views.home_top', name='home_top'),
     
     url(r'^podcasts/create/$', 
         PodcastCreateView.as_view(
@@ -21,9 +21,9 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<pk>\d+)/$', 
         PodcastDetailView.as_view(
             model=Podcast,
-            template_name='podcast_detail.html',
+            template_name='podcast_top.html',
             context_object_name='podcast'),
-        name='podcast_detail',),
+        name='podcast_top',),
 
     url(r'^podcasts/(?P<podcast_id>\d+)/update_feed/$', 
         'quotes_app.views.update_feed', 

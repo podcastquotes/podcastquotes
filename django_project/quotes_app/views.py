@@ -20,11 +20,11 @@ from core.forms import EpisodeCreateForm, EpisodeForm
 from core.forms import QuoteCreateForm, QuoteForm
 import feedparser
 
-def home(request):
-    return render_to_response('home.html',
+def home_top(request):
+    return render_to_response('home_top.html',
                              {'podcasts': Podcast.objects.all(),
                              'episodes': Episode.objects.all(),
-                             'quotes': Quote.objects.annotate(vote_total=Sum('vote__vote_type')).order_by('-vote_total')},
+                             'quote': Quote.objects.all().first(),},
                              context_instance=RequestContext(request))
 
 from quotes_app.services import PodcastSyndicationService

@@ -1,0 +1,54 @@
+<a href="/podcasts/{{ podcast.id }}/hot">
+    <div class="pq-nav-active">
+      hot
+    </div><!-- /.pq-nav-active -->
+</a>
+
+<a href="/podcasts/{{ podcast.id }}/not">    
+    <div class="pq-nav">
+      not
+    </div><!-- /.pq-nav -->
+</a>
+
+<a href="/podcasts/{{ podcast.id }}/controversial">
+    <div class="pq-nav pq-nav-disappear-5">
+      controversial
+    </div><!-- /.pq-nav -->
+</a>
+
+<a href="/podcasts/{{ podcast.id }}/new">
+    <div class="pq-nav pq-nav-disappear-4">
+      new
+    </div><!-- /.pq-nav -->
+</a>
+    
+<a href="/podcasts/{{ podcast.id }}/top">
+    <div class="pq-nav pq-nav-disappear-3">
+      top
+    </div><!-- /.pq-nav -->
+</a>
+
+<a href="/podcasts/{{ podcast.id }}/bottom">
+    <div class="pq-nav pq-nav-disappear-2">
+      bottom
+    </div><!-- /.pq-nav -->
+</a>
+
+<div class="btn-group">
+  <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
+    more <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li class="pq-nav-appear-5"><a href="/podcasts/{{ podcast.id }}/controversial">controversial</a></li>
+    <li class="pq-nav-appear-4"><a href="/podcasts/{{ podcast.id }}/new">new</a></li>
+    <li class="pq-nav-appear-3"><a href="/podcasts/{{ podcast.id }}/top">top</a></li>
+    <li class="pq-nav-appear-2"><a href="/podcasts/{{ podcast.id }}/bottom">bottom</a></li>
+    <li><a href="/podcasts/{{ podcast.id }}/transcription">transcription</a></li>
+    <li><a href="/podcasts/{{ podcast.id }}/mainstream">mainstream</a></li>
+    <li><a href="/podcasts/{{ podcast.id }}/underground">underground</a></li>
+    <li><a href="/podcasts/{{ podcast.id }}/ghosts">ghosts</a></li>
+    <li><a href="/podcasts/{{ podcast.id }}/birthdays">birthdays</a></li>
+    <li class="divider"></li>
+    <li><a href="#">custom</a></li>
+  </ul>
+</div>
