@@ -464,6 +464,10 @@ a {
     }
 }
 
+.dropdown-menu-active {
+    background-color:#ddd;
+}
+
 @media (max-width:767px) {
     .pq-votes-shown {
         clear:both;
@@ -1091,11 +1095,11 @@ a {
 .pq-menu-options {
     height:285px;
     overflow:auto;
-    font-size:16px;
+    font-size:14px;
 }
 
 .pq-menu-option {
-    padding:15px 0 15px 0;
+    padding:15px 0;
     border-bottom:1px solid #ddd;
 }
 

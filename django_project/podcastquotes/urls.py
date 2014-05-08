@@ -9,7 +9,27 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
  
+    url(r'^hot/$', 'quotes_app.views.home_hot', name='home_hot'),
+    
+    url(r'^not/$', 'quotes_app.views.home_not', name='home_not'),
+    
+    url(r'^controversial/$', 'quotes_app.views.home_controversial', name='home_controversial'),
+    
+    url(r'^new/$', 'quotes_app.views.home_new', name='home_new'),
+    
     url(r'^$', 'quotes_app.views.home_top', name='home_top'),
+    
+    url(r'^bottom/$', 'quotes_app.views.home_bottom', name='home_bottom'),
+    
+    url(r'^mainstream/$', 'quotes_app.views.home_mainstream', name='home_mainstream'),
+    
+    url(r'^underground/$', 'quotes_app.views.home_underground', name='home_underground'),
+    
+    url(r'^chronological/$', 'quotes_app.views.home_chronological', name='home_chronological'),
+    
+    url(r'^ghosts/$', 'quotes_app.views.home_ghosts', name='home_ghosts'),
+    
+    url(r'^birthdays/$', 'quotes_app.views.home_birthdays', name='home_birthdays'),
     
     url(r'^podcasts/create/$', 
         PodcastCreateView.as_view(
