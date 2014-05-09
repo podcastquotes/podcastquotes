@@ -56,7 +56,7 @@
               {% if episode %}
               {% else %}
                   {% if quote.episode.title %} 
-                      <a href="/episodes/{{ quote.episode.id }}">
+                      <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
                           {{ quote.episode.title }}
                       </a>
                   {% endif %}

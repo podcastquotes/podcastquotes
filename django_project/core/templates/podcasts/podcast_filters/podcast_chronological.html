@@ -2,21 +2,19 @@
 
 {% block header %}
     
-    {% include 'episode_col_width.html' %}
+    {% include 'podcast_col_width.html' %}
 
     {% include 'podcast_breadcrumbs.html' %}
 
     {% include 'podcast_header.html' %}
 
-    {% include 'episode_header.html' %}
-    
-    {% include 'episode_filter_selector.html' %}
+    {% include 'podcast_filter_selector.html' %}
         
 {% endblock %}<!-- /block header -->
     
 {% block quotes %}
 
-    {% for quote in episode.all_episode_quotes_transcription %}
+    {% for quote in podcast.all_podcast_quotes_chronological %}
         {% include 'quotes.html' %}
     {% endfor %}
 

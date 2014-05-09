@@ -1,15 +1,17 @@
 from django.db import models
 from time import time
-from datetime import date
+from datetime import date, datetime
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.db.models import Sum
+from django.db.models import Count, Sum
 import urlparse
 
 from urlparse import urlparse, parse_qs
  
 from django.template import Template, Context
 from django.conf import settings
+
+today = date.today()
 
 # This doesn't belong here
 def get_upload_file_name(instance, filename):
@@ -77,13 +79,13 @@ class Podcast(models.Model):
     ###     return Quote.objects.filter(episode__podcast=self)
     
     # Return podcast quotes that have received no votes
-    def all_podcast_quotes_ghosts(self):
-        return Quote.objects.filter(episode__podcast=self).annotate(vote_total=Count('vote__vote_type')).filter('vote_total')
+    # def all_podcast_quotes_ghosts(self):
+    #    return Quote.objects.filter(episode__podcast=self).annotate(vote_total=Count('vote__vote_type')).filter('vote_total')
         
     # Return podcast quotes that are from an episode that was published
     # the same month and day as today
-    def all_podcast_quotes_birthdays(self):
-        return Quote.objects.filter(episode__podcast=self).filter(episode__publication_date=datetime.date.today())
+    # def all_podcast_quotes_birthdays(self):
+    #    return Quote.objects.filter(episode__podcast=self).filter(episode__publication_date=today)
     
     ###
     ### Implement custom range filter solution
@@ -172,8 +174,8 @@ class Episode(models.Model):
         
     # Return podcast quotes that are from an episode that was published
     # the same month and day as today
-    def all_episode_quotes_birthdays(self):
-        return Quote.objects.filter(episode=self).filter(episode__publication_date=datetime.date.today())
+    # def all_episode_quotes_birthdays(self):
+    #    return Quote.objects.filter(episode=self).filter(episode__publication_date=today)
     
     ###
     ### Implement custom range filter solution
@@ -262,6 +264,8 @@ class Quote(models.Model):
         return u'%s - %s' % (self.episode.podcast.title, self.episode.title)
         
 class Vote(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     voter = models.ForeignKey(User)
     quote = models.ForeignKey(Quote)
     UPVOTE = 1
