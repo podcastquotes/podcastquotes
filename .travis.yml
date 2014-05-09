@@ -3,7 +3,7 @@ python:
   - "2.7"
 install:
 # Copy over settings
-  - "cp  - "pip install ." django_project/podcastquotes/settings.py.skel django_project/podcastquotes/settings.py"
+  - "cp django_project/podcastquotes/settings.py.skel django_project/podcastquotes/settings.py"
   - "cp django_project/podcastquotes/site_settings.py.skel django_project/podcastquotes/site_settings.py"
 
   - "pip install -r dev-requirements.txt"
