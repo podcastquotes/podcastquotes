@@ -1,5 +1,6 @@
 podcastquotes
 =============
+[![Build Status](https://travis-ci.org/podcastquotes/podcastquotes.svg?branch=master)](https://travis-ci.org/podcastquotes/podcastquotes)
 
 A podcast quote transcription, sharing, and rating system inspired by reddit.
 

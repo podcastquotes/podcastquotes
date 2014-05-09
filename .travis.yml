@@ -5,7 +5,9 @@ install:
 # Copy over settings
   - "cp django_project/podcastquotes/settings.py.skel django_project/podcastquotes/settings.py"
   - "cp django_project/podcastquotes/site_settings.py.skel django_project/podcastquotes/site_settings.py"
-
+  
+  - "export PYTHONPATH=`pwd`/django_project"
+  
   - "pip install -r dev-requirements.txt"
   - "pip install -r requirements.txt"
 
