@@ -583,21 +583,22 @@ a {
     }
 }
 
-
-.pq-xs-podcast-button {
-    clear:right;
-    float:right;
-    width:70px;
-    padding:2px 0;
-    text-align:center;
-    margin:0 0 10px 15px;
-    border:1px solid #555;
-    border-radius:15px;
-    font-size:14px;
-    color:#111;
+@media (max-width:550px){
+   .pq-xs-podcast-button {
+       clear:right;
+       float:right;
+       width:70px;
+       padding:2px 0;
+       text-align:center;
+       margin:0 0 10px 15px;
+       border:1px solid #555;
+       border-radius:15px;
+       font-size:14px;
+       color:#111;
+   }
 }
 
-@media (min-width:768px) {
+@media (min-width:551px) {
     .pq-podcast-button {
         float:right;
         width:70px;
