@@ -21,17 +21,17 @@
                 </div>
             </a>
             
+            <!--
             <div class="pq-quote-comments">
                 <i class="fa fa-comment"></i>
             </div>
+            -->
             
+            <!--
             <div class="pq-quote-comments-total">
                 1,234
             </div>
-            
-            <div class="pq-quote-date">
-                {{ quote.episode.publication_date|date:'m/d/y' }}
-            </div>
+            -->
             
         </div><!-- /.pq-quote-buttons -->
         
@@ -57,7 +57,7 @@
               {% else %}
                   {% if quote.episode.title %} 
                       <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
-                          {{ quote.episode.title }}
+                          {{ quote.episode.title }} - {{ quote.episode.publication_date|date:'m/d/y' }}
                       </a>
                   {% endif %}
               {% endif %}
@@ -88,9 +88,6 @@
               {% if quote.converted_time_begins and quote.converted_time_ends %}
                 - Ends: {{ quote.converted_time_ends }} 
               {% endif %}
-              <span class="pq-quote-date-xs">
-                - Aired: {{ quote.episode.publication_date|date:'m/d/y' }}
-              </span>
             </div>
         
             <div class="pq-quote-buttons-xs">
@@ -111,13 +108,17 @@
                     </div>
                 </a>
                 
+                <!-- 
                 <div class="pq-quote-comments-xs">
                     <i class="fa fa-comment"></i>
                 </div>
+                -->
                 
+                <!--
                 <div class="pq-quote-comments-total-xs">
                     1,234
                 </div>
+                -->
                 
             </div><!-- /.pq-quote-buttons-xs -->
         
@@ -159,17 +160,13 @@
             <div class="pq-quote-bottom-button">
               share
             </div>
-
-            <div class="pq-quote-bottom-button">
-              save
-            </div>
             
             {% if quote.episode.podcast.donate_url %}
-                <a href="{{ quote.episode.podcast.donate_url }}" target="_blank">
-                    <div class="pq-quote-bottom-button text-orange">
-                      donate
-                    </div>
-                </a>
+                <div class="pq-quote-bottom-button text-orange">
+                    <a href="{{ quote.episode.podcast.donate_url }}" target="_blank">
+                        donate
+                    </a>
+                </div>
             {% endif %}
 
           </div><!-- /.pq-quote-bottom -->

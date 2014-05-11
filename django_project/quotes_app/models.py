@@ -33,7 +33,7 @@ class Podcast(models.Model):
     youtube_url = models.URLField(blank=True)
     
     def get_absolute_url(self):
-        return reverse('podcast_top', kwargs={'pk': self.pk})
+        return reverse('podcast_top', kwargs={'podcast_id': self.pk})
 
     # Implement some kind of trending algorithm with exponential decay 
     # def all_podcast_quotes_hot(self):
@@ -96,7 +96,10 @@ class Podcast(models.Model):
     
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
-       
+    
+    def all_podcast_quotes_count(self):
+       return Quote.objects.filter(episode__podcast=self).count()
+    
     def all_episodes_count(self):
         return Episode.objects.filter(podcast_id=self.id).count()
     
@@ -228,6 +231,9 @@ class Episode(models.Model):
     def all_episode_quotes(self):
        return Quote.objects.filter(episode__id=self.id)
 
+    def all_episode_quotes_count(self):
+       return Quote.objects.filter(episode__id=self.id).count()
+       
     def get_absolute_url(self):
         return reverse('episode_detail', kwargs={'pk': self.pk})
 

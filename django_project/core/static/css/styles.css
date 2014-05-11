@@ -107,8 +107,16 @@ body {
     background-color:#99B3FF;
 }
 
+.color-share:hover {
+    background-color:#a9c3FF;
+}
+
 .color-donate {
     background-color:#FFAD5D;
+}
+
+.color-donate:hover {
+    background-color:#FFBD6D;
 }
 
 .color-follow {
@@ -117,6 +125,14 @@ body {
 
 .color-edit {
     background-color:#E177A7;
+}
+
+.color-edit:hover {
+    background-color:#E87eAe;
+}
+
+.color-connect {
+    background-color:#8CCC8C;
 }
 
 .btn {
@@ -131,7 +147,7 @@ body {
     background:#FFFFDF;
 }
 
-.text-orange {
+.text-orange, .text-orange a {
     color:#D56A00;
 }
 
@@ -173,15 +189,15 @@ a {
 }
 
 .pq-navbar {
-    background-color:#eee;
+    background-color:#e7e7e7;
     padding:10px 0;
     margin:0 0 20px 0;
     border-bottom:1px solid #888;
 }
 
 .navbar {
-        background-color:#eee;
-        margin:0 0 20px 0;
+        background-color:#e7e7e7;
+        margin:0 0 25px 0;
         border-bottom:1px solid #888;
         border-radius:0;
         color:#111;
@@ -235,6 +251,10 @@ a {
         color:#111;
         text-decoration:none;
     }
+    
+    .pq-navbar-dropdown-1 a:hover {
+        color:#777;
+    }
 }
 
 @media (max-width:767px) {
@@ -253,6 +273,10 @@ a {
     .pq-navbar-dropdown-2 a {
         color:#111;
         text-decoration:none;
+    }
+    
+    .pq-navbar-dropdown-2 a:hover {
+        color:#777;
     }
 }
 
@@ -293,7 +317,7 @@ a {
 }
 
 .pq-brand a:hover {
-    color:#555;
+    color:#777;
 }
 
 .pq-login {
@@ -339,10 +363,6 @@ a {
     }
 }
 
-.pq-container a {
-    color:#111;
-}
-
 .pq-container a:hover {
     color:#666;
     text-decoration:none;
@@ -356,7 +376,7 @@ a {
 
 @media (min-width:551px) {
     .pq-breadcrumbs {
-        padding:1px 0 25px 0;
+        padding:1px 0 20px 0;
         font-size:16px;
     }
 }
@@ -373,9 +393,9 @@ a {
 
 @media (min-width:992px) {
     .pq-title {
-        clear:left;
+        width:100%;
         margin:0 0 25px 0;
-        font-size:24px;
+        font-size:22px;
         font-weight:bold;
         color:#111;
     }
@@ -503,39 +523,28 @@ a {
     }
 }
 
-
 .pq-podcast-header {
-    margin-top:5px;
-    margin-bottom:25px;
+    margin-bottom:30px;
     padding-bottom:25px;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px dotted #bbb;
+}
+
+.pq-podcast-title {
+    width:100%;
+    margin:0 0 30px 0;
+    font-size:22px;
+    font-weight:bold;
+    color:#111;
+}
+
+.pq-episode-title {
+    width:100%;
+    margin:0 0 25px 0;
+    font-weight:bold;
+    color:#111;
 }
 
 
-@media (max-width:767px) {
-    .pq-podcast-title {
-        float:left;
-        clear:left;
-        width:100%;
-        margin:0 0 10px 0;
-        font-size:22px;
-        font-weight:bold;
-        color:#111;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-podcast-title {
-        float:left;
-        clear:left;
-        width:100%;
-        margin:0 0 10px 0;
-        font-size:22px;
-        font-weight:bold;
-        color:#111;
-    }
-}
-    
 @media (max-width:550px) {
     .pq-podcast-header-box {
         clear:left;
@@ -550,78 +559,78 @@ a {
 }
 
 @media (max-width:550px) {
-    .pq-share-button {
+    .pq-podcast-buttons {
         display:none;
     }
 }
 
 @media (min-width:551px) {
-    .pq-share-button {
-        float:right;
+    .pq-podcast-buttons {
         clear:right;
-        width:70px;
-        padding:2px 0;
-        text-align:center;
-        margin:0 0 10px 25px;
-        border:1px solid #555;
-        border-radius:15px;
-        font-size:14px;
+        float:right;
+        margin:0 0 5px 20px;
     }
 }
 
 @media (max-width:550px) {
-    .pq-share-button-xs {
-        float:right;
-        clear:right;
-        width:70px;
-        padding:3px 0;
-        text-align:center;
-        margin:0 0 15px 0;
-        border:1px solid #555;
-        border-radius:15px;
-        font-size:14px;
+    .pq-xs-podcast-buttons {
     }
 }
 
 @media (min-width:551px) {
-    .pq-share-button-xs {
+    .pq-xs-podcast-buttons {
         display:none;
     }
 }
 
-.pq-podcast-buttons {
-    float:right;
-    margin:0 0 0 25px;
-}
 
-.pq-podcast-button {
+.pq-xs-podcast-button {
     clear:right;
     float:right;
     width:70px;
     padding:2px 0;
     text-align:center;
-    margin:0 0 10px 0;
+    margin:0 0 10px 15px;
     border:1px solid #555;
     border-radius:15px;
     font-size:14px;
+    color:#111;
 }
 
-@media (max-width:550px) {
+@media (min-width:768px) {
     .pq-podcast-button {
-        margin:0 0 15px 0;
-        padding:3px 0;
+        float:right;
+        width:70px;
+        padding:2px 0;
+        text-align:center;
+        margin:-2px 0 7px 15px;
+        border:1px solid #555;
+        border-radius:15px;
+        font-size:14px;
+        color:#111;
     }
 }
 
+.pq-podcast-button:hover {
+    color:#555;
+}
+
 .pq-podcast-social-media {
-    clear:left;
-    padding:0 0 5px 0;
+    margin:-8px 0 5px 0;
     font-size:28px;
     color:#333;
 }
 
+.pq-podcast-social-media a {
+    color:#111;
+}
+
+.pq-podcast-social-media a:hover {
+    color:#777;
+}
+
 @media (max-width:550px) {
-    .pq-podcast-profile-picture {
+    .pq-xs-podcast-profile-picture {
         float:left;
         margin:0 0 30px 0;
         border-radius:10px;
@@ -629,25 +638,36 @@ a {
 }
 
 @media (min-width:551px) {
-    .pq-podcast-profile-picture {
-        float:left;
-        margin:0 25px 10px 0;
-        border-radius:10px;
+    .pq-xs-podcast-profile-picture {
+        display:none;
     }
 }
 
 @media (max-width:550px) {
-    .pq-podcast-profile-picture img {
+    .pq-xs-podcast-profile-picture img {
         height:160px;
         width:160px;
         border-radius:10px;
     }
 }
 
+@media (max-width:550px) {
+    .pq-podcast-profile-picture {
+        display:none;
+    }
+}
+
+@media (min-width:551px) {
+    .pq-podcast-profile-picture {
+        float:left;
+        padding:0 30px 0px 0;
+    }
+}
+
 @media (min-width:551px) {
     .pq-podcast-profile-picture img {
-        height:100px;
-        width:100px;
+        height:150px;
+        width:150px;
         border-radius:10px;
     }
 }
@@ -655,8 +675,12 @@ a {
 .pq-podcast-selector {
     height:40px;
     line-height:40px;
+    width:100%;
     border:1px solid #aaa;
-    margin:0 0 15px 0;
+    font-size:24px;
+}
+
+.pq-podcast-selector-option {
     font-size:18px;
 }
 
@@ -664,75 +688,38 @@ a {
     height:40px;
     line-height:40px;
     border:1px solid #aaa;
-    margin:0 0 10px 0;
     font-size:18px;
 }
 
-.pq-podcast-header-info {
-    clear:both;
+@media (max-width:767px) {
+    .pq-podcast-info {
+    }
+}
+
+@media (min-width:768px) {
+    .pq-podcast-info {
+        margin:0 0 0 180px;
+    }
 }
 
 .pq-podcast-header-info-left {
-    clear:left;
-    margin:5px 5px 10px 0;
+    margin:0 0 10px 0;
     font-size:16px;
 }
 
-@media (max-width:500px) {
-    .pq-podcast-header-info-right-1 {
-        display:none;
-    }
-}
-
-@media (min-width:501px) {
-    .pq-podcast-header-info-right-1 {
-        clear:left;
-        float:right;
-        font-size:16px;
-    }
-}
-
-@media (max-width:500px) {
-    .pq-podcast-header-info-right-2 {
-        display:none;
-    }
-}
-
-@media (min-width:501px) {
-    .pq-podcast-header-info-right-2 {
-        clear:right;
-        float:right;
-        margin:-5px 0 0 0;
-        font-size:16px;
-    }
-}
-
-@media (max-width:500px) {
-    .pq-podcast-header-info-right-3 {
-        display:none;
-    }
-}
-
-@media (min-width:501px) {
-    .pq-podcast-header-info-right-3 {
-        clear:right;
-        float:right;
-        margin:5px 0 0 0;
-        font-size:16px;
-    }
-}
-
 .pq-podcast-header-info-full {
-    clear:left;
-    overflow:hidden;
     font-size:16px;
 }
 
 .pq-episode-header {
     margin-top:5px;
-    margin-bottom:25px;
-    padding-bottom:25px;
-    border-bottom:1px solid #ddd;
+    margin-bottom:30px;
+    padding-bottom:30px;
+    border-bottom:1px dotted #bbb;
+}
+
+.pq-episode-info {
+    margin:-10px 0 0 0;
 }
 
 /******************************
@@ -743,8 +730,8 @@ a {
 
 .pq-quote {
     clear:both;
-    padding:25px 0 20px 0;
-    border-bottom:1px dotted #ddd;
+    padding:25px 0 25px 0;
+    border-bottom:1px solid #ddd;
 }
 
 .pq-quote-counter {
@@ -798,6 +785,10 @@ a {
     
 .pq-quote-details a {
     color:#555;
+}
+
+.pq-quote-details a:hover {
+    color:#999;
 }
 
 .pq-quote-divider {
@@ -1017,6 +1008,10 @@ a {
     color:#428bca;
 }
 
+.pq-show-text:hover {
+   color:#62abea;
+}
+
 .pq-quote-bottom {
     clear:both;
     padding:5px 0;
@@ -1027,7 +1022,6 @@ a {
     margin:0 25px 0 0;
     font-size:15px;
     font-weight:bold;
-    color:#444;
 }
 
 /******************************
@@ -1047,8 +1041,8 @@ a {
         display:block;
         text-align:center;
         padding:10px 0;
-        margin:-1px 0 25px 0;
-        background-color:#eee;
+        margin:-1px 0 20px 0;
+        background-color:#e7e7e7;
         border:1px solid #888;
         border-radius:3px;
         font-size:20px;
@@ -1058,10 +1052,18 @@ a {
     }
         
     .pq-side-button:hover {
-        background-color:#eaeaea;
+        background-color:#eee;
         color:#070707;
         text-decoration:none;
     }
+}
+
+.pq-menu a {
+    color:#111;
+}
+
+.pq-menu a:hover {
+    color:#777;
 }
 
 @media (max-width:767px) {
@@ -1072,9 +1074,9 @@ a {
 
 @media (min-width:768px) {
     .pq-menu {
-        margin:0 0 40px 0;
+        margin:0 0 20px 0;
         padding:12px 15px 20px 15px;
-        border:1px solid #999;
+        border:1px solid #bbb;
     }
 }
 

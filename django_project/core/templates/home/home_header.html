@@ -1,7 +1,9 @@
-<select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-    <option value="/">All Podcasts</option>
-    <option value="/">My Podcasts</option>
-    {% for podcast in podcasts %}
-        <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
-    {% endfor %}
-</select>
+<div class="pq-title">
+    <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
+        <option value="/">All Podcasts</option>
+        <option value="/">My Podcasts</option>
+        {% for podcast in podcasts %}
+            <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }} --- {{ podcast.all_podcast_quotes_count }} quote{{ podcast.all_podcast_quotes_count|pluralize }}</option>
+        {% endfor %}
+    </select>
+</div>
