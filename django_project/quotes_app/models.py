@@ -282,7 +282,7 @@ class Vote(models.Model):
         (NOVOTE, 'Novote'),
         (DOWNVOTE, 'Downvote'),
     )
-    vote_type = models.IntegerField(choices=VOTE_CHOICES)
+    vote_type = models.IntegerField(choices=VOTE_CHOICES, null=True)
     
     class Meta:
         unique_together = (('voter', 'quote'),)

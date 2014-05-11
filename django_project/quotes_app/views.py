@@ -329,7 +329,6 @@ def update_feed(request, podcast_id):
     
     return HttpResponseRedirect("/")
 
-
 @login_required
 def vote(request, quote_id, vote_type_id):
     q = get_object_or_404(Quote, pk=quote_id)
