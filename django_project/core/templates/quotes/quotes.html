@@ -75,12 +75,6 @@
             
             {% endif %}
             
-            <script>
-              $("#youtube-{{ forloop.counter }}").click(function() {
-                  $("#pq-quote-text-preview-{{ forloop.counter }}").toggleClass("pq-quote-text-preview-cleared");
-              });
-            </script>
-            
             <div class="pq-quote-details">
               {% if quote.converted_time_begins %}
                 Starts: {{ quote.converted_time_begins }} 
@@ -127,8 +121,8 @@
 
             {% if quote.text %}
             <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-              {{ quote.text|truncatechars:350|linebreaks }}
-              {% if not quote.id|is_less_than_X_characters:351 %}
+              {{ quote.text|truncatechars:200|linebreaks }}
+              {% if not quote.id|is_less_than_X_characters:201 %}
                   <div class="pq-show-text" id="show-more-{{ forloop.counter }}">
                       show more
                   </div>
@@ -136,7 +130,7 @@
             </div>
             <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
               {{ quote.text|linebreaks }}
-              {% if not quote.id|is_less_than_X_characters:351 %}
+              {% if not quote.id|is_less_than_X_characters:201 %}
                   <div class="pq-show-text" id="show-less-{{ forloop.counter }}">
                       show less
                   </div>
@@ -161,9 +155,15 @@
               share
             </div>
             
-            {% if quote.episode.podcast.donate_url %}
+            {% if quote.episode.podcast.donate_url or quote.episode.donate_url %}
                 <div class="pq-quote-bottom-button text-orange">
-                    <a href="{{ quote.episode.podcast.donate_url }}" target="_blank">
+                    <a href=
+                    "{% if quote.episode.donate_url %}
+                        {{ quote.episode.donate_url }}
+                    {% else %}
+                        {{ quote.episode.podcast.donate_url }}
+                    {% endif %}"
+                    target="_blank">
                         donate
                     </a>
                 </div>

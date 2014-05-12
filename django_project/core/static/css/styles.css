@@ -982,8 +982,8 @@ a {
 }
 
 .pq-quote-text-preview {
-    padding:5px 0 0 0;
     overflow:hidden;
+    clear:left;
 }
 
 .pq-quote-text-preview-cleared {
@@ -1143,7 +1143,7 @@ a {
 
 @media (min-width:401px) {
     .circle {
-        margin:63px 0 0 99px;
+        margin:105px 0 0 152px;
     }
 }
 
@@ -1173,7 +1173,7 @@ a {
 
 @media (min-width:401px) {
     .youtube-img-preview {
-        max-width:250px;
+        max-width:350px;
     }
 }
 
@@ -1287,10 +1287,17 @@ a {
     }
 }
 
-@media (min-width:1080px) {
+@media (min-width:1080px) and (max-width:1150px) {
     .iframe-size {
         width:600px;
         height:379px;
+    }
+}
+
+@media (min-width:1151px) {
+    .iframe-size {
+        width:650px;
+        height:402px;
     }
 }
 

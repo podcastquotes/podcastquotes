@@ -122,6 +122,8 @@ class Episode(models.Model):
     description = models.TextField(blank=True)
     episode_url = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
+    donation_recipient = models.CharField(max_length=100, blank=True)
+    donation_recipient_about = models.TextField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     youtube_url = models.URLField(blank=True)
     # keywords = ... I think these are available in RSS feed episode data
