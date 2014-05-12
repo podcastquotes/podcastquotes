@@ -121,10 +121,9 @@
 
             {% if quote.text %}
             <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-              {{ quote.text|truncatechars:200|linebreaks }}
               {% if not quote.id|is_less_than_X_characters:201 %}
                   <div class="pq-show-text" id="show-more-{{ forloop.counter }}">
-                      show more
+                      show quote
                   </div>
               {% endif %}
             </div>
@@ -132,7 +131,7 @@
               {{ quote.text|linebreaks }}
               {% if not quote.id|is_less_than_X_characters:201 %}
                   <div class="pq-show-text" id="show-less-{{ forloop.counter }}">
-                      show less
+                      hide quote
                   </div>
               {% endif %}
             </div><!-- /.pq-quote-text -->

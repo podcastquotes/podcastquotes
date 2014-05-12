@@ -144,9 +144,11 @@
           <strong>Category:</strong> Comedy
         </div><!-- /.pq-podcast-header-info -->
         
-        <div class="pq-podcast-header-info-left">
-            <strong>Hosts:</strong> Host Name 1, Host Name 2
-        </div><!-- /.pq-podcast-header-info-left -->
+        {% if podcast.hosts %}
+            <div class="pq-podcast-header-info-left">
+                <strong>Hosts:</strong> Host Name 1, Host Name 2
+            </div><!-- /.pq-podcast-header-info-left -->
+        {% endif %}
         
         <div class="pq-podcast-header-info-full">
             {{ podcast.description }}
@@ -156,8 +158,6 @@
     
     <div class="clearfix">
     </div>
-    
-</div><!-- /.pq-podcast-header -->
     
     {% if episode %}
         <div class="pq-episode-header">
@@ -177,3 +177,32 @@
               {% endfor %}
           </select>
     </div><!-- /.pq-episode-title -->
+    
+    <div class="clearfix">
+    </div>
+    
+    <div class="pq-episode-info">
+      
+      <div class="pq-podcast-header-info-left">
+          <strong>Date Released:</strong> {{ episode.publication_date|date:'m/d/y' }}
+      </div>
+      
+      <div class="pq-podcast-header-info-left">
+          {{ episode.description }}
+      </div><!-- /.pq-podcast-header-info-left -->
+      
+      {% if episode.donate_url and episode.donation_recipient %}
+      <div class="pq-podcast-header-info-left">
+          <strong><i>All donations for this episode will go to <a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
+      </div>
+      {% endif %}
+      
+      <div class="pq-podcast-header-info-left">
+          <i>{{ episode.donation_recipient_about }}</i>
+      </div>
+    </div><!-- /.pq-episode-info -->
+
+    
+</div><!-- /.pq-episode-header -->
+    
+</div><!-- /.pq-podcast-header -->
