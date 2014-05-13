@@ -6,7 +6,7 @@
               <strong>Podcast:</strong> &nbsp
           </td>
           <td>
-              {{ quote.episode.podcast }}
+              <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast }}</a>
           </td>
       </tr>
       <tr>
@@ -14,7 +14,7 @@
               <strong>Episode:</strong> &nbsp
           </td>
           <td>
-              {{ quote.episode.title }}
+              <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">{{ quote.episode.title }}</a>
           </td>
       </tr>
       <tr>
@@ -22,26 +22,26 @@
               <strong>Released:</strong> &nbsp
           </td>
           <td>
-              {{ episode.publication_date }}
+              {{ quote.episode.publication_date }}
           </td>
       </tr>
-      {% if episode.donate_url and episode.donation_recipient %}
+      {% if quote.episode.donate_url and quote.episode.donation_recipient %}
           <tr>
               <td style="width:130px">
                   <span class="text-orange"><strong><i>Donations go to:</i></strong></span> &nbsp
               </td>
               <td>
-                  <i><a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i>
+                  <i><a href="{{ episode.donate_url }}">{{ quote.episode.donation_recipient }}</a></i>
               </td>
           </tr>
       {% endif %}
-      {% if episode.donation_recipient_about %}
+      {% if quote.episode.donation_recipient_about %}
       <tr>
           <td>
               <span class="text-orange"><strong><i>About:</i></strong></span> &nbsp
           </td>
           <td>
-              <i>{{ episode.donation_recipient_about }}</i>
+              <i>{{ quote.episode.donation_recipient_about }}</i>
           </td>
       </tr>
       {% endif %}

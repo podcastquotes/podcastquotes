@@ -5,7 +5,7 @@
         
         <div class="pq-quote-buttons">
 
-            <a href="/quotes/vote/home/{{ quote.id }}/1/">
+            <a href="/quotes/vote/{{ quote.id }}/1/">
                 <div class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
                     <i class="fa fa-arrow-up"></i>
                 </div>
@@ -15,7 +15,7 @@
                 {{ quote.vote_score }}
             </div>
             
-            <a href="/quotes/vote/home/{{ quote.id }}/-1/">
+            <a href="/quotes/vote/{{ quote.id }}/-1/">
                 <div class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}">
                     <i class="fa fa-arrow-down"></i>
                 </div>
@@ -57,7 +57,7 @@
               {% else %}
                   {% if quote.episode.title %} 
                       <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
-                          {{ quote.episode.title }} - {{ quote.episode.publication_date|date:'m/d/y' }}
+                          {{ quote.episode.title }}
                       </a>
                   {% endif %}
               {% endif %}
@@ -67,26 +67,38 @@
         <div class="pull-left">
         
             {% if quote.time_quote_begins and quote.episode.youtube_url %}
-            
+                
                 <div class="youtube-box" id="youtube-{{ forloop.counter }}">
                   <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
                   </div>
                 </div>
-            
+                
+                <div class="preview-published" id="preview-time-{{ forloop.counter }}">
+                    <span class="pull-left">
+                        {{ quote.episode.publication_date|date:'N d, Y' }}
+                    </span>
+                    <span class="pull-right">
+                        {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
+                    </span>
+                </div>
+
             {% endif %}
             
-            <div class="pq-quote-details">
+            <div class="pq-quote-details quote-time" id="quote-time-{{ forloop.counter }}">
+              {% if quote.episode.publication_date %}
+                {{ quote.episode.publication_date|date:'N d, Y' }} ---
+              {% endif %}
               {% if quote.converted_time_begins %}
                 Starts: {{ quote.converted_time_begins }} 
               {% endif %}
               {% if quote.converted_time_begins and quote.converted_time_ends %}
-                - Ends: {{ quote.converted_time_ends }} 
+                --- Ends: {{ quote.converted_time_ends }} 
               {% endif %}
             </div>
         
             <div class="pq-quote-buttons-xs">
             
-                <a href="/quotes/vote/home/{{ quote.id }}/1/">
+                <a href="/quotes/vote/{{ quote.id }}/1/">
                     <div class="pq-quote-upvote-xs">
                         <i class="fa fa-arrow-up"></i>
                     </div>
@@ -96,7 +108,7 @@
                     {{ quote.vote_score}}
                 </div>
                 
-                <a href="/quotes/vote/home/{{ quote.id }}/-1/">
+                <a href="/quotes/vote/{{ quote.id }}/-1/">
                     <div class="pq-quote-downvote-xs">
                         <i class="fa fa-arrow-down"></i>
                     </div>
@@ -122,7 +134,7 @@
             {% if quote.text %}
             <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
               {% if not quote.id|is_less_than_X_characters:201 %}
-                  <div class="pq-show-text" id="show-more-{{ forloop.counter }}">
+                  <div class="pq-show-more" id="show-more-{{ forloop.counter }}">
                       show quote
                   </div>
               {% endif %}
@@ -130,21 +142,27 @@
             <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
               {{ quote.text|linebreaks }}
               {% if not quote.id|is_less_than_X_characters:201 %}
-                  <div class="pq-show-text" id="show-less-{{ forloop.counter }}">
-                      hide quote
-                  </div>
               {% endif %}
             </div><!-- /.pq-quote-text -->
+            <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
+                hide quote
+            </div>
             {% endif %}
 
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
               $("#pq-quote-text-{{ forloop.counter }}").show();
+              $("#show-less-{{ forloop.counter }}").show();
           });
           $("#show-less-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-{{ forloop.counter }}").hide();
               $("#pq-quote-text-preview-{{ forloop.counter }}").show();
+          });
+          $("#youtube-{{ forloop.counter }}").click(function() {
+              $("#preview-published-{{ forloop.counter }}").hide();
+              $("#preview-time-{{ forloop.counter }}").hide();
+              $("#quote-time-{{ forloop.counter }}").show();
           });
         </script>
         

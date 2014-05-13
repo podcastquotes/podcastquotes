@@ -805,6 +805,10 @@ a {
     color:#999;
 }
 
+.quote-time {
+    display:none;
+}
+
 .pq-quote-divider {
     clear:both;
 }
@@ -999,36 +1003,34 @@ a {
     clear:left;
 }
 
-.pq-quote-text-preview-cleared {
-    padding:0;
-    clear:left;
-}
-
-@media (max-width:991px) {
-    .pq-quote-text-preview {
-        clear:left;
-    }
-}
-
-@media (min-width:992px) {
-    .pq-quote-text-preview {
-    }
-}
-
-.pq-show-text {
-    padding:0 0 10px 0;
+.pq-show-more {
+    padding:0 0 15px 0;
     font-size:14px;
     cursor:pointer;
     color:#428bca;
 }
 
-.pq-show-text:hover {
+.pq-show-more:hover {
    color:#62abea;
 }
 
+.pq-show-less {
+    display:none;
+    padding:5px 0 15px 0;
+    font-size:14px;
+    cursor:pointer;
+    color:#428bca;
+}
+
+.pq-show-less:hover {
+   color:#62abea;
+}
+
+
+
 .pq-quote-bottom {
     clear:both;
-    padding:5px 0;
+    padding:0 0 5px 0;
 }
 
 .pq-quote-bottom-button {
@@ -1140,8 +1142,8 @@ a {
 .circle {
     position:absolute;
     font-size:70px;
-    color:#444;
-    opacity:0.9;
+    color:#777;
+    opacity:0.8;
     cursor:pointer;
 }
 
@@ -1159,7 +1161,50 @@ a {
 
 @media (min-width:401px) {
     .circle {
-        margin:105px 0 0 152px;
+        margin:95px 0 0 152px;
+    }
+}
+
+.preview-published {
+    position:absolute;
+    text-align:left;
+    padding:5px 10px 7px 10px;
+    background-color:#000;
+    font-size:13px;
+    color:#999;
+    cursor:pointer;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+}
+
+@media (max-width:350px) {
+    .preview-published {
+        width:150px;
+    }
+}
+
+@media (min-width:351px) and (max-width:400px) {
+    .preview-published {
+        width:200px;
+    }
+}
+
+@media (min-width:401px) and (max-width:450px) {
+    .preview-published {
+        width:250px;
+    }
+}
+
+@media (min-width:451px) and (max-width:550px) {
+    .preview-published {
+        width:300px;
+    }
+}
+
+@media (min-width:551px) {
+    .preview-published {
+        width:350px;
+        margin:238px 0 0 0;
     }
 }
 
@@ -1171,8 +1216,8 @@ a {
     float:left;
     clear:left;
     margin:0 25px 0 0;
-    border-radius:10px;
     cursor:pointer;
+    border-radius:10px;
 }
 
 @media (max-width:350px) {
