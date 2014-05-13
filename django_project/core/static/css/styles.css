@@ -1034,13 +1034,19 @@ a {
 }
 
 .pq-quote-bottom-button {
-    display:inline-block;
+    float:left;
     margin:0 25px 0 0;
     padding:0;
     background-color:#fcfcfc;
     border:none;
-    font-size:15px;
+    font-size:14px;
     font-weight:bold;
+}
+
+.pq-quote-submitted-by {
+    float:right;
+    font-size:14px;
+    color:#777;
 }
 
 /******************************
