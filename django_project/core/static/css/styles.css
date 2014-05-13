@@ -753,7 +753,7 @@ a {
 .pq-quote-summary {
     clear:left;
     overflow:hidden;
-    padding:0 0 10px 0;
+    padding:0 0 15px 0;
     font-weight:bold;
 }
 
@@ -783,7 +783,7 @@ a {
     .pq-quote-details {
         clear:left;
         margin:0 0 15px 0;
-        font-size:14px;
+        font-size:16px;
         color:#555;
     }
 }
@@ -792,7 +792,7 @@ a {
     .pq-quote-details {
         clear:left;
         margin:0 0 15px 0;
-        font-size:14px;
+        font-size:16px;
         color:#555;
     }
 }
