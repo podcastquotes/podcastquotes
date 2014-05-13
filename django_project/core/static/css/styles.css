@@ -176,30 +176,22 @@ a {
 @media (max-width:991px) {
     .pq-navbar-container {
         margin:0 auto;
-        padding:0 5px 0 20px;
+        padding:0 25px;
     }
 }
 
 @media (min-width:992px) {
     .pq-navbar-container {
-        max-width:1160px;
         margin:0 auto;
-        padding:0 20px;
+        padding:0 40px 0 100px;
     }
-}
-
-.pq-navbar {
-    background-color:#e7e7e7;
-    padding:10px 0;
-    margin:0 0 20px 0;
-    border-bottom:1px solid #888;
 }
 
 .navbar {
         position:fixed;
         width:100%;
         background-color:#e7e7e7;
-        margin:0 0 25px 0;
+        margin:0 0 20px 0;
         border-bottom:1px solid #888;
         border-radius:0;
         color:#111;
@@ -207,7 +199,7 @@ a {
 }
 
 .navbar-fixed-space {
-    height:75px;
+    height:70px;
     width:100%;
 }
 
@@ -358,15 +350,21 @@ a {
 @media (min-width:768px) and (max-width:991px) {
     .pq-container {
         margin:0 auto;
-        padding:0 20px;
+        padding:0 30px;
     }
 }
 
-@media (min-width:992px) {
+@media (min-width:992px) and (max-width:1199px) {
     .pq-container {
-        max-width:1160px;
         margin:0 auto;
-        padding:0 20px;
+        padding:0 30px 0 105px;
+    }
+}
+
+@media (min-width:1200px) {
+    .pq-container {
+        margin:0 auto;
+        padding:0 30px 0 105px;
     }
 }
 
@@ -383,7 +381,7 @@ a {
 
 @media (min-width:551px) {
     .pq-breadcrumbs {
-        margin:-5px 0 20px 0;
+        margin:-5px 0 15px 0;
         font-size:16px;
     }
 }
@@ -391,7 +389,7 @@ a {
 @media (max-width:991px) {
     .pq-title {
         clear:left;
-        margin:0 0 25px 0;
+        margin:0 0 20px 0;
         font-size:24px;
         font-weight:bold;
         color:#111;
@@ -401,7 +399,7 @@ a {
 @media (min-width:992px) {
     .pq-title {
         width:100%;
-        margin:0 0 25px 0;
+        margin:0 0 20px 0;
         font-size:22px;
         font-weight:bold;
         color:#111;
@@ -751,6 +749,10 @@ a {
     border-bottom:1px solid #ddd;
 }
 
+.pq-quote-text-wrapper {
+    overflow:hidden;
+}
+
 .pq-quote-counter {
     float:right;
     font-size:14px;
@@ -758,37 +760,62 @@ a {
 }
 
 .pq-quote-summary {
-    clear:left;
     overflow:hidden;
-    padding:0 0 14px 0;
+    padding:0 0 10px 0;
     font-weight:bold;
+    font-size:22px;
 }
 
 .pq-quote-summary a {
     color:#111;
 }
 
-@media (max-width:400px) {
+@media (max-width:767px) {
     .pq-quote-summary {
         font-size:18px;
     }
 }
 
-@media (min-width:401px) and (max-width:500px) {
+@media (min-width:768px) and (max-width:991px) {
     .pq-quote-summary {
-        font-size:20px
-    }
-}
-
-@media (min-width:501px) {
-    .pq-quote-summary {
-        font-size:22px;
+        font-size:20px;
     }
 }
 
 @media (max-width:450px) {
+    .pq-quote-breadcrumbs {
+        margin:0 0 5px 0;
+        font-size:14px;
+        color:#777;
+    }
+}
+
+@media (min-width:451px) and (max-width:991px) {
+    .pq-quote-breadcrumbs {
+        margin:0 0 10px 0;
+        font-size:14px;
+        color:#777;
+    }
+}
+
+@media (min-width:992px) {
+    .pq-quote-breadcrumbs {
+        margin:0 0 10px 0;
+        font-size:16px;
+        color:#777;
+    }
+}
+
+.pq-quote-breadcrumbs a {
+    color:#777;
+}
+
+.pq-quote-breadcrumbs a:hover {
+    color:#111;
+}
+
+@media (max-width:450px) {
     .pq-quote-details {
-        clear:left;
         margin:0 0 15px 0;
         font-size:16px;
         color:#555;
@@ -797,7 +824,6 @@ a {
 
 @media (min-width:451px) {
     .pq-quote-details {
-        clear:left;
         margin:0 0 15px 0;
         font-size:16px;
         color:#555;
@@ -833,15 +859,15 @@ a {
 
 @media (min-width:451px) {
     .pq-quote-buttons {
-        float:right;
-        margin:5px 0 0 20px;
+        float:left;
+        margin:5px 20px 0 -80px;
     }
 }
 
 .pq-quote-upvote {
     float:right;
     text-align:center;
-    width:65px;
+    width:60px;
     padding:5px 0;
     border:1px solid #aaa;
     border-radius:15px;
@@ -861,7 +887,7 @@ a {
     clear:right;
     float:right;
     text-align:center;
-    width:65px;
+    width:60px;
     margin:7px 0;
     font-size:15px;
     color:#444;
@@ -871,7 +897,7 @@ a {
     clear:right;
     float:right;
     text-align:center;
-    width:65px;
+    width:60px;
     padding:5px 0;
     border:1px solid #aaa;
     border-radius:15px;
@@ -883,7 +909,7 @@ a {
     clear:right;
     float:right;
     text-align:center;
-    width:65px;
+    width:60px;
     margin:15px 0 0 0;
     padding:5px 0;
     border:1px solid #aaa;
@@ -896,7 +922,7 @@ a {
     clear:right;
     float:right;
     text-align:center;
-    width:65px;
+    width:60px;
     margin:7px 0 20px 0;
     font-size:15px;
     color:#444;
@@ -994,27 +1020,27 @@ a {
     color:#444;
 }
 
-.pq-quote-inside {
-    overflow:hidden;
-}
-
 .pq-quote-text {
-    clear:left;
     overflow:hidden;
     display:none;
-    font-size:16px;
+    font-size:14px;
 }
 
 .pq-quote-text-preview {
-    overflow:hidden;
-    clear:left;
+    font-size:14px;
 }
 
 .pq-show-more {
-    padding:0 0 15px 0;
-    font-size:16px;
+    display:inline-block;
+    font-size:14px;
     cursor:pointer;
     color:#428bca;
+}
+
+@media (max-width:991px) {
+    .pq-show-more {
+        font-size:14px;
+    }
 }
 
 .pq-show-more:hover {
@@ -1023,8 +1049,7 @@ a {
 
 .pq-show-less {
     display:none;
-    padding:5px 0 15px 0;
-    font-size:16px;
+    font-size:14px;
     cursor:pointer;
     color:#428bca;
 }
@@ -1033,11 +1058,8 @@ a {
    color:#62abea;
 }
 
-
-
 .pq-quote-bottom {
-    clear:both;
-    padding:0 0 5px 0;
+    clear:left;
 }
 
 .pq-quote-bottom-button {
@@ -1050,8 +1072,8 @@ a {
     font-weight:bold;
 }
 
-.pq-quote-submitted-by {
-    float:right;
+.pq-quote-posted-by {
+    margin:10px 0 10px 0;
     font-size:14px;
     color:#888;
 }
@@ -1155,7 +1177,7 @@ a {
 .circle {
     position:absolute;
     font-size:70px;
-    color:#777;
+    color:#888;
     opacity:0.8;
     cursor:pointer;
 }
@@ -1166,26 +1188,33 @@ a {
     }
 }
 
-@media (min-width:351px) and (max-width:400px) {
+@media (min-width:351px) and (max-width:767px) {
     .circle {
-        margin:44px 0 0 73px;
+        margin:65px 0 0 100px;
     }
 }
 
-@media (min-width:401px) {
+@media (min-width:768px) and (max-width:991px) {
     .circle {
-        margin:95px 0 0 152px;
+        margin:84px 0 0 121px;
+    }
+}
+
+@media (min-width:992px) {
+    .circle {
+        margin:84px 0 0 121px;
     }
 }
 
 .preview-published {
     position:absolute;
     text-align:left;
-    padding:5px 10px 7px 10px;
+    padding:6px 15px 6px 15px;
     background-color:#000;
-    font-size:13px;
-    color:#999;
+    font-size:14px;
+    color:#bbb;
     cursor:pointer;
+    border-top:1px solid #ddd;
     border-bottom-right-radius:10px;
     border-bottom-left-radius:10px;
 }
@@ -1214,34 +1243,35 @@ a {
     }
 }
 
-@media (min-width:551px) {
+@media (min-width:551px) and  (max-width:767px) {
     .preview-published {
-        width:350px;
-        margin:238px 0 0 0;
+        width:250px;
+        margin:165px 0 0 25px;
+        font-size:12px;
     }
 }
 
-.youtube-margin {
-    float:left;
+@media (min-width:768px) {
+    .preview-published {
+        width:300px;
+        margin:205px 0 0 25px;
+    }
 }
 
 .youtube-img-preview {
-    float:left;
-    clear:left;
-    margin:0 25px 0 0;
     cursor:pointer;
     border-radius:10px;
 }
 
 @media (max-width:350px) {
     .youtube-img-preview {
-        width:150px;
+        width:250px;
     }
 }
 
 @media (min-width:351px) and (max-width:400px) {
     .youtube-img-preview {
-        width:200px;
+        width:250px;
     }
 }
 
@@ -1251,22 +1281,76 @@ a {
     }
 }
 
-@media (min-width:451px) and (max-width:550px) {
+@media (min-width:451px) and (max-width:767px) {
+    .youtube-img-preview {
+        width:250px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) {
     .youtube-img-preview {
         width:300px;
     }
 }
 
-@media (min-width:551px) {
+@media (min-width:992px) and (max-width:1199px) {
     .youtube-img-preview {
-        max-width:350px;
+        width:300px;
+    }
+}
+
+
+@media (min-width:1200px) {
+    .youtube-img-preview {
+        max-width:300px;
     }
 }
 
 .youtube {
     float:left;
     clear:left;
-    margin:5px 0 20px 0;
+    margin:5px 0 20px 25px;
+}
+
+.youtube-podcast-logo {
+    position:absolute;
+    padding:2px;
+    cursor:pointer;
+}
+
+.youtube-podcast-logo img {
+    margin:10px 0 0 30px;
+    border:2px solid #bbb;
+    border-radius:10px;
+}
+
+@media (max-width:350px) {
+    .youtube-podcast-logo img {
+        width:60px;
+    }
+}
+
+@media (min-width:351px) and (max-width:400px) {
+    .youtube-podcast-logo img {
+        width:60px;
+    }
+}
+
+@media (min-width:401px) and (max-width:450px) {
+    .youtube-podcast-logo img {
+        width:60px;
+    }
+}
+
+@media (min-width:451px) and (max-width:550px) {
+    .youtube-podcast-logo img {
+        width:60px;
+    }
+}
+
+@media (min-width:551px) {
+    .youtube-podcast-logo img {
+        width:60px;
 }
 
 .iframe-size {

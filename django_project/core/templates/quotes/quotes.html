@@ -3,8 +3,8 @@
 
       <div class="pq-quote">
         
-        <div class="pq-quote-buttons">
-
+        <div class="pq-quote-buttons hidden-xs hidden-sm">
+            
             <a href="/quotes/vote/{{ quote.id }}/1/">
                 <div class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
                     <i class="fa fa-arrow-up"></i>
@@ -35,36 +35,7 @@
             
         </div><!-- /.pq-quote-buttons -->
         
-        {% if quote.summary %}
-        <div class="pq-quote-summary">
-          <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
-        </div><!-- /.pq-quote-summary -->
-        {% endif %}
-        
-        {% if episode %}
-        {% else %}
-            <div class="pq-quote-details">
-              {% if podcast %}
-              {% else %}
-                  {% if quote.episode.podcast.title %}
-                      <a href="/podcasts/{{ quote.episode.podcast.id }}">
-                          {{ quote.episode.podcast.title }}
-                      </a>
-                      >
-                  {% endif %}
-              {% endif %}
-              {% if episode %}
-              {% else %}
-                  {% if quote.episode.title %} 
-                      <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
-                          {{ quote.episode.title }}
-                      </a>
-                  {% endif %}
-              {% endif %}
-            </div>
-        {% endif %}
-        
-        <div class="pull-left">
+ <div class="pull-right">
         
             {% if quote.time_quote_begins and quote.episode.youtube_url %}
                 
@@ -73,28 +44,26 @@
                   </div>
                 </div>
                 
+                {% if is_home_page and quote.episode.podcast.image %}
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
+                        <img src="/media/{{ quote.episode.podcast.image }}">
+                    </div><!-- /.pq-quote-buttons-logo -->
+                {% elif is_podcast_page and quote.episode.image %}
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
+                        <img src="/media/{{ quote.episode.image }}">
+                    </div><!-- /.pq-quote-buttons-logo -->
+                {% endif %}
+                
                 <div class="preview-published" id="preview-time-{{ forloop.counter }}">
-                    <span class="pull-left">
+                    <span class="pull-right">
                         {{ quote.episode.publication_date|date:'N d, Y' }}
                     </span>
-                    <span class="pull-right">
+                    <span class="pull-left">
                         {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
                     </span>
                 </div>
 
             {% endif %}
-            
-            <div class="pq-quote-details quote-time" id="quote-time-{{ forloop.counter }}">
-              {% if quote.episode.publication_date %}
-                {{ quote.episode.publication_date|date:'N d, Y' }} ---
-              {% endif %}
-              {% if quote.converted_time_begins %}
-                Starts: {{ quote.converted_time_begins }} 
-              {% endif %}
-              {% if quote.converted_time_begins and quote.converted_time_ends %}
-                --- Ends: {{ quote.converted_time_ends }} 
-              {% endif %}
-            </div>
         
             <div class="pq-quote-buttons-xs">
             
@@ -130,49 +99,93 @@
         
             
         </div><!-- /.pull-left -->
-
+        
+        <div class="pq-quote-text-wrapper">
+        
+            {% if quote.summary %}
+                <div class="pq-quote-summary">
+                    <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
+                </div><!-- /.pq-quote-summary -->
+            {% endif %}
+            
+            {% if episode %}
+            {% else %}
+                <div class="pq-quote-breadcrumbs">
+                  {% if podcast %}
+                  {% else %}
+                      {% if quote.episode.podcast.title %}
+                          <a href="/podcasts/{{ quote.episode.podcast.id }}">
+                              {{ quote.episode.podcast.title }}
+                          </a>
+                          >
+                      {% endif %}
+                  {% endif %}
+                  {% if episode %}
+                  {% else %}
+                      {% if quote.episode.title %} 
+                          <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
+                              {{ quote.episode.title }}
+                          </a>
+                      {% endif %}
+                  {% endif %}
+                </div>
+            {% endif %}
+        
             {% if quote.text %}
-            <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-              {% if not quote.id|is_less_than_X_characters:201 %}
-                  <div class="pq-show-more" id="show-more-{{ forloop.counter }}">
-                      show quote
-                  </div>
-              {% endif %}
-            </div>
-            <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
-              {{ quote.text|linebreaks }}
-              {% if not quote.id|is_less_than_X_characters:201 %}
-              {% endif %}
-            </div><!-- /.pq-quote-text -->
-            <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
-                hide quote
-            </div>
+                <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
+                    {% if not quote.id|is_less_than_X_characters:201 %}
+                        {{ quote.text|truncatechars:200|linebreaks }}
+                    {% else %}
+                        {{ quote.text|linebreaks }}
+                    {% endif %}
+                </div>
+                <div class="pq-show-more" id="show-more-{{ forloop.counter }}">
+                    show quote
+                </div>
+                <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
+                  {{ quote.text|linebreaks }}
+                </div><!-- /.pq-quote-text -->
+                <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
+                    hide quote
+                </div>
             {% endif %}
 
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
-              $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
               $("#pq-quote-text-{{ forloop.counter }}").show();
+              $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
+              $("#show-more-{{ forloop.counter }}").hide();
               $("#show-less-{{ forloop.counter }}").show();
           });
           $("#show-less-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-{{ forloop.counter }}").hide();
-              $("#pq-quote-text-preview-{{ forloop.counter }}").show();
+              $("#pq-quote-text--preview-{{ forloop.counter }}").show();
+              $("#show-less-{{ forloop.counter }}").hide();
+              $("#show-more-{{ forloop.counter }}").show();
           });
           $("#youtube-{{ forloop.counter }}").click(function() {
               $("#preview-published-{{ forloop.counter }}").hide();
+              $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
               $("#preview-time-{{ forloop.counter }}").hide();
               $("#quote-time-{{ forloop.counter }}").show();
           });
         </script>
-          
-          <div class="pq-quote-bottom">
+        
+        <div class="pq-quote-posted-by">
+            posted 4 hours ago by {{ quote.submitted_by }}
+        </div>
+        
+          <div class="pq-quote-bottom-buttons">
           
           <!-- Button trigger modal -->
           <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
           </button>
 
+          <div class="pq-quote-bottom-button">
+              save
+          </div>
+          
           <!-- Modal -->
           <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -204,12 +217,14 @@
                     </a>
                 </div>
             {% endif %}
-              <div class="pq-quote-submitted-by">
-                  posted 4 hours ago by blah blah
-              </div>
               <div class="clearfix">
               </div>
             
           </div><!-- /.pq-quote-bottom -->
+        
+        </div><!-- /.pq-quote-text-wrapper -->
+        
+        <div class="clearfix">
+        </div>
 
       </div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
