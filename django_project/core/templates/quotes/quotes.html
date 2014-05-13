@@ -37,7 +37,7 @@
         
         {% if quote.summary %}
         <div class="pq-quote-summary">
-          {{ quote.summary }}
+          <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
         </div><!-- /.pq-quote-summary -->
         {% endif %}
         
@@ -150,9 +150,28 @@
         
           <div class="pq-quote-bottom">
           
-            <div class="pq-quote-bottom-button">
-              share
+          <!-- Button trigger modal -->
+          <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
+            share
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                </div>
+                <div class="modal-body">
+                    http://www.podcastquotes.com{{ quote.get_absolute_url }}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
+          </div><!-- /.modal fade -->
             
             {% if quote.episode.podcast.donate_url or quote.episode.donate_url %}
                 <div class="pq-quote-bottom-button text-orange">

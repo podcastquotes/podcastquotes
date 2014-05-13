@@ -2,21 +2,15 @@
 
 {% block header %}
     
-    {% include 'episode_col_width.html' %}
-
-    {% include 'podcast_breadcrumbs.html' %}
-
-    {% include 'podcast_header.html' %}
-
-    {% include 'episode_header.html' %}
+    {% include 'episode_all_headers.html' %}
         
 {% endblock %}<!-- /block header -->
     
 {% block quotes %}
 
-    {% for quote in episode.all_episode_quotes_transcription %}
-        {% include 'quotes.html' %}
-    {% endfor %}
+    {% include 'quotes_forloop.html' %}
+
+    {% include 'quote_pagination.html' %}
 
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 

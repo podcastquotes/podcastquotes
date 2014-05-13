@@ -26,16 +26,18 @@
   <div class="pq-container">
     
     <div class="row">
-      
+
+      {% block sidebar %}
+          {% include 'sidebar.html' %}
+      {% endblock %}<!-- / block sidebar -->
+    
       {% block header %}
       {% endblock %}<!-- / block header -->
 
       {% block quotes %}
       {% endblock %}
       
-      {% block sidebar %}
-          {% include 'sidebar.html' %}
-      {% endblock %}<!-- / block sidebar -->
+
     
     </div><!-- /.row -->
   

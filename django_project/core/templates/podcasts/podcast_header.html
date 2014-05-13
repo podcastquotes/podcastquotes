@@ -65,11 +65,32 @@
     
       <div class="pq-podcast-buttons">
           
-          <a href="#">
-            <div class="pq-podcast-button color-share">
-              Share
+          <!-- Button trigger modal -->
+          <button class="pq-podcast-button color-share" data-toggle="modal" data-target="#myModal">
+            Share
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                </div>
+                <div class="modal-body">
+                    {% if episode %}
+                        http://www.podcastquotes.com{{ episode.get_absolute_url }}
+                    {% elif podcast %}
+                        http://www.podcastquotes.com{{ podcast.get_absolute_url }}
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
-          </a>
+          </div><!-- /.modal fade -->
           
           {% if podcast.donate_url or episode.donate_url %}
           <a href=
@@ -193,7 +214,7 @@
       
       {% if episode.donate_url and episode.donation_recipient %}
       <div class="pq-podcast-header-info-left">
-          <strong><i>All donations for this episode will go to <a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
+          <strong><i>All <a href="{{ episode.donate_url }}" class="text-orange" target="_blank">donations</a> for this episode will go to <a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
       </div>
       {% endif %}
       

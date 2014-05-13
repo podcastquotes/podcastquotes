@@ -69,7 +69,7 @@ urlpatterns = patterns('',
     
     url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/controversial/$', 'quotes_app.views.episode_controversial', name='episode_controversial'),
     
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/new/$', 'quotes_app.views.episode_new', name='episode'),
+    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/new/$', 'quotes_app.views.episode_new', name='episode_new'),
     
     url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/$', 'quotes_app.views.episode_top', name='episode_top'),
     
@@ -84,6 +84,8 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/ghosts/$', 'quotes_app.views.episode_ghosts', name='episode_ghosts'),
     
     url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/birthdays/$', 'quotes_app.views.episode_birthdays', name='episode_birthdays'),
+    
+    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
     
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),

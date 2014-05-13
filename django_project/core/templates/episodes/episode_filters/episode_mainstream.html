@@ -8,10 +8,10 @@
     
 {% block quotes %}
 
-    {% for quote in episode.all_episode_quotes_mainstream %}
-        {% include 'quotes.html' %}
-    {% endfor %}
+    {% include 'quotes_forloop.html' %}
 
+    {% include 'quote_pagination.html' %}
+    
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 
 {% endblock %}<!-- / block quotes -->

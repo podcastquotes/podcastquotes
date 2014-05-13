@@ -1,0 +1,50 @@
+<div class="pq-quote-header">
+  
+  <table>
+      <tr>
+          <td>
+              <strong>Podcast:</strong> &nbsp
+          </td>
+          <td>
+              {{ quote.episode.podcast }}
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <strong>Episode:</strong> &nbsp
+          </td>
+          <td>
+              {{ quote.episode.title }}
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <strong>Released:</strong> &nbsp
+          </td>
+          <td>
+              {{ episode.publication_date }}
+          </td>
+      </tr>
+      {% if episode.donate_url and episode.donation_recipient %}
+          <tr>
+              <td style="width:130px">
+                  <span class="text-orange"><strong><i>Donations go to:</i></strong></span> &nbsp
+              </td>
+              <td>
+                  <i><a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i>
+              </td>
+          </tr>
+      {% endif %}
+      {% if episode.donation_recipient_about %}
+      <tr>
+          <td>
+              <span class="text-orange"><strong><i>About:</i></strong></span> &nbsp
+          </td>
+          <td>
+              <i>{{ episode.donation_recipient_about }}</i>
+          </td>
+      </tr>
+      {% endif %}
+  </table>
+
+</div><!-- /.pq-quote-header -->

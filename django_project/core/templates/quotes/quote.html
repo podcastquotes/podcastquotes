@@ -2,19 +2,17 @@
 
 {% block header %}
     
-    {% include 'home_col_width.html' %}
+    {% include 'quote_col_width.html' %}
 
-    {% include 'home_header.html' %}
+    {% include 'quote_breadcrumbs.html' %}
     
-    {% include 'home_filter_selector.html' %}
-        
+    {% include 'quote_header.html' %}
+    
 {% endblock %}<!-- /block header -->
     
 {% block quotes %}
 
-    {% include 'quotes_forloop.html' %}
-
-    {% include 'quote_pagination.html' %}
+    {% include 'quotes.html' %}
 
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 

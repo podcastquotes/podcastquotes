@@ -14,6 +14,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from quotes_app.models import Podcast, Episode, Quote, Vote
 from core.forms import PodcastCreateForm, PodcastForm
 from core.forms import EpisodeCreateForm, EpisodeForm
@@ -47,35 +48,87 @@ def home_controversial(request):
                  'home_controversial_is_active': Quote.objects.all().first()})
                              
 def home_new(request):
+    # Return quotes ordered by newest to oldest
+    all_quotes_new = Quote.objects.order_by('-created_at')
+    paginator = Paginator(all_quotes_new, 5) # Show 5 quotes per page.
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'home_new.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 # Return quotes ordered by newest to oldest
-                 'all_quotes_new': Quote.objects.order_by('-created_at'),
+                 'quotes': quotes,
                  'home_new_is_active': Quote.objects.all().first()})
 
 def home_top(request):
+    # Return quotes ordered by highest score to lowest score
+    all_quotes_top = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    paginator = Paginator(all_quotes_top, 5) # Show 5 quotes per page.
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'home_top.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 # Return quotes ordered by highest score to lowest score
-                 'all_quotes_top': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score'),
+                 'quotes': quotes,
                  'home_top_is_active': Quote.objects.all().first()})
-                             
+
 def home_bottom(request):
+    # Return quotes ordered by lowest score to highest score
+    all_quotes_bottom = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    paginator = Paginator(all_quotes_bottom, 5) # Show 5 quotes per page.
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'home_bottom.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 # Return quotes ordered by lowest score to highest score
-                 'all_quotes_bottom': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score'),
+                 'quotes': quotes,
                  'home_bottom_is_active': Quote.objects.all().first()})
                              
 def home_mainstream(request):
+    # Return quotes ordered by total number of votes
+    all_quotes_mainstream = Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    paginator = Paginator(all_quotes_mainstream, 5) # Show 5 quotes per page.
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'home_mainstream.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 # Return quotes ordered by total number of votes
-                 'all_quotes_mainstream': Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total'),
+                 'quotes': quotes,
                  'home_mainstream_is_active': Quote.objects.all().first()})
                              
 def home_underground(request):
@@ -87,11 +140,24 @@ def home_underground(request):
                  'home_underground_is_active': Quote.objects.all().first()})
                              
 def home_chronological(request):
+    # Return quotes ordered by the time the quote begins in the podcast
+    all_quotes_chronological = Quote.objects.order_by('time_quote_begins')
+    paginator = Paginator(all_quotes_chronological, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'home_chronological.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 # Return quotes ordered by the time the quote begins in the podcast
-                 'all_quotes_chronological': Quote.objects.order_by('time_quote_begins'),
+                 'quotes': quotes,
                  'home_chronological_is_active': Quote.objects.all().first()})
                              
 def home_ghosts(request):
@@ -106,8 +172,8 @@ def home_birthdays(request):
     return render(request, 'home_birthdays.html',
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
-                 ### queryset below is not working
-                 'all_quotes_birthdays': Quote.objects.filter(episode__publication_date=today),
+                 # Return quotes that were publicized on the same month/day as today in any year
+                 # 'quotes': Quote.objects.filter(),
                  'home_birthdays_is_active': Quote.objects.all().first()})
 
 def podcast_hot(request, podcast_id):
@@ -138,39 +204,92 @@ def podcast_controversial(request, podcast_id):
                  'podcast_controversial_is_active': Quote.objects.all().first()})
                              
 def podcast_new(request, podcast_id):
+    # Return quotes ordered by newest to oldest
+    all_quotes_new = Quote.objects.filter(episode__podcast_id=podcast_id).order_by('-created_at')
+    paginator = Paginator(all_quotes_new, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'podcast_new.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 # Return quotes ordered by newest to oldest
-                 'podcast_all_quotes_new': Quote.objects.order_by('-created_at'),
+                 'quotes': quotes,
                  'podcast_new_is_active': Quote.objects.all().first()})
 
 def podcast_top(request, podcast_id):
+    # Return quotes ordered by highest score to lowest score
+    
+    all_quotes_top = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    paginator = Paginator(all_quotes_top, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'podcast_top.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 # Return quotes ordered by highest score to lowest score
-                 'podcast_all_quotes_top': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score'),
+                 'quotes': quotes,
                  'podcast_top_is_active': Quote.objects.all().first()})
                              
 def podcast_bottom(request, podcast_id):
+    # Return quotes ordered by lowest score to highest score
+    all_quotes_bottom = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    paginator = Paginator(all_quotes_bottom, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'podcast_bottom.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 # Return quotes ordered by lowest score to highest score
-                 'podcast_all_quotes_bottom': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score'),
+                 'quotes': quotes,
                  'podcast_bottom_is_active': Quote.objects.all().first()})
                              
 def podcast_mainstream(request, podcast_id):
+    # Return quotes ordered by total number of votes
+    all_quotes_mainstream = Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    paginator = Paginator(all_quotes_mainstream, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'podcast_mainstream.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 # Return quotes ordered by total number of votes
-                 'podcast_all_quotes_mainstream': Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total'),
+                 'quotes': quotes,
                  'podcast_mainstream_is_active': Quote.objects.all().first()})
                              
 def podcast_underground(request, podcast_id):
@@ -183,12 +302,25 @@ def podcast_underground(request, podcast_id):
                  'podcast_underground_is_active': Quote.objects.all().first()})
                              
 def podcast_chronological(request, podcast_id):
+    # Return quotes ordered by the time the quote begins in the podcast
+    all_quotes_chronological = Quote.objects.order_by('time_quote_begins')
+    paginator = Paginator(all_quotes_chronological, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'podcast_chronological.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 # Return quotes ordered by the time the quote begins in the podcast
-                 'podcast_all_quotes_chronological': Quote.objects.order_by('time_quote_begins'),
+                 'quotes': quotes,
                  'podcast_chronological_is_active': Quote.objects.all().first()})
                              
 def podcast_ghosts(request, podcast_id):
@@ -205,7 +337,7 @@ def podcast_birthdays(request, podcast_id):
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
-                 'podcast_all_quotes_birthdays': Quote.objects.filter(episode__publication_date=today),
+                 # 'podcast_all_quotes_birthdays': Quote.objects.filter(),
                  'podcast_birthdays_is_active': Quote.objects.all().first()})
 
 def episode_hot(request, podcast_id, episode_id):
@@ -239,43 +371,95 @@ def episode_controversial(request, podcast_id, episode_id):
                  'episode_controversial_is_active': Quote.objects.all().first()})
                              
 def episode_new(request, podcast_id, episode_id):
+    # Return quotes ordered by newest to oldest
+    all_quotes_new = Quote.objects.filter(episode_id=episode_id).order_by('-created_at')
+    paginator = Paginator(all_quotes_new, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+        
     return render(request, 'episode_new.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 # Return quotes ordered by newest to oldest
-                 'episode_all_quotes_new': Quote.objects.order_by('-created_at'),
+                 'quotes': quotes,
                  'episode_new_is_active': Quote.objects.all().first()})
 
 def episode_top(request, podcast_id, episode_id):
+    # Return quotes ordered by highest score to lowest score
+    all_quotes_top = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+    paginator = Paginator(all_quotes_top, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'episode_top.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 # Return quotes ordered by highest score to lowest score
-                 'episode_all_quotes_top': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score'),
+                 'quotes': quotes,
                  'episode_top_is_active': Quote.objects.all().first()})
                              
 def episode_bottom(request, podcast_id, episode_id):
+    # Return quotes ordered by lowest score to highest score
+    all_quotes_bottom = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+    paginator = Paginator(all_quotes_bottom, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'episode_bottom.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 # Return quotes ordered by lowest score to highest score
-                 'episode_all_quotes_bottom': Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score'),
+                 'quotes': quotes,
                  'episode_bottom_is_active': Quote.objects.all().first()})
                              
 def episode_mainstream(request, podcast_id, episode_id):
+    # Return quotes ordered by total number of votes
+    all_quotes_mainstream = Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+    paginator = Paginator(all_quotes_mainstream, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'episode_mainstream.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 # Return quotes ordered by total number of votes
-                 'episode_all_quotes_mainstream': Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total'),
+                 'quotes': quotes,
                  'episode_mainstream_is_active': Quote.objects.all().first()})
                              
 def episode_underground(request, podcast_id, episode_id):
@@ -289,13 +473,26 @@ def episode_underground(request, podcast_id, episode_id):
                  'episode_underground_is_active': Quote.objects.all().first()})
                              
 def episode_chronological(request, podcast_id, episode_id):
+    # Return quotes ordered by the time the quote begins in the podcast
+    all_quotes_chronological = Quote.objects.filter(episode_id=episode_id).order_by('time_quote_begins')
+    paginator = Paginator(all_quotes_chronological, 5)
+    
+    page = request.GET.get('page')
+    try:
+        quotes = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        quotes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page.
+        quotes = paginator.page(paginator.num_pages)
+    
     return render(request, 'episode_chronological.html',
                  {'podcasts': Podcast.objects.all(),
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 # Return quotes ordered by the time the quote begins in the podcast
-                 'episode_all_quotes_chronological': Quote.objects.order_by('time_quote_begins'),
+                 'quotes': quotes,
                  'episode_chronological_is_active': Quote.objects.all().first()})
                              
 def episode_ghosts(request, podcast_id, episode_id):
@@ -314,8 +511,16 @@ def episode_birthdays(request, podcast_id, episode_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
-                 'episode_all_quotes_birthdays': Quote.objects.filter(episode__publication_date=today),
+                 # 'episode_all_quotes_birthdays': Quote.objects.filter(),
                  'episode_birthdays_is_active': Quote.objects.all().first()})
+                 
+def quote(request, podcast_id, episode_id, quote_id):
+    return render(request, 'quote.html',
+                 {'podcasts': Podcast.objects.all(),
+                 'podcast': Podcast.objects.get(id=podcast_id),
+                 'episodes': Episode.objects.filter(podcast_id=podcast_id),
+                 'episode': Episode.objects.get(id=episode_id),
+                 'quote': Quote.objects.get(id=quote_id),})
                  
 from quotes_app.services import PodcastSyndicationService
 

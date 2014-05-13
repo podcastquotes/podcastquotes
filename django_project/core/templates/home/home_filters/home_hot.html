@@ -12,9 +12,9 @@
     
 {% block quotes %}
 
-    {% for quote in all_quotes_hot %}
-        {% include 'quotes.html' %}
-    {% endfor %}
+    {% include 'quotes_forloop.html' %}
+
+    {% include 'quote_pagination.html' %}
 
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 
