@@ -5,7 +5,7 @@
         
         <div class="pq-quote-buttons">
 
-            <a href="/quotes/vote/{{ quote.id }}/1/">
+            <a href="/quotes/vote/home/{{ quote.id }}/1/">
                 <div class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
                     <i class="fa fa-arrow-up"></i>
                 </div>
@@ -15,7 +15,7 @@
                 {{ quote.vote_score }}
             </div>
             
-            <a href="/quotes/vote/{{ quote.id }}/-1/">
+            <a href="/quotes/vote/home/{{ quote.id }}/-1/">
                 <div class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}">
                     <i class="fa fa-arrow-down"></i>
                 </div>
@@ -86,7 +86,7 @@
         
             <div class="pq-quote-buttons-xs">
             
-                <a href="/quotes/vote/{{ quote.id }}/1/">
+                <a href="/quotes/vote/home/{{ quote.id }}/1/">
                     <div class="pq-quote-upvote-xs">
                         <i class="fa fa-arrow-up"></i>
                     </div>
@@ -96,7 +96,7 @@
                     {{ quote.vote_score}}
                 </div>
                 
-                <a href="/quotes/vote/{{ quote.id }}/-1/">
+                <a href="/quotes/vote/home/{{ quote.id }}/-1/">
                     <div class="pq-quote-downvote-xs">
                         <i class="fa fa-arrow-down"></i>
                     </div>
