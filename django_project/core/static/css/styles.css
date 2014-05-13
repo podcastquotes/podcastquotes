@@ -1005,7 +1005,7 @@ a {
 
 .pq-show-more {
     padding:0 0 15px 0;
-    font-size:14px;
+    font-size:16px;
     cursor:pointer;
     color:#428bca;
 }
@@ -1017,7 +1017,7 @@ a {
 .pq-show-less {
     display:none;
     padding:5px 0 15px 0;
-    font-size:14px;
+    font-size:16px;
     cursor:pointer;
     color:#428bca;
 }
