@@ -42,7 +42,7 @@ def home_hot(request):
                  'episodes': Episode.objects.all(),
                  # Implement some kind of trending algorithm with exponential decay
                  # 'all_quotes_hot': Quote.objects.filter(),
-                 'home_hot_is_active': Quote.objects.all().first()})
+                 'home_hot_is_active': 1})
                              
 def home_not(request):
     return render(request, 'home_not.html',
@@ -50,7 +50,7 @@ def home_not(request):
                  'episodes': Episode.objects.all(),
                  # Reverse the hot algorithm results to determine not sorting
                  # 'all_quotes_not': Quote.objects.filter(),
-                 'home_not_is_active': Quote.objects.all().first()})
+                 'home_not_is_active': 1})
                              
 def home_controversial(request):
     return render(request, 'home_controversial.html',
@@ -58,7 +58,7 @@ def home_controversial(request):
                  'episodes': Episode.objects.all(),
                  # Algorithm showing quotes that are diametrically in the middle of hot/not, with higher ranking going to quotes with the most overall votes
                  # 'all_quotes_controversial': Quote.objects.filter(),
-                 'home_controversial_is_active': Quote.objects.all().first()})
+                 'home_controversial_is_active': 1})
                              
 def home_new(request):
     # Return quotes ordered by newest to oldest
@@ -70,7 +70,7 @@ def home_new(request):
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
                  'quotes': quotes,
-                 'home_new_is_active': Quote.objects.all().first()})
+                 'home_new_is_active': 1})
 
 def home_top(request):
     # Return quotes ordered by highest score to lowest score
@@ -82,7 +82,7 @@ def home_top(request):
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
                  'quotes': quotes,
-                 'home_top_is_active': Quote.objects.all().first()})
+                 'home_top_is_active': 1})
 
 def home_bottom(request):
     # Return quotes ordered by lowest score to highest score
@@ -94,7 +94,7 @@ def home_bottom(request):
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
                  'quotes': quotes,
-                 'home_bottom_is_active': Quote.objects.all().first()})
+                 'home_bottom_is_active': 1})
                              
 def home_mainstream(request):
     # Return quotes ordered by total number of votes
@@ -106,7 +106,7 @@ def home_mainstream(request):
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
                  'quotes': quotes,
-                 'home_mainstream_is_active': Quote.objects.all().first()})
+                 'home_mainstream_is_active': 1})
                              
 def home_underground(request):
     return render(request, 'home_underground.html',
@@ -114,7 +114,7 @@ def home_underground(request):
                  'episodes': Episode.objects.all(),
                  # Return quotes ordered by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
                  # 'all_quotes_underground': Quote.objects.filter(),
-                 'home_underground_is_active': Quote.objects.all().first()})
+                 'home_underground_is_active': 1})
                              
 def home_chronological(request):
     # Return quotes ordered by the time the quote begins in the podcast
@@ -126,7 +126,7 @@ def home_chronological(request):
                  {'podcasts': Podcast.objects.all(),
                  'episodes': Episode.objects.all(),
                  'quotes': quotes,
-                 'home_chronological_is_active': Quote.objects.all().first()})
+                 'home_chronological_is_active': 1})
                              
 def home_ghosts(request):
     return render(request, 'home_ghosts.html',
@@ -134,7 +134,7 @@ def home_ghosts(request):
                  'episodes': Episode.objects.all(),
                  # Return quotes that have received no votes
                  # 'all_quotes_ghosts': Quote.objects.annotate(),
-                 'home_ghosts_is_active': Quote.objects.all().first()})
+                 'home_ghosts_is_active': 1})
                              
 def home_birthdays(request):
     return render(request, 'home_birthdays.html',
@@ -142,7 +142,7 @@ def home_birthdays(request):
                  'episodes': Episode.objects.all(),
                  # Return quotes that were publicized on the same month/day as today in any year
                  # 'quotes': Quote.objects.filter(),
-                 'home_birthdays_is_active': Quote.objects.all().first()})
+                 'home_birthdays_is_active': 1})
 
 def podcast_hot(request, podcast_id):
     return render(request, 'podcast_hot.html',
@@ -151,7 +151,7 @@ def podcast_hot(request, podcast_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # Implement some kind of trending algorithm with exponential decay
                  # 'podcast_all_quotes_hot': Quote.objects.filter(),
-                 'podcast_hot_is_active': Quote.objects.all().first()})
+                 'podcast_hot_is_active': 1})
                              
 def podcast_not(request, podcast_id):
     return render(request, 'podcast_not.html',
@@ -160,7 +160,7 @@ def podcast_not(request, podcast_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # Reverse the hot algorithm results to determine not sorting
                  # 'podcast_all_quotes_not': Quote.objects.filter(),
-                 'podcast_not_is_active': Quote.objects.all().first()})
+                 'podcast_not_is_active': 1})
                              
 def podcast_controversial(request, podcast_id):
     return render(request, 'podcast_controversial.html',
@@ -169,7 +169,7 @@ def podcast_controversial(request, podcast_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # Algorithm showing quotes that are diametrically in the middle of hot/not, with higher ranking going to quotes with the most overall votes
                  # 'podcast_all_quotes_controversial': Quote.objects.filter(),
-                 'podcast_controversial_is_active': Quote.objects.all().first()})
+                 'podcast_controversial_is_active': 1})
                              
 def podcast_new(request, podcast_id):
     # Return quotes ordered by newest to oldest
@@ -182,7 +182,7 @@ def podcast_new(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'quotes': quotes,
-                 'podcast_new_is_active': Quote.objects.all().first()})
+                 'podcast_new_is_active': 1})
 
 def podcast_top(request, podcast_id):
     # Return quotes ordered by highest score to lowest score
@@ -195,7 +195,7 @@ def podcast_top(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'quotes': quotes,
-                 'podcast_top_is_active': Quote.objects.all().first()})
+                 'podcast_top_is_active': 1})
                              
 def podcast_bottom(request, podcast_id):
     # Return quotes ordered by lowest score to highest score
@@ -208,7 +208,7 @@ def podcast_bottom(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'quotes': quotes,
-                 'podcast_bottom_is_active': Quote.objects.all().first()})
+                 'podcast_bottom_is_active': 1})
                              
 def podcast_mainstream(request, podcast_id):
     # Return quotes ordered by total number of votes
@@ -221,7 +221,7 @@ def podcast_mainstream(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'quotes': quotes,
-                 'podcast_mainstream_is_active': Quote.objects.all().first()})
+                 'podcast_mainstream_is_active': 1})
                              
 def podcast_underground(request, podcast_id):
     return render(request, 'podcast_underground.html',
@@ -230,7 +230,7 @@ def podcast_underground(request, podcast_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # Return quotes ordered by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
                  # 'podcast_all_quotes_underground': Quote.objects.filter(),
-                 'podcast_underground_is_active': Quote.objects.all().first()})
+                 'podcast_underground_is_active': 1})
                              
 def podcast_chronological(request, podcast_id):
     # Return quotes ordered by the time the quote begins in the podcast
@@ -243,7 +243,7 @@ def podcast_chronological(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'quotes': quotes,
-                 'podcast_chronological_is_active': Quote.objects.all().first()})
+                 'podcast_chronological_is_active': 1})
                              
 def podcast_ghosts(request, podcast_id):
     return render(request, 'podcast_ghosts.html',
@@ -252,7 +252,7 @@ def podcast_ghosts(request, podcast_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # Return quotes that have received no votes
                  # 'podcast_all_quotes_ghosts': Quote.objects.annotate(),
-                 'podcast_ghosts_is_active': Quote.objects.all().first()})
+                 'podcast_ghosts_is_active': 1})
                              
 def podcast_birthdays(request, podcast_id):
     return render(request, 'podcast_birthdays.html',
@@ -260,7 +260,7 @@ def podcast_birthdays(request, podcast_id):
                  'podcast': Podcast.objects.get(id=podcast_id),
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  # 'podcast_all_quotes_birthdays': Quote.objects.filter(),
-                 'podcast_birthdays_is_active': Quote.objects.all().first()})
+                 'podcast_birthdays_is_active': 1})
 
 def episode_hot(request, podcast_id, episode_id):
     return render(request, 'episode_hot.html',
@@ -270,7 +270,7 @@ def episode_hot(request, podcast_id, episode_id):
                  'episode': Episode.objects.get(id=episode_id),
                  # Implement some kind of trending algorithm with exponential decay
                  # 'episode_all_quotes_hot': Quote.objects.filter(),
-                 'episode_hot_is_active': Quote.objects.all().first()})
+                 'episode_hot_is_active': 1})
                              
 def episode_not(request, podcast_id, episode_id):
     return render(request, 'episode_not.html',
@@ -280,7 +280,7 @@ def episode_not(request, podcast_id, episode_id):
                  'episode': Episode.objects.get(id=episode_id),
                  # Reverse the hot algorithm results to determine not sorting
                  # 'episode_all_quotes_not': Quote.objects.filter(),
-                 'episode_not_is_active': Quote.objects.all().first()})
+                 'episode_not_is_active': 1})
                              
 def episode_controversial(request, podcast_id, episode_id):
     return render(request, 'episode_controversial.html',
@@ -290,7 +290,7 @@ def episode_controversial(request, podcast_id, episode_id):
                  'episode': Episode.objects.get(id=episode_id),
                  # Algorithm showing quotes that are diametrically in the middle of hot/not, with higher ranking going to quotes with the most overall votes
                  # 'episode_all_quotes_controversial': Quote.objects.filter(),
-                 'episode_controversial_is_active': Quote.objects.all().first()})
+                 'episode_controversial_is_active': 1})
                              
 def episode_new(request, podcast_id, episode_id):
     # Return quotes ordered by newest to oldest
@@ -304,7 +304,7 @@ def episode_new(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  'quotes': quotes,
-                 'episode_new_is_active': Quote.objects.all().first()})
+                 'episode_new_is_active': 1})
                  
 def episode_top(request, podcast_id, episode_id):
     # Return quotes ordered by highest score to lowest score
@@ -318,7 +318,7 @@ def episode_top(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  'quotes': quotes,
-                 'episode_top_is_active': Quote.objects.all().first()})
+                 'episode_top_is_active': 1})
                              
 def episode_bottom(request, podcast_id, episode_id):
     # Return quotes ordered by lowest score to highest score
@@ -332,7 +332,7 @@ def episode_bottom(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  'quotes': quotes,
-                 'episode_bottom_is_active': Quote.objects.all().first()})
+                 'episode_bottom_is_active': 1})
                              
 def episode_mainstream(request, podcast_id, episode_id):
     # Return quotes ordered by total number of votes
@@ -346,7 +346,7 @@ def episode_mainstream(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  'quotes': quotes,
-                 'episode_mainstream_is_active': Quote.objects.all().first()})
+                 'episode_mainstream_is_active': 1})
                              
 def episode_underground(request, podcast_id, episode_id):
     return render(request, 'episode_underground.html',
@@ -356,7 +356,7 @@ def episode_underground(request, podcast_id, episode_id):
                  'episode': Episode.objects.get(id=episode_id),
                  # Return quotes ordered by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
                  # 'episode_all_quotes_underground': Quote.objects.filter(),
-                 'episode_underground_is_active': Quote.objects.all().first()})
+                 'episode_underground_is_active': 1})
                              
 def episode_chronological(request, podcast_id, episode_id):
     # Return quotes ordered by the time the quote begins in the podcast
@@ -370,7 +370,7 @@ def episode_chronological(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  'quotes': quotes,
-                 'episode_chronological_is_active': Quote.objects.all().first()})
+                 'episode_chronological_is_active': 1})
                              
 def episode_ghosts(request, podcast_id, episode_id):
     return render(request, 'episode_ghosts.html',
@@ -380,7 +380,7 @@ def episode_ghosts(request, podcast_id, episode_id):
                  'episode': Episode.objects.get(id=episode_id),
                  # Return quotes that have received no votes
                  # 'episode_all_quotes_ghosts': Quote.objects.annotate(),
-                 'episode_ghosts_is_active': Quote.objects.all().first()})
+                 'episode_ghosts_is_active': 1})
                              
 def episode_birthdays(request, podcast_id, episode_id):
     return render(request, 'episode_birthdays.html',
@@ -389,7 +389,7 @@ def episode_birthdays(request, podcast_id, episode_id):
                  'episodes': Episode.objects.filter(podcast_id=podcast_id),
                  'episode': Episode.objects.get(id=episode_id),
                  # 'episode_all_quotes_birthdays': Quote.objects.filter(),
-                 'episode_birthdays_is_active': Quote.objects.all().first()})
+                 'episode_birthdays_is_active': 1})
                  
 def quote(request, podcast_id, episode_id, quote_id):
     return render(request, 'quote.html',
