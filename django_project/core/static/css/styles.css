@@ -180,10 +180,18 @@ a {
     }
 }
 
-@media (min-width:992px) {
+@media (min-width:992px) and (max-width:1199px) {
+    .pq-navbar-container {
+        max-width:810px;
+        margin:0 auto;
+    }
+}
+
+@media (min-width:1200px) {
     .pq-navbar-container {
         margin:0 auto;
-        padding:0 40px 0 100px;
+        padding:0 0 0 60px;
+        max-width:1140px;
     }
 }
 
@@ -356,21 +364,33 @@ a {
 
 @media (min-width:992px) and (max-width:1199px) {
     .pq-container {
+        max-width:800px;
         margin:0 auto;
-        padding:0 30px 0 105px;
     }
 }
 
 @media (min-width:1200px) {
     .pq-container {
         margin:0 auto;
-        padding:0 30px 0 105px;
+        padding:0 0 0 80px;
+        max-width:1140px;
     }
 }
 
 .pq-container a:hover {
     color:#666;
     text-decoration:none;
+}
+
+@media (max-width:1199px) {
+    #main {
+    }
+}
+
+@media (min-width:1200px) {
+    #main {
+        padding:0 25px 0 0;
+    }
 }
 
 @media (max-width:550px) {
