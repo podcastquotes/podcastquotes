@@ -26,24 +26,18 @@
           </td>
       </tr>
       {% if quote.episode.donate_url and quote.episode.donation_recipient %}
-          <tr>
-              <td style="width:130px">
-                  <span class="text-orange"><strong><i>Donations go to:</i></strong></span> &nbsp
+          <tr style="height:50px;">
+              <td style="width:120px">
+                  <span class="text-orange"><strong><i>Donations for this episode go to:</i></strong></span> &nbsp
               </td>
               <td>
-                  <i><a href="{{ quote.episode.donate_url }}">{{ quote.episode.donation_recipient }}</a></i>
+                  <i><a href="{{ quote.episode.donate_url }}">{{ quote.episode.donation_recipient }}</a>
+                  {% if quote.episode.donation_recipient_about %}
+                      <br>
+                      {{ quote.episode.donation_recipient_about|linebreaks }}</i>
+                  {% endif %}
               </td>
           </tr>
-      {% endif %}
-      {% if quote.episode.donation_recipient_about %}
-      <tr>
-          <td>
-              <span class="text-orange"><strong><i>About:</i></strong></span> &nbsp
-          </td>
-          <td>
-              <i>{{ quote.episode.donation_recipient_about }}</i>
-          </td>
-      </tr>
       {% endif %}
   </table>
 

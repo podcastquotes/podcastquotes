@@ -35,7 +35,7 @@
             
         </div><!-- /.pq-quote-buttons -->
         
- <div class="pull-right">
+ <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
         
             {% if quote.time_quote_begins and quote.episode.youtube_url %}
                 
@@ -56,51 +56,18 @@
                 
                 <div class="preview-published" id="preview-time-{{ forloop.counter }}">
                     <span class="pull-right">
-                        {{ quote.episode.publication_date|date:'N d, Y' }}
+                        {{ quote.episode.publication_date|date:'M d, Y' }}
                     </span>
                     <span class="pull-left">
                         {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
                     </span>
                 </div>
 
-            {% endif %}
-        
-            <div class="pq-quote-buttons-xs">
+            {% endif %}       
             
-                <a href="/quotes/vote/{{ quote.id }}/1/">
-                    <div class="pq-quote-upvote-xs">
-                        <i class="fa fa-arrow-up"></i>
-                    </div>
-                </a>
-                
-                <div class="pq-quote-vote-total-xs">
-                    {{ quote.vote_score}}
-                </div>
-                
-                <a href="/quotes/vote/{{ quote.id }}/-1/">
-                    <div class="pq-quote-downvote-xs">
-                        <i class="fa fa-arrow-down"></i>
-                    </div>
-                </a>
-                
-                <!-- 
-                <div class="pq-quote-comments-xs">
-                    <i class="fa fa-comment"></i>
-                </div>
-                -->
-                
-                <!--
-                <div class="pq-quote-comments-total-xs">
-                    1,234
-                </div>
-                -->
-                
-            </div><!-- /.pq-quote-buttons-xs -->
+        </div><!-- /.pq-quote-player -->
         
-            
-        </div><!-- /.pull-left -->
-        
-        <div class="pq-quote-text-wrapper">
+        <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
         
             {% if quote.summary %}
                 <div class="pq-quote-summary">
@@ -130,11 +97,44 @@
                   {% endif %}
                 </div>
             {% endif %}
+            
+        <div class="pq-quote-player-xs" id="pq-quote-player-xs-{{ forloop.counter }}">
         
+            {% if quote.time_quote_begins and quote.episode.youtube_url %}
+                
+                <div class="youtube-box" id="youtube-xs-{{ forloop.counter }}">
+                  <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                  </div>
+                </div>
+                
+                {% if is_home_page and quote.episode.podcast.image %}
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-xs-{{ forloop.counter }}">
+                        <img src="/media/{{ quote.episode.podcast.image }}">
+                    </div><!-- /.pq-quote-buttons-logo -->
+                {% elif is_podcast_page and quote.episode.image %}
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-xs-{{ forloop.counter }}">
+                        <img src="/media/{{ quote.episode.image }}">
+                    </div><!-- /.pq-quote-buttons-logo -->
+                {% endif %}
+                
+                <div class="preview-published" id="preview-published-xs-{{ forloop.counter }}">
+                    <span class="pull-right">
+                        {{ quote.episode.publication_date|date:'M d, Y' }}
+                    </span>
+                    <span class="pull-left">
+                        {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
+                    </span>
+                </div>
+
+            {% endif %}       
+            
+        </div><!-- /.pq-quote-player-xs -->
+        
+        <div class="pq-quote-text-box">
             {% if quote.text %}
                 <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                    {% if not quote.id|is_less_than_X_characters:201 %}
-                        {{ quote.text|truncatechars:200|linebreaks }}
+                    {% if not quote.id|is_less_than_X_characters:151 %}
+                        {{ quote.text|truncatechars:150|linebreaks }}
                     {% else %}
                         {{ quote.text|linebreaks }}
                     {% endif %}
@@ -149,6 +149,7 @@
                     hide quote
                 </div>
             {% endif %}
+        </div><!-- /.pq-quote-text-box -->
 
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
@@ -159,7 +160,6 @@
           });
           $("#show-less-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-{{ forloop.counter }}").hide();
-              $("#pq-quote-text--preview-{{ forloop.counter }}").show();
               $("#show-less-{{ forloop.counter }}").hide();
               $("#show-more-{{ forloop.counter }}").show();
           });
@@ -167,7 +167,16 @@
               $("#preview-published-{{ forloop.counter }}").hide();
               $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
               $("#preview-time-{{ forloop.counter }}").hide();
-              $("#quote-time-{{ forloop.counter }}").show();
+              $("#pq-quote-player-{{ forloop.counter }}").toggleClass("youtube-playing");
+              $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass("pq-quote-text-wrapper-cleared");
+          });
+          $("#youtube-xs-{{ forloop.counter }}").click(function() {
+              $("#preview-published-xs-{{ forloop.counter }}").hide();
+              $("#youtube-podcast-logo-xs-{{ forloop.counter }}").hide();
+              $("#preview-time-{{ forloop.counter }}").hide();
+              $("#youtube-xs-{{ forloop.counter }}").toggleClass("youtube-playing");
+              $("#pq-quote-player-xs-{{ forloop.counter }}").toggleClass("youtube-playing");
+              $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass("pq-quote-text-wrapper-cleared");
           });
         </script>
         

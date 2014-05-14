@@ -1,65 +1,69 @@
-<div id="sidebar" class="col-lg-4 pull-right hidden-xs hidden-sm hidden-md">
+<div id="sidebar" class="col-lg-5 pull-right hidden-xs hidden-sm hidden-md">
     
-    <a href="{% url 'quote_create' %}">
-        <div class="pq-side-button">
-            Add a Quote <i class="fa fa-comments-o"></i>
-        </div>
-    </a>
+    <div class="pq-sidebar">
     
-    <div class="pq-menu">
-      
-      <div class="pq-menu-title">
-        Podcasts
-      </div><!-- /.pq-menu-title -->
-      
-      <div class="pq-menu-pulldown">
-        All Podcasts <i class="fa fa-chevron-down"></i>
-      </div><!-- /.pq-menu-pulldown -->
-      
-      <div class="clearfix">
-      </div>
-      
-      <hr />
+        <a href="{% url 'quote_create' %}">
+            <div class="pq-side-button">
+                Add a Quote <i class="fa fa-comments-o"></i>
+            </div>
+        </a>
+        
+        <div class="pq-menu">
+          
+          <div class="pq-menu-title">
+            Podcasts
+          </div><!-- /.pq-menu-title -->
+          
+          <div class="pq-menu-pulldown">
+            All Podcasts <i class="fa fa-chevron-down"></i>
+          </div><!-- /.pq-menu-pulldown -->
+          
+          <div class="clearfix">
+          </div>
+          
+          <hr />
 
-      <div class="pq-menu-options">
-       {% for podcast in podcasts %}        
-       <a href="/podcasts/{{ podcast.id}}">
-         <div class="pq-menu-option">
-            {{ podcast.title }}
-         </div><!-- /.pq-menu-option -->
-       </a>
-       {% endfor %}
-      </div><!-- /.pq-menu-options -->
+          <div class="pq-menu-options">
+           {% for podcast in podcasts %}        
+           <a href="/podcasts/{{ podcast.id}}">
+             <div class="pq-menu-option">
+                {{ podcast.title }}
+             </div><!-- /.pq-menu-option -->
+           </a>
+           {% endfor %}
+          </div><!-- /.pq-menu-options -->
 
-    </div><!-- /.pq-menu -->
-    
-    {% if podcast %}
-    <div class="pq-menu">
-      
-      <div class="pq-menu-title">
-        Episodes
-      </div><!-- /.pq-menu-title -->
-      
-      <div class="pq-menu-pulldown">
-        Chronological <i class="fa fa-chevron-down"></i>
-      </div><!-- /.pq-menu-pulldown -->
-      
-      <div class="clearfix">
-      </div>
-      
-      <hr />
+        </div><!-- /.pq-menu -->
+        
+        {% if podcast %}
+        <div class="pq-menu">
+          
+          <div class="pq-menu-title">
+            Episodes
+          </div><!-- /.pq-menu-title -->
+          
+          <div class="pq-menu-pulldown">
+            Chronological <i class="fa fa-chevron-down"></i>
+          </div><!-- /.pq-menu-pulldown -->
+          
+          <div class="clearfix">
+          </div>
+          
+          <hr />
 
-      <div class="pq-menu-options">
-       {% for episode in episodes %}        
-         <a href="/episodes/{{ episode.id}}">
-           <div class="pq-menu-option">
-             {{ episode.title }}
-           </div><!-- /.pq-menu-option -->
-         </a>
-       {% endfor %}
-      </div><!-- /.pq-menu-options -->
+          <div class="pq-menu-options">
+           {% for episode in episodes %}        
+             <a href="/episodes/{{ episode.id}}">
+               <div class="pq-menu-option">
+                 {{ episode.title }}
+               </div><!-- /.pq-menu-option -->
+             </a>
+           {% endfor %}
+          </div><!-- /.pq-menu-options -->
 
-    </div><!-- /.pq-menu -->
-    {% endif %}
+        </div><!-- /.pq-menu -->
+        {% endif %}
+        
+    </div><!-- /.pq-sidebar -->
 
 </div><!-- /#sidebar /.col-sm-5 -->
