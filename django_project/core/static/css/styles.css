@@ -135,6 +135,10 @@ body {
     background-color:#;
 }
 
+.text-right {
+    text-align:right;
+}
+
 .btn {
    font-size:16px;
 }
@@ -556,10 +560,8 @@ a {
 }
 
 .pq-podcast-header {
-    padding:0 0 10px 0;
-    margin:0 0 20px 0;
-    border-bottom:1px dotted #bbb;
-    font-size:16px;
+    margin:0 0 15px 0;
+    font-size:14px;
 }
 
 .pq-podcast-title {
@@ -660,15 +662,15 @@ a {
 @media (min-width:551px) {
     .pq-podcast-profile-picture {
         clear:left;
-        float:left;
-        padding:0 20px 0 0;
+        float:right;
+        margin:0 0 0 30px;
     }
 }
 
 @media (min-width:551px) {
     .pq-podcast-profile-picture img {
-        height:100px;
-        width:100px;
+        height:110px;
+        width:110px;
         border-radius:10px;
     }
 }
@@ -703,9 +705,15 @@ a {
     }
 }
 
+.pq-podcast-header-info-right {
+    clear:left;
+    float:right;
+    margin:0 0 5px 40px;
+}
+
 .pq-podcast-header-info-left {
     clear:left;
-    margin:0 0 10px 0;
+    margin:0 0 5px 0;
 }
 
 .pq-podcast-header-info-full {
@@ -714,16 +722,16 @@ a {
 
 .pq-podcast-buttons {
     float:left;
-    margin:0 0 10px 0;
+    margin:0 0 15px 0;
 }
 
 .pq-podcast-button {
     float:left;
-    margin:0 15px 0 0;
+    margin:0 10px 0 0;
     padding:3px 10px 3px 10px;
     background-color:#f7f7f7;
     border:1px solid #888;
-    border-radius:5px;
+    border-radius:15px;
     font-size:14px;
     font-weight:bold;
 }
@@ -753,7 +761,7 @@ a {
 
 .pq-quote {
     clear:both;
-    padding:20px 0;
+    padding:25px 0 10px 0;
     border-bottom:1px solid #ddd;
 }
 
@@ -905,10 +913,9 @@ a {
 }
 
 .pq-quote-upvote {
-    float:right;
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0 3px 2px;
     border:1px solid #aaa;
     border-radius:15px;
     font-size:20px;
@@ -925,7 +932,6 @@ a {
 
 .pq-quote-vote-total {
     clear:right;
-    float:right;
     text-align:center;
     width:50px;
     margin:5px 0;
@@ -935,10 +941,9 @@ a {
 
 .pq-quote-downvote {
     clear:right;
-    float:right;
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0 3px 2px;
     border:1px solid #aaa;
     border-radius:15px;
     font-size:20px;
@@ -1218,7 +1223,7 @@ a {
 .pq-menu-options {
     height:285px;
     overflow:auto;
-    font-size:14px;
+    font-size:16px;
 }
 
 .pq-menu-option {
@@ -1242,19 +1247,19 @@ a {
 
 @media (max-width:767px) {
     .circle {
-        margin:65px 0 0 100px;
+        margin:70px 0 0 103px;
     }
 }
 
 @media (min-width:768px) and (max-width:991px) {
     .circle {
-        margin:84px 0 0 121px;
+        margin:70px 0 0 103px;
     }
 }
 
 @media (min-width:992px) {
     .circle {
-        margin:84px 0 0 121px;
+        margin:70px 0 0 103px;
     }
 }
 
@@ -1727,7 +1732,7 @@ a {
 }
 
 .form-control {
-    height:35px;
+    height:38px;
     vertical-align:top;
     border:1px solid #555;
     color:#111;

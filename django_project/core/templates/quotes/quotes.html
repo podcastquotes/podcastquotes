@@ -133,11 +133,6 @@
         <div class="pq-quote-text-box">
             {% if quote.text %}
                 <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                    {% if not quote.id|is_less_than_X_characters:151 %}
-                        {{ quote.text|truncatechars:150|linebreaks }}
-                    {% else %}
-                        {{ quote.text|linebreaks }}
-                    {% endif %}
                 </div>
                 <div class="pq-show-more" id="show-more-{{ forloop.counter }}">
                     show quote
