@@ -4,7 +4,7 @@ import calendar
 import pytz
 from django.shortcuts import render_to_response, redirect, get_object_or_404, render
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy
@@ -19,6 +19,7 @@ from quotes_app.models import Podcast, Episode, Quote, Vote
 from core.forms import PodcastCreateForm, PodcastForm
 from core.forms import EpisodeCreateForm, EpisodeForm
 from core.forms import QuoteCreateForm, QuoteForm
+from core.forms import VoteForm
 import feedparser
 
 today = date.today()
@@ -494,3 +495,40 @@ def quote_create(request):
                  'quote_form': qform})
     
     return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
+    
+class VoteFormView(FormView):
+    form_class = VoteForm
+    
+    def form_valid(self, form):
+        print "form is valid"
+        q = get_object_or_404(Quote, pk=form.data["quote"])
+        v = get_object_or_404(User, pk=self.request.user.id)
+        t = int(form.data["vote_type"])
+        
+        try:
+            prev_vote = Vote.objects.get(voter=v, quote=q)
+        except ObjectDoesNotExist:
+            prev_vote = None
+
+        if t == 1 and prev_vote.vote_type == -1:
+            prev_vote.vote_type = t
+        elif t == 1 and prev_vote.vote_type == 1:
+            prev_vote.vote_type = 0
+        elif t == -1 and prev_vote.vote_type == 1:
+            prev_vote.vote_type = t
+        elif t == -1 and prev_vote.vote_type == -1:
+            prev_vote.vote_type = 0
+        else:
+            prev_vote.vote_type = t
+        prev_vote.save()
+            
+        return redirect("/")
+        
+    def form_invalid(self, form):
+        print form.errors
+        print form.data["quote"]
+        print form.data["vote_type"]
+        print self.request.user.id
+        print("invalid")
+        return redirect("/")
+        

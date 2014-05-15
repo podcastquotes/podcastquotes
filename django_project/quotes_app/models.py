@@ -287,7 +287,7 @@ class Vote(models.Model):
     vote_type = models.IntegerField(choices=VOTE_CHOICES, null=True)
     
     class Meta:
-        unique_together = (('voter', 'quote'),)
+        unique_together = ('voter', 'quote',)
     
     @classmethod
     def create(cls, voter, quote, vote_type):

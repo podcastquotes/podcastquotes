@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.auth.decorators import login_required
 from quotes_app.models import Podcast, Episode, Quote
 from quotes_app.views import home_top
 from quotes_app.views import PodcastCreateView
 from quotes_app.views import quote_create
+from quotes_app.views import VoteFormView
 from django.contrib import admin
 admin.autodiscover()
 
@@ -90,7 +92,7 @@ urlpatterns = patterns('',
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),
     
-    url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>-?\d+)/$', 'quotes_app.views.vote', name='quote_vote'),
+    url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
    
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     

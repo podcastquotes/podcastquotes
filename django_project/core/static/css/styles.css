@@ -109,6 +109,7 @@ body {
 
 .color-donate:hover {
     background-color:#FFAD5D;
+    color:#111;
 }
 
 .color-connect:hover {
@@ -420,8 +421,8 @@ a {
 @media (max-width:991px) {
     .pq-title {
         clear:left;
-        margin:0 0 20px 0;
-        font-size:24px;
+        margin:0 0 25px 0;
+        font-size:22px;
         font-weight:bold;
         color:#111;
     }
@@ -429,8 +430,7 @@ a {
 
 @media (min-width:992px) {
     .pq-title {
-        width:100%;
-        margin:0 0 20px 0;
+        margin:0 0 25px 0;
         font-size:22px;
         font-weight:bold;
         color:#111;
@@ -439,7 +439,7 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:5px 10px 0 0;
+    margin:0 10px 0 0;
     padding:3px 10px;
     border:1px solid #888;
     border-radius:3px;
@@ -455,7 +455,7 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#eee;
-    margin:5px 10px 0 0;
+    margin:0 10px 0 0;
     padding:3px 10px;
     border:1px solid #888;
     border-radius:3px;
@@ -560,7 +560,9 @@ a {
 }
 
 .pq-podcast-header {
-    margin:0 0 15px 0;
+    margin:0 0 25px 0;
+    padding:0 0 10px 0;
+    border-bottom:1px dotted #bbb;
     font-size:14px;
 }
 
@@ -572,7 +574,7 @@ a {
 }
 
 .pq-episode-title {
-    padding:0 0 15px 0;
+    padding:0 0 20px 0;
     font-weight:bold;
     color:#111;
 }
@@ -653,26 +655,25 @@ a {
     }
 }
 
-@media (max-width:550px) {
-    .pq-podcast-profile-picture {
-        display:none;
-    }
-}
-
-@media (min-width:551px) {
+@media (max-width:649px) {
     .pq-podcast-profile-picture {
         clear:left;
-        float:right;
-        margin:0 0 0 30px;
+        float:left;
+        margin:0 25px 20px 0;
     }
 }
 
-@media (min-width:551px) {
-    .pq-podcast-profile-picture img {
-        height:110px;
-        width:110px;
-        border-radius:10px;
+@media (min-width:650px) {
+    .pq-podcast-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 25px 10px 0;
     }
+}
+
+.pq-podcast-profile-picture img {
+    height:120px;
+    width:120px;
 }
 
 .pq-podcast-selector {
@@ -694,14 +695,17 @@ a {
     font-size:18px;
 }
 
-@media (max-width:767px) {
+@media (max-width:649px) {
     .pq-podcast-info {
+        clear:left;
+        font-size:14px;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:650px) {
     .pq-podcast-info {
         overflow:hidden;
+        font-size:14px;
     }
 }
 
@@ -713,34 +717,48 @@ a {
 
 .pq-podcast-header-info-left {
     clear:left;
-    margin:0 0 5px 0;
+    margin:0 0 10px 0;
 }
 
 .pq-podcast-header-info-full {
     margin:0 0 10px 0;
 }
 
+@media (max-width:649px) {
+    .pq-podcast-header-info-inline {
+        clear:left;
+        margin:0 0 10px 0;
+    }
+}
+
+@media (min-width:650px) {
+    .pq-podcast-header-info-inline {
+        display:inline-block;
+        margin:0 30px 0 0;
+    }
+}
+
 .pq-podcast-buttons {
     float:left;
-    margin:0 0 15px 0;
+    margin:0 0 10px 0;
 }
 
 .pq-podcast-button {
     float:left;
-    margin:0 10px 0 0;
-    padding:3px 10px 3px 10px;
-    background-color:#f7f7f7;
-    border:1px solid #888;
-    border-radius:15px;
+    margin:0 20px 0 0;
     font-size:14px;
     font-weight:bold;
 }
 
 .pq-episode-header {
-    padding:0 0 10px 0;
-    margin:0 0 20px 0;
+    padding:0 0 5px 0;
+    margin:0 0 25px 0;
     border-bottom:1px dotted #bbb;
     font-size:16px;
+}
+
+.pq-episode-spacer {
+    padding:5px 0 0 0;
 }
 
 /******************************
@@ -761,7 +779,7 @@ a {
 
 .pq-quote {
     clear:both;
-    padding:25px 0 10px 0;
+    padding:20px 0 25px 0;
     border-bottom:1px solid #ddd;
 }
 
@@ -899,20 +917,40 @@ a {
     padding:20px 0 0 0;
 }
 
-@media (max-width:450px) {
+@media (max-width:991px) {
     .pq-quote-buttons {
         display:none;
     }
 }
 
-@media (min-width:451px) {
+@media (min-width:992px) {
     .pq-quote-buttons {
         float:left;
         margin:5px 20px 0 -70px;
     }
 }
 
+.pq-quote-xs-buttons {
+    clear:both;
+    margin:0 0 10px 0;
+}
+
+button {
+    background-color:#fcfcfc;
+}
+
 .pq-quote-upvote {
+    text-align:center;
+    width:50px;
+    padding:3px 0 3px 2px;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-xs-upvote {
+    display:inline-block;
     text-align:center;
     width:50px;
     padding:3px 0 3px 2px;
@@ -931,16 +969,38 @@ a {
 }
 
 .pq-quote-vote-total {
-    clear:right;
     text-align:center;
     width:50px;
     margin:5px 0;
-    font-size:15px;
+    font-size:14px;
+    color:#444;
+}
+
+.vote_form {
+    display:inline-block;
+}
+
+.pq-quote-xs-vote-total {
+    display:inline-block;
+    text-align:center;
+    padding:0 15px;
+    margin:4px 0;
+    font-size:14px;
     color:#444;
 }
 
 .pq-quote-downvote {
-    clear:right;
+    text-align:center;
+    width:50px;
+    padding:3px 0 3px 2px;
+    border:1px solid #aaa;
+    border-radius:15px;
+    font-size:20px;
+    color:#444;
+}
+
+.pq-quote-xs-downvote {
+    display:inline-block;
     text-align:center;
     width:50px;
     padding:3px 0 3px 2px;
@@ -1199,7 +1259,7 @@ a {
 
 .pq-menu-title {
     margin:0 0 5px 0;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
 }
 
@@ -1223,7 +1283,7 @@ a {
 .pq-menu-options {
     height:285px;
     overflow:auto;
-    font-size:16px;
+    font-size:14px;
 }
 
 .pq-menu-option {
@@ -1279,14 +1339,14 @@ a {
 @media (max-width:649px) {
     .preview-published {
         width:260px;
-        margin:180px 0 0 0;
+        margin:160px 0 10px 0;
     }
 }
 
 @media (min-width:650px) {
     .preview-published {
         width:260px;
-        margin:180px 0 0 0;
+        margin:175px 0 10px 0;
         font-size:14px;
     }
 }
@@ -1300,14 +1360,13 @@ a {
     .youtube-img-preview {
         width:260px;
         float:left;
-        margin:0 0 10px 0;
+        margin:0 0 0px 0;
     }
 }
 
 @media (min-width:650px) {
     .youtube-img-preview {
         width:260px;
-        margin:0 0 20px 0;
     }
 }
 
@@ -1322,7 +1381,7 @@ a {
     .youtube {
         float:left;
         clear:left;
-        margin:5px 25px 15px 0;
+        margin:0 25px 10px 0;
     }
 }
 
@@ -1330,7 +1389,7 @@ a {
     .youtube {
         float:left;
         clear:left;
-        margin:5px 0 15px 0;
+        margin:0 0 10px 0;
     }
 }
 
@@ -1340,13 +1399,13 @@ a {
 
 .youtube-podcast-logo {
     position:absolute;
-    cursor:pointer;
-    border:3px solid #444;
+    border:2px solid #444;
     border-radius:5px;
+    cursor:pointer;
 }
 
 .youtube-podcast-logo img {
-    width:55px;
+    width:60px;
 }
 
 @media (max-width:350px) {

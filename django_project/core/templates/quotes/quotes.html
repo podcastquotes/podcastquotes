@@ -3,37 +3,33 @@
 
       <div class="pq-quote">
         
-        <div class="pq-quote-buttons hidden-xs hidden-sm">
-            
-            <a href="/quotes/vote/{{ quote.id }}/1/">
-                <div class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
-                    <i class="fa fa-arrow-up"></i>
+            <div class="pq-quote-buttons hidden-xs hidden-sm">
+                
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
+                <button class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}">
+                        <i class="fa fa-arrow-up"></i>
+                </button>
+            </form>
+
+                <div class="pq-quote-vote-total">
+                    {{ quote.vote_score }}
                 </div>
-            </a>
-            
-            <div class="pq-quote-vote-total">
-                {{ quote.vote_score }}
-            </div>
-            
-            <a href="/quotes/vote/{{ quote.id }}/-1/">
-                <div class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}">
-                    <i class="fa fa-arrow-down"></i>
-                </div>
-            </a>
-            
-            <!--
-            <div class="pq-quote-comments">
-                <i class="fa fa-comment"></i>
-            </div>
-            -->
-            
-            <!--
-            <div class="pq-quote-comments-total">
-                1,234
-            </div>
-            -->
-            
-        </div><!-- /.pq-quote-buttons -->
+                
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
+                <button class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}">
+                        <i class="fa fa-arrow-down"></i>
+                </button>
+            </form>
+                
+            </div><!-- /.pq-quote-buttons -->
         
  <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
         
@@ -47,10 +43,6 @@
                 {% if is_home_page and quote.episode.podcast.image %}
                     <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
                         <img src="/media/{{ quote.episode.podcast.image }}">
-                    </div><!-- /.pq-quote-buttons-logo -->
-                {% elif is_podcast_page and quote.episode.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
-                        <img src="/media/{{ quote.episode.image }}">
                     </div><!-- /.pq-quote-buttons-logo -->
                 {% endif %}
                 
@@ -129,6 +121,32 @@
             {% endif %}       
             
         </div><!-- /.pq-quote-player-xs -->
+        
+        <div class="pq-quote-xs-buttons hidden-md hidden-lg">
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
+                <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}">
+                        <i class="fa fa-arrow-up"></i>
+                </button>
+            </form>
+            
+            <div class="pq-quote-xs-vote-total">
+                {{ quote.vote_score }}
+            </div>
+            
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
+                <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}">
+                        <i class="fa fa-arrow-down"></i>
+                </button>
+            </form>
+        </div><!-- /.pq-quote-xs-buttons -->
         
         <div class="pq-quote-text-box">
             {% if quote.text %}

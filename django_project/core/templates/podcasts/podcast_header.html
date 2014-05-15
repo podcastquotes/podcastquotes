@@ -1,47 +1,5 @@
 <div class="pq-podcast-header">
   
-  {% if podcast.image %}
-  <a href="/podcasts/{{ podcast.id }}">
-    <div class="pq-xs-podcast-profile-picture">
-        <img src="/media/{{ podcast.image }}" />
-    </div><!-- /.pq-podcast-profile-picture -->
-  </a>
-  {% endif %}
-  
-  <div class="pq-xs-podcast-buttons">
-      
-      <a href="#">
-        <div class="pq-xs-podcast-button color-share">
-          Share
-        </div>
-      </a>
-      
-      {% if podcast.donate_url %}
-      <a href="{{ podcast.donate_url }}">
-        <div class="pq-xs-podcast-button color-donate">
-          Donate
-        </div>
-      </a>
-      {% endif %}
-      
-      {% if request.user.is_superuser %}
-      <a href="/podcasts/edit/{{ podcast.id }}">
-        <div class="pq-xs-podcast-button color-edit">
-          Edit
-        </div>
-      </a>
-      {% endif %}
-      
-      {% if request.user.is_superuser %}
-      <a href="/podcasts/{{ podcast.id }}/update_feed">
-        <div class="pq-xs-podcast-button color-edit">
-          Update
-        </div>
-      </a>
-      {% endif %}
-      
-  </div><!-- /.pq-xs-podcast-buttons -->
-      
         <div class="pq-podcast-title">
           
           <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
@@ -55,16 +13,25 @@
           
         </div><!-- /.pq-podcast-title -->
        
+    {% if podcast.image %}
+        <div class="pq-podcast-profile-picture">
+          <a href="/podcasts/{{ podcast.id }}">
+            <img src="/media/{{ podcast.image }}" />
+          </a>
+        </div><!-- /.pq-podcast-profile-picture -->
+    {% endif %}  
+       
    <div class="pq-podcast-info">
        
        <div class="pq-podcast-buttons">
+            
             <div class="pq-podcast-button color-listen">
                 listen
             </div>
             <div class="pq-podcast-button color-share">
                 share
             </div>
-            <div class="pq-podcast-button color-donate">
+            <div class="pq-podcast-button text-orange color-donate">
                 donate
             </div>
             <div class="pq-podcast-button color-connect">
@@ -78,28 +45,28 @@
             </div>
         </div><!-- /.pq-podcast-buttons -->
         
-    {% if podcast.image %}
-        <div class="pq-podcast-profile-picture">
-          <a href="/podcasts/{{ podcast.id }}">
-            <img src="/media/{{ podcast.image }}" />
-          </a>
-        </div><!-- /.pq-podcast-profile-picture -->
-    {% endif %}  
-        
-        <div class="pq-podcast-header-info-left">
-            <strong>Description:</strong> {{ podcast.description }}
-        </div><!-- /.pq-podcast-header-info-left -->
-        
         <div class="pq-podcast-header-info-left">
             <strong>Category:</strong> Comedy
         </div><!-- /.pq-podcast-header-info-left -->
         
         <div class="pq-podcast-header-info-left">
-            <strong>Quotes:</strong> 1,234
+            <strong>Description:</strong> {{ podcast.description }}
+        </div><!-- /.pq-podcast-header-info-left -->
+        
+        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
+            <div class="pq-podcast-header-info-inline">
+                <strong>Karma:</strong> 1,234
+            </div>
+            <div class="pq-podcast-header-info-inline">
+                <strong>Quotes:</strong> 1,234
+            </div>
+            <div class="pq-podcast-header-info-inline">
+                <strong>PQ Listeners:</strong> 1,234
+            </div>
         </div><!-- /.pq-podcast-header-info-left -->
         
         <div class="pq-podcast-header-info-left">
-            <strong>Karma:</strong> 1,234
+            
         </div><!-- /.pq-podcast-header-info-left -->
         
         {% if podcast.hosts %}
@@ -109,11 +76,11 @@
         {% endif %}
         
 </div><!-- /.pq-podcast-info -->
-    
-</div><!-- /.pq-podcast-header -->
-    
+
     <div class="clearfix">
     </div>
+
+</div><!-- /.pq-podcast-header -->
     
     <div class="pq-episode-header">
     
@@ -142,7 +109,17 @@
     {% endif %}   
         
     {% if episode %}
-
+    <div class="pq-podcast-info">
+    
+        <div class="pq-podcast-buttons">
+            <div class="pq-podcast-button color-listen">
+                play full episode
+            </div>
+            <div class="pq-podcast-button color-edit">
+                edit
+            </div>
+        </div><!-- /.pq-podcast-buttons -->
+          
           <div class="pq-podcast-header-info-left">
               <strong>Date Released:</strong> {{ episode.publication_date|date:'m/d/y' }}
           </div>
@@ -151,16 +128,31 @@
               <strong>Description:</strong> {{ episode.description }}
           </div><!-- /.pq-podcast-header-info-left -->
           
+        <div class="pq-podcast-header-info-left">
+            <div class="pq-podcast-header-info-inline">
+                <strong>Karma:</strong> 1,234
+            </div>
+            <div class="pq-podcast-header-info-inline">
+                <strong>Quotes:</strong> 1,234
+            </div>
+        </div>
+          
           {% if episode.donate_url and episode.donation_recipient %}
           <div class="pq-podcast-header-info-left">
-              <strong><i>All <a href="{{ episode.donate_url }}" class="text-orange" target="_blank">donations</a> for this episode will go to <a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
+              <strong><i>100% of <a href="{{ episode.donate_url }}" class="text-orange" target="_blank">donations</a> for this episode will go to <a href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
           </div>
           {% endif %}
           
-          <div class="pq-podcast-header-info-left">
+          <div class="pq-podcast-header-info-left" style="padding-bottom:0px;">
               <i>{{ episode.donation_recipient_about }}</i>
           </div>
-
+    </div><!-- /.pq-podcast-header-info -->
     {% endif %}
-        
+    
+    {% if episode %}
+        <div class="pq-episode-spacer">
+        </div>
+    {% endif %}
+        <div class="clearfix">
+        </div>
     </div><!-- /.pq-episode-header -->
