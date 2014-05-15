@@ -506,29 +506,24 @@ class VoteFormView(FormView):
         t = int(form.data["vote_type"])
         
         try:
-            prev_vote = Vote.objects.get(voter=v, quote=q)
+            vote = Vote.objects.get(voter=v, quote=q)
         except ObjectDoesNotExist:
-            prev_vote = None
+            vote = Vote.objects.get_or_create(voter=v, quote=q, vote_type=0)
 
-        if t == 1 and prev_vote.vote_type == -1:
-            prev_vote.vote_type = t
-        elif t == 1 and prev_vote.vote_type == 1:
-            prev_vote.vote_type = 0
-        elif t == -1 and prev_vote.vote_type == 1:
-            prev_vote.vote_type = t
-        elif t == -1 and prev_vote.vote_type == -1:
-            prev_vote.vote_type = 0
+        if t == 1 and vote.vote_type == -1:
+            vote.vote_type = t
+        elif t == 1 and vote.vote_type == 1:
+            vote.vote_type = 0
+        elif t == -1 and vote.vote_type == 1:
+            vote.vote_type = t
+        elif t == -1 and vote.vote_type == -1:
+            vote.vote_type = 0
         else:
-            prev_vote.vote_type = t
-        prev_vote.save()
+            vote.vote_type = t
+        vote.save()
             
         return redirect("/")
         
     def form_invalid(self, form):
-        print form.errors
-        print form.data["quote"]
-        print form.data["vote_type"]
-        print self.request.user.id
-        print("invalid")
         return redirect("/")
         
