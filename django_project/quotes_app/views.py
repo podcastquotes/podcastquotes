@@ -21,6 +21,7 @@ from core.forms import EpisodeCreateForm, EpisodeForm
 from core.forms import QuoteCreateForm, QuoteForm
 from core.forms import VoteForm
 import feedparser
+import json
 
 today = date.today()
 
@@ -36,6 +37,39 @@ def paginate(request, quote_list):
         # If page is out of range (e.g. 9999), deliver last page.
         quotes = paginator.page(paginator.num_pages)
     return (True, quotes)
+
+# home_top - all quotes sorted by highest vote_score
+class QuoteTopListView(ListView):
+    model = Quote
+    template_name = 'home_top.html'
+    paginate_by = 5
+    
+    def get_queryset(self):
+        return Quote.objects.top_votes()
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuoteTopListView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        context['home_top_is_active'] = 1
+        context['is_home'] = 1
+        return context
+
+# podcast_top - all quotes for a podcast sorted by highest vote_score
+class PodcastQuoteTopListView(ListView):
+    model = Quote
+    template_name = 'podcast_top.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        return Quote.objects.top_votes().filter(episode__podcast_id=p.id)
+        
+    def get_context_data(self, **kwargs):
+        context = super(QuotePodcastTopListView, self).get_context_data(**kwargs)
+        context['podcasts'] = Podcast.objects.all()
+        context['podcast_top_is_active'] = 1
+        context['is_podcast'] = 1
+        return context
 
 def home_hot(request):
     return render(request, 'home_hot.html',
@@ -188,7 +222,7 @@ def podcast_new(request, podcast_id):
                  'quotes': quotes,
                  'podcast_new_is_active': 1,
                  'is_podcast_page': 1})
-
+"""
 def podcast_top(request, podcast_id):
     # Return quotes ordered by highest score to lowest score
     quote_list = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
@@ -202,7 +236,7 @@ def podcast_top(request, podcast_id):
                  'quotes': quotes,
                  'podcast_top_is_active': 1,
                  'is_podcast_page': 1})
-                             
+"""
 def podcast_bottom(request, podcast_id):
     # Return quotes ordered by lowest score to highest score
     quote_list = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
@@ -480,6 +514,7 @@ def quote_create(request):
         qform.data['time_quote_begins'] = getSec(begins_with_delims)
         ends_with_delims = qform.data['time_quote_ends']
         qform.data['time_quote_ends'] = getSec(ends_with_delims)
+        qform.data['rank_score'] = 0.0
         if qform.is_valid():
             new_quote = qform.save()
             vote = Vote.create(voter=request.user, quote=new_quote, vote_type=0)
@@ -496,34 +531,57 @@ def quote_create(request):
     
     return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
     
-class VoteFormView(FormView):
+class JSONFormMixin(object):
+    def create_response(self, vdict=dict(), valid_form=True):
+        response = HttpResponse(json.dumps(vdict), content_type='application/json')
+        response.status = 200 if valid_form else 500
+        return response
+    
+class VoteFormBaseView(FormView):
     form_class = VoteForm
     
+    def create_response(self, vdict=dict(), valid_form=True):
+        response = HttpResponse(json.dumps(vdict))
+        response.status = 200 if valid_form else 500
+        return response
+    
     def form_valid(self, form):
-        print "form is valid"
-        q = get_object_or_404(Quote, pk=form.data["quote"])
-        v = get_object_or_404(User, pk=self.request.user.id)
+        quote = get_object_or_404(Quote, pk=form.data["quote"])
+        voter = get_object_or_404(User, pk=self.request.user.id)
         t = int(form.data["vote_type"])
+        prev_votes = Vote.objects.filter(quote=quote, voter=voter)
+        has_voted = (len(prev_votes) >0)
         
-        try:
-            vote = Vote.objects.get(voter=v, quote=q)
-        except ObjectDoesNotExist:
-            vote = Vote.objects.get_or_create(voter=v, quote=q, vote_type=0)
-
-        if t == 1 and vote.vote_type == -1:
-            vote.vote_type = t
-        elif t == 1 and vote.vote_type == 1:
-            vote.vote_type = 0
-        elif t == -1 and vote.vote_type == 1:
-            vote.vote_type = t
-        elif t == -1 and vote.vote_type == -1:
-            vote.vote_type = 0
+        ret = {"success": 1}
+        if not has_voted:
+            if t == 1:
+                # create upvote
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["newupvoteobj"] = v.id
+            elif t == -1:
+                # create downvote
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["newdownvoteobj"] = v.id
         else:
-            vote.vote_type = t
-        vote.save()
-            
-        return redirect("/")
+            if prev_votes[0].vote_type == 1 and t == 1:
+                prev_votes[0].delete()
+                ret["un_upvoted"] = 1
+            elif prev_votes[0].vote_type == 1 and t == -1:
+                prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["downvoteobj"] = v.id
+            elif prev_votes[0].vote_type == -1 and t == 1:
+                prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["upvoteobj"] = v.id
+            elif prev_votes[0].vote_type == -1 and t == -1:
+                prev_votes[0].delete()
+                ret["un_downvoted"] = 1
+        return self.create_response(ret, True)
         
     def form_invalid(self, form):
-        return redirect("/")
-        
+        ret = {"success": 0, "form_errors": form.errors }
+        return self.create_response(ret, False)
+    
+class VoteFormView(JSONFormMixin, VoteFormBaseView):
+    pass

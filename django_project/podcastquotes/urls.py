@@ -2,13 +2,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from quotes_app.models import Podcast, Episode, Quote
 from quotes_app.views import home_top
-from quotes_app.views import PodcastCreateView
+from quotes_app.views import QuoteTopListView
+from quotes_app.views import PodcastQuoteTopListView, PodcastCreateView
 from quotes_app.views import quote_create
 from quotes_app.views import VoteFormView
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+ 
+    url(r'^$', QuoteTopListView.as_view(), name='home_top'),
+ 
+    url(r'^podcasts/(?P<pk>\d+)/$', PodcastQuoteTopListView.as_view(), name='podcast_top'),
  
     url(r'^hot/$', 'quotes_app.views.home_hot', name='home_hot'),
     
@@ -17,8 +22,6 @@ urlpatterns = patterns('',
     url(r'^controversial/$', 'quotes_app.views.home_controversial', name='home_controversial'),
     
     url(r'^new/$', 'quotes_app.views.home_new', name='home_new'),
-    
-    url(r'^$', 'quotes_app.views.home_top', name='home_top'),
     
     url(r'^bottom/$', 'quotes_app.views.home_bottom', name='home_bottom'),
     
@@ -40,7 +43,7 @@ urlpatterns = patterns('',
     
     url(r'^podcasts/(?P<podcast_id>\d+)/new/$', 'quotes_app.views.podcast_new', name='podcast_new'),
     
-    url(r'^podcasts/(?P<podcast_id>\d+)/$', 'quotes_app.views.podcast_top', name='podcast_top'),
+    
     
     url(r'^podcasts/(?P<podcast_id>\d+)/bottom/$', 'quotes_app.views.podcast_bottom', name='podcast_bottom'),
     
