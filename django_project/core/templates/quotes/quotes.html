@@ -140,12 +140,18 @@
                 <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
-                <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}">
-                        <i class="fa fa-arrow-up"></i>
-                </button>
+                {% if not user.is_authenticated %}
+                    <button disabled class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
+                            <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
+                            <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% endif %}
             </form>
             
-            <div class="pq-quote-xs-vote-total">
+            <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
                 {{ quote.vote_score }}
             </div>
             
@@ -154,9 +160,15 @@
                 <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
-                <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}">
-                        <i class="fa fa-arrow-down"></i>
-                </button>
+                {% if not user.is_authenticated %}
+                    <button disabled class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
+                            <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
+                            <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% endif %}
             </form>
         </div><!-- /.pq-quote-xs-buttons -->
         
