@@ -439,6 +439,14 @@ class VoteFormBaseView(FormView):
             elif prev_votes[0].vote_type == -1 and t == -1:
                 prev_votes[0].delete()
                 ret["un_downvoted"] = 1
+            elif prev_votes[0].vote_type == 0 and t == 1:
+                prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["newupvoteobj"] = 1
+            elif prev_votes[0].vote_type == 0 and t == -1:
+                prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                ret["newdownvoteobj"] = -1
         return self.create_response(ret, True)
         
     def form_invalid(self, form):

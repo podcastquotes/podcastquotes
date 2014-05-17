@@ -13,6 +13,9 @@ urlpatterns = patterns('',
  
     url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
+     
+    url(r'^admin/', include(admin.site.urls)),
+ 
     url(r'^(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
  
     url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
@@ -38,8 +41,6 @@ urlpatterns = patterns('',
     url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
    
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
-    
-    url(r'^admin/', include(admin.site.urls)),
     
     # Allauth urls
     (r'^accounts/', include('allauth.urls')),

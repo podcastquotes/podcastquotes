@@ -203,8 +203,8 @@ a {
 @media (min-width:1200px) {
     .pq-navbar-container {
         margin:0 auto;
-        padding:0 0 0 40px;
-        max-width:1100px;
+        padding:0 0 0 42px;
+        max-width:1040px;
     }
 }
 
@@ -391,7 +391,7 @@ a {
     .pq-container {
         margin:0 auto;
         padding:0 0 0 80px;
-        max-width:1140px;
+        max-width:1080px;
     }
 }
 
@@ -810,6 +810,7 @@ a {
 
 @media (min-width:650px) {
     .pq-quote-text-box {
+        clear:left;
         font-size:16px;
         overflow:hidden;
     }
@@ -821,36 +822,11 @@ a {
     color:#bbb;
 }
 
-@media (max-width:649px) {
-    .pq-quote-player-xs {
-        float:left;
-        margin:0 0 0 0;
-    }
-}
-
-@media (min-width:650px) {
-    .pq-quote-player-xs {
-        display:none;
-    }
-}
-
-@media (max-width:649px) {
-    .pq-quote-player {
-        display:none;
-    }
-}
-
-@media (min-width:650px) {
-    .pq-quote-player {
-        float:right;
-    }
-}
-
 .pq-quote-summary {
     overflow:hidden;
-    padding:0 0 10px 0;
+    padding:0 0 15px 0;
     font-weight:bold;
-    font-size:20px;
+    font-size:22px;
 }
 
 .pq-quote-summary a {
@@ -858,25 +834,8 @@ a {
 }
 
 .pq-quote-breadcrumbs {
-        font-size:14px;
-}
-
-@media (max-width:449px) {
-    .pq-quote-breadcrumbs {
-        margin:0 0 5px 0;
-    }
-}
-
-@media (min-width:450px) and (max-width:649px) {
-    .pq-quote-breadcrumbs {
-        margin:0 0 15px 0;
-    }
-}
-
-@media (min-width:650px) {
-    .pq-quote-breadcrumbs {
-        margin:0 0 10px 0;
-    }
+        font-size:16px;
+        margin:-5px 0 15px 0;
 }
 
 .pq-quote-breadcrumbs a {
@@ -885,6 +844,11 @@ a {
 
 .pq-quote-breadcrumbs a:hover {
     color:#888;
+}
+
+.pq-quote-player {
+    float:left;
+    margin:0 0 20px 0;
 }
 
 @media (max-width:450px) {
@@ -939,7 +903,7 @@ a {
 
 .pq-quote-xs-buttons {
     clear:both;
-    margin:0 0 10px 0;
+    padding:5px 0 15px 0;
 }
 
 button {
@@ -1306,36 +1270,21 @@ button {
 
 .circle {
     position:absolute;
+    margin:53px 0 0 83px;
     font-size:70px;
     color:#888;
     opacity:0.8;
     cursor:pointer;
 }
 
-@media (max-width:767px) {
-    .circle {
-        margin:70px 0 0 103px;
-    }
-}
-
-@media (min-width:768px) and (max-width:991px) {
-    .circle {
-        margin:70px 0 0 103px;
-    }
-}
-
-@media (min-width:992px) {
-    .circle {
-        margin:70px 0 0 103px;
-    }
-}
-
 .preview-published {
     position:absolute;
     text-align:left;
+    width:220px;
+    margin:140px 0 10px 0;
     padding:6px 12px;
     background-color:#000;
-    font-size:14px;
+    font-size:13px;
     color:#aaa;
     cursor:pointer;
     border-top:1px solid #777;
@@ -1343,65 +1292,24 @@ button {
     border-bottom-left-radius:10px;
 }
 
-@media (max-width:649px) {
-    .preview-published {
-        width:260px;
-        margin:160px 0 0 0;
-    }
-}
-
-@media (min-width:650px) {
-    .preview-published {
-        width:260px;
-        margin:175px 0 10px 0;
-        font-size:14px;
-    }
-}
-
 .youtube-img-preview {
     cursor:pointer;
     border-radius:10px;
-}
-
-@media (max-width:649px) {
-    .youtube-img-preview {
-        width:260px;
-        float:left;
-        margin:0 0 15px 0;
-    }
-}
-
-@media (min-width:650px) {
-    .youtube-img-preview {
-        width:260px;
-    }
-}
-
-
-@media (min-width:1200px) {
-    .youtube-img-preview {
-        max-width:300px;
-    }
-}
-
-@media (max-width:649px) {
-    .youtube {
-        float:left;
-        clear:left;
-        margin:0 25px 5px 0;
-    }
-}
-
-@media (min-width:650px) {
-    .youtube {
-        float:left;
-        clear:left;
-        margin:0 0 10px 0;
-    }
-}
-
-.youtube-playing {
+    width:220px;
     float:left;
+}
+
+@media (max-width:649px) {
+    .youtube {
+        float:left;
+        clear:left;
+    }
+}
+
+@media (min-width:650px) {
+    .youtube {
+        float:left;
+    }
 }
 
 .youtube-podcast-logo {
@@ -1458,7 +1366,6 @@ button {
 .iframe-size {
     float:left;
     clear:left;
-    margin:5px 0 20px 0;
 }
 
 @media (max-width:300px) {
@@ -1584,6 +1491,7 @@ button {
     .iframe-size {
         width:640px;
         height:396px;
+        margin:0;
     }
 }
 

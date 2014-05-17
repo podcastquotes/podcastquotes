@@ -43,34 +43,6 @@
                 
             </div><!-- /.pq-quote-buttons -->
         
- <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
-        
-            {% if quote.time_quote_begins and quote.episode.youtube_url %}
-                
-                <div class="youtube-box" id="youtube-{{ forloop.counter }}">
-                  <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
-                  </div>
-                </div>
-                
-                {% if is_home_page and quote.episode.podcast.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
-                        <img src="/media/{{ quote.episode.podcast.image }}">
-                    </div><!-- /.pq-quote-buttons-logo -->
-                {% endif %}
-                
-                <div class="preview-published" id="preview-time-{{ forloop.counter }}">
-                    <span class="pull-right">
-                        {{ quote.episode.publication_date|date:'M d, Y' }}
-                    </span>
-                    <span class="pull-left">
-                        {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
-                    </span>
-                </div>
-
-            {% endif %}       
-            
-        </div><!-- /.pq-quote-player -->
-        
         <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
         
             {% if quote.summary %}
@@ -102,26 +74,26 @@
                 </div>
             {% endif %}
             
-        <div class="pq-quote-player-xs" id="pq-quote-player-xs-{{ forloop.counter }}">
+        <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
         
             {% if quote.time_quote_begins and quote.episode.youtube_url %}
                 
-                <div class="youtube-box" id="youtube-xs-{{ forloop.counter }}">
+                <div class="youtube-box" id="youtube-{{ forloop.counter }}">
                   <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
                   </div>
                 </div>
                 
                 {% if is_home_page and quote.episode.podcast.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-xs-{{ forloop.counter }}">
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
                         <img src="/media/{{ quote.episode.podcast.image }}">
                     </div><!-- /.pq-quote-buttons-logo -->
                 {% elif is_podcast_page and quote.episode.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-xs-{{ forloop.counter }}">
+                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
                         <img src="/media/{{ quote.episode.image }}">
                     </div><!-- /.pq-quote-buttons-logo -->
                 {% endif %}
                 
-                <div class="preview-published" id="preview-published-xs-{{ forloop.counter }}">
+                <div class="preview-published" id="preview-published-{{ forloop.counter }}">
                     <span class="pull-right">
                         {{ quote.episode.publication_date|date:'M d, Y' }}
                     </span>
@@ -132,7 +104,7 @@
 
             {% endif %}       
             
-        </div><!-- /.pq-quote-player-xs -->
+        </div><!-- /.pq-quote-player -->
         
         <div class="pq-quote-xs-buttons hidden-md hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
@@ -204,16 +176,6 @@
               $("#preview-published-{{ forloop.counter }}").hide();
               $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
               $("#preview-time-{{ forloop.counter }}").hide();
-              $("#pq-quote-player-{{ forloop.counter }}").toggleClass("youtube-playing");
-              $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass("pq-quote-text-wrapper-cleared");
-          });
-          $("#youtube-xs-{{ forloop.counter }}").click(function() {
-              $("#preview-published-xs-{{ forloop.counter }}").hide();
-              $("#youtube-podcast-logo-xs-{{ forloop.counter }}").hide();
-              $("#preview-time-{{ forloop.counter }}").hide();
-              $("#youtube-xs-{{ forloop.counter }}").toggleClass("youtube-playing");
-              $("#pq-quote-player-xs-{{ forloop.counter }}").toggleClass("youtube-playing");
-              $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass("pq-quote-text-wrapper-cleared");
           });
         </script>
         
