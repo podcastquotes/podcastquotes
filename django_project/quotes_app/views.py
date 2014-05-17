@@ -25,19 +25,6 @@ import json
 
 today = date.today()
 
-def paginate(request, quote_list):
-    paginator = Paginator(quote_list, 5)
-    page = request.GET.get('page')
-    try:
-        quotes = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        quotes = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page.
-        quotes = paginator.page(paginator.num_pages)
-    return (True, quotes)
-
 class HomeQuoteListView(ListView):
     model = Quote
     template_name = 'home.html'
