@@ -6,16 +6,48 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 
-from mock import patch, ANY
+from mock import patch, ANY, MagicMock
 
 import feedparser
 
 from quotes_app.models import Podcast, Episode
 from quotes_app.services import PodcastSyndicationService
 
+from core.forms import PodcastCreateForm
+
 class MicroMock(object):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
+
+
+class PatchFeedparserMixin():
+    
+    expected_feed_title = 'test'
+    expected_feed_description = 'test2'
+    expected_feed_homepage = 'test3'
+    
+    def _patch_feedparser(self, 
+        path='quotes_app.services.feedparser.parse'):
+        
+        mock_feedparser_results = MicroMock(
+            feed=MicroMock(
+                title=self.expected_feed_title,
+                description=self.expected_feed_description, 
+                link=self.expected_feed_homepage
+            ),
+            entries=[MicroMock(
+                title="Why is yoda so old?",
+                publication_date="Thu, 04 Aug 2005 17:02:29 -0400",
+                description="Lets find out why yoda won't die quickly.",
+                link = "http://starwars.fke/ep/40",
+                guid = "http://starwars.fke/ep/40",
+                published_parsed=feedparser._parse_date("Thu, 04 Aug 2005 17:02:29 -0400")
+            )]
+        )
+
+        patcher = patch(path, return_value=mock_feedparser_results)
+        self.parse_spy = patcher.start()
+        self.addCleanup(patcher.stop)
 
 
 class UpdateFeedTests(TestCase):
@@ -54,35 +86,102 @@ class UpdateFeedTests(TestCase):
         parse_call_arg = self.parse_spy.call_args[0][0]
         self.assertEqual(parse_call_arg, self.test_podcast,
             "Episodes collected for test_podcast")
-        
 
 
-class PatchFeedparserMixin():
+class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
+    """ 
+    Adding tests to this module after it was built.  It's definitely
+    not comprehensive
+    """
     
-    def _patch_feedparser(self):
+    def setUp(self):
         
-        mock_feedparser_results = MicroMock(
-            feed=MicroMock(
-                title=self.expected_feed_title,
-                description=self.expected_feed_description, 
-                link=self.expected_feed_homepage
-            ),
-            entries=[MicroMock(
-                title="Why is yoda so old?",
-                publication_date="Thu, 04 Aug 2005 17:02:29 -0400",
-                description="Lets find out why yoda won't die quickly.",
-                link = "http://starwars.fke/ep/40",
-                guid = "http://starwars.fke/ep/40",
-                published_parsed=feedparser._parse_date("Thu, 04 Aug 2005 17:02:29 -0400")
-            )]
-        )
-
-        patcher = patch('quotes_app.services.feedparser.parse', 
-            return_value=mock_feedparser_results)
-        self.parse_spy = patcher.start()
+        self.patch_obtain_podcast_information()
+        
+        # Arrange the form inputs.
+        self.test_create_form = {
+            'rss_url': 'http://example.com/rss',
+            'title': 'Example Podcast',
+            'description': 'We study baboons.',
+            'homepage': 'http://example.com',
+            'donate_url': 'http://example.com/donate',
+            'twitter_url': 'http://example.com/twitter',
+            'facebook_url': 'http://example.com/facebook',
+            'instagram_url': 'http://example.com/instagram',
+            'google_plus_url': 'http://example.com/g+',
+            'youtube_url': 'http://example.com/youtube',
+        }
+        
+        self.form = PodcastCreateForm(self.test_create_form)
+        
+        # The module under test
+        self.podcast_create_view = PodcastCreateView()
+        
+        # Mock/stub this call.. it's touching too many other things
+        self.podcast_create_view.get_success_url = lambda: \
+            "test_redirect_url"
+            
+        self.act()
+        
+    def patch_obtain_podcast_information(self):
+        
+        self.test_rss_title = title = 'TEST!'
+        self.test_rss_description = description = 'TEST123!'
+        self.test_rss_homepage = homepage = 'test123123123'
+        
+        patcher = patch(
+            'quotes_app.views.podcast_syndication_service.' + 
+            'obtain_podcast_information', 
+            return_value={
+                'title':       title,
+                'description': description,
+                'homepage':    homepage
+            })
+        self.obtain_info_spy = patcher.start()
         self.addCleanup(patcher.stop)
 
+    def act(self):
+        self.podcast_create_view.form_valid(self.form)
 
+    def test_that_podcast_information_retrieved(self):
+        
+        self.assertTrue(self.obtain_info_spy.called, 
+            "obtain_podcast_information never called")
+        
+        first_parameter = self.obtain_info_spy.call_args[0][0]
+        self.assertEqual(first_parameter, 
+            self.test_create_form['rss_url'],
+            "rss_url from the form was not used with" +
+            " the syndication service")
+            
+    def test_podcast_creation_w_rss_feed(self):
+
+        # Get the only Podcast in the database
+        podcast = Podcast.objects.all().first()
+
+        # Assert that fields were populated with the rss feed
+        self.assertEqual(podcast.rss_url, self.test_create_form['rss_url'],
+            "rss_url not saved as intended")
+            
+        self.assertEqual(podcast.title, self.test_rss_title,
+            "Podcast title should be from rss")
+            
+        self.assertEqual(
+            podcast.description, 
+            self.test_rss_description,
+            "Podcast description should be from rss")
+        
+        self.assertEqual(podcast.homepage, self.test_rss_homepage,
+            "Podcast homepage should be from rss")
+        
+        # Check that the other fields were populated
+        for key in [
+            'donate_url', 'twitter_url', 'facebook_url', 
+            'instagram_url', 'google_plus_url', 'youtube_url']:
+                
+            self.assertEqual(getattr(podcast, key), 
+                self.test_create_form[key])
+                
 class PodcastSyndicationService_podcast_info_Tests(TestCase, 
     PatchFeedparserMixin):
     

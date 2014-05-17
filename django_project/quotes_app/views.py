@@ -358,21 +358,37 @@ class PodcastCreateView(CreateView):
         return super(PodcastCreateView, self).dispatch(*args, **kwargs)
     
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        rss_url = form.cleaned_data['rss_url']
-        feed = feedparser.parse(rss_url).feed
+        """
+        This is called when a POST'ed form is valid.
+        """
+        
+        # Create podcast model from form
+        self.object = podcast = form.save(commit=False)
+        
+        # Parse feed
+        rss_url = podcast.rss_url
+        
+        # Collect episodes (should be made asynchronous)
+        feed = podcast_syndication_service \
+            .obtain_podcast_information(rss_url)
+            
+        # Redirect to podcast page if the podcast already exists
         try:
-            obj = Podcast.objects.get(title=feed.title)
+            obj = Podcast.objects.get(title=feed['title'])
             url = obj.get_absolute_url()
             return HttpResponseRedirect(url)
         except ObjectDoesNotExist:
             pass
-        self.object.title = feed.title
-        self.object.description = feed.description
-        self.object.homepage = feed.link
-        self.object.save()
-        p = Podcast.objects.get(id=self.object.id)
-        podcast_syndication_service.collect_episodes(p)
+        
+        # Map feed information to Podcast
+        podcast.title = feed['title']
+        podcast.description = feed['description']
+        podcast.homepage = feed['homepage']
+        podcast.save()
+        
+        # Collect episodes (should be made asynchronous)
+        podcast_syndication_service.collect_episodes(podcast)
+        
         return HttpResponseRedirect(self.get_success_url())
 
 def getSec(hhmmss):
