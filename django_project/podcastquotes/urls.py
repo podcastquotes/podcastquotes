@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from quotes_app.models import Podcast, Episode, Quote
-from quotes_app.views import home_top
 from quotes_app.views import HomeQuoteListView
 from quotes_app.views import PodcastQuoteListView, PodcastCreateView
 from quotes_app.views import EpisodeQuoteListView
