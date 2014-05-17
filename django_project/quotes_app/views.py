@@ -298,11 +298,13 @@ class EpisodeQuoteListView(ListView):
         
         return context
                  
-def quote(request, podcast_id, episode_id, quote_id):
+def quote(request, quote_id):
+    q = Quote.objects.get(id=quote_id)
+    
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all(),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quote': Quote.objects.get(id=quote_id),
+                 'episodes': Episode.objects.filter(podcast_id=q.episode.podcast.id).exclude(youtube_url__exact='').order_by('-publication_date'),
+                 'quote': q,
                  'is_quote_page': 1})
                  
 from quotes_app.services import PodcastSyndicationService

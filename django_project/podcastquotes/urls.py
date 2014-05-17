@@ -13,11 +13,10 @@ urlpatterns = patterns('',
  
     url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
-     
     url(r'^admin/', include(admin.site.urls)),
  
     url(r'^(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
- 
+    
     url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
     url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
@@ -33,7 +32,7 @@ urlpatterns = patterns('',
         'quotes_app.views.update_feed', 
         name='update_feed',),
     
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
+    url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
     
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),

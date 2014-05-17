@@ -25,7 +25,7 @@
 
           <div class="pq-menu-options">
            {% for podcast in podcasts %}        
-           <a href="/podcasts/{{ podcast.id}}">
+           <a href="/podcasts/{{ podcast.id }}/hot/">
              <div class="pq-menu-option">
                 {{ podcast.title }}
              </div><!-- /.pq-menu-option -->
@@ -53,7 +53,7 @@
 
           <div class="pq-menu-options">
            {% for episode in episodes %}        
-             <a href="/episodes/{{ episode.id}}">
+             <a href="/episodes/{{ episode.id}}/hot/">
                <div class="pq-menu-option">
                  {{ episode.title }}
                </div><!-- /.pq-menu-option -->

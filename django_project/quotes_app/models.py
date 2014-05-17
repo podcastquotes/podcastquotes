@@ -212,7 +212,7 @@ class Quote(models.Model):
         return "%d:%02d:%02d" % (h, m, s)
         
     def get_absolute_url(self):
-        return reverse('quote', kwargs={'podcast_id': self.episode.podcast.pk, 'episode_id': self.episode.pk, 'quote_id': self.pk})
+        return reverse('quote', kwargs={'quote_id': self.pk})
         
     def __unicode__(self):
         return u'%s - %s' % (self.episode.podcast.title, self.episode.title)
