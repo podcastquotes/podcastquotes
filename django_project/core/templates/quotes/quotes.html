@@ -3,7 +3,7 @@
 
       <div class="pq-quote">
         
-            <div class="pq-quote-buttons hidden-xs hidden-sm">
+            <div class="pq-quote-buttons hidden-xs hidden-sm hidden-md">
                 
             <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
@@ -41,7 +41,7 @@
                 {% endif %}
             </form>
                 
-            </div><!-- /.pq-quote-buttons -->
+            </div><!-- /.pq-quote-buttons hidden-xs hidden-sm hidden-md -->
         
         <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
         
@@ -106,7 +106,7 @@
             
         </div><!-- /.pq-quote-player -->
         
-        <div class="pq-quote-xs-buttons hidden-md hidden-lg">
+        <div class="pq-quote-xs-buttons hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
                 <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />

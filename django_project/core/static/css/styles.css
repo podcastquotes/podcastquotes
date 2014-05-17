@@ -194,8 +194,7 @@ a {
 
 @media (min-width:992px) and (max-width:1199px) {
     .pq-navbar-container {
-        max-width:810px;
-        padding:0 4px 0 3px;
+        padding:0 25px;
         margin:0 auto;
     }
 }
@@ -373,17 +372,10 @@ a {
     }
 }
 
-@media (min-width:768px) and (max-width:991px) {
+@media (min-width:768px) and (max-width:1199px) {
     .pq-container {
         margin:0 auto;
-        padding:0 25px;
-    }
-}
-
-@media (min-width:992px) and (max-width:1199px) {
-    .pq-container {
-        max-width:800px;
-        margin:0 auto;
+        padding:0 30px;
     }
 }
 
@@ -1174,8 +1166,16 @@ button {
 *******************************
 ******************************/
 
-.pq-sidebar {
-    padding:0 20px 0 5px;
+@media (max-width:1199px) {
+    .pq-sidebar {
+        padding:0 0 0 5px;
+    }
+}
+
+@media (min-width:1200px) {
+    .pq-sidebar {
+        padding:0 20px 0 5px;
+    }
 }
 
 @media (max-width:767px) {
