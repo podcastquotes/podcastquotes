@@ -79,22 +79,22 @@
                 </div><!-- /.pq-quote-summary -->
             {% endif %}
             
-            {% if episode %}
+            {% if is_episode_page %}
             {% else %}
                 <div class="pq-quote-breadcrumbs">
-                  {% if podcast %}
+                  {% if is_podcast_page or is_episode_page %}
                   {% else %}
                       {% if quote.episode.podcast.title %}
-                          <a href="/podcasts/{{ quote.episode.podcast.id }}">
+                          <a href="{% url 'podcast_quote_list' pk=quote.episode.podcast.id query_filter='hot' %}">
                               {{ quote.episode.podcast.title }}
                           </a>
                           >
                       {% endif %}
                   {% endif %}
-                  {% if episode %}
+                  {% if is_episode_page %}
                   {% else %}
                       {% if quote.episode.title %} 
-                          <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">
+                          <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
                               {{ quote.episode.title }}
                           </a>
                       {% endif %}

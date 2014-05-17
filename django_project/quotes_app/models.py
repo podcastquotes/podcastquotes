@@ -18,12 +18,62 @@ def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 class QuoteVoteManager(models.Manager):
-    def top_votes(self):
+    
+    def query_hot(self):
+        ### need to implement hot algorithm
+        ###
+        # Most upvoted trending algorithm
+        return super(QuoteVoteManager, self).get_query_set()
+        
+    def query_not(self):
+        ### need to implement not algorithm
+        ###
+        # Most downvoted trending algorithm
+        return super(QuoteVoteManager, self).get_query_set()
+
+    def query_controversial(self):
+        ### need to implement controversial algorithm
+        ###
+        # Most evenly upvoted and downvoted trending algorithm
+        return super(QuoteVoteManager, self).get_query_set()
+        
+    def query_new(self):
+        # Order by most recently submitted to least recently submitted
+        return super(QuoteVoteManager, self).get_query_set().order_by('-created_at')
+        
+    def query_top(self):
+        # Order by highest vote_score to lowest vote_score
         return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
-    def bottom_votes(self):
+        
+    def query_bottom(self):
+        # Order by lowest vote_score to highest vote_score
         return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
-
-
+        
+    def query_mainstream(self):
+        # Order by total number of votes
+        return super(QuoteVoteManager, self).get_query_set().annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
+        
+    def query_underground(self):
+        ### need to implement underground algorithm
+        ###
+        # Order by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
+        return super(QuoteVoteManager, self).get_query_set()
+    
+    def query_chronological(self):
+        # Order by the time the quote begins in the podcast
+        return super(QuoteVoteManager, self).get_query_set().order_by('time_quote_begins')
+        
+    def query_ghosts(self):
+        ### need to implement ghosts algorithm
+        ###
+        # Quotes that have no votes
+        return super(QuoteVoteManager, self).get_query_set()
+        
+    def query_birthdays(self):
+        ### need to implement birthdays algorithm
+        ### Quotes that were publicized on the same month/day as today in any year, ordered by highest vote_score to lowest vote_score
+        return super(QuoteVoteManager, self).get_query_set()
+    
 class Podcast(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

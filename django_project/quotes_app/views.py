@@ -38,37 +38,277 @@ def paginate(request, quote_list):
         quotes = paginator.page(paginator.num_pages)
     return (True, quotes)
 
-# home_top - all quotes sorted by highest vote_score
-class QuoteTopListView(ListView):
+class HomeQuoteListView(ListView):
     model = Quote
-    template_name = 'home_top.html'
+    template_name = 'home.html'
     paginate_by = 5
     
     def get_queryset(self):
-        return Quote.objects.top_votes()
+        try:
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = False            
+        
+        if f == 'hot':
+            return Quote.objects.query_hot()
+        elif f == 'not':
+            return Quote.objects.query_not()
+        elif f == 'controversial':
+            return Quote.objects.query_controversial()
+        elif f == 'new':
+            return Quote.objects.query_new()
+        elif f == 'top':
+            return Quote.objects.query_top()
+        elif f == 'bottom':
+            return Quote.objects.query_bottom()
+        elif f == 'mainstream':
+            return Quote.objects.query_mainstream()
+        elif f == 'underground':
+            return Quote.objects.query_underground()
+        elif f == 'chronological':
+            return Quote.objects.query_chronological()
+        elif f == 'ghosts':
+            return Quote.objects.query_ghosts()
+        elif f == 'birthdays':
+            return Quote.objects.query_birthdays()
+        else:
+            return Quote.objects.query_hot()
     
     def get_context_data(self, **kwargs):
-        context = super(QuoteTopListView, self).get_context_data(**kwargs)
+        context = super(HomeQuoteListView, self).get_context_data(**kwargs)
+        
+        try:
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = False   
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all()
-        context['home_top_is_active'] = 1
-        context['is_home'] = 1
+        
+        # these allow the template to know if a breadcrumb should be displayed within quote divs
+        context['is_home_page'] = True
+        context['is_podcast_page'] = False
+        context['is_episode_page'] = False
+        
+        # these allow the template to know which nav button (hot, not, top, etc.) to display as active
+        context['home_hot_is_active'] = False
+        context['home_not_is_active'] = False
+        context['home_controversial_is_active'] = False
+        context['home_new_is_active'] = False
+        context['home_top_is_active'] = False
+        context['home_bottom_is_active'] = False
+        context['home_mainstream_is_active'] = False
+        context['home_underground_is_active'] = False
+        context['home_chronological_is_active'] = False
+        context['home_ghosts_is_active'] = False
+        context['home_birthdays_is_active'] = False
+        
+        if f == 'hot':
+            context['home_hot_is_active'] = True
+        elif f == 'not':
+            context['home_not_is_active'] = True
+        elif f == 'controversial':
+            context['home_controversial_is_active'] = True
+        elif f == 'new':
+            context['home_new_is_active'] = True
+        elif f == 'top':
+            context['home_top_is_active'] = True
+        elif f == 'bottom':
+            context['home_bottom_is_active'] = True
+        elif f == 'mainstream':
+            context['home_mainstream_is_active'] = True
+        elif f == 'underground':
+            context['home_underground_is_active'] = True
+        elif f == 'chronological':
+            context['home_chronological_is_active'] = True
+        elif f == 'ghosts':
+            context['home_ghosts_is_active'] = True
+        elif f == 'birthdays':
+            context['home_birthdays_is_active'] = True
+        else:
+            context['home_hot_is_active'] = True
+        
         return context
 
-# podcast_top - all quotes for a podcast sorted by highest vote_score
-class PodcastQuoteTopListView(ListView):
+class PodcastQuoteListView(ListView):
     model = Quote
-    template_name = 'podcast_top.html'
+    template_name = 'podcast_detail.html'
+    paginate_by = 5
+    
+    def get_queryset(self):
+        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        f = self.kwargs['query_filter']
+        
+        if f == 'hot':
+            return Quote.objects.query_hot().filter(episode__podcast_id=p.id)
+        elif f == 'not':
+            return Quote.objects.query_not().filter(episode__podcast_id=p.id)
+        elif f == 'controversial':
+            return Quote.objects.query_controversial().filter(episode__podcast_id=p.id)
+        elif f == 'new':
+            return Quote.objects.query_new().filter(episode__podcast_id=p.id)
+        elif f == 'top':
+            return Quote.objects.query_top().filter(episode__podcast_id=p.id)
+        elif f == 'bottom':
+            return Quote.objects.query_bottom().filter(episode__podcast_id=p.id)
+        elif f == 'mainstream':
+            return Quote.objects.query_mainstream().filter(episode__podcast_id=p.id)
+        elif f == 'underground':
+            return Quote.objects.query_underground().filter(episode__podcast_id=p.id)
+        elif f == 'chronological':
+            return Quote.objects.query_chronological().filter(episode__podcast_id=p.id)
+        elif f == 'ghosts':
+            return Quote.objects.query_ghosts().filter(episode__podcast_id=p.id)
+        elif f == 'birthdays':
+            return Quote.objects.query_birthdays().filter(episode__podcast_id=p.id)
+        else:
+            return Quote.objects.query_hot().filter(episode__podcast_id=p.id)
+
+    def get_context_data(self, **kwargs):
+        context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
+        
+        f = self.kwargs['query_filter']
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all()
+        
+        context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        
+        context['is_home_page'] = False
+        context['is_podcast_page'] = True
+        context['is_episode_page'] = False
+        
+        ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
+        context['podcast_hot_is_active'] = False
+        context['podcast_not_is_active'] = False
+        context['podcast_controversial_is_active'] = False
+        context['podcast_new_is_active'] = False
+        context['podcast_top_is_active'] = False
+        context['podcast_bottom_is_active'] = False
+        context['podcast_mainstream_is_active'] = False
+        context['podcast_underground_is_active'] = False
+        context['podcast_chronological_is_active'] = False
+        context['podcast_ghosts_is_active'] = False
+        context['podcast_birthdays_is_active'] = False
+        
+        if f == 'hot':
+            context['podcast_hot_is_active'] = True
+        elif f == 'not':
+            context['podcast_not_is_active'] = True
+        elif f == 'controversial':
+            context['podcast_controversial_is_active'] = True
+        elif f == 'new':
+            context['podcast_new_is_active'] = True
+        elif f == 'top':
+            context['podcast_top_is_active'] = True
+        elif f == 'bottom':
+            context['podcast_bottom_is_active'] = True
+        elif f == 'mainstream':
+            context['podcast_mainstream_is_active'] = True
+        elif f == 'underground':
+            context['podcast_underground_is_active'] = True
+        elif f == 'chronological':
+            context['podcast_chronological_is_active'] = True
+        elif f == 'ghosts':
+            context['podcast_ghosts_is_active'] = True
+        elif f == 'birthdays':
+            context['podcast_birthdays_is_active'] = True
+        else:
+            pass
+        
+        return context
+        
+class EpisodeQuoteListView(ListView):
+    model = Quote
+    template_name = 'episode_detail.html'
     paginate_by = 5
 
     def get_queryset(self):
-        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
-        return Quote.objects.top_votes().filter(episode__podcast_id=p.id)
+        e = get_object_or_404(Episode, id=self.kwargs['pk'])
+        f = self.kwargs['query_filter']
+        
+        if f == 'hot':
+            return Quote.objects.query_hot().filter(episode_id=e.id)
+        elif f == 'not':
+            return Quote.objects.query_not().filter(episode_id=e.id)
+        elif f == 'controversial':
+            return Quote.objects.query_controversial().filter(episode_id=e.id)
+        elif f == 'new':
+            return Quote.objects.query_new().filter(episode_id=e.id)
+        elif f == 'top':
+            return Quote.objects.query_top().filter(episode_id=e.id)
+        elif f == 'bottom':
+            return Quote.objects.query_bottom().filter(episode_id=e.id)
+        elif f == 'mainstream':
+            return Quote.objects.query_mainstream().filter(episode_id=e.id)
+        elif f == 'underground':
+            return Quote.objects.query_underground().filter(episode_id=e.id)
+        elif f == 'chronological':
+            return Quote.objects.query_chronological().filter(episode_id=e.id)
+        elif f == 'ghosts':
+            return Quote.objects.query_ghosts().filter(episode_id=e.id)
+        elif f == 'birthdays':
+            return Quote.objects.query_birthdays().filter(episode_id=e.id)
+        else:
+            return Quote.objects.query_hot().filter(episode_id=e.id)
         
     def get_context_data(self, **kwargs):
-        context = super(QuotePodcastTopListView, self).get_context_data(**kwargs)
+        context = super(EpisodeQuoteListView, self).get_context_data(**kwargs)
+        
+        e = get_object_or_404(Episode, id=self.kwargs['pk'])
+        podcast_id = e.podcast.id
+        f = self.kwargs['query_filter']
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all()
-        context['podcast_top_is_active'] = 1
-        context['is_podcast'] = 1
+        
+        context['podcast'] = Podcast.objects.get(id=e.podcast.id)
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        context['episode'] = Episode.objects.get(id=self.kwargs['pk'])
+        
+        context['is_home_page'] = False
+        context['is_podcast_page'] = False
+        context['is_episode_page'] = True
+        
+        ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
+        context['episode_hot_is_active'] = False
+        context['episode_not_is_active'] = False
+        context['episode_controversial_is_active'] = False
+        context['episode_new_is_active'] = False
+        context['episode_top_is_active'] = False
+        context['episode_bottom_is_active'] = False
+        context['episode_mainstream_is_active'] = False
+        context['episode_underground_is_active'] = False
+        context['episode_chronological_is_active'] = False
+        context['episode_ghosts_is_active'] = False
+        context['episode_birthdays_is_active'] = False
+        
+        if f == 'hot':
+            context['episode_hot_is_active'] = True
+        elif f == 'not':
+            context['episode_not_is_active'] = True
+        elif f == 'controversial':
+            context['episode_controversial_is_active'] = True
+        elif f == 'new':
+            context['episode_new_is_active'] = True
+        elif f == 'top':
+            context['episode_top_is_active'] = True
+        elif f == 'bottom':
+            context['episode_bottom_is_active'] = True
+        elif f == 'mainstream':
+            context['episode_mainstream_is_active'] = True
+        elif f == 'underground':
+            context['episode_underground_is_active'] = True
+        elif f == 'chronological':
+            context['episode_chronological_is_active'] = True
+        elif f == 'ghosts':
+            context['episode_ghosts_is_active'] = True
+        elif f == 'birthdays':
+            context['episode_birthdays_is_active'] = True
+        else:
+            pass
+        
         return context
 
 def home_hot(request):
@@ -131,18 +371,6 @@ def home_bottom(request):
                  'home_bottom_is_active': 1,
                  'is_home_page': 1})
                              
-def home_mainstream(request):
-    # Return quotes ordered by total number of votes
-    quote_list = Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'home_mainstream.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'quotes': quotes,
-                 'home_mainstream_is_active': 1,
-                 'is_home_page': 1})
-                             
 def home_underground(request):
     return render(request, 'home_underground.html',
                  {'podcasts': Podcast.objects.all(),
@@ -150,18 +378,7 @@ def home_underground(request):
                  # 'all_quotes_underground': Quote.objects.filter(),
                  'home_underground_is_active': 1,
                  'is_home_page': 1})
-                             
-def home_chronological(request):
-    # Return quotes ordered by the time the quote begins in the podcast
-    quote_list = Quote.objects.order_by('time_quote_begins')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'home_chronological.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'quotes': quotes,
-                 'home_chronological_is_active': 1,
-                 'is_home_page': 1})
+
                              
 def home_ghosts(request):
     return render(request, 'home_ghosts.html',
@@ -179,134 +396,9 @@ def home_birthdays(request):
                  'home_birthdays_is_active': 1,
                  'is_home_page': 1})
 
-def podcast_hot(request, podcast_id):
-    return render(request, 'podcast_hot.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
                  # Implement some kind of trending algorithm with exponential decay
                  # 'podcast_all_quotes_hot': Quote.objects.filter(),
-                 'podcast_hot_is_active': 1,
-                 'is_podcast_page': 1})
                              
-def podcast_not(request, podcast_id):
-    return render(request, 'podcast_not.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 # Reverse the hot algorithm results to determine not sorting
-                 # 'podcast_all_quotes_not': Quote.objects.filter(),
-                 'podcast_not_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_controversial(request, podcast_id):
-    return render(request, 'podcast_controversial.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 # Algorithm showing quotes that are diametrically in the middle of hot/not, with higher ranking going to quotes with the most overall votes
-                 # 'podcast_all_quotes_controversial': Quote.objects.filter(),
-                 'podcast_controversial_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_new(request, podcast_id):
-    # Return quotes ordered by newest to oldest
-    quote_list = Quote.objects.filter(episode__podcast_id=podcast_id).order_by('-created_at')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'podcast_new.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quotes': quotes,
-                 'podcast_new_is_active': 1,
-                 'is_podcast_page': 1})
-"""
-def podcast_top(request, podcast_id):
-    # Return quotes ordered by highest score to lowest score
-    quote_list = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'podcast_top.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quotes': quotes,
-                 'podcast_top_is_active': 1,
-                 'is_podcast_page': 1})
-"""
-def podcast_bottom(request, podcast_id):
-    # Return quotes ordered by lowest score to highest score
-    quote_list = Quote.objects.annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'podcast_bottom.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quotes': quotes,
-                 'podcast_bottom_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_mainstream(request, podcast_id):
-    # Return quotes ordered by total number of votes
-    quote_list = Quote.objects.annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'podcast_mainstream.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quotes': quotes,
-                 'podcast_mainstream_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_underground(request, podcast_id):
-    return render(request, 'podcast_underground.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 # Return quotes ordered by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
-                 # 'podcast_all_quotes_underground': Quote.objects.filter(),
-                 'podcast_underground_is_active': 1})
-                             
-def podcast_chronological(request, podcast_id):
-    # Return quotes ordered by the time the quote begins in the podcast
-    quote_list = Quote.objects.order_by('time_quote_begins')
-    
-    success, quotes = paginate(request, quote_list)
-    
-    return render(request, 'podcast_chronological.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quotes': quotes,
-                 'podcast_chronological_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_ghosts(request, podcast_id):
-    return render(request, 'podcast_ghosts.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 # Return quotes that have received no votes
-                 # 'podcast_all_quotes_ghosts': Quote.objects.annotate(),
-                 'podcast_ghosts_is_active': 1,
-                 'is_podcast_page': 1})
-                             
-def podcast_birthdays(request, podcast_id):
-    return render(request, 'podcast_birthdays.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'podcast': Podcast.objects.get(id=podcast_id),
-                 'episodes': Episode.objects.filter(podcast_id=podcast_id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 # 'podcast_all_quotes_birthdays': Quote.objects.filter(),
-                 'podcast_birthdays_is_active': 1,
-                 'is_podcast_page': 1})
-
 def episode_hot(request, podcast_id, episode_id):
     return render(request, 'episode_hot.html',
                  {'podcasts': Podcast.objects.all(),
