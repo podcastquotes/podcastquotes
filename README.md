@@ -18,6 +18,9 @@ Development Install
 ### Init database
 ```./manage.py syncdb```
 
+### Seed database with some things for allauth
+```./manage.py init_configuration```
+
 Run App for Development
 =======================
 ```./manage.py runserver```
