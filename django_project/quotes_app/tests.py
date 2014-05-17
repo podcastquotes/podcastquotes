@@ -1,7 +1,8 @@
 
-from quotes_app.views import update_feed, PodcastCreateView
+from quotes_app.views import (update_feed, PodcastCreateView, 
+    quote_create)
 
-
+import unittest
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
@@ -14,6 +15,7 @@ from quotes_app.models import Podcast, Episode
 from quotes_app.services import PodcastSyndicationService
 
 from core.forms import PodcastCreateForm
+
 
 class MicroMock(object):
     def __init__(self, **kwargs):
@@ -283,7 +285,50 @@ class PodcastSyndicationServiceIntegrationTests(TestCase):
             "HTML tags should be stripped from the description")
         self.assertEqual(episode.guid, self.test_guid)
         
-        
 
+class QuoteCreateTests(TestCase):
     
+    def setUp(self):
+        
+        self.request_factory = RequestFactory()
+        
+        # Create a podcast and episode in the database.
+        p = Podcast.objects.create()
+        
+        self.episode = Episode.objects.create(
+            podcast=p, 
+            # Form's queryset is filtered to only show with youtube url
+            youtube_url="http://youtube.com/asdf")
+        
+    def act(self):
+
+        request = self.request_factory.post('/whatever', self.form_data)
+        request.user = User.objects.create()
+
+        quote_create(request)
     
+    def test_no_error_case(self):
+        """ Wiring test to exsiting code for the happy case."""
+
+        self.form_data = {
+            'episode': self.episode.pk,
+            'summary': 'asdf',
+            'text': 'asdf',
+            'time_quote_ends': '02:03:04',
+            'time_quote_begins': '02:03:10' 
+        }
+        
+        self.act()
+        
+    @unittest.expectedFailure
+    def test_with_no_quote_end(self):
+        
+        self.form_data = {
+            'episode': self.episode.pk,
+            'summary': 'asdf',
+            'text': 'asdf',
+            'time_quote_ends': '02:03:04',
+            'time_quote_begins': '' 
+        }
+        
+        self.act()
