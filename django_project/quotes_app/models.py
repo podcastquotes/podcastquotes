@@ -10,6 +10,7 @@ from urlparse import urlparse, parse_qs
  
 from django.template import Template, Context
 from django.conf import settings
+from django.utils.timezone import now
 
 today = date.today()
 
@@ -23,13 +24,13 @@ class QuoteVoteManager(models.Manager):
         ### need to implement hot algorithm
         ###
         # Most upvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set()
-        
+        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('-rank_score', '-vote_score')
+
     def query_not(self):
         ### need to implement not algorithm
         ###
         # Most downvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set()
+        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('rank_score', 'vote_score')
 
     def query_controversial(self):
         ### need to implement controversial algorithm
@@ -200,7 +201,7 @@ class Quote(models.Model):
     
     def vote_score(self):
         return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
-
+    
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
         h, m = divmod(m, 60)

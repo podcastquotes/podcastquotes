@@ -83,16 +83,6 @@
                   </div>
                 </div>
                 
-                {% if is_home_page and quote.episode.podcast.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
-                        <img src="/media/{{ quote.episode.podcast.image }}">
-                    </div><!-- /.pq-quote-buttons-logo -->
-                {% elif is_podcast_page and quote.episode.image %}
-                    <div class="youtube-podcast-logo" id="youtube-podcast-logo-{{ forloop.counter }}">
-                        <img src="/media/{{ quote.episode.image }}">
-                    </div><!-- /.pq-quote-buttons-logo -->
-                {% endif %}
-                
                 <div class="preview-published" id="preview-published-{{ forloop.counter }}">
                     <span class="pull-right">
                         {{ quote.episode.publication_date|date:'M d, Y' }}

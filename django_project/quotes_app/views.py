@@ -124,7 +124,11 @@ class PodcastQuoteListView(ListView):
     
     def get_queryset(self):
         p = get_object_or_404(Podcast, id=self.kwargs['pk'])
-        f = self.kwargs['query_filter']
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
         
         if f == 'hot':
             return Quote.objects.query_hot().filter(episode__podcast_id=p.id)
@@ -154,7 +158,11 @@ class PodcastQuoteListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
         
-        f = self.kwargs['query_filter']
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all()
@@ -213,7 +221,12 @@ class EpisodeQuoteListView(ListView):
 
     def get_queryset(self):
         e = get_object_or_404(Episode, id=self.kwargs['pk'])
-        f = self.kwargs['query_filter']
+        
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
         
         if f == 'hot':
             return Quote.objects.query_hot().filter(episode_id=e.id)
@@ -245,7 +258,12 @@ class EpisodeQuoteListView(ListView):
         
         e = get_object_or_404(Episode, id=self.kwargs['pk'])
         podcast_id = e.podcast.id
-        f = self.kwargs['query_filter']
+        
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all()
