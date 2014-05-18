@@ -447,6 +447,7 @@ class VoteFormBaseView(FormView):
         else:
             if prev_votes[0].vote_type == 1 and t == 1:
                 prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=0)
                 ret["un_upvoted"] = 1
             elif prev_votes[0].vote_type == 1 and t == -1:
                 prev_votes[0].delete()
@@ -458,6 +459,7 @@ class VoteFormBaseView(FormView):
                 ret["upvoteobj"] = v.id
             elif prev_votes[0].vote_type == -1 and t == -1:
                 prev_votes[0].delete()
+                v = Vote.objects.create(quote=quote, voter=voter, vote_type=0)
                 ret["un_downvoted"] = 1
             elif prev_votes[0].vote_type == 0 and t == 1:
                 prev_votes[0].delete()
