@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'quotes_app',
     
     'captcha',
+    'south',
 
     'django.contrib.admin',
     'django.contrib.auth',

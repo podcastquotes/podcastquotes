@@ -17,6 +17,7 @@ Development Install
 
 ### Init database
 ```./manage.py syncdb```
+```./manage.py migrate```
 
 ### Seed database with some things for allauth
 ```./manage.py init_configuration```
