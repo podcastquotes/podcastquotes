@@ -2,15 +2,17 @@
 
 {% block header %}
     
-    {% include 'episode_all_headers.html' %}
-        
+    {% include 'main_col_width.html' %}
+
+    {% include 'quote_breadcrumbs.html' %}
+    
+    {% include 'quote_header.html' %}
+    
 {% endblock %}<!-- /block header -->
     
 {% block quotes %}
 
-    {% for quote in episode.all_episode_quotes_top %}
-        {% include 'quotes.html' %}
-    {% endfor %}
+    {% include 'quotes.html' %}
 
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 

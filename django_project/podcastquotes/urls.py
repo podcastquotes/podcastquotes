@@ -1,56 +1,34 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote
-from quotes_app.views import home_top
-from quotes_app.views import PodcastCreateView
+from quotes_app.views import HomeQuoteListView
+from quotes_app.views import PodcastQuoteListView, PodcastCreateView
+from quotes_app.views import EpisodeQuoteListView
 from quotes_app.views import quote_create
+from quotes_app.views import rank_all
+from quotes_app.views import VoteFormView
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    
+    url(r'^rerank/', 'quotes_app.views.rank_all', name='rank_all_quotes'),
+    
+    url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
-    url(r'^hot/$', 'quotes_app.views.home_hot', name='home_hot'),
+    url(r'^admin/', include(admin.site.urls)),
+ 
+    url(r'^(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
     
-    url(r'^not/$', 'quotes_app.views.home_not', name='home_not'),
+    url(r'^podcasts/(?P<pk>\d+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
-    url(r'^controversial/$', 'quotes_app.views.home_controversial', name='home_controversial'),
+    url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
-    url(r'^new/$', 'quotes_app.views.home_new', name='home_new'),
+    url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
     
-    url(r'^$', 'quotes_app.views.home_top', name='home_top'),
-    
-    url(r'^bottom/$', 'quotes_app.views.home_bottom', name='home_bottom'),
-    
-    url(r'^mainstream/$', 'quotes_app.views.home_mainstream', name='home_mainstream'),
-    
-    url(r'^underground/$', 'quotes_app.views.home_underground', name='home_underground'),
-    
-    url(r'^chronological/$', 'quotes_app.views.home_chronological', name='home_chronological'),
-    
-    url(r'^ghosts/$', 'quotes_app.views.home_ghosts', name='home_ghosts'),
-    
-    url(r'^birthdays/$', 'quotes_app.views.home_birthdays', name='home_birthdays'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/hot/$', 'quotes_app.views.podcast_hot', name='podcast_hot'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/not/$', 'quotes_app.views.podcast_not', name='podcast_not'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/controversial/$', 'quotes_app.views.podcast_controversial', name='podcast_controversial'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/new/$', 'quotes_app.views.podcast_new', name='podcast_new'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/$', 'quotes_app.views.podcast_top', name='podcast_top'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/bottom/$', 'quotes_app.views.podcast_bottom', name='podcast_bottom'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/chronological/$', 'quotes_app.views.podcast_chronological', name='podcast_chronological'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/mainstream/$', 'quotes_app.views.podcast_mainstream', name='podcast_mainstream'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/underground/$', 'quotes_app.views.podcast_underground', name='podcast_underground'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/ghosts/$', 'quotes_app.views.podcast_ghosts', name='podcast_ghosts'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/birthdays/$', 'quotes_app.views.podcast_birthdays', name='podcast_birthdays'),
+    url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
     url(r'^podcasts/create/$', 
         PodcastCreateView.as_view(
@@ -62,37 +40,15 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<podcast_id>\d+)/update_feed/$', 
         'quotes_app.views.update_feed', 
         name='update_feed',),
-
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/hot/$', 'quotes_app.views.episode_hot', name='episode_hot'),
     
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/not/$', 'quotes_app.views.episode_not', name='episode_not'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/controversial/$', 'quotes_app.views.episode_controversial', name='episode_controversial'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/new/$', 'quotes_app.views.episode_new', name='episode'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/$', 'quotes_app.views.episode_top', name='episode_top'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/bottom/$', 'quotes_app.views.episode_bottom', name='episode_bottom'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/chronological/$', 'quotes_app.views.episode_chronological', name='episode_chronological'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/mainstream/$', 'quotes_app.views.episode_mainstream', name='episode_mainstream'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/underground/$', 'quotes_app.views.episode_underground', name='episode_underground'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/ghosts/$', 'quotes_app.views.episode_ghosts', name='episode_ghosts'),
-    
-    url(r'^podcasts/(?P<podcast_id>\d+)/episodes/(?P<episode_id>\d+)/birthdays/$', 'quotes_app.views.episode_birthdays', name='episode_birthdays'),
+    url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
     
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),
-        
-    url(r'^quotes/vote/(?P<quote_id>\d+)/(?P<vote_type_id>-?\d+)/$', 'quotes_app.views.vote', name='quote_vote'),
+    
+    url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
    
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
-    
-    url(r'^admin/', include(admin.site.urls)),
     
     # Allauth urls
     (r'^accounts/', include('allauth.urls')),

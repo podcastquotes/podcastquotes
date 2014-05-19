@@ -15,6 +15,7 @@
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/youtube.js' %}"></script>
+<script src="{% static 'js/ajax-vote.js' %}"></script>
 </head>
 
 <body>
@@ -26,16 +27,18 @@
   <div class="pq-container">
     
     <div class="row">
-      
+
+      {% block sidebar %}
+          {% include 'sidebar.html' %}
+      {% endblock %}<!-- / block sidebar -->
+    
       {% block header %}
       {% endblock %}<!-- / block header -->
 
       {% block quotes %}
       {% endblock %}
       
-      {% block sidebar %}
-          {% include 'sidebar.html' %}
-      {% endblock %}<!-- / block sidebar -->
+
     
     </div><!-- /.row -->
   

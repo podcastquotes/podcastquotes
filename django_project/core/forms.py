@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from quotes_app.models import Podcast, Episode, Quote
+from quotes_app.models import Podcast, Episode, Quote, Vote
 from captcha.fields import ReCaptchaField
 
 class PodcastCreateForm(forms.ModelForm):
@@ -88,6 +88,11 @@ class QuoteForm(forms.ModelForm):
 
     class Meta:
         model = Quote
+
+class VoteForm(forms.ModelForm):
+
+    class Meta:
+        model = Vote
         
 class AllauthSignupForm(forms.Form):
     captcha = ReCaptchaField()
