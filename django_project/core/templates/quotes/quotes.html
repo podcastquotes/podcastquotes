@@ -42,10 +42,13 @@
             </form>
                 
             </div><!-- /.pq-quote-buttons hidden-xs hidden-sm hidden-md -->
+        
+        <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
+        
             {% if quote.summary %}
-                <div class="pq-quote-summary-xs">
+                <div class="pq-quote-summary">
                     <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
-                </div>
+                </div><!-- /.pq-quote-summary -->
             {% endif %}
             
         <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
@@ -66,14 +69,6 @@
             {% endif %}       
             
         </div><!-- /.pq-quote-player -->
-        
-        <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
-        
-            {% if quote.summary %}
-                <div class="pq-quote-summary">
-                    <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
-                </div><!-- /.pq-quote-summary -->
-            {% endif %}
             
             {% if is_episode_page %}
             {% else %}
@@ -172,9 +167,11 @@
           });
         </script>
         
-        <div class="pq-quote-posted-by">
-            posted 4 hours ago by {{ quote.submitted_by }}
-        </div>
+
+            <div class="pq-quote-posted-by">
+                posted 4 hours ago by {{ quote.submitted_by }}
+            </div>
+
         
           <div class="pq-quote-bottom-buttons">
           

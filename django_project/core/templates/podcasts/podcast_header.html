@@ -25,7 +25,7 @@
         
         <div class="pq-podcast-buttons">
             
-            <div style="margin-right:-20px">
+
             
                 <button class="pq-podcast-button pq-podcast-share-button" style="margin-left:0;padding-left:0;" data-toggle="modal" data-target="#podcastShareModal{{ podcast.id }}">
                     share
@@ -49,24 +49,20 @@
                   </div>
                 </div><!-- /.modal fade -->
                 
-                <div class="pq-podcast-button text-orange ">
-                    {% if not episode.donate_url %}
-                        {% if podcast.donate_url %}
-                        <a href="{{ podcast.donate_url }}">
-                            donate
-                        </a>
-                        {% endif %}
+                {% if not episode.donate_url %}
+                    {% if podcast.donate_url %}
+                        <div class="pq-podcast-button text-orange ">
+                            <a href="{{ podcast.donate_url }}">
+                                donate
+                            </a>
+                        </div>
                     {% endif %}
-                </div>
+                {% endif %}
                 
                 <div class="pq-podcast-button text-purple">
                     edit
                 </div>
-                <div class="pq-podcast-button text-purple">
-                    update
-                </div>
                 
-            </div><!-- style:margin-right:-20px -->
 
         </div><!-- /.pq-podcast-buttons -->
         
@@ -142,42 +138,41 @@
     
         <div class="pq-podcast-buttons">
             
-            <button class="pq-podcast-button pq-podcast-share-button" style="margin-left:0;padding-left:0;" data-toggle="modal" data-target="#episodeShareModal{{ podcast.id }}">
-                share
-            </button>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="episodeShareModal{{ podcast.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                <button class="pq-podcast-button pq-podcast-share-button" style="margin-left:0;padding-left:0;" data-toggle="modal" data-target="#episodeShareModal{{ episode.id }}">
+                    share
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="episodeShareModal{{ episode.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                      </div>
+                      <div class="modal-body">
+                          http://www.podcastquotes.com{{ episode.get_absolute_url }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
                   </div>
-                  <div class="modal-body">
-                      http://www.podcastquotes.com{{ episode.get_absolute_url }}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div><!-- /.modal fade -->
-            
-            <div class="pq-podcast-button text-orange ">
+                </div><!-- /.modal fade -->
+                
                 {% if episode.donate_url %}
-                    <a href="{{ episode.donate_url }}">
-                        donate
-                    </a>
+                    <div class="pq-podcast-button text-orange ">
+                        <a href="{{ episode.donate_url }}">
+                            donate
+                        </a>
+                    </div>
                 {% endif %}
-            </div>
-            
-            <div class="pq-podcast-button" id="play-full-episode">
-                play full episode
-            </div>
-            <div class="pq-podcast-button text-purple">
-                edit
-            </div>
+                
+                <div class="pq-podcast-button text-purple">
+                    edit
+                </div>
+                
+
         </div><!-- /.pq-podcast-buttons -->
         
         {% if episode.youtube_url %}

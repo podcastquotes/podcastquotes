@@ -657,14 +657,14 @@ a {
 @media (max-width:767px) {
     .pq-podcast-buttons {
         float:left;
-        margin:0 0 15px 0;
+        font-size:14px;
     }
 }
 
 @media (min-width:768px) {
     .pq-podcast-buttons {
         float:right;
-        margin:0 0 15px 0;
+        font-size:14px;
     }
 }
 
@@ -672,7 +672,7 @@ a {
     .pq-podcast-button {
         float:left;
         margin:0 20px 0 0;
-        font-size:16px;
+        font-size:14px;
         font-weight:bold;
         padding:0;
         background-color:#fcfcfc;
@@ -682,12 +682,12 @@ a {
     
 @media (min-width:768px) {
     .pq-podcast-button {
-        float:left;
+        display:inline-block;
         margin:0 0 0 20px;
         padding:0;
         background-color:#fcfcfc;
         border:none;
-        font-size:16px;
+        font-size:14px;
         font-weight:bold;
     }
 }
@@ -786,20 +786,17 @@ a {
     border-bottom:1px solid #ddd;
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-quote-text-wrapper {
         clear:left;
         overflow:hidden;
-        padding:0 25px 0 0;
         font-size:16px;
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-quote-text-wrapper {
-        max-width:720px;
         overflow:hidden;
-        padding:0 25px 0 0;
         font-size:16px;
     }
 }
@@ -809,17 +806,17 @@ a {
     overflow:none;
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-quote-text-box {
         clear:left;
-        font-size:16px;
+        font-size:14px;
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-quote-text-box {
         clear:left;
-        font-size:16px;
+        font-size:14px;
         overflow:hidden;
     }
 }
@@ -830,19 +827,23 @@ a {
     color:#bbb;
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-quote-summary {
-        display:none;
+        overflow:hidden;
+        margin:0 20px 0 0;
+        padding:0 0 15px 0;
+        font-weight:bold;
+        font-size:20px;
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-quote-summary {
         overflow:hidden;
-        margin:-5px 0 0 0;
+        margin:0 20px 0 0;
         padding:0 0 10px 0;
         font-weight:bold;
-        font-size:22px;
+        font-size:20px;
     }
 }
 
@@ -856,25 +857,23 @@ a {
     color:#888;
 }
 
-@media (max-width:649px) {
-    .pq-quote-summary-xs {
+@media (max-width:767px) {
+    .pq-quote-breadcrumbs {
+        clear:left;
         overflow:hidden;
-        padding:0 0 15px 0;
-        font-weight:bold;
-        font-size:20px;
+        font-size:14px;
+        padding:2px 0 0 0;
+        margin:0 20px 10px 0;
     }
 }
 
-@media (min-width:650px) {
-    .pq-quote-summary-xs {
-        display:none;
+@media (min-width:768px) {
+    .pq-quote-breadcrumbs {
+        clear:left;
+        overflow:hidden;
+        font-size:14px;
+        margin:0 20px 10px 0;
     }
-}
-
-
-.pq-quote-breadcrumbs {
-    font-size:14px;
-    margin:0 0 10px 0;
 }
 
 .pq-quote-breadcrumbs a {
@@ -885,17 +884,18 @@ a {
     color:#888;
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-quote-player {
+        clear:left;
         float:left;
-        margin:0 0 25px 0;
+        margin:0 0 10px 0;
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-quote-player {
         float:right;
-        margin:0 0 25px 0;
+        margin:0 0 15px 0;
     }
 }
 
@@ -950,7 +950,7 @@ a {
 }
 
 .pq-quote-xs-buttons {
-    clear:both;
+    clear:left;
     padding:5px 0 15px 0;
 }
 
@@ -1326,8 +1326,8 @@ button {
 
 .circle {
     position:absolute;
-    margin:25px 0 0 50px;
-    font-size:70px;
+    margin:30px 0 0 50px;
+    font-size:54px;
     color:#888;
     opacity:0.8;
     cursor:pointer;
@@ -1336,8 +1336,8 @@ button {
 .preview-published {
     position:absolute;
     text-align:left;
-    width:150px;
-    margin:105px 0 10px 0;
+    width:140px;
+    margin:90px 0 10px 0;
     padding:2px 12px 4px 12px;
     background-color:#000;
     font-size:13px;
@@ -1351,7 +1351,7 @@ button {
 .youtube-img-preview {
     cursor:pointer;
     border-radius:10px;
-    width:150px;
+    width:140px;
     float:right;
     margin:0 0 15px 0;
 }
