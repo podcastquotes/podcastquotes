@@ -25,12 +25,38 @@
         
         <div class="pq-podcast-buttons">
             
-            <div class="pq-podcast-button">
+            <button class="pq-podcast-button pq-podcast-share-button" style="margin-left:0;padding-left:0;" data-toggle="modal" data-target="#podcastShareModal{{ podcast.id }}">
                 share
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="podcastShareModal{{ podcast.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                  </div>
+                  <div class="modal-body">
+                      http://www.podcastquotes.com{{ podcast.get_absolute_url }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.modal fade -->
+            
+            <div class="pq-podcast-button text-orange ">
+                {% if not episode.donate_url %}
+                    {% if podcast.donate_url %}
+                    <a href="{{ podcast.donate_url }}">
+                        donate
+                    </a>
+                    {% endif %}
+                {% endif %}
             </div>
-            <div class="pq-podcast-button text-orange">
-                donate
-            </div>
+            
             <div class="pq-podcast-button text-purple">
                 edit
             </div>
@@ -43,7 +69,7 @@
             <div class="pq-podcast-header-info-inline">
                 Karma: 1,234
             </div>
-            <div class="pq-podcast-header-info-inline">
+            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
                 Quotes: 1,234
             </div>
         </div><!-- /.pq-podcast-header-info-left -->
@@ -110,14 +136,65 @@
     <div class="pq-podcast-info">
     
         <div class="pq-podcast-buttons">
-            <div class="pq-podcast-button">
+            
+            <button class="pq-podcast-button pq-podcast-share-button" style="margin-left:0;padding-left:0;" data-toggle="modal" data-target="#episodeShareModal{{ podcast.id }}">
+                share
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="episodeShareModal{{ podcast.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                  </div>
+                  <div class="modal-body">
+                      http://www.podcastquotes.com{{ episode.get_absolute_url }}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.modal fade -->
+            
+            <div class="pq-podcast-button text-orange ">
+                {% if episode.donate_url %}
+                    <a href="{{ episode.donate_url }}">
+                        donate
+                    </a>
+                {% endif %}
+            </div>
+            
+            <div class="pq-podcast-button" id="play-full-episode">
                 play full episode
             </div>
             <div class="pq-podcast-button text-purple">
                 edit
             </div>
         </div><!-- /.pq-podcast-buttons -->
-          
+        
+        {% if episode.youtube_url %}
+        
+            <div class="pq-episode-player" id="pq-episode-player">
+     
+                <div class="youtube-box" id="youtube-full-episode" style="display:none;">
+                  <div class="youtube" id="{{ episode.video_id }}?rel=0&vq=small&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                  </div>
+                </div>
+                
+                <script>
+                  $("#play-full-episode").click(function() {
+                      $("#pq-episode-player").show();
+                      $("#youtube-full-episode").show();
+                  });
+                </script>
+                
+            </div>
+
+        {% endif %}
+        
         <div class="pq-podcast-header-info-left">
             <div class="pq-podcast-header-info-inline">
                 Karma: 1,234
@@ -140,7 +217,7 @@
           </div>
           
           <div class="pq-podcast-header-info-left" style="padding-bottom:0px;">
-              <i>{{ episode.donation_recipient_about }}</i>
+              {{ episode.donation_recipient_about|linebreaks }}
           </div>
           {% endif %}
     

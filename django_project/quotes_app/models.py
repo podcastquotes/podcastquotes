@@ -91,7 +91,7 @@ class Podcast(models.Model):
     youtube_url = models.URLField(blank=True)
     
     def get_absolute_url(self):
-        return reverse('podcast_top', kwargs={'podcast_id': self.pk})
+        return reverse('podcast_quote_list_root', kwargs={'pk': self.pk})
 
     def all_podcasts(self):
        return Podcast.objects.all()
@@ -181,7 +181,7 @@ class Episode(models.Model):
        return Quote.objects.filter(episode__id=self.id).count()
        
     def get_absolute_url(self):
-        return reverse('episode_top', kwargs={'podcast_id': self.podcast.pk, 'episode_id': self.pk})
+        return reverse('episode_quote_list_root', kwargs={'pk': self.pk})
 
     def __unicode__(self):
         return u'%s - %s' % (self.podcast.title, self.title)
