@@ -1,7 +1,7 @@
 <div class="pq-quote-header">
   
   <table>
-      <tr>
+      <tr style="height:30px;">
           <td>
               <strong>Podcast:</strong> &nbsp
           </td>
@@ -9,7 +9,7 @@
               <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast }}</a>
           </td>
       </tr>
-      <tr>
+      <tr style="height:30px;">
           <td>
               <strong>Episode:</strong> &nbsp
           </td>
@@ -17,7 +17,7 @@
               <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">{{ quote.episode.title }}</a>
           </td>
       </tr>
-      <tr>
+      <tr style="height:30px;">
           <td>
               <strong>Released:</strong> &nbsp
           </td>
@@ -26,9 +26,9 @@
           </td>
       </tr>
       {% if quote.episode.donate_url and quote.episode.donation_recipient %}
-          <tr style="height:50px;">
-              <td style="width:120px">
-                  <span class="text-orange"><strong><i>Donations for this episode go to:</i></strong></span> &nbsp
+          <tr style="height:30px;">
+              <td style="width:140px">
+                  <span class="text-orange"><strong>Donations for this episode go to:</strong></span> &nbsp
               </td>
               <td>
                   <i><a href="{{ quote.episode.donate_url }}">{{ quote.episode.donation_recipient }}</a>
