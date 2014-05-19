@@ -197,10 +197,23 @@ class Quote(models.Model):
     time_quote_begins = models.IntegerField(blank=True)
     time_quote_ends = models.IntegerField(blank=True)
     
-    objects = QuoteVoteManager()
+    quote_vote_manager = QuoteVoteManager()
+    objects = models.Manager() # default manager
     
     def vote_score(self):
         return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
+    
+    def set_rank(self):
+        # Based on HN ranking algo at http://amix.dk/blog/post/19574
+        SECS_IN_HOUR = float(60*60)
+        GRAVITY = 1.2
+        
+        delta = now() - self.created_at
+        item_hour_age = delta.total_seconds() / SECS_IN_HOUR
+        vote_score = self.vote_score()
+        self.rank_score = vote_score / pow((item_hour_age+2), GRAVITY)
+        print self.rank_score
+        self.save()
     
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)

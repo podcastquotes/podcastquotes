@@ -25,6 +25,12 @@ import json
 
 today = date.today()
 
+def rank_all(request):
+    for quote in Quote.quote_vote_manager.all():
+        quote.set_rank()
+
+    return redirect('/')
+
 class HomeQuoteListView(ListView):
     model = Quote
     template_name = 'home.html'
@@ -37,29 +43,29 @@ class HomeQuoteListView(ListView):
             f = False            
         
         if f == 'hot':
-            return Quote.objects.query_hot()
+            return Quote.quote_vote_manager.query_hot()
         elif f == 'not':
-            return Quote.objects.query_not()
+            return Quote.quote_vote_manager.query_not()
         elif f == 'controversial':
-            return Quote.objects.query_controversial()
+            return Quote.quote_vote_manager.query_controversial()
         elif f == 'new':
-            return Quote.objects.query_new()
+            return Quote.quote_vote_manager.query_new()
         elif f == 'top':
-            return Quote.objects.query_top()
+            return Quote.quote_vote_manager.query_top()
         elif f == 'bottom':
-            return Quote.objects.query_bottom()
+            return Quote.quote_vote_manager.query_bottom()
         elif f == 'mainstream':
-            return Quote.objects.query_mainstream()
+            return Quote.quote_vote_manager.query_mainstream()
         elif f == 'underground':
-            return Quote.objects.query_underground()
+            return Quote.quote_vote_manager.query_underground()
         elif f == 'chronological':
-            return Quote.objects.query_chronological()
+            return Quote.quote_vote_manager.query_chronological()
         elif f == 'ghosts':
-            return Quote.objects.query_ghosts()
+            return Quote.quote_vote_manager.query_ghosts()
         elif f == 'birthdays':
-            return Quote.objects.query_birthdays()
+            return Quote.quote_vote_manager.query_birthdays()
         else:
-            return Quote.objects.query_hot()
+            return Quote.quote_vote_manager.query_hot()
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)
@@ -131,29 +137,29 @@ class PodcastQuoteListView(ListView):
             f = 0
         
         if f == 'hot':
-            return Quote.objects.query_hot().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
         elif f == 'not':
-            return Quote.objects.query_not().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_not().filter(episode__podcast_id=p.id)
         elif f == 'controversial':
-            return Quote.objects.query_controversial().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_controversial().filter(episode__podcast_id=p.id)
         elif f == 'new':
-            return Quote.objects.query_new().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_new().filter(episode__podcast_id=p.id)
         elif f == 'top':
-            return Quote.objects.query_top().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_top().filter(episode__podcast_id=p.id)
         elif f == 'bottom':
-            return Quote.objects.query_bottom().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_bottom().filter(episode__podcast_id=p.id)
         elif f == 'mainstream':
-            return Quote.objects.query_mainstream().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_mainstream().filter(episode__podcast_id=p.id)
         elif f == 'underground':
-            return Quote.objects.query_underground().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_underground().filter(episode__podcast_id=p.id)
         elif f == 'chronological':
-            return Quote.objects.query_chronological().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_chronological().filter(episode__podcast_id=p.id)
         elif f == 'ghosts':
-            return Quote.objects.query_ghosts().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_ghosts().filter(episode__podcast_id=p.id)
         elif f == 'birthdays':
-            return Quote.objects.query_birthdays().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_birthdays().filter(episode__podcast_id=p.id)
         else:
-            return Quote.objects.query_hot().filter(episode__podcast_id=p.id)
+            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
 
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
@@ -229,29 +235,29 @@ class EpisodeQuoteListView(ListView):
             f = 0
         
         if f == 'hot':
-            return Quote.objects.query_hot().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_hot().filter(episode_id=e.id)
         elif f == 'not':
-            return Quote.objects.query_not().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_not().filter(episode_id=e.id)
         elif f == 'controversial':
-            return Quote.objects.query_controversial().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_controversial().filter(episode_id=e.id)
         elif f == 'new':
-            return Quote.objects.query_new().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_new().filter(episode_id=e.id)
         elif f == 'top':
-            return Quote.objects.query_top().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_top().filter(episode_id=e.id)
         elif f == 'bottom':
-            return Quote.objects.query_bottom().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_bottom().filter(episode_id=e.id)
         elif f == 'mainstream':
-            return Quote.objects.query_mainstream().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_mainstream().filter(episode_id=e.id)
         elif f == 'underground':
-            return Quote.objects.query_underground().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_underground().filter(episode_id=e.id)
         elif f == 'chronological':
-            return Quote.objects.query_chronological().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_chronological().filter(episode_id=e.id)
         elif f == 'ghosts':
-            return Quote.objects.query_ghosts().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_ghosts().filter(episode_id=e.id)
         elif f == 'birthdays':
-            return Quote.objects.query_birthdays().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_birthdays().filter(episode_id=e.id)
         else:
-            return Quote.objects.query_hot().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_hot().filter(episode_id=e.id)
         
     def get_context_data(self, **kwargs):
         context = super(EpisodeQuoteListView, self).get_context_data(**kwargs)

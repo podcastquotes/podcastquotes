@@ -7,12 +7,15 @@ from quotes_app.views import HomeQuoteListView
 from quotes_app.views import PodcastQuoteListView, PodcastCreateView
 from quotes_app.views import EpisodeQuoteListView
 from quotes_app.views import quote_create
+from quotes_app.views import rank_all
 from quotes_app.views import VoteFormView
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
- 
+    
+    url(r'^rerank/', 'quotes_app.views.rank_all', name='rank_all_quotes'),
+    
     url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
     url(r'^admin/', include(admin.site.urls)),
