@@ -42,6 +42,30 @@
             </form>
                 
             </div><!-- /.pq-quote-buttons hidden-xs hidden-sm hidden-md -->
+            {% if quote.summary %}
+                <div class="pq-quote-summary-xs">
+                    <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
+                </div>
+            {% endif %}
+            
+        <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
+        
+            {% if quote.time_quote_begins and quote.episode.youtube_url %}
+                
+                <div class="youtube-box" id="youtube-{{ forloop.counter }}">
+                  <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                  </div>
+                </div>
+                
+                <div class="preview-published" id="preview-published-{{ forloop.counter }}">
+                    <span class="pull-right">
+                        {{ quote.episode.publication_date|date:'M d, Y' }}
+                    </span>
+                </div>
+
+            {% endif %}       
+            
+        </div><!-- /.pq-quote-player -->
         
         <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
         
@@ -73,28 +97,6 @@
                   {% endif %}
                 </div>
             {% endif %}
-            
-        <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
-        
-            {% if quote.time_quote_begins and quote.episode.youtube_url %}
-                
-                <div class="youtube-box" id="youtube-{{ forloop.counter }}">
-                  <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
-                  </div>
-                </div>
-                
-                <div class="preview-published" id="preview-published-{{ forloop.counter }}">
-                    <span class="pull-right">
-                        {{ quote.episode.publication_date|date:'M d, Y' }}
-                    </span>
-                    <span class="pull-left">
-                        {{ quote.converted_time_begins }} - {{ quote.converted_time_ends }}
-                    </span>
-                </div>
-
-            {% endif %}       
-            
-        </div><!-- /.pq-quote-player -->
         
         <div class="pq-quote-xs-buttons hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
@@ -166,6 +168,7 @@
               $("#preview-published-{{ forloop.counter }}").hide();
               $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
               $("#preview-time-{{ forloop.counter }}").hide();
+              $("#pq-quote-player-{{ forloop.counter }}").toggleClass('pull-left');
           });
         </script>
         

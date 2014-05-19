@@ -34,7 +34,7 @@ def rank_all(request):
 class HomeQuoteListView(ListView):
     model = Quote
     template_name = 'home.html'
-    paginate_by = 5
+    paginate_by = 10
     
     def get_queryset(self):
         try:
@@ -126,7 +126,7 @@ class HomeQuoteListView(ListView):
 class PodcastQuoteListView(ListView):
     model = Quote
     template_name = 'podcast_detail.html'
-    paginate_by = 5
+    paginate_by = 10
     
     def get_queryset(self):
         p = get_object_or_404(Podcast, id=self.kwargs['pk'])
@@ -223,7 +223,7 @@ class PodcastQuoteListView(ListView):
 class EpisodeQuoteListView(ListView):
     model = Quote
     template_name = 'episode_detail.html'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         e = get_object_or_404(Episode, id=self.kwargs['pk'])

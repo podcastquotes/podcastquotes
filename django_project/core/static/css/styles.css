@@ -218,20 +218,14 @@ a {
 }
 
 .navbar {
-        position:fixed;
         width:100%;
         min-height:32px;
         background-color:#e7e7e7;
-        margin:0 0 20px 0;
+        margin:0 0 25px 0;
         border-bottom:1px solid #888;
         border-radius:0;
         color:#111;
         z-index:100;
-}
-
-.navbar-fixed-space {
-    height:70px;
-    width:100%;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -792,11 +786,22 @@ a {
     border-bottom:1px solid #ddd;
 }
 
-.pq-quote-text-wrapper {
-    max-width:720px;
-    overflow:hidden;
-    padding:0 25px 0 0;
-    font-size:16px;
+@media (max-width:649px) {
+    .pq-quote-text-wrapper {
+        clear:left;
+        overflow:hidden;
+        padding:0 25px 0 0;
+        font-size:16px;
+    }
+}
+
+@media (min-width:650px) {
+    .pq-quote-text-wrapper {
+        max-width:720px;
+        overflow:hidden;
+        padding:0 25px 0 0;
+        font-size:16px;
+    }
 }
 
 .pq-quote-text-wrapper-cleared {
@@ -825,20 +830,51 @@ a {
     color:#bbb;
 }
 
-.pq-quote-summary {
-    overflow:hidden;
-    padding:0 0 15px 0;
-    font-weight:bold;
-    font-size:22px;
+@media (max-width:649px) {
+    .pq-quote-summary {
+        display:none;
+    }
 }
 
-.pq-quote-summary a {
+@media (min-width:650px) {
+    .pq-quote-summary {
+        overflow:hidden;
+        margin:-5px 0 0 0;
+        padding:0 0 10px 0;
+        font-weight:bold;
+        font-size:22px;
+    }
+}
+
+.pq-quote-summary a, 
+.pq-quote-summary-xs a {
     color:#111;
 }
 
+.pq-quote-summary a:hover, 
+.pq-quote-summary-xs a:hover {
+    color:#888;
+}
+
+@media (max-width:649px) {
+    .pq-quote-summary-xs {
+        overflow:hidden;
+        padding:0 0 15px 0;
+        font-weight:bold;
+        font-size:22px;
+    }
+}
+
+@media (min-width:650px) {
+    .pq-quote-summary-xs {
+        display:none;
+    }
+}
+
+
 .pq-quote-breadcrumbs {
-        font-size:16px;
-        margin:-5px 0 20px 0;
+    font-size:14px;
+    margin:0 0 10px 0;
 }
 
 .pq-quote-breadcrumbs a {
@@ -849,9 +885,18 @@ a {
     color:#888;
 }
 
-.pq-quote-player {
-    float:left;
-    margin:0 0 20px 0;
+@media (max-width:649px) {
+    .pq-quote-player {
+        float:left;
+        margin:0 0 25px 0;
+    }
+}
+
+@media (min-width:650px) {
+    .pq-quote-player {
+        float:right;
+        margin:0 0 25px 0;
+    }
 }
 
 @media (max-width:450px) {
@@ -1281,7 +1326,7 @@ button {
 
 .circle {
     position:absolute;
-    margin:53px 0 0 83px;
+    margin:25px 0 0 50px;
     font-size:70px;
     color:#888;
     opacity:0.8;
@@ -1291,9 +1336,9 @@ button {
 .preview-published {
     position:absolute;
     text-align:left;
-    width:220px;
-    margin:140px 0 10px 0;
-    padding:6px 12px;
+    width:150px;
+    margin:105px 0 10px 0;
+    padding:2px 12px 4px 12px;
     background-color:#000;
     font-size:13px;
     color:#aaa;
@@ -1306,8 +1351,9 @@ button {
 .youtube-img-preview {
     cursor:pointer;
     border-radius:10px;
-    width:220px;
-    float:left;
+    width:150px;
+    float:right;
+    margin:0 0 15px 0;
 }
 
 @media (max-width:649px) {
