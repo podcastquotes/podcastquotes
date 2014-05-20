@@ -1,0 +1,6 @@
+[run]
+omit = django_project/*/tests.py
+       django_project/*/migrations/*
+       django_project/core/management/*
+       django_project/manage.py
+       django_project/podcastquotes/wsgi.py
