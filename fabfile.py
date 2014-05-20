@@ -15,8 +15,10 @@ env.use_ssh_config = True
 
 
 # SERVER VALUES
-# SERVER VALUES
+
 REPO_DIR = '/home/oceancron/git/podcastquotes'
+REPO_DJANGO_DIR = REPO_DIR + '/django_project'
+
 APP_DIR = '/home/oceancron/webapps/podcastquotes'
 DJANGO_PROJECT = APP_DIR+'/django_project'
 VIRTUALENV = APP_DIR+'/venv'
@@ -52,22 +54,30 @@ def get_dependencies():
 def test_repo():
     
     with virtualenv(VIRTUALENV):
-        with cd(REPO_DIR):
+        with cd(REPO_DJANGO_DIR):
             run('./manage.py test')
 
 @task
 def reconfigure_app():
     
     # Rename skeletons
-    with cd(REPO_DIR):
+    with cd(REPO_DJANGO_DIR):
         run('cp podcastquotes/site_settings.py.skel podcastquotes/site_settings.py')
         run('cp podcastquotes/settings.py.skel podcastquotes/settings.py')
     
     # Copy over site_settings
-    run('cp {site_settings} {repo_dir}/podcastquotes/site_settings.py'.format(
+    run('cp {site_settings} {repo_django_dir}/podcastquotes/site_settings.py'.format(
         site_settings=SITE_SETTINGS,
-        repo_dir=REPO_DIR
+        repo_django_dir=REPO_DJANGO_DIR
     ))
+
+@task
+def migrate_database():
+
+    with virtualenv(VIRTUALENV):
+        with cd(REPO_DJANGO_DIR):
+            run('./manage.py syncdb')
+            run('./manage.py migrate')
 
 @task
 def collect_static_files():
@@ -84,13 +94,8 @@ def install_application():
         DJANGO_PROJECT = DJANGO_PROJECT,
     ))
     
-    # Create django_project directory
-    run('mkdir -p {DJANGO_PROJECT}'.format(
-        DJANGO_PROJECT = DJANGO_PROJECT
-    ))
-    
     # Move repo files over to deploy django_project directory
-    run('cp -ar {REPO_DIR}/* {DJANGO_PROJECT}/'.format(
+    run('cp -ar {REPO_DIR}/django_project {DJANGO_PROJECT}'.format(
         REPO_DIR=REPO_DIR,
         DJANGO_PROJECT=DJANGO_PROJECT
     ))
@@ -103,9 +108,11 @@ def restart_server():
 
 @task
 def deploy_latest():
+    
     pull_repository()
     get_dependencies()
     reconfigure_app()
+    migrate_database()
     test_repo()
     install_application()
     restart_server()
