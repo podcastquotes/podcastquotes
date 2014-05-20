@@ -1,6 +1,7 @@
 podcastquotes
 =============
 [![Build Status](https://travis-ci.org/podcastquotes/podcastquotes.svg?branch=master)](https://travis-ci.org/podcastquotes/podcastquotes)
+[![Coverage Status](https://coveralls.io/repos/podcastquotes/podcastquotes/badge.png?branch=master)](https://coveralls.io/r/podcastquotes/podcastquotes?branch=master)
 
 A podcast quote transcription, sharing, and rating system inspired by reddit.
 
