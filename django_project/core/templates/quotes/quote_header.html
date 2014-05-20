@@ -1,44 +1,18 @@
 <div class="pq-quote-header">
-  
-  <table>
-      <tr style="height:30px;">
-          <td>
-              <strong>Podcast:</strong> &nbsp
-          </td>
-          <td>
-              <a href="/podcasts/{{ quote.episode.podcast.id }}">{{ quote.episode.podcast }}</a>
-          </td>
-      </tr>
-      <tr style="height:30px;">
-          <td>
-              <strong>Episode:</strong> &nbsp
-          </td>
-          <td>
-              <a href="/podcasts/{{ quote.episode.podcast.id }}/episodes/{{ quote.episode.id }}">{{ quote.episode.title }}</a>
-          </td>
-      </tr>
-      <tr style="height:30px;">
-          <td>
-              <strong>Released:</strong> &nbsp
-          </td>
-          <td>
-              {{ quote.episode.publication_date }}
-          </td>
-      </tr>
+      
       {% if quote.episode.donate_url and quote.episode.donation_recipient %}
-          <tr style="height:30px;">
-              <td style="width:140px">
-                  <span class="text-orange"><strong>Donations for this episode go to:</strong></span> &nbsp
-              </td>
-              <td>
-                  <i><a href="{{ quote.episode.donate_url }}">{{ quote.episode.donation_recipient }}</a>
+                  <div style="margin-bottom:10px;">
+                      <span class="text-orange">
+                          <strong>Donations for this episode go to
+                      </span>
+                      <a class="text-blue" href="{{ quote.episode.donate_url }}">
+                          {{ quote.episode.donation_recipient }}
+                      </a></strong>
+                  </div>
                   {% if quote.episode.donation_recipient_about %}
-                      <br>
-                      {{ quote.episode.donation_recipient_about|linebreaks }}</i>
+                      <span style="font-size:14px;">{{ quote.episode.donation_recipient_about|linebreaks }}
                   {% endif %}
-              </td>
-          </tr>
+
       {% endif %}
-  </table>
 
 </div><!-- /.pq-quote-header -->

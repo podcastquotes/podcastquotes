@@ -164,6 +164,10 @@ body {
     color:#446596;
 }
 
+.text-blue:hover {
+    color:#6485a6;
+}
+
 .text-green {
     color:#479847;
 }
@@ -553,26 +557,27 @@ a {
 }
 
 .pq-podcast-header {
-    margin:0 0 25px 0;
-    padding:0 0 10px 0;
+    margin:0 0 20px 0;
+    padding:0 0 5px 0;
     border-bottom:1px dotted #bbb;
     font-size:16px;
 }
 
 .pq-podcast-title {
-    margin:0 0 15px 0;
-    font-size:22px;
+    margin:1px 0 13px 0;
+    font-size:24px;
     font-weight:bold;
     color:#111;
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-podcast-title {
         clear:left;
+        margin:0 0 10px 0;
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-podcast-title {
         overflow:hidden;
     }
@@ -581,7 +586,7 @@ a {
 @media (max-width:767px) {
     .pq-episode-title {
         clear:left;
-        padding:0 0 15px 0;
+        padding:0 0 20px 0;
         font-weight:bold;
         color:#111;
     }
@@ -590,13 +595,13 @@ a {
 @media (min-width:768px) {
     .pq-episode-title {
         overflow:hidden;
-        padding:0 0 15px 0;
+        padding:0 0 18px 0;
         font-weight:bold;
         color:#111;
     }
 }
 
-@media (max-width:649px) {
+@media (max-width:767px) {
     .pq-podcast-profile-picture {
         clear:left;
         float:left;
@@ -604,7 +609,7 @@ a {
     }
 }
 
-@media (min-width:650px) {
+@media (min-width:768px) {
     .pq-podcast-profile-picture {
         float:left;
         margin:0 20px 20px 0;
@@ -658,12 +663,14 @@ a {
     .pq-podcast-buttons {
         float:left;
         font-size:14px;
+        margin:0 0 15px 0;
     }
 }
 
 @media (min-width:768px) {
     .pq-podcast-buttons {
         float:right;
+        margin:1px 0 15px 0;
         font-size:14px;
     }
 }
@@ -742,6 +749,7 @@ a {
 .pq-podcast-header-info-left {
     clear:left;
     margin:0 0 10px 0;
+    padding:0 0 5px 0;
 }
 
 .pq-podcast-header-info-full {
@@ -754,7 +762,7 @@ a {
 }
 
 .pq-episode-header {
-    padding:0 0 10px 0;
+    padding:0 0 5px 0;
     margin:0 0 25px 0;
     border-bottom:1px dotted #bbb;
     font-size:16px;
