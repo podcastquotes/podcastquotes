@@ -1,18 +1,21 @@
-<div class="pq-quote-header">
-      
-      {% if quote.episode.donate_url and quote.episode.donation_recipient %}
-                  <div style="margin-bottom:10px;">
-                      <span class="text-orange">
-                          <strong>Donations for this episode go to
-                      </span>
-                      <a class="text-blue" href="{{ quote.episode.donate_url }}">
-                          {{ quote.episode.donation_recipient }}
-                      </a></strong>
-                  </div>
-                  {% if quote.episode.donation_recipient_about %}
-                      <span style="font-size:14px;">{{ quote.episode.donation_recipient_about|linebreaks }}
-                  {% endif %}
+    <div class="pq-quote-header" 
+    {% if not quote.episode.donate_url and not quote.episode.donation_recipient %}
+    style="margin-top:-18px;"
+    {% endif %}
+    >
+        {% if quote.episode.donate_url and quote.episode.donation_recipient %}
+                    <div style="margin-bottom:10px;">
+                        <span class="text-orange">
+                            <strong>Donations for this episode go to
+                        </span>
+                        <a class="text-blue" href="{{ quote.episode.donate_url }}">
+                            {{ quote.episode.donation_recipient }}
+                        </a></strong>
+                    </div>
+                    {% if quote.episode.donation_recipient_about %}
+                        <span style="font-size:14px;">{{ quote.episode.donation_recipient_about|linebreaks }}
+                    {% endif %}
 
-      {% endif %}
+        {% endif %}
 
-</div><!-- /.pq-quote-header -->
+    </div><!-- /.pq-quote-header -->

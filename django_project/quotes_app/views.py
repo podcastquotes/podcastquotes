@@ -7,7 +7,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -423,7 +423,7 @@ def quote_create(request):
             new_quote = qform.save()
             vote = Vote.create(voter=request.user, quote=new_quote, vote_type=0)
             vote.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('quote', kwargs={'quote_id': vote.quote.id}))
         else:
             raise Http404
     else:
