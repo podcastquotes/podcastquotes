@@ -12,4 +12,4 @@ uploaded_files/
 *.pyc
 google-analytics.js
 
-
+.coverage
