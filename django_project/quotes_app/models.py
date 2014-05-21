@@ -111,6 +111,15 @@ class Podcast(models.Model):
     def all_episodes_with_youtube_urls_count(self):
         return Episode.objects.filter(podcast__id=self.id).exclude(youtube_url__exact='').count()
     
+    def karma_total(self):
+        q_list = Quote.objects.filter(episode__podcast=self).annotate(karma_total=Sum('vote__vote_type'))
+        
+        ### Is there a more efficient way than running a for loop here to calculate total karma for all quotes of this Podcast?
+        k = 0
+        for q in q_list:
+           k += q.karma_total
+        return k
+
     def __unicode__(self):
         return unicode(self.title)
 
@@ -179,7 +188,16 @@ class Episode(models.Model):
 
     def all_episode_quotes_count(self):
        return Quote.objects.filter(episode__id=self.id).count()
-       
+    
+    def karma_total(self):
+        q_list = Quote.objects.filter(episode=self).annotate(karma_total=Sum('vote__vote_type'))
+        
+        ### Is there a more efficient way than running a for loop here to calculate total karma for all quotes of this Podcast?
+        k = 0
+        for q in q_list:
+           k += q.karma_total
+        return k
+    
     def get_absolute_url(self):
         return reverse('episode_quote_list_root', kwargs={'pk': self.pk})
 

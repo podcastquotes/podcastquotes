@@ -161,6 +161,8 @@
               $("#preview-published-{{ forloop.counter }}").hide();
               $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
               $("#preview-time-{{ forloop.counter }}").hide();
+              $("#pq-quote-player-{{ forloop.counter }}").toggleClass('pull-left')
+              $("#pq-quote-player-{{ forloop.counter }}").css('margin-left','0')
               $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass('overflow-none');
           });
         </script>
