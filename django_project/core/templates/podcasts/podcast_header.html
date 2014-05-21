@@ -69,36 +69,48 @@
         </div><!-- /.pq-podcast-header-info-left -->
         
         <div class="pq-podcast-header-social-icons">
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.homepage }}" target="_blank">
-                    <i class="fa fa-home"></i>
-                </a>
-            </span>
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.twitter_url }}" target="_blank">
-                    <i class="fa fa-twitter-square"></i>
-                </a>
-            </span>
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.facebook_url }}" target="_blank">
-                    <i class="fa fa-facebook-square"></i>
-                </a>
-            </span>
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.instagram_url }}" target="_blank">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </span>
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.google_plus_url }}" target="_blank">
-                    <i class="fa fa-google-plus-square"></i>
-                </a>
-            </span>
-            <span class="pq-podcast-header-social-icon">
-                <a href="{{ podcast.youtube_url }}" target="_blank">
-                    <i class="fa fa-youtube-square"></i>
-                </a>
-            </span>
+            {% if podcast.hompage %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.homepage }}" target="_blank">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.twitter_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.twitter_url }}" target="_blank">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.facebook_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.facebook_url }}" target="_blank">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.instagram_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.instagram_url }}" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.google_plus_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.google_plus_url }}" target="_blank">
+                        <i class="fa fa-google-plus-square"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.youtube_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.youtube_url }}" target="_blank">
+                        <i class="fa fa-youtube-square"></i>
+                    </a>
+                </span>
+            {% endif %}
         </div><!-- /.pq-podcast-header-info-left -->
        
 </div><!-- /.pq-podcast-info -->

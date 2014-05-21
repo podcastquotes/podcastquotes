@@ -140,6 +140,11 @@ body {
     text-align:right;
 }
 
+.overflow-none {
+    clear:left;
+    overflow:none;
+}
+
 .btn {
    font-size:16px;
 }
@@ -838,8 +843,7 @@ a {
 @media (max-width:767px) {
     .pq-quote-summary {
         overflow:hidden;
-        margin:0 20px 0 0;
-        padding:0 0 15px 0;
+        padding:0 0 5px 0;
         font-weight:bold;
         font-size:20px;
     }
@@ -848,7 +852,7 @@ a {
 @media (min-width:768px) {
     .pq-quote-summary {
         overflow:hidden;
-        margin:0 20px 0 0;
+        margin:-2px 0 0 0;
         padding:0 0 10px 0;
         font-weight:bold;
         font-size:20px;
@@ -871,7 +875,7 @@ a {
         overflow:hidden;
         font-size:16px;
         padding:5px 0 0 0;
-        margin:0 20px 10px 0;
+        margin:0 0 5px 0;
     }
 }
 
@@ -880,7 +884,7 @@ a {
         clear:left;
         overflow:hidden;
         font-size:16px;
-        margin:0 20px 10px 0;
+        margin:0 0 10px 0;
     }
 }
 
@@ -902,8 +906,8 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-player {
-        float:right;
-        margin:0 0 15px 0;
+        float:left;
+        margin:0 20px 15px 0;
     }
 }
 
@@ -1156,7 +1160,7 @@ button {
     clear:left;
     overflow:hidden;
     display:none;
-    font-size:16px;
+    font-size:14px;
 }
 
 @media (max-width:767px) {
@@ -1335,33 +1339,30 @@ button {
 
 .circle {
     position:absolute;
-    margin:25px 0 0 45px;
-    font-size:54px;
+    margin:38px 0 0 56px;
+    font-size:48px;
     color:#888;
-    opacity:0.8;
+    opacity:0.95;
     cursor:pointer;
 }
 
 .preview-published {
     position:absolute;
-    width:130px;
-    margin:86px 0 10px 0;
-    padding:3px 26px 4px 0;
+    width:150px;
+    text-align:center;
+    margin:100px 0 0 0;
+    padding:2px 0 3px 0;
     background-color:#000;
     font-size:13px;
     color:#aaa;
     cursor:pointer;
-    border-top:1px solid #777;
-    border-bottom-right-radius:10px;
-    border-bottom-left-radius:10px;
 }
 
 .youtube-img-preview {
     cursor:pointer;
-    border-radius:10px;
-    width:130px;
+    width:150px;
     float:right;
-    margin:0 0 15px 0;
+    margin:5px 0 5px 0;
 }
 
 @media (max-width:649px) {
