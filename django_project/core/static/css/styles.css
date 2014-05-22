@@ -1373,7 +1373,7 @@ button {
 
 .circle {
     position:absolute;
-    margin:41px 0 0 56px;
+    margin:33px 0 0 46px;
     font-size:48px;
     color:#888;
     opacity:0.95;
@@ -1394,7 +1394,7 @@ button {
 
 .youtube-img-preview {
     cursor:pointer;
-    width:150px;
+    width:130px;
     float:right;
     margin:5px 0 5px 0;
 }
