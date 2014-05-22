@@ -216,7 +216,7 @@ class Quote(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     rank_score = models.FloatField(default=0.0)
     episode = models.ForeignKey(Episode)
-    summary = models.CharField(max_length=200)
+    summary = models.CharField(max_length=200, blank=True)
     text = models.TextField(blank=True)
     time_quote_begins = models.IntegerField(blank=True)
     time_quote_ends = models.IntegerField(blank=True)

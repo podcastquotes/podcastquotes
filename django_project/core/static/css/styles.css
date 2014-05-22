@@ -136,6 +136,18 @@ body {
     color:#888;
 }
 
+.med-dark-link {
+    color:#555;
+}
+
+.med-dark-link a {
+    color:#555;
+}
+
+.med-dark-link a:hover {
+    color:#888;
+}
+
 .text-purple {
     color:#921ABE;
 }
@@ -776,6 +788,12 @@ a {
     margin:0 20px 0 0;
 }
 
+.pq-episode-header-info-left {
+    clear:left;
+    margin-bottom:10px;
+    font-size:16px;
+}
+
 .pq-episode-header {
     padding:0 0 5px 0;
     margin:0 0 25px 0;
@@ -810,6 +828,7 @@ a {
 .pq-quote-header-breadcrumbs {
     font-size:20px;
     margin:0 0 10px 0;
+    color:#444;
 }
 
 .pq-quote {
@@ -1145,50 +1164,41 @@ button {
     color:#444;
 }
 
-@media (max-width:450px) {
-    .pq-quote-date-xs {
-        font-size:14px;
-        color:#444;
-    }
-}
-
-@media (min-width:451px) {
-    .pq-quote-date-xs {
+@media (max-width:499px) {
+    .pq-quote-date {
         display:none;
     }
 }
 
-@media (min-width:451px) {
+@media (min-width:500px) {
     .pq-quote-date {
-        clear:right;
-        float:right;
-        text-align:center;
-        width:65px;
-        font-size:13px;
-        color:#444;
+        clear:left;
+        margin:0 0 10px 0;
+        font-size:14px;
+        color:#888;
     }
 }
 
 .pq-quote-date a {
-    color:#444;
+    color:#888;
 }
 
 .pq-quote-text {
     clear:left;
     display:none;
-    font-size:14px;
+    font-size:16px;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        font-size:14px;
+        font-size:16px;
     }
 }
 
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        font-size:14px;
+        font-size:16px;
     }
 }
 
@@ -1353,7 +1363,7 @@ button {
 
 .circle {
     position:absolute;
-    margin:38px 0 0 56px;
+    margin:41px 0 0 56px;
     font-size:48px;
     color:#888;
     opacity:0.95;

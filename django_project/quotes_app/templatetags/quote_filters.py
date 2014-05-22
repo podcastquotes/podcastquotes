@@ -28,7 +28,8 @@ def class_if_downvote_active(val, user_id):
     v = Vote.objects.filter(voter_id=user_id).filter(quote_id=val).first()
     if v == None:
         return ""
-    if v.vote_type == -1:
-        return "pq-quote-downvote-active"
     else:
-        return ""
+        if v.vote_type == -1:
+            return "pq-quote-downvote-active"
+        else:
+            return ""

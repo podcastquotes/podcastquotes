@@ -1,10 +1,6 @@
-    <div class="pq-quote-header" 
-    {% if not quote.episode.donate_url and not quote.episode.donation_recipient %}
-    style="margin-top:-18px;"
-    {% endif %}
-    >
+    <div class="pq-quote-header">
     
-        <div class="pq-quote-header-breadcrumbs dark-link">
+        <div class="pq-quote-header-breadcrumbs med-dark-link">
             <a href="{{ quote.episode.podcast.get_absolute_url }}">{{ quote.episode.podcast.title }}</a> > <a href="{{ quote.episode.get_absolute_url }}">{{ quote.episode.title }}</a>
         </div>
     

@@ -458,42 +458,40 @@ class VoteFormBaseView(FormView):
         t = int(form.data["vote_type"])
         prev_votes = Vote.objects.filter(quote=quote, voter=voter)
         has_voted = (len(prev_votes) >0)
+        print prev_votes
+        print prev_votes[0]
+        print prev_votes[0].vote_type
         
         ret = {"success": 1}
         if not has_voted:
             if t == 1:
                 # create upvote
                 v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
-                ret["newupvoteobj"] = v.id
+                ret["newupvoteobj"] = 1
             elif t == -1:
                 # create downvote
                 v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
-                ret["newdownvoteobj"] = v.id
+                ret["newdownvoteobj"] = 1
         else:
             if prev_votes[0].vote_type == 1 and t == 1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=0)
+                prev_votes[0].vote_type = 0
                 ret["un_upvoted"] = 1
             elif prev_votes[0].vote_type == 1 and t == -1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
-                ret["downvoteobj"] = v.id
+                prev_votes[0].vote_type = -1
+                ret["downvoteobj"] = 1
             elif prev_votes[0].vote_type == -1 and t == 1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
-                ret["upvoteobj"] = v.id
+                prev_votes[0].vote_type = 1
+                ret["upvoteobj"] = 1
             elif prev_votes[0].vote_type == -1 and t == -1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=0)
+                prev_votes[0].vote_type = 0
                 ret["un_downvoted"] = 1
             elif prev_votes[0].vote_type == 0 and t == 1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
+                prev_votes[0].vote_type = 1
                 ret["newupvoteobj"] = 1
             elif prev_votes[0].vote_type == 0 and t == -1:
-                prev_votes[0].delete()
-                v = Vote.objects.create(quote=quote, voter=voter, vote_type=t)
-                ret["newdownvoteobj"] = -1
+                prev_votes[0].vote_type = -1
+                ret["newdownvoteobj"] = 1
+            prev_votes[0].save()
         return self.create_response(ret, True)
         
     def form_invalid(self, form):

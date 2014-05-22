@@ -74,12 +74,6 @@
                   <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
                   </div>
                 </div>
-                
-                {% if not is_episode_page %}
-                    <div class="preview-published" id="preview-published-{{ forloop.counter }}">
-                            {{ quote.episode.publication_date|date:'M d, Y' }}
-                    </div>
-                {% endif %}
 
             {% endif %}       
             
@@ -143,7 +137,7 @@
                       {{ quote.text|linebreaks|truncatechars:200 }}
                         {% if quote.is_longer_than_200chars %}
                             <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
-                                show more
+                                show
                             </span>
                         {% endif %}
                     </div>
@@ -152,7 +146,7 @@
                       {{ quote.text|linebreaks }}
                         {% if quote.is_longer_than_200chars %}
                             <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
-                                show less
+                                hide
                             </div>
                         {% endif %}
                     </div><!-- /.pq-quote-text -->
@@ -190,7 +184,17 @@
               $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass('overflow-none');
           });
         </script>
-        
+          
+          <div class="pq-quote-date">
+              {% if is_home_page or is_podcast_page %} 
+                  {{ quote.episode.publication_date|date:'M d, Y' }} -
+              {% endif %}
+                  {{ quote.converted_time_begins }} 
+              {% if quote.time_quote_ends %}
+                  - {{ quote.converted_time_ends }}
+              {% endif %}
+          </div>
+          
           {% if is_quote_page %}
             <div class="pq-quote-posted-by">
                 posted 4 hours ago by {{ quote.submitted_by }}

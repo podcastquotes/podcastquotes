@@ -199,7 +199,7 @@
 
         {% endif %}
         
-        <div class="pq-podcast-header-info-left" style="font-size:14px;margin-bottom:5px">
+        <div class="pq-episode-header-info-left">
             <div class="pq-podcast-header-info-inline">
                 <strong>Karma:</strong> {{ episode.karma_total }}
             </div>
@@ -208,12 +208,13 @@
             </div>
         </div>
         
-          <div class="pq-podcast-header-info-left" style="font-size:14px;margin-bottom:5px">
+          <div class="pq-episode-header-info-left">
               <strong>Date Released:</strong> {{ episode.publication_date|date:'m/d/y' }}
-          </div><!-- /.pq-podcast-header-info-left -->
+          </div><!-- /.pq-episode-header-info-left -->
           
+          <!--
           {% if episode.description %}
-              <div class="pq-podcast-header-info-left" id="episode-description-preview" style="font-size:14px;margin-bottom:5px">
+              <div class="pq-episode-header-info-left" id="episode-description-preview">
                   <strong>Description:</strong> {{ episode.description|truncatechars:200 }}
                   {% if episode.is_longer_than_200chars %}
                       <span class="pq-show-more" id="episode-description-show-more">
@@ -221,7 +222,8 @@
                       </span>
                   {% endif %}
               </div>
-              <div class="pq-podcast-header-info-left" id="episode-description-full" style="font-size:14px;margin-bottom:5px">
+              
+              <div class="pq-episode-header-info-left" id="episode-description-full">
                   <strong>Description:</strong> {{ episode.description|linebreaks }}
                       <span class="pq-show-more" id="episode-description-show-less">
                           show less
@@ -243,6 +245,7 @@
                   $("#episode-description-show-more").show();
               });
           </script>
+          -->
           
     </div><!-- /.pq-podcast-header-info -->
     {% endif %}
