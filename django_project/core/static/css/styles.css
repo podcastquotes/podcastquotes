@@ -574,9 +574,7 @@ a {
 }
 
 .pq-podcast-header {
-    margin:0 0 20px 0;
     padding:0 0 5px 0;
-    border-bottom:1px dotted #bbb;
     font-size:16px;
 }
 
@@ -789,6 +787,10 @@ a {
     padding:5px 0 0 0;
 }
 
+#episode-description-full {
+    display:none;
+}
+
 /******************************
 *******************************
 4. Quote Styles
@@ -891,7 +893,7 @@ a {
         clear:left;
         overflow:hidden;
         font-size:14px;
-        margin:0 0 10px 0;
+        margin:0 0 5px 0;
     }
 }
 
@@ -899,7 +901,7 @@ a {
     .pq-quote-breadcrumbs {
         overflow:hidden;
         font-size:14px;
-        margin:0 0 10px 0;
+        margin:0 0 5px 0;
     }
 }
 

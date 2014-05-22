@@ -75,9 +75,11 @@
                   </div>
                 </div>
                 
-                <div class="preview-published" id="preview-published-{{ forloop.counter }}">
-                        {{ quote.episode.publication_date|date:'M d, Y' }}
-                </div>
+                {% if not is_episode_page %}
+                    <div class="preview-published" id="preview-published-{{ forloop.counter }}">
+                            {{ quote.episode.publication_date|date:'M d, Y' }}
+                    </div>
+                {% endif %}
 
             {% endif %}       
             
@@ -202,10 +204,6 @@
           <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
           </button>
-
-          <div class="pq-quote-bottom-button">
-              save
-          </div>
           
           <!-- Modal -->
           <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

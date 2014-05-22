@@ -180,6 +180,12 @@ class Episode(models.Model):
         # https://gist.github.com/trojkat/1989762 
         # https://labnol.googlecode.com/files/youtube.js
 
+    def is_longer_than_200chars(self):
+        if len(self.description) > 200:
+            return 1
+        else:
+            return 0
+        
     def all_episodes(self):
        return Episode.objects.filter(podcast__id=self.podcast.id)
     
