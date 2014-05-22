@@ -196,7 +196,7 @@ class Episode(models.Model):
        return Quote.objects.filter(episode__id=self.id).count()
     
     def karma_total(self):
-        q_list = Quote.objects.filter(episode=self).annotate(karma_total=Sum('vote__vote_type'))
+        q_list = Quote.objects.filter(episode__id=self.id).annotate(karma_total=Sum('vote__vote_type'))
         
         ### Is there a more efficient way than running a for loop here to calculate total karma for all quotes of this Podcast?
         k = 0

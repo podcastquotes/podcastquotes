@@ -76,7 +76,7 @@ class HomeQuoteListView(ListView):
             f = False   
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all()
+        context['podcasts'] = Podcast.objects.all().order_by('title')
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True
@@ -172,7 +172,7 @@ class PodcastQuoteListView(ListView):
             f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all()
+        context['podcasts'] = Podcast.objects.all().order_by('title')
         
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
@@ -218,7 +218,7 @@ class PodcastQuoteListView(ListView):
         elif f == 'birthdays':
             context['podcast_birthdays_is_active'] = True
         else:
-            pass
+            context['podcast_hot_is_active'] = True
         
         return context
         
@@ -274,7 +274,7 @@ class EpisodeQuoteListView(ListView):
             f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all()
+        context['podcasts'] = Podcast.objects.all().order_by('title')
         
         context['podcast'] = Podcast.objects.get(id=e.podcast.id)
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
@@ -321,7 +321,7 @@ class EpisodeQuoteListView(ListView):
         elif f == 'birthdays':
             context['episode_birthdays_is_active'] = True
         else:
-            pass
+            context['episode_hot_is_active'] = True
         
         return context
                  
@@ -329,10 +329,56 @@ def quote(request, quote_id):
     q = Quote.objects.get(id=quote_id)
     
     return render(request, 'quote.html',
-                 {'podcasts': Podcast.objects.all(),
+                 {'podcasts': Podcast.objects.all().order_by('title'),
                  'episodes': Episode.objects.filter(podcast_id=q.episode.podcast.id).exclude(youtube_url__exact='').order_by('-publication_date'),
                  'quote': q,
                  'is_quote_page': 1})
+                 
+class PodcastUpdateView(UpdateView):
+    model = Podcast
+    template_name = 'podcast_update.html'
+    form_class = PodcastForm
+    
+    def get_context_data(self, **kwargs):
+        context = super(PodcastUpdateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        return context
+    
+class EpisodeUpdateView(UpdateView):
+    model = Episode
+    template_name = 'episode_update.html'
+    form_class = EpisodeForm
+    
+    def get_context_data(self, **kwargs):
+        context = super(EpisodeUpdateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        return context
+                 
+class QuoteUpdateView(UpdateView):
+    model = Quote
+    template_name = 'quote_update.html'
+    form_class = QuoteForm
+    
+    def get_initial(self):
+        q = Quote.objects.get(id=self.kwargs['pk'])
+        return { 'time_quote_begins': q.converted_time_begins, 'time_quote_ends': q.converted_time_ends }
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuoteUpdateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        return context
                  
 from quotes_app.services import PodcastSyndicationService
 
@@ -458,9 +504,6 @@ class VoteFormBaseView(FormView):
         t = int(form.data["vote_type"])
         prev_votes = Vote.objects.filter(quote=quote, voter=voter)
         has_voted = (len(prev_votes) >0)
-        print prev_votes
-        print prev_votes[0]
-        print prev_votes[0].vote_type
         
         ret = {"success": 1}
         if not has_voted:

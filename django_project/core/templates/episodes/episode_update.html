@@ -53,12 +53,6 @@
       </div><!-- /.pq-form-input -->
       
       <div class="pq-form-input">
-        {% if form.audio_url.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="audio_url" {% if form.audio_url.errors %} class="error" {% endif %}>Audio URL</label>
-        {{ form.audio_url }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
         {% if form.image.errors %}<p class="error">{% endif %}
         <label class="pq-form-label" for="image" {% if form.image.errors %} class="error" {% endif %}>Image</label>
         {{ form.image }}

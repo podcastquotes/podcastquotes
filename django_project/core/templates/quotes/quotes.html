@@ -3,7 +3,6 @@
 
       <div class="pq-quote">
             
-            
             {% if is_episode_page or is_quote_page %}
             {% else %}
                 <div class="pq-quote-breadcrumbs">
@@ -26,7 +25,7 @@
                 </div>
             {% endif %}
             
-            <div class="pq-quote-buttons hidden-xs hidden-sm hidden-md">
+            <div class="pq-quote-buttons hidden-xs hidden-sm">
                 
             <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
@@ -92,7 +91,7 @@
                 
             {% endif %}
         
-        <div class="pq-quote-xs-buttons hidden-lg">
+        <div class="pq-quote-xs-buttons hidden-md hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
                 <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
@@ -237,6 +236,14 @@
                     {% endif %}"
                     target="_blank">
                         donate
+                    </a>
+                </div>
+            {% endif %}
+            
+            {% if user.is_superuser %}
+                <div class="pq-quote-bottom-button text-purple">
+                    <a href="{{ quote.get_absolute_url }}edit/">
+                        edit
                     </a>
                 </div>
             {% endif %}

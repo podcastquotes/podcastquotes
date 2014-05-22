@@ -4,9 +4,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote
 from quotes_app.views import HomeQuoteListView
-from quotes_app.views import PodcastQuoteListView, PodcastCreateView
-from quotes_app.views import EpisodeQuoteListView
-from quotes_app.views import quote_create
+from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView
+from quotes_app.views import EpisodeQuoteListView, EpisodeUpdateView
+from quotes_app.views import quote_create, QuoteUpdateView
 from quotes_app.views import rank_all
 from quotes_app.views import VoteFormView
 from django.contrib import admin
@@ -19,14 +19,20 @@ urlpatterns = patterns('',
     url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
  
     url(r'^(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
     
     url(r'^podcasts/(?P<pk>\d+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
+    url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),  
+    
     url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
     url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
+    
+    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),  
     
     url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
@@ -35,7 +41,7 @@ urlpatterns = patterns('',
             model=Podcast,
             template_name='podcast_create.html',
             context_object_name='podcast'),
-        name='podcast_create',),
+        name='podcast_create',),    
 
     url(r'^podcasts/(?P<podcast_id>\d+)/update_feed/$', 
         'quotes_app.views.update_feed', 
@@ -43,12 +49,12 @@ urlpatterns = patterns('',
     
     url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
     
+    url(r'^quotes/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'), 
+    
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),
     
     url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
-   
-    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     
     # Allauth urls
     (r'^accounts/', include('allauth.urls')),

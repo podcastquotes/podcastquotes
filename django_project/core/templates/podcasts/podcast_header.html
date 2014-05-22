@@ -81,9 +81,13 @@
                 </div>
             {% endif %}
                 
+            {% if user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
-                    edit
+                    <a href="{{ podcast.get_absolute_url }}edit/">
+                        edit
+                    </a>
                 </div>
+            {% endif %}
                 
 
         </div><!-- /.pq-podcast-buttons -->
@@ -172,9 +176,13 @@
     
         <div class="pq-podcast-buttons">
                 
+            {% if user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
-                    edit
+                    <a href="{{ episode.get_absolute_url }}edit/">
+                        edit
+                    </a>
                 </div>
+            {% endif %}
                 
 
         </div><!-- /.pq-podcast-buttons -->
@@ -252,7 +260,7 @@
 
           {% if episode.donate_url and episode.donation_recipient %}
           <div class="pq-podcast-header-info-left" style="margin-bottom:5px">
-              <a href="{{ episode.donate_url }}" class="text-orange" target="_blank"><strong><i>100% of donations</a> for this episode will go to <a class="text-blue" href="{{ episode.donate_url }}">{{ episode.donation_recipient }}</a></i></strong>
+              <a href="{{ episode.donate_url }}" class="text-orange" target="_blank"><strong><i>100% of donations</a> for this episode will go to <a class="text-blue" href="{{ episode.donate_url }}" target="_blank">{{ episode.donation_recipient }}</a></i></strong>
           </div>
           
           <div class="pq-podcast-header-info-left" style="font-size:14px; padding-bottom:0px;">

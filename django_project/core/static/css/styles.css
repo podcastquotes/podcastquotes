@@ -148,10 +148,12 @@ body {
     color:#888;
 }
 
-.text-purple {
+.text-purple,
+.text-purple a {
     color:#921ABE;
 }
 
+.text-purple a:hover,
 .text-purple:hover {
     color:#68228B;
 }
@@ -400,7 +402,15 @@ a {
     }
 }
 
-@media (min-width:992px) and (max-width:1199px) {
+@media (min-width:992px) and (max-width:1079px) {
+    .pq-container {
+        max-width:900px;
+        margin:0 auto;
+        padding:0 0 0 50px;
+    }
+}
+
+@media (min-width:1080px) and (max-width:1199px) {
     .pq-container {
         max-width:960px;
         margin:0 auto;

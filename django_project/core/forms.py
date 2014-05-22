@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from django.forms import ModelForm
 from quotes_app.models import Podcast, Episode, Quote, Vote
 from captcha.fields import ReCaptchaField
@@ -50,7 +51,6 @@ class EpisodeCreateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'audio_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
 class EpisodeForm(forms.ModelForm):
@@ -65,29 +65,31 @@ class EpisodeForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'audio_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
 class QuoteCreateForm(forms.ModelForm):
-    
-    def __init__(self, *args, **kwargs):
-        super(QuoteCreateForm, self).__init__(*args, **kwargs)
-        self.fields['episode'].queryset = Episode.objects.exclude(youtube_url__exact='')
     
     class Meta:
         model = Quote
         widgets = {
             'episode': forms.Select(attrs={'class':'form-control'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
-            'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':6, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
             'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
             'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
 
 class QuoteForm(forms.ModelForm):
-
+   
     class Meta:
         model = Quote
+        widgets = {
+            'episode': forms.Select(attrs={'class':'form-control'}),
+            'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':6, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
+            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
+            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
+        }
 
 class VoteForm(forms.ModelForm):
 
