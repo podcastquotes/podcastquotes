@@ -82,6 +82,7 @@ class HomeQuoteListView(ListView):
         context['is_home_page'] = True
         context['is_podcast_page'] = False
         context['is_episode_page'] = False
+        context['is_quote_page'] = False
         
         # these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['home_hot_is_active'] = False
@@ -179,6 +180,7 @@ class PodcastQuoteListView(ListView):
         context['is_home_page'] = False
         context['is_podcast_page'] = True
         context['is_episode_page'] = False
+        context['is_quote_page'] = False
         
         ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['podcast_hot_is_active'] = False
@@ -281,6 +283,7 @@ class EpisodeQuoteListView(ListView):
         context['is_home_page'] = False
         context['is_podcast_page'] = False
         context['is_episode_page'] = True
+        context['is_quote_page'] = False
         
         ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['episode_hot_is_active'] = False

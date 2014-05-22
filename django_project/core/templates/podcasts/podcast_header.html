@@ -10,9 +10,11 @@
   
     <div class="pq-podcast-info">
   
-        <div class="pq-podcast-title">
+        <div class="pq-podcast-title dark-link">
           
-          {{ podcast.title }}
+          <a href="{{ podcast.get_absolute_url }}">
+              {{ podcast.title }}
+          </a>
           
         </div><!-- /.pq-podcast-title -->
         

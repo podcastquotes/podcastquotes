@@ -2,7 +2,30 @@
 {% load static %}
 
       <div class="pq-quote">
-        
+            
+            
+            {% if is_episode_page or is_quote_page %}
+            {% else %}
+                <div class="pq-quote-breadcrumbs">
+                      {% if is_home_page %}
+                          {% if quote.episode.podcast.title %}
+                              <a href="{% url 'podcast_quote_list' pk=quote.episode.podcast.id query_filter='hot' %}">
+                                  {{ quote.episode.podcast.title }}
+                              </a>
+                              >
+                          {% endif %}
+                      {% endif %}
+                      
+                      {% if is_home_page or is_podcast_page %}
+                          {% if quote.episode.title %} 
+                              <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
+                                  {{ quote.episode.title }}
+                              </a>
+                          {% endif %}
+                      {% endif %}
+                </div>
+            {% endif %}
+            
             <div class="pq-quote-buttons hidden-xs hidden-sm hidden-md">
                 
             <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
@@ -68,27 +91,9 @@
                 </div><!-- /.pq-quote-summary -->
             {% endif %}
             
-            {% if is_episode_page %}
+            {% if is_episode_page or is_quote_page %}
             {% else %}
-                <div class="pq-quote-breadcrumbs">
-                  {% if is_podcast_page or is_episode_page %}
-                  {% else %}
-                      {% if quote.episode.podcast.title %}
-                          <a href="{% url 'podcast_quote_list' pk=quote.episode.podcast.id query_filter='hot' %}">
-                              {{ quote.episode.podcast.title }}
-                          </a>
-                          >
-                      {% endif %}
-                  {% endif %}
-                  {% if is_episode_page %}
-                  {% else %}
-                      {% if quote.episode.title %} 
-                          <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
-                              {{ quote.episode.title }}
-                          </a>
-                      {% endif %}
-                  {% endif %}
-                </div>
+                
             {% endif %}
         
         <div class="pq-quote-xs-buttons hidden-lg">
@@ -129,21 +134,37 @@
             </form>
         </div><!-- /.pq-quote-xs-buttons -->
         
-        <div class="pq-quote-text-box">
-            {% if quote.text %}
-                <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                </div>
-                <div class="pq-show-more" id="show-more-{{ forloop.counter }}">
-                    show quote
-                </div>
-                <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
-                  {{ quote.text|linebreaks }}
-                </div><!-- /.pq-quote-text -->
-                <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
-                    hide quote
-                </div>
+        {% if is_home_page or is_podcast_page or is_episode_page %}
+            <div class="pq-quote-text-box">
+                {% if quote.text %}
+                    <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
+                      {{ quote.text|linebreaks|truncatechars:200 }}
+                        {% if quote.is_longer_than_200chars %}
+                            <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
+                                show more
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
+                      {{ quote.text|linebreaks }}
+                        {% if quote.is_longer_than_200chars %}
+                            <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
+                                show less
+                            </div>
+                        {% endif %}
+                    </div><!-- /.pq-quote-text -->
+                {% endif %}
+            </div><!-- /.pq-quote-text-box -->
             {% endif %}
-        </div><!-- /.pq-quote-text-box -->
+            
+            {% if is_quote_page %}
+                {% if quote.text %}
+                    <div class="pq-quote-text-box">
+                        {{ quote.text|linebreaks }}
+                    </div>
+                {% endif %}
+            {% endif %}
 
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
@@ -153,6 +174,7 @@
               $("#show-less-{{ forloop.counter }}").show();
           });
           $("#show-less-{{ forloop.counter }}").click(function() {
+              $("#pq-quote-text-preview-{{ forloop.counter }}").show();
               $("#pq-quote-text-{{ forloop.counter }}").hide();
               $("#show-less-{{ forloop.counter }}").hide();
               $("#show-more-{{ forloop.counter }}").show();
@@ -167,10 +189,11 @@
           });
         </script>
         
-
+          {% if is_quote_page %}
             <div class="pq-quote-posted-by">
                 posted 4 hours ago by {{ quote.submitted_by }}
             </div>
+          {% endif %}
 
         
           <div class="pq-quote-bottom-buttons">

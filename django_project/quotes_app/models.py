@@ -233,6 +233,12 @@ class Quote(models.Model):
         print self.rank_score
         self.save()
     
+    def is_longer_than_200chars(self):
+        if len(self.text) > 200:
+            return 1
+        else:
+            return 0
+    
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
         h, m = divmod(m, 60)
