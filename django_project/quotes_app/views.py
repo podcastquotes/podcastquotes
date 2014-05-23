@@ -10,16 +10,19 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.db.models import Count, Sum
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from quotes_app.models import Podcast, Episode, Quote, Vote
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from core.forms import PodcastCreateForm, PodcastForm
 from core.forms import EpisodeCreateForm, EpisodeForm
 from core.forms import QuoteCreateForm, QuoteForm
 from core.forms import VoteForm
+from core.forms import UserProfileForm
 import feedparser
 import json
 
@@ -387,6 +390,14 @@ class QuoteDeleteView(DeleteView):
     success_url = reverse_lazy('home')
     template_name = 'quote_delete.html'
     
+    def get_context_data(self, **kwargs):
+        context = super(QuoteDeleteView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        return context
+    
 class EpisodeUpdateView(UpdateView):
     model = Episode
     template_name = 'episode_update.html'
@@ -492,6 +503,14 @@ class PodcastCreateView(CreateView):
         podcast_syndication_service.collect_episodes(podcast)
         
         return HttpResponseRedirect(self.get_success_url())
+        
+    def get_context_data(self, **kwargs):
+        context = super(PodcastCreateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        return context
 
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
@@ -582,3 +601,61 @@ class VoteFormBaseView(FormView):
     
 class VoteFormView(JSONFormMixin, VoteFormBaseView):
     pass
+
+class UserProfileDetailView(DetailView):
+    model = get_user_model()
+    slug_field = "username"
+    template_name = "user_detail.html"
+    
+    def get_object(self, queryset=None):
+        user = super(UserProfileDetailView, self).get_object(queryset)
+        UserProfile.objects.get_or_create(user=user)
+        return user
+        
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileDetailView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['person'] = User.objects.get(username=self.kwargs['slug'])
+
+        return context
+        
+class UserProfileDeleteView(DeleteView):
+    model = get_user_model()
+    slug_field = "username"
+    success_url = reverse_lazy('home')
+    template_name = 'user_delete.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileDeleteView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['person'] = User.objects.get(username=self.kwargs['slug'])
+
+        return context
+    
+class UserProfileUpdateView(UpdateView):
+    model = get_user_model()
+    slug_field = "username"
+    template_name = 'user_update.html'
+    form_class = UserProfileForm
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileUpdateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['person'] = User.objects.get(username=self.kwargs['slug'])
+        
+        print context['user']
+
+        return context
+        
+    def get_success_url(self):
+        user = super(UserProfileUpdateView, self).get_object()
+        return reverse_lazy('user_detail', kwargs={'slug': user})

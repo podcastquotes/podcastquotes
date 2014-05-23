@@ -1,18 +1,25 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import RedirectView
-from quotes_app.models import Podcast, Episode, Quote
+from quotes_app.models import Podcast, Episode, Quote, UserProfile
 from quotes_app.views import HomeQuoteListView
 from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views import EpisodeQuoteListView, EpisodeUpdateView, EpisodeDeleteView
 from quotes_app.views import quote_create, QuoteUpdateView, QuoteDeleteView
+from quotes_app.views import UserProfileDetailView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views import rank_all
 from quotes_app.views import VoteFormView
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    
+    url(r'^people/(?P<slug>\w+)/$', UserProfileDetailView.as_view(), name='user_detail'),
+    
+    url(r'^people/(?P<slug>\w+)/edit/$', UserProfileUpdateView.as_view(), name='user_update'),
+    
+    url(r'^people/(?P<slug>\w+)/delete/$', UserProfileDeleteView.as_view(), name='user_delete'),
     
     url(r'^rerank/', 'quotes_app.views.rank_all', name='rank_all_quotes'),
     

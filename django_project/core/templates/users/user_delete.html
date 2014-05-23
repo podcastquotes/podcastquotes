@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block header %}
+    
+    {% include 'main_col_width.html' %}
+
+    <div class="pq-title">
+      Delete My Profile <i class="fa fa-trash-o"></i>
+    </div><!-- /.pq-title -->
+    
+    <div class="pq-form">
+    
+        <p>Are you <strong>sure</strong> you want to delete your profile?</p>
+
+        <form method="post" action="{% url 'user_delete' slug=person.username %}">
+          {% csrf_token %}
+          
+          <div class="pq-form-buttons">
+            <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
+            <a href="{% url 'user_detail' slug=person %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
+          </div><!-- /.pq-form-input -->
+          
+          <div class="clearfix">
+          </div>
+          
+        </form>
+        
+    </div><!-- /.pq-form -->
+
+</div><!-- /.col-sm-11 -->
+
+{% endblock %}<!-- / block header -->

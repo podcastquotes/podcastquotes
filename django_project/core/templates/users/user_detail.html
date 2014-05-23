@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block header %}
+    
+    {% include 'main_col_width.html' %}
+
+    {% include 'user_header.html' %}
+
+    {% include 'user_filter_selector.html' %}
+        
+{% endblock %}<!-- /block header -->
+    
+{% block quotes %}
+
+    {% include 'quotes_forloop.html' %}
+
+    {% include 'quote_pagination.html' %}
+
+    </div><!-- /.col-sm-11 ***you must include this close tag***-->
+
+{% endblock %}<!-- / block quotes -->

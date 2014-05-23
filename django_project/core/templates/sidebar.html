@@ -46,7 +46,7 @@
           <hr />
 
           <div class="pq-menu-options">
-           {% for episode in podcast.all_episodes_with_youtube_urls %}        
+           {% for episode in podcast.episode_set.all %}        
              <a href="/episodes/{{ episode.id}}">
                <div class="pq-menu-option">
                  {{ episode.title }}

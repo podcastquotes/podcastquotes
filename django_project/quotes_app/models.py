@@ -131,11 +131,12 @@ class Episode(models.Model):
     guid = models.URLField(blank=True)
     publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
+    image = models.FileField(upload_to=get_upload_file_name, blank=True)
     episode_url = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
     donation_recipient = models.CharField(max_length=100, blank=True)
     donation_recipient_about = models.TextField(blank=True)
-    image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    
     youtube_url = models.URLField(blank=True)
     # keywords = ... I think these are available in RSS feed episode data
     
@@ -283,3 +284,39 @@ class Vote(models.Model):
     
     def __unicode__(self):
         return "Vote by: " + str(self.voter)  
+
+# I'm not sure if/how the code below may conflict with all_auth,
+# so I'm commenting it out until testing.
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, unique=True)
+    image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    about = models.TextField(blank=True)
+    homepage = models.URLField(blank=True)
+    donate_url = models.URLField(blank=True)
+    twitter_url = models.URLField(blank=True)
+    facebook_url = models.URLField(blank=True)
+    instagram_url = models.URLField(blank=True)
+    google_plus_url = models.URLField(blank=True)
+    youtube_url = models.URLField(blank=True)
+    
+    class Meta:
+        ordering = ['user']
+    
+    def all_quotes(self):
+        pass
+    
+    def karma_total(self):
+        q_list = Quote.objects.filter(submitted_by=self.user).annotate(karma_total=Sum('vote__vote_type'))
+        
+        ### Is there a more efficient way than running a for loop here to calculate total karma for all quotes of this Podcast?
+        k = 0
+        for q in q_list:
+           k += q.karma_total
+        return k
+    
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'slug': self.user})
+    
+    def __unicode__(self):
+        return unicode(self.user)
