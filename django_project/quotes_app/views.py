@@ -348,6 +348,45 @@ class PodcastUpdateView(UpdateView):
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         return context
     
+class PodcastDeleteView(DeleteView):
+    model = Podcast
+    context_object_name = 'podcast'
+    success_url = reverse_lazy('home')
+    template_name = 'podcast_delete.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(PodcastDeleteView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        return context
+    
+class EpisodeDeleteView(DeleteView):
+    model = Episode
+    context_object_name = 'episode'
+    success_url = reverse_lazy('home')
+    template_name = 'episode_delete.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(EpisodeDeleteView, self).get_context_data(**kwargs)
+        
+        e = get_object_or_404(Episode, id=self.kwargs['pk'])
+        p_id = e.podcast.id
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        context['episodes'] = Episode.objects.filter(podcast_id=p_id)
+        return context
+    
+class QuoteDeleteView(DeleteView):
+    model = Quote
+    context_object_name = 'quote'
+    success_url = reverse_lazy('home')
+    template_name = 'quote_delete.html'
+    
 class EpisodeUpdateView(UpdateView):
     model = Episode
     template_name = 'episode_update.html'

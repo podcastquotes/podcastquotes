@@ -2,19 +2,30 @@
 
 {% block header %}
 
-<div class="col-sm-11">
+    {% include 'main_col_width.html' %}
 
-  <p>Are you sure you want to delete "{{ podcast.title }}"?</p>
+    <div class="pq-title">
+      Delete Podcast <i class="fa fa-trash-o"></i>
+    </div><!-- /.pq-title -->
+    
+    <div class="pq-form">
+    
+        <p>Are you sure you want to delete "{{ podcast.title }}"?</p>
 
-  <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
-    {% csrf_token %}
-    <a href="{% url 'podcast_top' pk=podcast.pk %}">
-      Go back
-    </a> 
-    <p>
-      <input type="submit" value="Confirm deletion" />
-    </p>
-  </form> 
+        <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
+          {% csrf_token %}
+          
+          <div class="pq-form-buttons">
+            <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
+            <a href="{% url 'podcast_quote_list_root' pk=podcast.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
+          </div><!-- /.pq-form-input -->
+          
+          <div class="clearfix">
+          </div>
+          
+        </form>
+        
+    </div><!-- /.pq-form -->
 
 </div><!-- /.col-sm-11 -->
 

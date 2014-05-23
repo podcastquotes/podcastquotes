@@ -184,13 +184,15 @@
         </script>
           
           <div class="pq-quote-date">
-              {% if is_home_page or is_podcast_page %} 
-                  {{ quote.episode.publication_date|date:'M d, Y' }} -
-              {% endif %}
-                  {{ quote.converted_time_begins }} 
-              {% if quote.time_quote_ends %}
-                  - {{ quote.converted_time_ends }}
-              {% endif %}
+              <a href="{{ quote.get_absolute_url }}">
+                  {% if is_home_page or is_podcast_page %} 
+                      {{ quote.episode.publication_date|date:'M d, Y' }} -
+                  {% endif %}
+                      {{ quote.converted_time_begins }} 
+                  {% if quote.time_quote_ends %}
+                      - {{ quote.converted_time_ends }}
+                  {% endif %}
+              </a>
           </div>
           
           {% if is_quote_page %}

@@ -4,9 +4,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote
 from quotes_app.views import HomeQuoteListView
-from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView
-from quotes_app.views import EpisodeQuoteListView, EpisodeUpdateView
-from quotes_app.views import quote_create, QuoteUpdateView
+from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
+from quotes_app.views import EpisodeQuoteListView, EpisodeUpdateView, EpisodeDeleteView
+from quotes_app.views import quote_create, QuoteUpdateView, QuoteDeleteView
 from quotes_app.views import rank_all
 from quotes_app.views import VoteFormView
 from django.contrib import admin
@@ -26,13 +26,17 @@ urlpatterns = patterns('',
     
     url(r'^podcasts/(?P<pk>\d+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
-    url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),  
+    url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),
+    
+    url(r'^podcasts/(?P<pk>\d+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
     
     url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
     url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
     
-    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),  
+    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
+    
+    url(r'^episodes/(?P<pk>\d+)/delete/$', EpisodeDeleteView.as_view(), name='episode_delete'),  
     
     url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
@@ -49,7 +53,9 @@ urlpatterns = patterns('',
     
     url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote', name='quote'),
     
-    url(r'^quotes/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'), 
+    url(r'^quotes/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
+    
+    url(r'^quotes/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
     
     url(r'^quotes/create/', 'quotes_app.views.quote_create',
         name='quote_create',),

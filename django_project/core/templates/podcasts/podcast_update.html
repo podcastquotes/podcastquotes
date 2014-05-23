@@ -5,7 +5,7 @@
 {% include 'main_col_width.html' %}
 
   <div class="pq-title">
-    Add a Podcast <i class="fa fa-chevron-down"></i>
+    Edit Podcast <i class="fa fa-pencil"></i>
   </div><!-- /.pq-title -->
     
   <div class="pq-form">
@@ -87,6 +87,8 @@
     </form>
     
   </div><!-- /.pq-form -->
+  
+  <a href="{{ podcast.get_absolute_url }}delete" class="btn btn-small btn-danger pq-form-delete-button">Delete this Podcast <i class="fa fa-trash-o"></i></a>
 
 </div><!-- /.col-sm-11 -->
 
