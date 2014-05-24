@@ -431,9 +431,9 @@ a {
 
 @media (min-width:1200px) {
     .pq-container {
+        max-width:1040px;
         margin:0 auto;
         padding:0 0 0 80px;
-        max-width:1040px;
     }
 }
 
@@ -448,7 +448,7 @@ a {
 
 @media (min-width:1200px) {
     #main {
-        padding:0 25px 0 0;
+        padding:0 20px 0 0;
     }
 }
 
@@ -626,12 +626,11 @@ a {
 }
 
 .pq-podcast-header {
-    padding:0 0 5px 0;
     font-size:16px;
 }
 
 .pq-podcast-title {
-    margin:0 0 10px 0;
+    margin:-4px 0 10px 0;
     font-size:24px;
     font-weight:bold;
     color:#111;
@@ -672,7 +671,7 @@ a {
     .pq-podcast-profile-picture {
         clear:left;
         float:left;
-        margin:0 25px 15px 0;
+        margin:0 20px 15px 0;
     }
 }
 
@@ -684,7 +683,26 @@ a {
 }
 
 .pq-podcast-profile-picture img {
-    max-width:110px;
+    max-width:100px;
+}
+
+@media (max-width:767px) {
+    .pq-episode-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 20px 15px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-episode-profile-picture {
+        float:left;
+        margin:0 20px 20px 0;
+    }
+}
+
+.pq-episode-profile-picture img {
+    max-width:100px;
 }
 
 @media (max-width:550px) {
@@ -1235,11 +1253,13 @@ button {
 .pq-quote-text {
     clear:left;
     display:none;
+    max-width:600px;
     font-size:16px;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
+        max-width:600px;
         font-size:16px;
     }
 }
@@ -1247,6 +1267,7 @@ button {
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
+        max-width:600px;
         font-size:16px;
     }
 }
