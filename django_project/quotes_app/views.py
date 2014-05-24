@@ -506,6 +506,8 @@ class PodcastCreateView(CreateView):
         podcast.description = feed['description']
         podcast.homepage = feed['homepage']
         podcast.save()
+        podcast.moderators.add(self.request.user)
+        podcast.save()
         
         # Collect episodes (should be made asynchronous)
         podcast_syndication_service.collect_episodes(podcast)
@@ -642,27 +644,27 @@ class UserQuoteListView(ListView):
         if f == 'hot':
             return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
         elif f == 'not':
-            return Quote.quote_vote_manager.query_not()
+            return Quote.quote_vote_manager.query_not().filter(submitted_by=u)
         elif f == 'controversial':
-            return Quote.quote_vote_manager.query_controversial()
+            return Quote.quote_vote_manager.query_controversial().filter(submitted_by=u)
         elif f == 'new':
-            return Quote.quote_vote_manager.query_new()
+            return Quote.quote_vote_manager.query_new().filter(submitted_by=u)
         elif f == 'top':
-            return Quote.quote_vote_manager.query_top()
+            return Quote.quote_vote_manager.query_top().filter(submitted_by=u)
         elif f == 'bottom':
-            return Quote.quote_vote_manager.query_bottom()
+            return Quote.quote_vote_manager.query_bottom().filter(submitted_by=u)
         elif f == 'mainstream':
-            return Quote.quote_vote_manager.query_mainstream()
+            return Quote.quote_vote_manager.query_mainstream().filter(submitted_by=u)
         elif f == 'underground':
-            return Quote.quote_vote_manager.query_underground()
+            return Quote.quote_vote_manager.query_underground().filter(submitted_by=u)
         elif f == 'chronological':
-            return Quote.quote_vote_manager.query_chronological()
+            return Quote.quote_vote_manager.query_chronological().filter(submitted_by=u)
         elif f == 'ghosts':
-            return Quote.quote_vote_manager.query_ghosts()
+            return Quote.quote_vote_manager.query_ghosts().filter(submitted_by=u)
         elif f == 'birthdays':
-            return Quote.quote_vote_manager.query_birthdays()
+            return Quote.quote_vote_manager.query_birthdays().filter(submitted_by=u)
         else:
-            return Quote.quote_vote_manager.query_hot()
+            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
         
     def get_context_data(self, **kwargs):
         context = super(UserQuoteListView, self).get_context_data(**kwargs)

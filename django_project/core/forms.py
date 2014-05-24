@@ -31,7 +31,7 @@ class PodcastForm(forms.ModelForm):
     
     class Meta:
         model = Podcast
-        exclude = ('',)
+        exclude = ('moderators',)
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),

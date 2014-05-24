@@ -81,7 +81,7 @@
                 </div>
             {% endif %}
                 
-            {% if user.is_superuser %}
+            {% if user in podcast.moderators.all or user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
                     <a href="{{ podcast.get_absolute_url }}edit/">
                         edit podcast
@@ -139,10 +139,10 @@
         
         <div class="pq-podcast-header-info-left" style="margin-bottom:0">
             <div class="pq-podcast-header-info-inline">
-                Karma: {{ podcast.karma_total }}
+                <strong><small>Karma: {{ podcast.karma_total }}</small></strong>
             </div>
             <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
-                Quotes: {{ podcast.all_podcast_quotes_count }}
+                <strong><small>Quotes: {{ podcast.all_podcast_quotes_count }}</small></strong>
             </div>
         </div><!-- /.pq-podcast-header-info-left -->
        
@@ -182,7 +182,7 @@
                 </a>
             </div>
         
-            {% if user.is_superuser %}
+            {% if user in episode.podcast.moderators.all or user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
                     <a href="{{ episode.get_absolute_url }}edit/">
                         edit episode
@@ -215,10 +215,10 @@
         
         <div class="pq-episode-header-info-left">
             <div class="pq-podcast-header-info-inline">
-                Karma: {{ episode.karma_total }}
+                <strong><small>Karma: {{ episode.karma_total }}</small></strong>
             </div>
             <div class="pq-podcast-header-info-inline">
-                Quotes: {{ episode.all_episode_quotes_count }}
+                <strong><small>Quotes: {{ episode.all_episode_quotes_count }}</small></strong>
             </div>
         </div>
           
@@ -264,7 +264,7 @@
 
           {% if episode.donate_url and episode.donation_recipient %}
           <div class="pq-podcast-header-info-left" style="margin-bottom:5px">
-              <a href="{{ episode.donate_url }}" class="text-orange" target="_blank"><strong>100% of donations</a> for this episode will go to <a class="text-blue" href="{{ episode.donate_url }}" target="_blank">{{ episode.donation_recipient }}</a></strong>
+              <a href="{{ episode.donate_url }}" class="text-orange" target="_blank"><strong>100% of donations</strong></a> for this episode will go to <strong><a class="text-blue" href="{{ episode.donate_url }}" target="_blank">{{ episode.donation_recipient }}</a></strong>
           </div>
           
           <div class="pq-podcast-header-info-left" style="font-size:14px; padding-bottom:0px;">

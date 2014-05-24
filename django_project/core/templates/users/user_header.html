@@ -53,7 +53,7 @@
                 </div>
             {% endif %}
                 
-            {% if user.is_superuser %}
+            {% if user == person or user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
                     <a href="{{ person.username.get_absolute_url }}edit/">
                         edit

@@ -41,7 +41,7 @@
                             {{ request.user.username }} <i class="fa fa-caret-down"></i>
                         </a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ request.user.userprofile.get_absolute_url }}">My Profile</a></li>
+                            <li><a href="/people/{{ request.user.username }}">My Profile</a></li>
                             <li><a href="#">Settings</a></li>
                             <li class="divider"></li>
                             <li><a href="/logout">Sign Out</a></li>

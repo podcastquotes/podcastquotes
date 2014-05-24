@@ -78,6 +78,7 @@ class QuoteVoteManager(models.Manager):
 class Podcast(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    moderators = models.ManyToManyField(User, blank=True)
     rss_url = models.URLField(blank=True)
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)

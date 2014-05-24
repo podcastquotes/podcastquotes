@@ -922,6 +922,7 @@ a {
 
 @media (max-width:767px) {
     .pq-quote-text-box {
+        max-width:530px;
         clear:left;
         font-size:14px;
     }
@@ -929,6 +930,7 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-text-box {
+        max-width:530px;
         clear:left;
         font-size:14px;
         overflow:hidden;
@@ -943,6 +945,7 @@ a {
 
 @media (max-width:767px) {
     .pq-quote-summary {
+        max-width:540px;
         overflow:hidden;
         padding:0 0 5px 0;
         font-weight:bold;
@@ -952,6 +955,7 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-summary {
+        max-width:540px;
         overflow:hidden;
         margin:-2px 0 0 0;
         padding:0 0 10px 0;
@@ -1253,13 +1257,13 @@ button {
 .pq-quote-text {
     clear:left;
     display:none;
-    max-width:600px;
+    max-width:540px;
     font-size:16px;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        max-width:600px;
+        max-width:540px;
         font-size:16px;
     }
 }
@@ -1267,7 +1271,7 @@ button {
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        max-width:600px;
+        max-width:540px;
         font-size:16px;
     }
 }
