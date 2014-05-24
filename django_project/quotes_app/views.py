@@ -34,6 +34,10 @@ def rank_all(request):
 
     return redirect('/')
 
+def getSec(hhmmss):
+    l = map(int, hhmmss.split(':'))
+    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
+    
 class HomeQuoteListView(ListView):
     model = Quote
     template_name = 'home.html'
@@ -429,7 +433,8 @@ class QuoteUpdateView(UpdateView):
         
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         return context
-                 
+
+    
 from quotes_app.services import PodcastSyndicationService
 
 podcast_syndication_service = PodcastSyndicationService()
@@ -512,9 +517,18 @@ class PodcastCreateView(CreateView):
 
         return context
 
-def getSec(hhmmss):
-    l = map(int, hhmmss.split(':'))
-    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
+class EpisodeCreateView(CreateView):
+    model = Episode
+    template_name = 'episode_create.html'
+    form_class = EpisodeForm
+    
+    def get_context_data(self, **kwargs):
+        context = super(EpisodeCreateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        return context
 
 @login_required
 def quote_create(request):
@@ -527,6 +541,7 @@ def quote_create(request):
         qform.data['time_quote_ends'] = getSec(ends_with_delims)
         qform.data['rank_score'] = 0.0
         if qform.is_valid():
+            print qform.cleaned_data
             new_quote = qform.save()
             vote = Vote.create(voter=request.user, quote=new_quote, vote_type=0)
             vote.save()

@@ -209,12 +209,13 @@ body {
 
 .error {
     color:#ff4a05;
+    font-family:serif;
     font-weight:bold;
 }
 
 .errorlist {
+    font-family:serif;
     color:#ff4a05;
-    font-style:italic;
 }
 
 a {
@@ -1405,10 +1406,9 @@ button {
 
 .circle {
     position:absolute;
-    margin:33px 0 0 46px;
-    font-size:48px;
+    margin:16px 0 0 23px;
+    font-size:42px;
     color:#888;
-    opacity:0.95;
     cursor:pointer;
 }
 
@@ -1426,7 +1426,7 @@ button {
 
 .youtube-img-preview {
     cursor:pointer;
-    width:130px;
+    width:80px;
     float:right;
     margin:5px 0 5px 0;
 }

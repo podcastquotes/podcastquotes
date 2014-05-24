@@ -67,13 +67,13 @@
                   </div>
                 </div><!-- /.modal fade -->
                 
-            {% if quote.episode.podcast.donate_url or quote.episode.donate_url %}
-                <div class="pq-quote-bottom-button text-orange">
+            {% if podcast.donate_url or episode.donate_url %}
+                <div class="pq-podcast-button text-orange">
                     <a href=
-                    "{% if quote.episode.donate_url %}
-                        {{ quote.episode.donate_url }}
+                    "{% if episode.donate_url %}
+                        {{ episode.donate_url }}
                     {% else %}
-                        {{ quote.episode.podcast.donate_url }}
+                        {{ podcast.donate_url }}
                     {% endif %}"
                     target="_blank">
                         donate
@@ -156,7 +156,7 @@
     <div class="pq-episode-header">
     
     {% if episode.image %}
-        <div class="pq-podcast-profile-picture">
+        <div class="pq-podcast-profile-picture hidden-xs">
           <a href="/episodes/{{ episode.id }}">
             <img src="/media/{{ episode.image }}" />
           </a>

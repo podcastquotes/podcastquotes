@@ -5,6 +5,10 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from captcha.fields import ReCaptchaField
 from django.contrib.auth import get_user_model
 
+def getSec(hhmmss):
+    l = map(int, hhmmss.split(':'))
+    return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
+
 class PodcastCreateForm(forms.ModelForm):
     
     class Meta:
@@ -62,10 +66,13 @@ class EpisodeForm(forms.ModelForm):
         widgets = {
             'podcast': forms.Select(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
-            'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':''}),
+            'guid': forms.TextInput(attrs={'class':'form-control', 'placeholder':'globally unique identifier'}),
+            'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':'mm/dd/yy'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
-            'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to full-length, unedited episode on YouTube'}),
+            'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to donation page for this episode'}),
+            'donation_recipient': forms.TextInput(attrs={'class':'form-control', 'placeholder':'name of donation recipient for this episode'}),
+            'donation_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "text description of this episode's donation recipient"}),
         }
 
 class QuoteCreateForm(forms.ModelForm):
@@ -81,9 +88,16 @@ class QuoteCreateForm(forms.ModelForm):
         }
 
 class QuoteForm(forms.ModelForm):
-   
+    # We must override time_quote_begins and time_quote_ends in order for form
+    # to validate and clean successfully. If we do not label the fields as CharFields,
+    # they will validate as IntegerFields, when the hh:mm:ss format is a string.
+    
+    time_quote_begins = forms.CharField(max_length=8)
+    time_quote_ends = forms.CharField(max_length=8)
+    
     class Meta:
         model = Quote
+        exclude = ('rank_score', 'submitted_by',)
         widgets = {
             'episode': forms.Select(attrs={'class':'form-control'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
@@ -91,6 +105,21 @@ class QuoteForm(forms.ModelForm):
             'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
             'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
+
+    def __init__(self, *args, **kw):
+        super(QuoteForm, self).__init__(*args, **kw)
+        self.fields['time_quote_begins'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        self.fields['time_quote_ends'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        
+    def clean_time_quote_begins(self):
+        begins_with_delims = self.cleaned_data['time_quote_begins']
+        converted_time_begins = getSec(begins_with_delims)
+        return converted_time_begins
+        
+    def clean_time_quote_ends(self):
+        ends_with_delims = self.cleaned_data['time_quote_ends']
+        converted_time_ends = getSec(ends_with_delims)
+        return converted_time_ends
 
 class VoteForm(forms.ModelForm):
 

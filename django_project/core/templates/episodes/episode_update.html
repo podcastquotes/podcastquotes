@@ -8,68 +8,127 @@
     Edit Episode <i class="fa fa-pencil"></i>
   </div><!-- /.pq-title -->
     
-  <div class="pq-form">
-    
-    <form method="post" action="" enctype="multipart/form-data" role="form">
-      {% csrf_token %}
-      {% if form.errors %}
-      <p>Please correct the following fields:</p>
-      {% endif %}
+    <div class="pq-form">
+      
+      <form method="post" action="" enctype="multipart/form-data" role="form">
+        {% csrf_token %}
+        {% if form.errors %}
+            <p>Please correct the following fields:</p>
+            {{ form.errors }}
+        {% endif %}
 
-      <div class="pq-form-input">
-        {% if form.podcast.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="podcast" {% if podcast_form.podcast.errors %} class="error" {% endif %}>Podcast</label>
-        {{ form.podcast }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.title.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="title" {% if podcast_form.title.errors %} class="error" {% endif %}>Title</label>
-        {{ form.title }}
-      </div><!-- /.pq-form-input -->
+        <div class="pq-form-input">
+            {% if form.podcast.errors %}
+                <p class="error">
+                    {{ form.podcast.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="podcast">Podcast</label>
+              {{ form.podcast }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.title.errors %}
+                <p class="error">
+                    {{ form.title.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label {% if form.title.errors %}error{% endif %}" for="title">Title</label>
+              {{ form.title }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.guid.errors %}
+                <p class="error">
+                    {{ form.guid.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.guid.errors %}error{% endif %}" for="guid">GUID URL <small>(optional)</small></label>
+              {{ form.guid }}
+        </div><!-- /.pq-form-input -->
 
-      <div class="pq-form-input">
-        {% if form.publication_date.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="publication_date" {% if form.publication_date.errors %} class="error"{% endif %}>Publication Date</label>
-        {{ form.publication_date }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.description.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="description" {% if form.description.errors %} class="error" {% endif %}>Description</label>
-        {{ form.description }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.episode_url.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="episode_url" {% if form.episode_url.errors %} class="error" {% endif %}>Episode Link</label>
-        {{ form.episode_url }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.youtube_url.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="youtube_url" {% if form.youtube_url.errors %} class="error" {% endif %}>YouTube Video URL</label>
-        {{ form.youtube_url }}
-      </div><!-- /.pq-form-input -->
-      
-      <div class="pq-form-input">
-        {% if form.image.errors %}<p class="error">{% endif %}
-        <label class="pq-form-label" for="image" {% if form.image.errors %} class="error" {% endif %}>Image</label>
-        {{ form.image }}
-      </div><!-- /.pq-form-input -->
+        <div class="pq-form-input">
+            {% if form.publication_date.errors %}
+                <p class="error">
+                    {{ form.publication_date.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.publication_date.errors %}error{% endif %}" for="publication_date">Publication Date <small>(optional)</small></label>
+              {{ form.publication_date }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.image.errors %}
+                <p class="error">
+                    {{ form.image.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.image.errors %}error{% endif %}" for="image">Episode Image <small>(optional)</small></label>
+          {{ form.image }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.description.errors %}
+                <p class="error">
+                    {{ form.description.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.description.errors %}error{% endif %}" for="description">Description <small>(optional)</small></label>
+              {{ form.description }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.youtube_url.errors %}
+                <p class="error">
+                    {{ form.youtube_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.youtube_url.errors %}error{% endif %}" for="youtube_url">YouTube Video URL <small>(optional, enables media player)</small></label>
+          {{ form.youtube_url }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.donate_url.errors %}
+                <p class="error">
+                    {{ form.donate_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.episode_url.errors %}error{% endif %}" for="donate_url">Episode Donate URL <small>(optional, overrides podcast donate URL for only this episode)</small></label>
+              {{ form.donate_url }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.donation_recipient.errors %}
+                <p class="error">
+                    {{ form.donation_recipient.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.donation_recipient.errors %}error{% endif %}" for="donation_recipient">Episode Donation Recipient <small>(optional)</small></label>
+              {{ form.donation_recipient }}
+        </div><!-- /.pq-form-input -->
+        
+        <div class="pq-form-input">
+            {% if form.donation_recipient_about.errors %}
+                <p class="error">
+                    {{ form.donation_recipient_about.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.donation_recipient_about.errors %}error{% endif %}" for="donation_recipient_about">About Episode Donation Recipient <small>(optional)</small></label>
+              {{ form.donation_recipient_about }}
+        </div><!-- /.pq-form-input -->
 
-      <div class="pq-form-buttons">
-        <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
-        <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>
-      </div><!-- /.pq-form-input -->
-      
-      <div class="clearfix">
-      </div>
-      
-    </form>
-    
-  </div><!-- /.pq-form -->
+        <div class="pq-form-buttons">
+          <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
+          <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>
+        </div><!-- /.pq-form-input -->
+        
+        <div class="clearfix">
+        </div>
 
+      </form>
+
+      </div><!-- /.pq-form -->
+      
   <a href="{{ episode.get_absolute_url }}delete" class="btn btn-small btn-danger pq-form-delete-button">Delete this Episode <i class="fa fa-trash-o"></i></a>
 
 </div><!-- /.col-sm-11 -->

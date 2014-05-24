@@ -13,67 +13,118 @@
           <form method="post" action="" enctype="multipart/form-data" role="form">
             {% csrf_token %}
             {% if form.errors %}
-              <p>Please correct the following fields:</p>
+                <p>Please correct the following fields:</p>
+                {{ form.errors }}
             {% endif %}
             
             <div class="pq-form-input">
-              {% if form.rss_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label" for="rss_url" {% if form.rss_url.errors %} class="error" {% endif %}>RSS Feed URL</label>
-              <p>Copy and paste your RSS feed URL below to automatically add a podcast and all of its episodes (optional, but recommended).</p>
-              {{ form.rss_url }}
+                {% if form.rss_url.errors %}
+                    <p class="error">
+                        {{ form.rss_url.errors }}
+                    </p>
+                {% endif %}
+                <label class="pq-form-label {% if form.rss_url.errors %}error{% endif %}" for="rss_url">RSS Feed URL</label>
+                <p>Copy and paste your RSS feed URL below to automatically add a podcast and all of its episodes (optional, but recommended).</p>
+                {{ form.rss_url }}
             </div><!-- /.pq-form-input -->
             
+          <div class="pq-form-input">
+            {% if form.title.errors %}
+                <p class="error">
+                    {{ form.title.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label {% if form.title.errors %}error{% endif %}" for="title">Title</label>
+            {{ form.title }}
+          </div><!-- /.pq-form-input -->
+
+          <div class="pq-form-input">
+            {% if form.description.errors %}
+                <p class="error">
+                    {{ form.description.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.description.errors %}error{% endif %}" for="description">Description</label>
+            {{ form.description }}
+          </div><!-- /.pq-form-input -->
+          
+          <div class="pq-form-input">
+            {% if form.image.errors %}
+                <p class="error">
+                    {{ form.image.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.image.errors %}error{% endif %}" for="image">Image</label>
+            {{ form.image }}
+          </div><!-- /.pq-form-input -->
+          
+          <div class="pq-form-input">
+            {% if form.homepage.errors %}
+                <p class="error">
+                    {{ form.homepage.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.homepage.errors %}error{% endif %}" for="homepage" {% if form.homepage.errors %} class="error" {% endif %}>Home Page URL</label>
+            {{ form.homepage }}
+          </div><!-- /.pq-form-input -->
+          
+          <div class="pq-form-input">
+            {% if form.donate_url.errors %}
+                <p class="error">
+                    {{ form.donate_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.donate_url.errors %}error{% endif %}" for="donate_url">Donation Page URL</label>
+            {{ form.donate_url }}
+          </div><!-- /.pq-form-input -->
+
             <div class="pq-form-input">
-              {% if form.title.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label" for="title" {% if form.title.errors %} class="error" {% endif %}>Title <small>(optional with RSS feed)</small></label>
-              {{ form.title }}
-            </div><!-- /.pq-form-input -->
-            
-            <div class="pq-form-input">
-              {% if form.image.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="image" {% if form.image.errors %} class="error" {% endif %}>Image <small>(optional)</small></label>
-              {{ form.image }}
-            </div><!-- /.pq-form-input -->
-            
-            <div class="pq-form-input">
-              {% if form.homepage.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="homepage" {% if form.homepage.errors %} class="error" {% endif %}>Home Page URL <small>(optional)</small></label>
-              {{ form.homepage }}
-            </div><!-- /.pq-form-input -->
-            
-            <div class="pq-form-input">
-              {% if form.donate_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="donate_url" {% if form.donate_url.errors %} class="error" {% endif %}>Donation Page URL <small>(optional)</small></label>
-              {{ form.donate_url }}
-            </div><!-- /.pq-form-input -->
-            
-            <div class="pq-form-input">
-              {% if form.twitter_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="twitter_url" {% if form.twitter_url.errors %} class="error" {% endif %}>Twitter Page URL <small>(optional)</small></label>
+            {% if form.twitter_url.errors %}
+                <p class="error">
+                    {{ form.twitter_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.twitter_url.errors %}error{% endif %}" for="twitter_url">Twitter Page URL</label>
               {{ form.twitter_url }}
             </div><!-- /.pq-form-input -->
 
             <div class="pq-form-input">
-              {% if form.facebook_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="facebook_url" {% if form.facebook_url.errors %} class="error" {% endif %}>Facebook Page URL <small>(optional)</small></label>
+            {% if form.facebook_url.errors %}
+                <p class="error">
+                    {{ form.facebook_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.facebook_url.errors %}error{% endif %}" for="facebook_url">Facebook Page URL</label>
               {{ form.facebook_url }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-              {% if form.instagram_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="instagram_url" {% if form.instagram_url.errors %} class="error" {% endif %}>Instagram Page URL <small>(optional)</small></label>
+            {% if form.instagram_url.errors %}
+                <p class="error">
+                    {{ form.instagram_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.instagram_url.errors %}error{% endif %}" for="instagram_url">Instagram Page URL</label>
               {{ form.instagram_url }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-              {% if form.google_plus_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="google_plus_url" {% if form.google_plus_url.errors %} class="error" {% endif %}>Google+ Page URL <small>(optional)</small></label>
+            {% if form.google_plus_url.errors %}
+                <p class="error">
+                    {{ form.google_plus_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.google_plus_url.errors %}error{% endif %}" for="google_plus_url">Google+ URL</label>
               {{ form.google_plus_url }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-              {% if form.youtube_url.errors %}<p class="error">{% endif %}
-              <label class="pq-form-label-optional" for="youtube_url" {% if form.youtube_url.errors %} class="error" {% endif %}>YouTube Channel URL <small>(optional)</small></label>
+            {% if form.youtube_url.errors %}
+                <p class="error">
+                    {{ form.youtube_url.errors }}
+                </p>
+            {% endif %}
+            <label class="pq-form-label-optional {% if form.youtube_url.errors %}error{% endif %}" for="youtube_url">YouTube Channel URL</label>
               {{ form.youtube_url }}
             </div><!-- /.pq-form-input -->
             

@@ -5,7 +5,7 @@ from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote, UserProfile
 from quotes_app.views import HomeQuoteListView
 from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
-from quotes_app.views import EpisodeQuoteListView, EpisodeUpdateView, EpisodeDeleteView
+from quotes_app.views import EpisodeQuoteListView, EpisodeCreateView, EpisodeUpdateView, EpisodeDeleteView
 from quotes_app.views import quote_create, QuoteUpdateView, QuoteDeleteView
 from quotes_app.views import UserProfileDetailView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views import rank_all
@@ -40,6 +40,8 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
     url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
+    
+    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
     
     url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
     
