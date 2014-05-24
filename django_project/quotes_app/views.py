@@ -90,6 +90,7 @@ class HomeQuoteListView(ListView):
         context['is_podcast_page'] = False
         context['is_episode_page'] = False
         context['is_quote_page'] = False
+        context['is_user_page'] = False
         
         # these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['home_hot_is_active'] = False
@@ -188,6 +189,7 @@ class PodcastQuoteListView(ListView):
         context['is_podcast_page'] = True
         context['is_episode_page'] = False
         context['is_quote_page'] = False
+        context['is_user_page'] = False
         
         ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['podcast_hot_is_active'] = False
@@ -291,6 +293,7 @@ class EpisodeQuoteListView(ListView):
         context['is_podcast_page'] = False
         context['is_episode_page'] = True
         context['is_quote_page'] = False
+        context['is_user_page'] = False
         
         ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
         context['episode_hot_is_active'] = False
@@ -617,23 +620,107 @@ class VoteFormBaseView(FormView):
 class VoteFormView(JSONFormMixin, VoteFormBaseView):
     pass
 
-class UserProfileDetailView(DetailView):
+class UserQuoteListView(ListView):
     model = get_user_model()
     slug_field = "username"
     template_name = "user_detail.html"
+    paginate_by = 10
     
     def get_object(self, queryset=None):
         user = super(UserProfileDetailView, self).get_object(queryset)
         UserProfile.objects.get_or_create(user=user)
         return user
         
+    def get_queryset(self):
+        u = get_object_or_404(User, username=self.kwargs['slug'])
+        
+        try:
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = False
+            
+        if f == 'hot':
+            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
+        elif f == 'not':
+            return Quote.quote_vote_manager.query_not()
+        elif f == 'controversial':
+            return Quote.quote_vote_manager.query_controversial()
+        elif f == 'new':
+            return Quote.quote_vote_manager.query_new()
+        elif f == 'top':
+            return Quote.quote_vote_manager.query_top()
+        elif f == 'bottom':
+            return Quote.quote_vote_manager.query_bottom()
+        elif f == 'mainstream':
+            return Quote.quote_vote_manager.query_mainstream()
+        elif f == 'underground':
+            return Quote.quote_vote_manager.query_underground()
+        elif f == 'chronological':
+            return Quote.quote_vote_manager.query_chronological()
+        elif f == 'ghosts':
+            return Quote.quote_vote_manager.query_ghosts()
+        elif f == 'birthdays':
+            return Quote.quote_vote_manager.query_birthdays()
+        else:
+            return Quote.quote_vote_manager.query_hot()
+        
     def get_context_data(self, **kwargs):
-        context = super(UserProfileDetailView, self).get_context_data(**kwargs)
+        context = super(UserQuoteListView, self).get_context_data(**kwargs)
+        
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
         context['person'] = User.objects.get(username=self.kwargs['slug'])
+        
+        context['is_home_page'] = False
+        context['is_podcast_page'] = False
+        context['is_episode_page'] = False
+        context['is_quote_page'] = False
+        context['is_user_page'] = True
+        
+        ### these allow the template to know which nav button (hot, not, top, etc.) to display as active
+        context['user_hot_is_active'] = False
+        context['user_not_is_active'] = False
+        context['user_controversial_is_active'] = False
+        context['user_new_is_active'] = False
+        context['user_top_is_active'] = False
+        context['user_bottom_is_active'] = False
+        context['user_mainstream_is_active'] = False
+        context['user_underground_is_active'] = False
+        context['user_chronological_is_active'] = False
+        context['user_ghosts_is_active'] = False
+        context['user_birthdays_is_active'] = False
+        
+        if f == 'hot':
+            context['user_hot_is_active'] = True
+        elif f == 'not':
+            context['user_not_is_active'] = True
+        elif f == 'controversial':
+            context['user_controversial_is_active'] = True
+        elif f == 'new':
+            context['user_new_is_active'] = True
+        elif f == 'top':
+            context['user_top_is_active'] = True
+        elif f == 'bottom':
+            context['user_bottom_is_active'] = True
+        elif f == 'mainstream':
+            context['user_mainstream_is_active'] = True
+        elif f == 'underground':
+            context['user_underground_is_active'] = True
+        elif f == 'chronological':
+            context['user_chronological_is_active'] = True
+        elif f == 'ghosts':
+            context['user_ghosts_is_active'] = True
+        elif f == 'birthdays':
+            context['user_birthdays_is_active'] = True
+        else:
+            context['user_hot_is_active'] = True
 
         return context
         

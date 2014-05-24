@@ -84,7 +84,7 @@
             {% if user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
                     <a href="{{ podcast.get_absolute_url }}edit/">
-                        edit
+                        edit podcast
                     </a>
                 </div>
             {% endif %}
@@ -92,16 +92,7 @@
 
         </div><!-- /.pq-podcast-buttons -->
         
-        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
-            <div class="pq-podcast-header-info-inline">
-                <strong>Karma:</strong> {{ podcast.karma_total }}
-            </div>
-            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
-                <strong>Quotes:</strong> {{ podcast.all_podcast_quotes_count }}
-            </div>
-        </div><!-- /.pq-podcast-header-info-left -->
-        
-        <div class="pq-podcast-header-social-icons">
+<div class="pq-podcast-header-social-icons">
             {% if podcast.hompage %}
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ podcast.homepage }}" target="_blank">
@@ -145,6 +136,15 @@
                 </span>
             {% endif %}
         </div><!-- /.pq-podcast-header-info-left -->
+        
+        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
+            <div class="pq-podcast-header-info-inline">
+                <strong>Karma:</strong> {{ podcast.karma_total }}
+            </div>
+            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
+                <strong>Quotes:</strong> {{ podcast.all_podcast_quotes_count }}
+            </div>
+        </div><!-- /.pq-podcast-header-info-left -->
        
 </div><!-- /.pq-podcast-info -->
 
@@ -187,7 +187,7 @@
             {% if user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
                     <a href="{{ episode.get_absolute_url }}edit/">
-                        edit
+                        edit episode
                     </a>
                 </div>
             {% endif %}
@@ -223,10 +223,6 @@
                 <strong>Quotes:</strong> {{ episode.all_episode_quotes_count }}
             </div>
         </div>
-        
-          <div class="pq-episode-header-info-left">
-              <strong>Date Released:</strong> {{ episode.publication_date|date:'m/d/y' }}
-          </div><!-- /.pq-episode-header-info-left -->
           
           <!--
           {% if episode.description %}

@@ -7,7 +7,7 @@ from quotes_app.views import HomeQuoteListView
 from quotes_app.views import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views import EpisodeQuoteListView, EpisodeCreateView, EpisodeUpdateView, EpisodeDeleteView
 from quotes_app.views import quote_create, QuoteUpdateView, QuoteDeleteView
-from quotes_app.views import UserProfileDetailView, UserProfileUpdateView, UserProfileDeleteView
+from quotes_app.views import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views import rank_all
 from quotes_app.views import VoteFormView
 from django.contrib import admin
@@ -15,11 +15,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     
-    url(r'^people/(?P<slug>\w+)/$', UserProfileDetailView.as_view(), name='user_detail'),
+    url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     
     url(r'^people/(?P<slug>\w+)/edit/$', UserProfileUpdateView.as_view(), name='user_update'),
     
     url(r'^people/(?P<slug>\w+)/delete/$', UserProfileDeleteView.as_view(), name='user_delete'),
+    
+    url(r'^people/(?P<slug>\w+)/(?P<query_filter>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list'),
     
     url(r'^rerank/', 'quotes_app.views.rank_all', name='rank_all_quotes'),
     

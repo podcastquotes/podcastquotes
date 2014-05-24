@@ -6,7 +6,7 @@
             {% if is_episode_page or is_quote_page %}
             {% else %}
                 <div class="pq-quote-breadcrumbs">
-                      {% if is_home_page %}
+                      {% if is_home_page or is_user_page %}
                           {% if quote.episode.podcast.title %}
                               <a href="{% url 'podcast_quote_list' pk=quote.episode.podcast.id query_filter='hot' %}">
                                   {{ quote.episode.podcast.title }}
@@ -15,7 +15,7 @@
                           {% endif %}
                       {% endif %}
                       
-                      {% if is_home_page or is_podcast_page %}
+                      {% if is_home_page or is_podcast_page or is_user_page %}
                           {% if quote.episode.title %} 
                               <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
                                   {{ quote.episode.title }}
@@ -85,11 +85,6 @@
                     <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
                 </div><!-- /.pq-quote-summary -->
             {% endif %}
-            
-            {% if is_episode_page or is_quote_page %}
-            {% else %}
-                
-            {% endif %}
         
         <div class="pq-quote-xs-buttons hidden-md hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
@@ -129,7 +124,7 @@
             </form>
         </div><!-- /.pq-quote-xs-buttons -->
         
-        {% if is_home_page or is_podcast_page or is_episode_page %}
+        {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div class="pq-quote-text-box">
                 {% if quote.text %}
                     <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
@@ -197,7 +192,7 @@
           
           {% if is_quote_page %}
             <div class="pq-quote-posted-by">
-                posted 4 hours ago by {{ quote.submitted_by }}
+                posted 4 hours ago by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
             </div>
           {% endif %}
 
@@ -244,7 +239,7 @@
             {% if user.is_superuser %}
                 <div class="pq-quote-bottom-button text-purple">
                     <a href="{{ quote.get_absolute_url }}edit/">
-                        edit
+                        edit quote
                     </a>
                 </div>
             {% endif %}

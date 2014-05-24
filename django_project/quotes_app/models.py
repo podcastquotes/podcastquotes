@@ -302,9 +302,9 @@ class UserProfile(models.Model):
     class Meta:
         ordering = ['user']
     
-    def all_quotes(self):
-        pass
-    
+    def all_added_quotes_count(self):
+        return Quote.objects.filter(submitted_by=self).count()
+        
     def karma_total(self):
         q_list = Quote.objects.filter(submitted_by=self.user).annotate(karma_total=Sum('vote__vote_type'))
         
@@ -315,7 +315,7 @@ class UserProfile(models.Model):
         return k
     
     def get_absolute_url(self):
-        return reverse('user_detail', kwargs={'slug': self.user})
+        return reverse('user_quote_list_root', kwargs={'slug': self.user})
     
     def __unicode__(self):
         return unicode(self.user)

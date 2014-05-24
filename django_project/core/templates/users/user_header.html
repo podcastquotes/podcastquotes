@@ -1,4 +1,4 @@
-<div class="pq-podcast-header">
+<div class="pq-user-header">
   
     {% if person.userprofile.image %}
         <div class="pq-podcast-profile-picture">
@@ -64,15 +64,6 @@
 
         </div><!-- /.pq-podcast-buttons -->
         
-        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
-            <div class="pq-podcast-header-info-inline">
-                <strong>Karma:</strong> {{ person.userprofile.karma_total }}
-            </div>
-            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
-                <strong>Quotes:</strong> {{ person.userprofile.all_added_quotes_count }}
-            </div>
-        </div><!-- /.pq-podcast-header-info-left -->
-        
         <div class="pq-podcast-header-social-icons">
             {% if person.userprofile.hompage %}
                 <span class="pq-podcast-header-social-icon">
@@ -117,10 +108,19 @@
                 </span>
             {% endif %}
         </div><!-- /.pq-podcast-header-info-left -->
-       
+        
+        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
+            <div class="pq-podcast-header-info-inline">
+                <strong>Karma:</strong> {{ person.userprofile.karma_total }}
+            </div>
+            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
+                <strong>Quotes:</strong> {{ person.userprofile.all_added_quotes_count }}
+            </div>
+        </div><!-- /.pq-podcast-header-info-left -->
+
 </div><!-- /.pq-podcast-info -->
 
     <div class="clearfix">
     </div>
 
-</div><!-- /.pq-podcast-header -->
+</div><!-- /.pq-user-header -->
