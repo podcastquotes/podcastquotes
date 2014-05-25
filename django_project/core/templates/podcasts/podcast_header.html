@@ -175,12 +175,14 @@
     <div class="pq-podcast-info">
     
         <div class="pq-podcast-buttons">
-
-            <div class="pq-podcast-button dark-link" id="play-full-episode">
-                <a>
-                    play full episode
-                </a>
-            </div>
+            
+            {% if episode.youtube_url %}
+                <div class="pq-podcast-button dark-link" id="play-full-episode">
+                    <a>
+                        play full episode
+                    </a>
+                </div>
+            {% endif %}
         
             {% if user in episode.podcast.moderators.all or user.is_superuser %}
                 <div class="pq-podcast-button text-purple">

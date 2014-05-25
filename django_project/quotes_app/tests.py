@@ -1,6 +1,6 @@
 
-from quotes_app.views import (update_feed, PodcastCreateView, 
-    quote_create)
+from quotes_app.views.podcast import (update_feed, PodcastCreateView)
+from quotes_app.views.quote import quote_create
 
 import unittest
 from django.test import TestCase
