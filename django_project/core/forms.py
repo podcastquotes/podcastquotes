@@ -77,10 +77,13 @@ class EpisodeForm(forms.ModelForm):
         }
 
 class QuoteForm(forms.ModelForm):
+
+    # These are included for the dynamic podcast and episode dropdowns/comboboxes.
+    podcast = forms.ModelChoiceField(queryset=Podcast.objects.all())
+    
     # We must override time_quote_begins and time_quote_ends in order for form
     # to validate and clean successfully. If we do not label the fields as CharFields,
     # they will validate as IntegerFields, when the hh:mm:ss format is a string.
-    
     time_quote_begins = forms.CharField(max_length=8)
     time_quote_ends = forms.CharField(max_length=8)
     
@@ -88,21 +91,30 @@ class QuoteForm(forms.ModelForm):
         model = Quote
         exclude = ('rank_score', 'submitted_by',)
         widgets = {
-            'episode': forms.Select(attrs={'class':'form-control'}),
+            'episode': forms.Select(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
-            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
-            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
-
+    
     def __init__(self, *args, **kw):
         super(QuoteForm, self).__init__(*args, **kw)
+        self.fields['podcast'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['time_quote_begins'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['time_quote_ends'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        
+    def clean_episode(self):
+        podcast = self.data.get('podcast')
+        episode = self.cleaned_data.get('episode')
+        episode_list = Episode.objects.filter(podcast=podcast)
+        if episode in episode_list:
+            return episode
+        else:
+            Http404
         
     def clean_time_quote_begins(self):
         begins_with_delims = self.cleaned_data['time_quote_begins']
         converted_time_begins = getSec(begins_with_delims)
+        print converted_time_begins
         return converted_time_begins
         
     def clean_time_quote_ends(self):

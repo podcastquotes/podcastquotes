@@ -1770,6 +1770,10 @@ button {
     border:1px solid #aaa;
 }
 
+.episode_selector {
+    display:none;
+}
+
 .pq-form a {
     color:#428bca;
 }

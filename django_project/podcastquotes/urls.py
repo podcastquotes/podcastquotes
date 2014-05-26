@@ -72,6 +72,8 @@ urlpatterns = patterns('',
     
     url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
     
+    url(r'^get-episodes/(?P<podcast_id>\d+)/$', 'quotes_app.views.quote.get_episodes', name="quote_vote"),
+    
     # Allauth urls
     (r'^accounts/', include('allauth.urls')),
 
