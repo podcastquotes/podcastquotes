@@ -3,43 +3,40 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-from core.forms import QuoteCreateForm, QuoteForm
+from core.forms import QuoteForm
 from django.shortcuts import render, render_to_response
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-
-
+from django.utils.decorators import method_decorator
 
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
     return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
 
-@login_required
-def quote_create(request):
-    if request.method == "POST":
-        qform = QuoteCreateForm(request.POST, instance=Quote())
-        qform.data['submitted_by'] = request.user.id
-        begins_with_delims = qform.data['time_quote_begins']
-        qform.data['time_quote_begins'] = getSec(begins_with_delims)
-        ends_with_delims = qform.data['time_quote_ends']
-        qform.data['time_quote_ends'] = getSec(ends_with_delims)
-        qform.data['rank_score'] = 0.0
-        if qform.is_valid():
-            print qform.cleaned_data
-            new_quote = qform.save()
-            vote = Vote.create(voter=request.user, quote=new_quote, vote_type=0)
-            vote.save()
-            return HttpResponseRedirect(reverse_lazy('quote', kwargs={'quote_id': vote.quote.id}))
-        else:
-            raise Http404
-    else:
-        qform = QuoteCreateForm(instance=Quote())
+class QuoteCreateView(CreateView):
+    model = Quote
+    template_name = 'quote_create.html'
+    form_class = QuoteForm
     
-    return render(request, 'quote_create.html',
-                 {'podcasts': Podcast.objects.all(),
-                 'quote_form': qform})
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(QuoteCreateView, self).dispatch(*args, **kwargs)
     
-    return render_to_response('quote_create.html', {'quote_form': qform}, context_instance=RequestContext(request))
+    def form_valid(self, form):
+        self.object = quote = form.save(commit=False)
+        quote.submitted_by = self.request.user
+        quote.save()
+        vote = Vote.create(voter=self.request.user, quote=quote, vote_type=0)
+        vote.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuoteCreateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        return context
 
 class QuoteUpdateView(UpdateView):
     model = Quote

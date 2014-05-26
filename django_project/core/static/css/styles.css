@@ -924,7 +924,7 @@ a {
     .pq-quote-text-box {
         max-width:530px;
         clear:left;
-        font-size:14px;
+        font-size:16px;
     }
 }
 
@@ -932,7 +932,7 @@ a {
     .pq-quote-text-box {
         max-width:530px;
         clear:left;
-        font-size:14px;
+        font-size:16px;
         overflow:hidden;
     }
 }
@@ -957,7 +957,7 @@ a {
     .pq-quote-summary {
         max-width:540px;
         overflow:hidden;
-        margin:-2px 0 0 0;
+        margin:-1px 0 0 0;
         padding:0 0 10px 0;
         font-weight:bold;
         font-size:20px;

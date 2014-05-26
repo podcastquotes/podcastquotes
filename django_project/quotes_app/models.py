@@ -94,9 +94,6 @@ class Podcast(models.Model):
     def get_absolute_url(self):
         return reverse('podcast_quote_list_root', kwargs={'pk': self.pk})
 
-    def all_podcasts(self):
-       return Podcast.objects.all()
-    
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
     
@@ -105,13 +102,7 @@ class Podcast(models.Model):
     
     def all_episodes_count(self):
         return Episode.objects.filter(podcast_id=self.id).count()
-    
-    def all_episodes_with_youtube_urls(self):
-        return Episode.objects.filter(podcast__id=self.id).exclude(youtube_url__exact='')
-        
-    def all_episodes_with_youtube_urls_count(self):
-        return Episode.objects.filter(podcast__id=self.id).exclude(youtube_url__exact='').count()
-    
+
     def karma_total(self):
         q_list = Quote.objects.filter(episode__podcast=self).annotate(karma_total=Sum('vote__vote_type'))
         
@@ -186,10 +177,7 @@ class Episode(models.Model):
             return 1
         else:
             return 0
-        
-    def all_episodes(self):
-       return Episode.objects.filter(podcast__id=self.podcast.id)
-    
+
     def all_episode_quotes(self):
        return Quote.objects.filter(episode__id=self.id)
 
@@ -284,9 +272,6 @@ class Vote(models.Model):
     
     def __unicode__(self):
         return "Vote by: " + str(self.voter)  
-
-# I'm not sure if/how the code below may conflict with all_auth,
-# so I'm commenting it out until testing.
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)

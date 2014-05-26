@@ -75,18 +75,6 @@ class EpisodeForm(forms.ModelForm):
             'donation_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "text description of this episode's donation recipient"}),
         }
 
-class QuoteCreateForm(forms.ModelForm):
-    
-    class Meta:
-        model = Quote
-        widgets = {
-            'episode': forms.Select(attrs={'class':'form-control'}),
-            'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
-            'text': forms.Textarea(attrs={'class':'form-control', 'rows':6, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
-            'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
-            'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
-        }
-
 class QuoteForm(forms.ModelForm):
     # We must override time_quote_begins and time_quote_ends in order for form
     # to validate and clean successfully. If we do not label the fields as CharFields,
@@ -101,7 +89,7 @@ class QuoteForm(forms.ModelForm):
         widgets = {
             'episode': forms.Select(attrs={'class':'form-control'}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
-            'text': forms.Textarea(attrs={'class':'form-control', 'rows':6, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
             'time_quote_begins': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
             'time_quote_ends': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'hh:mm:ss'}),
         }
