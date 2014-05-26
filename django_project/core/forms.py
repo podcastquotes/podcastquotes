@@ -33,6 +33,7 @@ class PodcastForm(forms.ModelForm):
         model = Podcast
         exclude = ('moderators',)
         widgets = {
+            'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),

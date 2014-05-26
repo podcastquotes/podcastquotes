@@ -11,6 +11,73 @@ from core.forms import PodcastCreateForm, PodcastForm
 from django.shortcuts import get_object_or_404
 
 
+from quotes_app.services import PodcastSyndicationService
+
+podcast_syndication_service = PodcastSyndicationService()
+
+@login_required
+def update_feed(request, podcast_id):
+    p = get_object_or_404(Podcast, pk=podcast_id)
+
+    podcast_syndication_service.collect_episodes(p)
+    
+    return HttpResponseRedirect("/")
+    
+class PodcastCreateView(CreateView):
+    model = Podcast
+    form_class = PodcastCreateForm
+    context_object_name = 'podcast'
+    
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PodcastCreateView, self).dispatch(*args, **kwargs)
+    
+    def form_valid(self, form):
+        """
+        This is called when a POST'ed form is valid.
+        """
+        
+        # Create podcast model from form
+        self.object = podcast = form.save(commit=False)
+        
+        # Parse feed
+        rss_url = podcast.rss_url
+        
+        # Collect episodes (should be made asynchronous)
+        feed = podcast_syndication_service \
+            .obtain_podcast_information(rss_url)
+            
+        # Redirect to podcast page if the podcast already exists
+        try:
+            obj = Podcast.objects.get(title=feed['title'])
+            url = obj.get_absolute_url()
+            return HttpResponseRedirect(url)
+        except ObjectDoesNotExist:
+            pass
+        
+        # Map feed information to Podcast
+        podcast.title = feed['title']
+        podcast.description = feed['description']
+        podcast.homepage = feed['homepage']
+        podcast.rss_url = rss_url
+        podcast.save()
+        podcast.moderators.add(self.request.user)
+        podcast.save()
+        
+        # Collect episodes (should be made asynchronous)
+        podcast_syndication_service.collect_episodes(podcast)
+        
+        return HttpResponseRedirect(self.get_success_url())
+        
+    def get_context_data(self, **kwargs):
+        context = super(PodcastCreateView, self).get_context_data(**kwargs)
+        
+        ### context['podcasts'] must be refactored, this is passed to all views
+        context['podcasts'] = Podcast.objects.all().order_by('title')
+
+        return context
+
+
 class PodcastUpdateView(UpdateView):
     model = Podcast
     template_name = 'podcast_update.html'
@@ -138,69 +205,4 @@ class PodcastQuoteListView(ListView):
         else:
             context['podcast_hot_is_active'] = True
         
-        return context
-        
-from quotes_app.services import PodcastSyndicationService
-
-podcast_syndication_service = PodcastSyndicationService()
-
-@login_required
-def update_feed(request, podcast_id):
-    p = get_object_or_404(Podcast, pk=podcast_id)
-
-    podcast_syndication_service.collect_episodes(p)
-    
-    return HttpResponseRedirect("/")
-    
-class PodcastCreateView(CreateView):
-    model = Podcast
-    form_class = PodcastCreateForm
-    context_object_name = 'podcast'
-    
-    @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(PodcastCreateView, self).dispatch(*args, **kwargs)
-    
-    def form_valid(self, form):
-        """
-        This is called when a POST'ed form is valid.
-        """
-        
-        # Create podcast model from form
-        self.object = podcast = form.save(commit=False)
-        
-        # Parse feed
-        rss_url = podcast.rss_url
-        
-        # Collect episodes (should be made asynchronous)
-        feed = podcast_syndication_service \
-            .obtain_podcast_information(rss_url)
-            
-        # Redirect to podcast page if the podcast already exists
-        try:
-            obj = Podcast.objects.get(title=feed['title'])
-            url = obj.get_absolute_url()
-            return HttpResponseRedirect(url)
-        except ObjectDoesNotExist:
-            pass
-        
-        # Map feed information to Podcast
-        podcast.title = feed['title']
-        podcast.description = feed['description']
-        podcast.homepage = feed['homepage']
-        podcast.save()
-        podcast.moderators.add(self.request.user)
-        podcast.save()
-        
-        # Collect episodes (should be made asynchronous)
-        podcast_syndication_service.collect_episodes(podcast)
-        
-        return HttpResponseRedirect(self.get_success_url())
-        
-    def get_context_data(self, **kwargs):
-        context = super(PodcastCreateView, self).get_context_data(**kwargs)
-        
-        ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
-
         return context

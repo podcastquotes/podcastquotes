@@ -18,6 +18,17 @@
       {% endif %}
 
       <div class="pq-form-input">
+          {% if form.rss_url.errors %}
+              <p class="error">
+                  {{ form.rss_url.errors }}
+              </p>
+          {% endif %}
+          <label class="pq-form-label {% if form.rss_url.errors %}error{% endif %}" for="rss_url">RSS Feed URL</label>
+          <p>Copy and paste your RSS feed URL below to automatically add a podcast, its title, image, description, and all of its episodes. (optional, but recommended)</p>
+          {{ form.rss_url }}
+      </div><!-- /.pq-form-input -->
+      
+      <div class="pq-form-input">
         {% if form.title.errors %}
             <p class="error">
                 {{ form.title.errors }}
