@@ -91,7 +91,7 @@ class QuoteForm(forms.ModelForm):
         model = Quote
         exclude = ('rank_score', 'submitted_by',)
         widgets = {
-            'episode': forms.Select(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
+            'episode': forms.Select(attrs={'class':'form-control', 'placeholder': ''}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
         }
