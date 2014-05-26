@@ -289,7 +289,7 @@ class UserProfile(models.Model):
         ordering = ['user']
     
     def all_added_quotes_count(self):
-        return Quote.objects.filter(submitted_by=self).count()
+        return Quote.objects.filter(submitted_by=self.user).count()
         
     def karma_total(self):
         q_list = Quote.objects.filter(submitted_by=self.user).annotate(karma_total=Sum('vote__vote_type'))
@@ -305,3 +305,7 @@ class UserProfile(models.Model):
     
     def __unicode__(self):
         return unicode(self.user)
+
+### This makes sure that a UserProfile is automatically created for a User.
+### Is this an acceptable implementation?
+User.userprofile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

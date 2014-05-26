@@ -52,10 +52,6 @@ class QuoteUpdateView(UpdateView):
     template_name = 'quote_update.html'
     form_class = QuoteForm
     
-    def get_initial(self):
-        q = Quote.objects.get(id=self.kwargs['pk'])
-        return { 'time_quote_begins': q.converted_time_begins, 'time_quote_ends': q.converted_time_ends }
-    
     def get_context_data(self, **kwargs):
         context = super(QuoteUpdateView, self).get_context_data(**kwargs)
         
@@ -64,6 +60,19 @@ class QuoteUpdateView(UpdateView):
         
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         return context
+    
+    def get_initial(self):
+        q = Quote.objects.get(id=self.kwargs['pk'])
+        return { 'time_quote_begins': q.converted_time_begins, 'time_quote_ends': q.converted_time_ends }
+    
+    def get_object(self, *args, **kwargs):
+        quote = super(QuoteUpdateView, self).get_object(*args, **kwargs)
+        if self.request.user == quote.submitted_by:
+            return quote
+        elif self.request.user.is_superuser:
+            return quote
+        else:
+            raise Http404
 
 class QuoteDeleteView(DeleteView):
     model = Quote
@@ -78,6 +87,15 @@ class QuoteDeleteView(DeleteView):
         context['podcasts'] = Podcast.objects.all().order_by('title')
 
         return context
+        
+    def get_object(self, *args, **kwargs):
+        quote = super(QuoteDeleteView, self).get_object(*args, **kwargs)
+        if self.request.user == quote.submitted_by:
+            return quote
+        elif self.request.user.is_superuser:
+            return quote
+        else:
+            raise Http404
 
 def quote(request, quote_id):
     q = Quote.objects.get(id=quote_id)

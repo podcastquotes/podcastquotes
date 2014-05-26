@@ -5,7 +5,7 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from core.forms import UserProfileForm
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, Http404
 
 class UserProfileUpdateView(UpdateView):
     model = get_user_model()
@@ -24,7 +24,16 @@ class UserProfileUpdateView(UpdateView):
         print context['user']
 
         return context
-        
+    
+    def get_object(self, *args, **kwargs):
+        user = super(UserProfileUpdateView, self).get_object(*args, **kwargs)
+        if self.request.user == user:
+            return user
+        elif self.request.user.is_superuser:
+            return user
+        else:
+            raise Http404
+    
     def get_success_url(self):
         user = super(UserProfileUpdateView, self).get_object()
         return reverse_lazy('user_quote_list_root', kwargs={'slug': user})
@@ -44,6 +53,15 @@ class UserProfileDeleteView(DeleteView):
         context['person'] = User.objects.get(username=self.kwargs['slug'])
 
         return context
+        
+    def get_object(self, *args, **kwargs):
+        user = super(UserProfileDeleteView, self).get_object(*args, **kwargs)
+        if self.request.user == user:
+            return user
+        elif self.request.user.is_superuser:
+            return user
+        else:
+            raise Http404
 
 class UserQuoteListView(ListView):
     model = get_user_model()
@@ -51,44 +69,6 @@ class UserQuoteListView(ListView):
     template_name = "user_detail.html"
     paginate_by = 10
     
-    def get_object(self, queryset=None):
-        user = super(UserProfileDetailView, self).get_object(queryset)
-        UserProfile.objects.get_or_create(user=user)
-        return user
-        
-    def get_queryset(self):
-        u = get_object_or_404(User, username=self.kwargs['slug'])
-        
-        try:
-            f = self.kwargs['query_filter']
-        except KeyError:
-            f = False
-            
-        if f == 'hot':
-            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
-        elif f == 'not':
-            return Quote.quote_vote_manager.query_not().filter(submitted_by=u)
-        elif f == 'controversial':
-            return Quote.quote_vote_manager.query_controversial().filter(submitted_by=u)
-        elif f == 'new':
-            return Quote.quote_vote_manager.query_new().filter(submitted_by=u)
-        elif f == 'top':
-            return Quote.quote_vote_manager.query_top().filter(submitted_by=u)
-        elif f == 'bottom':
-            return Quote.quote_vote_manager.query_bottom().filter(submitted_by=u)
-        elif f == 'mainstream':
-            return Quote.quote_vote_manager.query_mainstream().filter(submitted_by=u)
-        elif f == 'underground':
-            return Quote.quote_vote_manager.query_underground().filter(submitted_by=u)
-        elif f == 'chronological':
-            return Quote.quote_vote_manager.query_chronological().filter(submitted_by=u)
-        elif f == 'ghosts':
-            return Quote.quote_vote_manager.query_ghosts().filter(submitted_by=u)
-        elif f == 'birthdays':
-            return Quote.quote_vote_manager.query_birthdays().filter(submitted_by=u)
-        else:
-            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
-        
     def get_context_data(self, **kwargs):
         context = super(UserQuoteListView, self).get_context_data(**kwargs)
         
@@ -148,3 +128,41 @@ class UserQuoteListView(ListView):
             context['user_hot_is_active'] = True
 
         return context
+    
+    def get_object(self, queryset=None):
+        user = super(UserProfileDetailView, self).get_object(queryset)
+        UserProfile.objects.get_or_create(user=user)
+        return user
+        
+    def get_queryset(self):
+        u = get_object_or_404(User, username=self.kwargs['slug'])
+        
+        try:
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = False
+            
+        if f == 'hot':
+            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)
+        elif f == 'not':
+            return Quote.quote_vote_manager.query_not().filter(submitted_by=u)
+        elif f == 'controversial':
+            return Quote.quote_vote_manager.query_controversial().filter(submitted_by=u)
+        elif f == 'new':
+            return Quote.quote_vote_manager.query_new().filter(submitted_by=u)
+        elif f == 'top':
+            return Quote.quote_vote_manager.query_top().filter(submitted_by=u)
+        elif f == 'bottom':
+            return Quote.quote_vote_manager.query_bottom().filter(submitted_by=u)
+        elif f == 'mainstream':
+            return Quote.quote_vote_manager.query_mainstream().filter(submitted_by=u)
+        elif f == 'underground':
+            return Quote.quote_vote_manager.query_underground().filter(submitted_by=u)
+        elif f == 'chronological':
+            return Quote.quote_vote_manager.query_chronological().filter(submitted_by=u)
+        elif f == 'ghosts':
+            return Quote.quote_vote_manager.query_ghosts().filter(submitted_by=u)
+        elif f == 'birthdays':
+            return Quote.quote_vote_manager.query_birthdays().filter(submitted_by=u)
+        else:
+            return Quote.quote_vote_manager.query_hot().filter(submitted_by=u)

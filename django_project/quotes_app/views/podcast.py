@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from core.forms import PodcastCreateForm, PodcastForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, Http404
 
 
 from quotes_app.services import PodcastSyndicationService
@@ -91,6 +91,15 @@ class PodcastUpdateView(UpdateView):
 
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         return context
+        
+    def get_object(self, *args, **kwargs):
+        podcast = super(PodcastUpdateView, self).get_object(*args, **kwargs)
+        if self.request.user in podcast.moderators.all():
+            return podcast
+        elif self.request.user.is_superuser:
+            return podcast
+        else:
+            raise Http404
 
 class PodcastDeleteView(DeleteView):
     model = Podcast
@@ -107,45 +116,20 @@ class PodcastDeleteView(DeleteView):
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         return context
 
+    def get_object(self, *args, **kwargs):
+        podcast = super(PodcastDeleteView, self).get_object(*args, **kwargs)
+        if self.request.user in podcast.moderators.all():
+            return podcast
+        elif self.request.user.is_superuser:
+            return podcast
+        else:
+            raise Http404
 
 class PodcastQuoteListView(ListView):
     model = Quote
     template_name = 'podcast_detail.html'
     paginate_by = 10
     
-    def get_queryset(self):
-        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
-        try: 
-            self.kwargs['query_filter']
-            f = self.kwargs['query_filter']
-        except KeyError:
-            f = 0
-        
-        if f == 'hot':
-            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
-        elif f == 'not':
-            return Quote.quote_vote_manager.query_not().filter(episode__podcast_id=p.id)
-        elif f == 'controversial':
-            return Quote.quote_vote_manager.query_controversial().filter(episode__podcast_id=p.id)
-        elif f == 'new':
-            return Quote.quote_vote_manager.query_new().filter(episode__podcast_id=p.id)
-        elif f == 'top':
-            return Quote.quote_vote_manager.query_top().filter(episode__podcast_id=p.id)
-        elif f == 'bottom':
-            return Quote.quote_vote_manager.query_bottom().filter(episode__podcast_id=p.id)
-        elif f == 'mainstream':
-            return Quote.quote_vote_manager.query_mainstream().filter(episode__podcast_id=p.id)
-        elif f == 'underground':
-            return Quote.quote_vote_manager.query_underground().filter(episode__podcast_id=p.id)
-        elif f == 'chronological':
-            return Quote.quote_vote_manager.query_chronological().filter(episode__podcast_id=p.id)
-        elif f == 'ghosts':
-            return Quote.quote_vote_manager.query_ghosts().filter(episode__podcast_id=p.id)
-        elif f == 'birthdays':
-            return Quote.quote_vote_manager.query_birthdays().filter(episode__podcast_id=p.id)
-        else:
-            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
-
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
         
@@ -206,3 +190,36 @@ class PodcastQuoteListView(ListView):
             context['podcast_hot_is_active'] = True
         
         return context
+    
+    def get_queryset(self):
+        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        try: 
+            self.kwargs['query_filter']
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = 0
+        
+        if f == 'hot':
+            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
+        elif f == 'not':
+            return Quote.quote_vote_manager.query_not().filter(episode__podcast_id=p.id)
+        elif f == 'controversial':
+            return Quote.quote_vote_manager.query_controversial().filter(episode__podcast_id=p.id)
+        elif f == 'new':
+            return Quote.quote_vote_manager.query_new().filter(episode__podcast_id=p.id)
+        elif f == 'top':
+            return Quote.quote_vote_manager.query_top().filter(episode__podcast_id=p.id)
+        elif f == 'bottom':
+            return Quote.quote_vote_manager.query_bottom().filter(episode__podcast_id=p.id)
+        elif f == 'mainstream':
+            return Quote.quote_vote_manager.query_mainstream().filter(episode__podcast_id=p.id)
+        elif f == 'underground':
+            return Quote.quote_vote_manager.query_underground().filter(episode__podcast_id=p.id)
+        elif f == 'chronological':
+            return Quote.quote_vote_manager.query_chronological().filter(episode__podcast_id=p.id)
+        elif f == 'ghosts':
+            return Quote.quote_vote_manager.query_ghosts().filter(episode__podcast_id=p.id)
+        elif f == 'birthdays':
+            return Quote.quote_vote_manager.query_birthdays().filter(episode__podcast_id=p.id)
+        else:
+            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)

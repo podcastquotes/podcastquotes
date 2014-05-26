@@ -7,37 +7,6 @@ class HomeQuoteListView(ListView):
     template_name = 'home.html'
     paginate_by = 10
     
-    def get_queryset(self):
-        try:
-            f = self.kwargs['query_filter']
-        except KeyError:
-            f = False            
-        
-        if f == 'hot':
-            return Quote.quote_vote_manager.query_hot()
-        elif f == 'not':
-            return Quote.quote_vote_manager.query_not()
-        elif f == 'controversial':
-            return Quote.quote_vote_manager.query_controversial()
-        elif f == 'new':
-            return Quote.quote_vote_manager.query_new()
-        elif f == 'top':
-            return Quote.quote_vote_manager.query_top()
-        elif f == 'bottom':
-            return Quote.quote_vote_manager.query_bottom()
-        elif f == 'mainstream':
-            return Quote.quote_vote_manager.query_mainstream()
-        elif f == 'underground':
-            return Quote.quote_vote_manager.query_underground()
-        elif f == 'chronological':
-            return Quote.quote_vote_manager.query_chronological()
-        elif f == 'ghosts':
-            return Quote.quote_vote_manager.query_ghosts()
-        elif f == 'birthdays':
-            return Quote.quote_vote_manager.query_birthdays()
-        else:
-            return Quote.quote_vote_manager.query_hot()
-    
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)
         
@@ -95,3 +64,34 @@ class HomeQuoteListView(ListView):
             context['home_hot_is_active'] = True
         
         return context
+    
+    def get_queryset(self):
+        try:
+            f = self.kwargs['query_filter']
+        except KeyError:
+            f = False            
+        
+        if f == 'hot':
+            return Quote.quote_vote_manager.query_hot()
+        elif f == 'not':
+            return Quote.quote_vote_manager.query_not()
+        elif f == 'controversial':
+            return Quote.quote_vote_manager.query_controversial()
+        elif f == 'new':
+            return Quote.quote_vote_manager.query_new()
+        elif f == 'top':
+            return Quote.quote_vote_manager.query_top()
+        elif f == 'bottom':
+            return Quote.quote_vote_manager.query_bottom()
+        elif f == 'mainstream':
+            return Quote.quote_vote_manager.query_mainstream()
+        elif f == 'underground':
+            return Quote.quote_vote_manager.query_underground()
+        elif f == 'chronological':
+            return Quote.quote_vote_manager.query_chronological()
+        elif f == 'ghosts':
+            return Quote.quote_vote_manager.query_ghosts()
+        elif f == 'birthdays':
+            return Quote.quote_vote_manager.query_birthdays()
+        else:
+            return Quote.quote_vote_manager.query_hot()
