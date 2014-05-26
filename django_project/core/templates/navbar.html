@@ -25,7 +25,15 @@
                     {% if request.user.is_superuser %}
                     <li>
                         <a class="pq-navbar-dropdown-2" href="{% url 'podcast_create' %}">
-                            Add Podcast <i class="fa fa-rss"></i>
+                            Add Podcast
+                        </a>
+                    </li>
+                    {% endif %}
+                    
+                    {% if request.user.is_superuser %}
+                    <li>
+                        <a class="pq-navbar-dropdown-2" href="{% url 'podcast_create' %}">
+                            Add Episode
                         </a>
                     </li>
                     {% endif %}
