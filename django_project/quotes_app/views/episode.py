@@ -1,9 +1,9 @@
 from django.core.urlresolvers import reverse, reverse_lazy
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-from core.forms import EpisodeCreateForm, EpisodeForm
+from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.shortcuts import get_object_or_404, Http404
+from core.forms import EpisodeCreateForm, EpisodeForm
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 class EpisodeCreateView(CreateView):
     model = Episode

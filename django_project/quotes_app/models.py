@@ -1,17 +1,14 @@
-from django.db import models
-from time import time
-from datetime import date, datetime
-from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.db import models
 from django.db.models import Count, Sum
-import urlparse
-
+from django.template import Template, Context
+from django.utils.timezone import now
+from datetime import date, datetime
+from time import time
 from urlparse import urlparse, parse_qs
  
-from django.template import Template, Context
-from django.conf import settings
-from django.utils.timezone import now
-
 today = date.today()
 
 # This doesn't belong here

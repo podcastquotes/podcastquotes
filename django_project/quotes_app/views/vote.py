@@ -1,13 +1,13 @@
-from django.http import HttpResponse, HttpResponseRedirect
+import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-from core.forms import VoteForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.shortcuts import get_object_or_404
+from core.forms import VoteForm
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
-import json
 
 @login_required
 def vote(request, quote_id, vote_type_id):

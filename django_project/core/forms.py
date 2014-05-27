@@ -1,9 +1,9 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.forms import ModelForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from captcha.fields import ReCaptchaField
-from django.contrib.auth import get_user_model
 
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))

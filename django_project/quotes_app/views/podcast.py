@@ -1,15 +1,14 @@
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.core.urlresolvers import reverse_lazy
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.contrib.admin.views.decorators import staff_member_required
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from core.forms import PodcastCreateForm, PodcastForm
-from django.shortcuts import get_object_or_404, Http404
-
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 from quotes_app.services import PodcastSyndicationService
 

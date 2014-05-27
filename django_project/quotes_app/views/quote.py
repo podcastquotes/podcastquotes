@@ -1,14 +1,14 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.template import RequestContext
-from django.core.urlresolvers import reverse_lazy
+import json
 from django.contrib.auth.decorators import login_required
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-from core.forms import QuoteForm
+from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
+from django.template import RequestContext
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.utils.decorators import method_decorator
-import json
+from core.forms import QuoteForm
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
