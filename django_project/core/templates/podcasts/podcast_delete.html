@@ -5,7 +5,7 @@
     {% include 'main_col_width.html' %}
 
     <div class="pq-title">
-      Delete Podcast <i class="fa fa-trash-o"></i>
+        Delete Podcast <i class="fa fa-trash-o"></i>
     </div><!-- /.pq-title -->
     
     <div class="pq-form">
@@ -13,16 +13,15 @@
         <p>Are you sure you want to delete "{{ podcast.title }}"?</p>
 
         <form method="post" action="{% url 'podcast_delete' pk=podcast.pk %}">
-          {% csrf_token %}
-          
-          <div class="pq-form-buttons">
-            <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
-            <a href="{% url 'podcast_quote_list_root' pk=podcast.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
-          </div><!-- /.pq-form-input -->
-          
-          <div class="clearfix">
-          </div>
-          
+            {% csrf_token %}
+            
+            <div class="pq-form-buttons">
+              <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
+              <a href="{% url 'podcast_quote_list_root' pk=podcast.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
+            </div><!-- /.pq-form-input -->
+            
+            <div class="clearfix">
+            </div>
         </form>
         
     </div><!-- /.pq-form -->

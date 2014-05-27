@@ -14,40 +14,39 @@
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/youtube.js' %}"></script>
 <script src="{% static 'js/ajax-vote.js' %}"></script>
 <script src="{% static 'js/ajax-get-episodes.js' %}"></script>
 </head>
 
 <body>
   
-  {% block navbar %}
-      {% include 'navbar.html' %}
-  {% endblock %}
-  
-  <div class="pq-container">
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {% endblock %}
     
-    <div class="row">
+    <div class="pq-container">
+      
+        <div class="row">
 
-      {% block sidebar %}
-          {% include 'sidebar.html' %}
-      {% endblock %}<!-- / block sidebar -->
-    
-      {% block header %}
-      {% endblock %}<!-- / block header -->
+          {% block sidebar %}
+              {% include 'sidebar.html' %}
+          {% endblock %}
+        
+          {% block header %}
+          {% endblock %}
 
-      {% block quotes %}
-      {% endblock %}
+          {% block quotes %}
+          {% endblock %}
+        
+        </div><!-- /.row -->
     
-    </div><!-- /.row -->
-  
-  </div><!-- /.pq-container -->
-  
-  {% block footer %}
-      {% include 'footer.html' %}
-  {% endblock %}<!-- / block footer -->
-  
-  {% include 'google_analytics_code.html' %}
+    </div><!-- /.pq-container -->
+    
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+    
+    {% include 'google_analytics_code.html' %}
   
 </body>
 

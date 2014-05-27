@@ -10,91 +10,88 @@
 
 <div class="col-sm-16">
 
-  <div class="pq-form-login">
-  
-    <div class="pq-form-title">
-      {% trans "Login" %}
-    </div><!-- /.pq-form-title -->
+    <div class="pq-form-login">
+    
+        <div class="pq-form-title">
+            {% trans "Login" %}
+        </div><!-- /.pq-form-title -->
 
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-            
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+                
             <div class="pq-form-input">
-              {% if form.login.errors %}
-                <div class="text-red">{{ form.login.errors }}</div>
-              {% endif %}
-              <label class="pq-form-label" for="login">
-                Username
-              </label>
-              <input type="text" class="form-control" name="login" />
+                {% if form.login.errors %}
+                    <div class="text-red">{{ form.login.errors }}</div>
+                {% endif %}
+                <label class="pq-form-label" for="login">
+                    Username
+                </label>
+                <input type="text" class="form-control" name="login" />
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-              {% if form.password.errors %}
-                <div class="text-red">{{ form.password.errors }}</div>
-              {% endif %}
-              <label class="pq-form-label" for="password">
-                Password
-              </label>
-              <input type="password" class="form-control" name="password" />
+                {% if form.password.errors %}
+                    <div class="text-red">{{ form.password.errors }}</div>
+                {% endif %}
+                <label class="pq-form-label" for="password">
+                    Password
+                </label>
+                <input type="password" class="form-control" name="password" />
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-remember">
-              {% if form.remember.errors %}
-                <div class="text-red">{{ form.remember.errors }}</div>
-              {% endif %}
-              <label class="pq-form-label-optional" for="remember">
-                <small>Keep me signed in</small> &nbsp
-              </label>
-              <input type="checkbox" name="remember" />
+                {% if form.remember.errors %}
+                    <div class="text-red">{{ form.remember.errors }}</div>
+                {% endif %}
+                <label class="pq-form-label-optional" for="remember">
+                    <small>Keep me signed in</small> &nbsp
+                </label>
+                <input type="checkbox" name="remember" />
             </div><!-- /.pq-form-input -->
+                
+            <div class="pq-form-forgot">
+                <a href="{% url 'account_reset_password' %}">
+                    {% trans "Forgot Password?" %}
+                </a>
+            </div>
             
-        <div class="pq-form-forgot">
-            <a href="{% url 'account_reset_password' %}">
-                {% trans "Forgot Password?" %}
-            </a>
+            <div class="pq-form-signup">
+                <a href="{{ signup_url }}">
+                    Sign Up
+                </a>
+            </div>
+                
+            <div class="pq-form-buttons">
+              {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <button type="submit" class="btn btn-small btn-primary pq-form-button">
+                  {% trans "Login" %}
+              </button>
+            </div><!-- /.pq-form-buttons -->
+            
+        </form>
+        
+        <div class="clearfix">
         </div>
         
-        <div class="pq-form-signup">
-            <a href="{{ signup_url }}">
-                Sign Up
-            </a>
+        {% if socialaccount.providers  %}
+        
+        <div class="pq-form-divider">
         </div>
-            
-      <div class="pq-form-buttons">
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+
+        <div class="socialaccount_ballot">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+        {% else %}
+            <p>{% blocktrans %}If you have not created an account yet, then please
+            <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
         {% endif %}
-        
-        <button type="submit" class="btn btn-small btn-primary pq-form-button">
-            {% trans "Login" %}
-        </button>
-        
-
-        
-      </div><!-- /.pq-form-buttons -->
-    </form>
-    
-    <div class="clearfix">
-    </div>
-    
-    {% if socialaccount.providers  %}
-    
-    <div class="pq-form-divider">
-    </div>
-
-    <div class="socialaccount_ballot">
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </div>
-
-    {% include "socialaccount/snippets/login_extra.html" %}
-
-    {% else %}
-    <p>{% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-    {% endif %}
-    
-  </div><!-- /.pq-form-login -->
+      
+    </div><!-- /.pq-form-login -->
 
 </div><!-- /.col-sm-11 -->
 

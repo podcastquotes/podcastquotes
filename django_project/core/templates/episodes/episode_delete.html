@@ -13,15 +13,15 @@
         <p>Are you sure you want to delete "{{ episode.title }}"?</p>
 
         <form method="post" action="{% url 'episode_delete' pk=episode.pk %}">
-          {% csrf_token %}
-          
-          <div class="pq-form-buttons">
-            <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
-            <a href="{% url 'episode_quote_list_root' pk=episode.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
-          </div><!-- /.pq-form-input -->
-          
-          <div class="clearfix">
-          </div>
+            {% csrf_token %}
+            
+            <div class="pq-form-buttons">
+                <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
+                <a href="{% url 'episode_quote_list_root' pk=episode.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
+            </div><!-- /.pq-form-input -->
+            
+            <div class="clearfix">
+            </div>
           
         </form>
         

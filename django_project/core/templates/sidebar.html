@@ -5,11 +5,11 @@
         <div class="pq-menu">
           
           <div class="pq-menu-title">
-            Podcasts
+              Podcasts
           </div><!-- /.pq-menu-title -->
           
           <div class="pq-menu-pulldown">
-            All Podcasts <i class="fa fa-chevron-down"></i>
+              All Podcasts <i class="fa fa-chevron-down"></i>
           </div><!-- /.pq-menu-pulldown -->
           
           <div class="clearfix">
@@ -18,44 +18,44 @@
           <hr />
 
           <div class="pq-menu-options">
-           {% for podcast in podcasts %}        
-           <a href="/podcasts/{{ podcast.id }}">
-             <div class="pq-menu-option">
-                {{ podcast.title }}
-             </div><!-- /.pq-menu-option -->
-           </a>
-           {% endfor %}
+              {% for podcast in podcasts %}        
+                  <a href="/podcasts/{{ podcast.id }}">
+                    <div class="pq-menu-option">
+                       {{ podcast.title }}
+                    </div><!-- /.pq-menu-option -->
+                  </a>
+              {% endfor %}
           </div><!-- /.pq-menu-options -->
 
         </div><!-- /.pq-menu -->
         
         {% if podcast %}
-        <div class="pq-menu">
-          
-          <div class="pq-menu-title">
-            Episodes
-          </div><!-- /.pq-menu-title -->
-          
-          <div class="pq-menu-pulldown">
-            Chronological <i class="fa fa-chevron-down"></i>
-          </div><!-- /.pq-menu-pulldown -->
-          
-          <div class="clearfix">
-          </div>
-          
-          <hr />
+            <div class="pq-menu">
+              
+                <div class="pq-menu-title">
+                    Episodes
+                </div><!-- /.pq-menu-title -->
+                
+                <div class="pq-menu-pulldown">
+                    Chronological <i class="fa fa-chevron-down"></i>
+                </div><!-- /.pq-menu-pulldown -->
+                
+                <div class="clearfix">
+                </div>
+                
+                <hr />
 
-          <div class="pq-menu-options">
-           {% for episode in podcast.episode_set.all %}        
-             <a href="/episodes/{{ episode.id}}">
-               <div class="pq-menu-option">
-                 {{ episode.title }}
-               </div><!-- /.pq-menu-option -->
-             </a>
-           {% endfor %}
-          </div><!-- /.pq-menu-options -->
+                <div class="pq-menu-options">
+                    {% for episode in podcast.episode_set.all %}        
+                        <a href="/episodes/{{ episode.id}}">
+                            <div class="pq-menu-option">
+                                {{ episode.title }}
+                            </div><!-- /.pq-menu-option -->
+                        </a>
+                    {% endfor %}
+                </div><!-- /.pq-menu-options -->
 
-        </div><!-- /.pq-menu -->
+            </div><!-- /.pq-menu -->
         {% endif %}
         
     </div><!-- /.pq-sidebar -->
