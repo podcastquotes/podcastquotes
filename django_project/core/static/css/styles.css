@@ -530,6 +530,20 @@ a {
     font-weight:bold;
 }
 
+/* Delete this style rule below when all nav filters are working properly. */
+@media (max-width:400px) {
+    .pq-nav-disappear-2 {
+        display:none;
+    }
+}
+
+@media (min-width:400px) {
+    .pq-nav-appear-2 {
+        display:none;
+    }
+}
+
+/* These are deactivated until all the nav filters are working properly.
 @media (max-width:1000px) {
     .pq-nav-disappear-1 {
         display:none;
@@ -589,6 +603,7 @@ a {
         display:none;
     }
 }
+*/
 
 .dropdown-menu-active {
     background-color:#ddd;
@@ -886,6 +901,25 @@ a {
 
 .pq-quote-header tr {
     height:28px;
+}
+
+@media (max-width:767px) {
+    .pq-quote-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 10px 15px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-quote-profile-picture {
+        float:left;
+        margin:0 10px 15px 0;
+    }
+}
+
+.pq-quote-profile-picture img {
+    max-width:30px;
 }
 
 .pq-quote-header-breadcrumbs {

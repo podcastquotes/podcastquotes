@@ -56,6 +56,12 @@
                           </ul>
                     </li>
                 {% else %}
+                    <li>
+                        <a class="pq-navbar-dropdown-2" href="{% url 'quote_create' %}">
+                            Add Quote <i class="fa fa-comments-o"></i>
+                        </a>
+                    </li>
+                    
                     <li><a href="/accounts/login">Login</a></li>
                 {% endif %}
               </ul>
