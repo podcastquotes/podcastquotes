@@ -2,30 +2,8 @@
 {% load static %}
 
 <div class="pq-quote">
-      
-    {% if is_episode_page or is_quote_page %}
-    {% else %}
-        <div class="pq-quote-breadcrumbs">
-            {% if is_home_page or is_user_page %}
-                {% if quote.episode.podcast.title %}
-                    <a href="{% url 'podcast_quote_list' pk=quote.episode.podcast.id query_filter='hot' %}">
-                        {{ quote.episode.podcast.title }}
-                    </a>
-                    >
-                {% endif %}
-            {% endif %}
-            
-            {% if is_home_page or is_podcast_page or is_user_page %}
-                {% if quote.episode.title %} 
-                    <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
-                        {{ quote.episode.title }}
-                    </a>
-                {% endif %}
-            {% endif %}
-        </div>
-    {% endif %}
-      
-    <div class="pq-quote-buttons hidden-xs hidden-sm">
+    
+    <div class="pq-quote-buttons hidden-xs">
         
         <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
             {% csrf_token %}
@@ -63,89 +41,78 @@
             {% endif %}
         </form>
         
-    </div><!-- /.pq-quote-buttons hidden-xs hidden-sm hidden-md -->
-  
-    <div class="pq-quote-player" id="pq-quote-player-{{ forloop.counter }}">
-    
-        {% if quote.time_quote_begins and quote.episode.youtube_url %}
-            <div class="youtube-box" id="youtube-{{ forloop.counter }}">
-                <div class="youtube" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+    </div><!-- /.pq-quote-buttons hidden-xs -->
+
+    <div class="youtube-start-button-wrapper hidden-xs" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+        {% if quote.time_quote_begins and quote.episode.youtube_url %}    
+            <div class="youtube-start-button fa fa-play-circle-o" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                <div id="{{ forloop.counter }}">
                 </div>
             </div>
-        {% endif %}       
-        
-    </div><!-- /.pq-quote-player -->
+        {% endif %}
+    </div>
+    
+    {% if is_episode_page or is_quote_page %}
+    {% else %}
+        <div class="pq-quote-breadcrumbs" {% if quote.episode.podcast.image %}style="margin-bottom:10px;"{% endif %}>
+            {% if is_home_page or is_user_page %}
+                {% if quote.episode.podcast.image %}
+                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                        <span class="pq-quote-breadcrumbs-profile-picture">
+                            <img src="/media/{{ quote.episode.podcast.image }}">
+                        </span>
+                    </a>
+                {% endif %}
+                {% if quote.episode.podcast.title %}
+                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                        {{ quote.episode.podcast.title }}
+                    </a>
+                    >
+                {% endif %}
+            {% endif %}
+            
+            {% if is_home_page or is_podcast_page or is_user_page %}
+                {% if quote.episode.title %} 
+                    <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
+                        {{ quote.episode.title }}
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    <div class="youtube-player-wrapper" id="youtube-player-wrapper-{{ forloop.counter }}">
+    <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
+    </div>
     
     <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
-    
         {% if quote.summary %}
             <div class="pq-quote-summary">
                 <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
             </div><!-- /.pq-quote-summary -->
         {% endif %}
-    
-    <div class="pq-quote-xs-buttons hidden-md hidden-lg">
-        <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
-            {% csrf_token %}
-            <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
-            <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
-            <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
-            {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
-                    <i class="fa fa-arrow-up"></i>
-                </button>
-            {% else %}
-                <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
-                    <i class="fa fa-arrow-up"></i>
-                </button>
-            {% endif %}
-        </form>
         
-        <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
-            {{ quote.vote_score }}
-        </div>
-        
-        <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
-            {% csrf_token %}
-            <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
-            <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
-            <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
-            {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
-                    <i class="fa fa-arrow-down"></i>
-                </button>
-            {% else %}
-                <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
-                    <i class="fa fa-arrow-down"></i>
-                </button>
-            {% endif %}
-            
-        </form>
-        
-    </div><!-- /.pq-quote-xs-buttons -->
-    
-    {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-        <div class="pq-quote-text-box">
-            {% if quote.text %}
-                <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                  {{ quote.text|linebreaks|truncatechars:200 }}
-                    {% if quote.is_longer_than_200chars %}
-                        <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
-                            show
-                        </span>
-                    {% endif %}
-                </div>
-
-                <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
-                  {{ quote.text|linebreaks }}
-                    {% if quote.is_longer_than_200chars %}
-                        <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
-                            hide
-                        </div>
-                    {% endif %}
-                </div><!-- /.pq-quote-text -->
-            {% endif %}
-        </div><!-- /.pq-quote-text-box -->
+        {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
+            <div class="pq-quote-text-box">
+                {% if quote.text %}
+                    <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
+                      {{ quote.text|linebreaks|truncatechars:200 }}
+                        {% if quote.is_longer_than_200chars %}
+                            <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
+                                show
+                            </span>
+                        {% endif %}
+                    </div>
+                    <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
+                      {{ quote.text|linebreaks }}
+                        {% if quote.is_longer_than_200chars %}
+                            <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
+                                hide
+                            </div>
+                        {% endif %}
+                    </div><!-- /.pq-quote-text -->
+                {% endif %}
+            </div><!-- /.pq-quote-text-box -->
         {% endif %}
         
         {% if is_quote_page %}
@@ -155,7 +122,55 @@
                 </div>
             {% endif %}
         {% endif %}
-
+    
+        <div class="pq-quote-xs-buttons hidden-sm hidden-md hidden-lg">
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
+                {% if not user.is_authenticated %}
+                    <button disabled class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% endif %}
+            </form>
+            
+            <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
+                {{ quote.vote_score }}
+            </div>
+            
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
+                {% if not user.is_authenticated %}
+                    <button disabled class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% endif %}
+            </form>
+            
+        </div><!-- /.pq-quote-xs-buttons -->
+    
+            <div class="xs-youtube-start-button-wrapper fa fa-play-circle-o hidden-sm hidden-md hidden-lg" id="xs-youtube-start-button-wrapper-{{ forloop.counter }}">
+                {% if quote.time_quote_begins and quote.episode.youtube_url %}    
+                    <div class="youtube-start-button" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                        <div id="{{ forloop.counter }}">
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+    
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-{{ forloop.counter }}").show();
@@ -168,13 +183,6 @@
               $("#pq-quote-text-{{ forloop.counter }}").hide();
               $("#show-less-{{ forloop.counter }}").hide();
               $("#show-more-{{ forloop.counter }}").show();
-          });
-          $("#youtube-{{ forloop.counter }}").click(function() {
-              $("#preview-published-{{ forloop.counter }}").hide();
-              $("#youtube-podcast-logo-{{ forloop.counter }}").hide();
-              $("#preview-time-{{ forloop.counter }}").hide();
-              $("#pq-quote-player-{{ forloop.counter }}").toggleClass('pull-left').css('margin-left','0').css('margin-top', '7px')
-              $("#quote-text-wrapper-{{ forloop.counter }}").toggleClass('overflow-none');
           });
         </script>
     
@@ -191,7 +199,7 @@
         </div>
     
         {% if is_quote_page %}
-            <div class="pq-quote-posted-by">
+            <div class="pq-quote-posted-by blue-link">
                 posted 4 hours ago by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
             </div>
         {% endif %}
@@ -200,9 +208,11 @@
         <div class="pq-quote-bottom-buttons">
         
         <!-- Button trigger modal -->
+        
         <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
         </button>
+        
         
         <!-- Modal -->
         <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -249,7 +259,7 @@
           
         </div><!-- /.pq-quote-bottom -->
   
-    </div><!-- /.pq-quote-text-wrapper -->
+    </div><!-- /.pq-quote-text-wrapper --> 
   
     <div class="clearfix">
     </div>

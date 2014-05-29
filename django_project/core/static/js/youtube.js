@@ -1,45 +1,104 @@
-// Find all the YouTube video embedded on a page
-var videos = document.getElementsByClassName("youtube");
- 
-for (var i=0; i<videos.length; i++) {
+var videoPlayers = []
+for (var i=1; i < 11; i++) {
+    videoPlayers.push(document.getElementById("youtube-player-wrapper-" + i));
+}
+
+console.log(videoPlayers);
+
+var startButtons = []
+for (var i=1; i < 11; i++) {
+    startButtons.push(document.getElementById("youtube-start-button-wrapper-" + i));
+}
+
+console.log(startButtons);
+
+var xsStartButtons = []
+for (var i=1; i < 11; i++) {
+    xsStartButtons.push(document.getElementById("xs-youtube-start-button-wrapper-" + i));
+}
+
+console.log(xsStartButtons);
+
+for (var i=0; i < 10; i++) {
   
-  var youtube = videos[i];
+  var forloopCounter = i + 1;
   
-  var youtubeOnlyId = youtube.id.substring(0,11);
+  if(startButtons[i].childNodes[1] == null) {continue;}
   
-  // Based on the YouTube ID, we can easily find the thumbnail image
+  console.log('it is doing something for ' + forloopCounter);
   
-  var preview = document.createElement("div");
-  preview.setAttribute("class", "preview");
+  var getFullId = startButtons[i].childNodes[1];
+  console.log(getFullId);
   
-  var img = document.createElement("img");
-  img.setAttribute("src", "http://i.ytimg.com/vi/"
-                          + youtubeOnlyId + "/hqdefault.jpg");
-  img.setAttribute("class", "youtube-img-preview");
+  var youtubeOnlyId = getFullId.id.substring(0,11);
+  console.log(youtubeOnlyId);
   
- 
-  // Overlay the Play icon to make it look like a video player
-  var circle = document.createElement("i");
-  circle.setAttribute("class","circle fa fa-play-circle-o");  
-  
-  youtube.appendChild(preview);
-  youtube.appendChild(img);
-  preview.appendChild(circle);
-  
-  // Attach an onclick event to the YouTube Thumbnail
-  youtube.onclick = function() {
- 
+  startButtons[i].onclick = function () {
+    
+    var getStartElement = this.childNodes[1];
+    
+    console.log(getStartElement)
+    
+    var getPlayerId = getStartElement.childNodes[1].id - 1;
+    
+    console.log(getPlayerId);
+
     // Create an iFrame with autoplay set to true
     var iframe = document.createElement("iframe");
     iframe.setAttribute("src",
-          "https://www.youtube.com/embed/" + this.id
+          "https://www.youtube.com/embed/" + getStartElement.id
         + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
     
     // The height and width of the iFrame should be the same as parent
     iframe.setAttribute("class", "iframe-size");
       
     // Replace the YouTube thumbnail with YouTube HTML5 Player
-    this.parentNode.replaceChild(iframe, this);
+    this.style.display = 'none';
+    
+    videoPlayers[getPlayerId].appendChild(iframe);
  
   };
+  
+}
+
+for (var i=0; i < 10; i++) {
+  
+  var forloopCounter = i + 1;
+  
+  if(xsStartButtons[i].childNodes[1] == null) {continue;}
+  
+  console.log('it is doing something for ' + forloopCounter);
+  
+  var getFullId = xsStartButtons[i].childNodes[1];
+  console.log(getFullId);
+  
+  var youtubeOnlyId = getFullId.id.substring(0,11);
+  console.log(youtubeOnlyId);
+  
+  xsStartButtons[i].onclick = function () {
+    
+    var getStartElement = this.childNodes[1];
+    
+    console.log(getStartElement)
+    
+    var getPlayerId = getStartElement.childNodes[1].id - 1;
+    
+    console.log(getPlayerId);
+
+    // Create an iFrame with autoplay set to true
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("src",
+          "https://www.youtube.com/embed/" + getStartElement.id
+        + "autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
+    
+    // The height and width of the iFrame should be the same as parent
+    iframe.setAttribute("class", "iframe-size");
+      
+    // Replace the YouTube thumbnail with YouTube HTML5 Player
+    this.style.display = 'none';
+    
+    videoPlayers[getPlayerId].appendChild(iframe);
+ 
+  };
+  
 }

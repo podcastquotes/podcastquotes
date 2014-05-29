@@ -11,12 +11,13 @@
     <div class="pq-quote-header-breadcrumbs med-dark-link">
         <a href="{{ quote.episode.podcast.get_absolute_url }}">{{ quote.episode.podcast.title }}</a> > <a href="{{ quote.episode.get_absolute_url }}">{{ quote.episode.title }}</a>
     </div>
-
+    
+    <div class="clearfix">
+    </div>
+    
     {% if quote.episode.donate_url and quote.episode.donation_recipient %}
         <div style="margin-bottom:10px;">
-            <span class="text-orange">
-                <strong>Donations for this episode go to
-            </span>
+            <strong><span class="text-orange">Donations for this episode go to</span>
             <a class="text-blue" href="{{ quote.episode.donate_url }}">
                 {{ quote.episode.donation_recipient }}
             </a></strong>

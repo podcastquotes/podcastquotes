@@ -12,9 +12,8 @@
 {% include 'facebook_open_graph.html' %}
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet'>
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
-<script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-
+<script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/ajax-vote.js' %}"></script>
 <script src="{% static 'js/ajax-get-episodes.js' %}"></script>
 </head>
@@ -48,12 +47,9 @@
     {% endblock %}
     
     {% include 'google_analytics_code.html' %}
-  
+
+    <script src="{% static 'js/youtube.js' %}"></script>
+
 </body>
-
-<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/youtube.js' %}"></script>
-
   
 </html>

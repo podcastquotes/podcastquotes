@@ -1,0 +1,20 @@
+<div class="pq-breadcrumb blue-link">
+{% if is_home_page %}
+{% endif %}
+
+{% if is_podcast_page %}
+    <a href="/">Home</a> >
+    {{ podcast.title }}
+{% endif %}
+
+{% if is_episode_page %}
+    <a href="/" >Home</a> > 
+    <a href="{{ podcast.get_absolute_url }}" class="blue-link">{{ podcast.title }}</a> >
+    {{ episode.title }}
+{% endif %}
+
+{% if is_user_page %}
+    <a href="/">Home</a> >
+    {{ user.username }}
+{% endif %}
+</div><!-- /.pq-breadcrumb -->

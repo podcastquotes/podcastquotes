@@ -63,7 +63,14 @@
                     </div>
                 </div>
             </div><!-- /.modal fade -->
-                
+            
+
+            <div class="pq-podcast-button dark-link">
+                <a href="#">
+                    about
+                </a>
+            </div>
+            
             {% if podcast.donate_url or episode.donate_url %}
                 <div class="pq-podcast-button text-orange">
                     <a href=
@@ -152,6 +159,14 @@
     
 <div class="pq-episode-header">
    
+   {% if episode.image %}
+       <div class="pq-podcast-profile-picture">
+           <a href="/episodes/{{ episode.id }}">
+             <img src="/media/{{ episode.image }}" />
+           </a>
+       </div><!-- /.pq-podcast-profile-picture -->
+   {% endif %} 
+
    <div class="pq-episode-title">
        <select class="form-control pq-episode-selector " ONCHANGE="location = this.options[this.selectedIndex].value;">
            {% if episode.title %}
@@ -180,6 +195,12 @@
                     </a>
                 </div>
             {% endif %}
+            
+            <div class="pq-podcast-button dark-link">
+                <a href="#">
+                    about
+                </a>
+            </div>
         
             {% if user in episode.podcast.moderators.all or user.is_superuser %}
                 <div class="pq-podcast-button text-purple">
