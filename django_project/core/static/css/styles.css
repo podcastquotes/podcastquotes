@@ -421,7 +421,6 @@ a {
     .pq-container {
         max-width:900px;
         margin:0 auto;
-        padding:0 0 0 50px;
     }
 }
 
@@ -987,7 +986,7 @@ a {
 
 @media (max-width:767px) {
     .pq-quote-summary {
-        max-width:600px;
+        max-width:560px;
         overflow:hidden;
         padding:0 0 5px 0;
         font-weight:bold;
@@ -997,7 +996,7 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-summary {
-        max-width:600px;
+        max-width:560px;
         overflow:hidden;
         margin:-1px 0 0 0;
         padding:0 0 10px 0;
@@ -1255,13 +1254,13 @@ button {
 .pq-quote-text {
     clear:left;
     display:none;
-    max-width:540px;
+    max-width:550px;
     font-size:14px;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        max-width:540px;
+        max-width:550px;
         font-size:14px;
     }
 }
@@ -1269,7 +1268,7 @@ button {
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        max-width:540px;
+        max-width:550px;
         font-size:14px;
     }
 }
