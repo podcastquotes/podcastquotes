@@ -169,8 +169,8 @@ class Episode(models.Model):
         # https://gist.github.com/trojkat/1989762 
         # https://labnol.googlecode.com/files/youtube.js
 
-    def is_longer_than_200chars(self):
-        if len(self.description) > 200:
+    def is_longer_than_400chars(self):
+        if len(self.description) > 400:
             return 1
         else:
             return 0
@@ -225,8 +225,8 @@ class Quote(models.Model):
         print self.rank_score
         self.save()
     
-    def is_longer_than_200chars(self):
-        if len(self.text) > 200:
+    def is_longer_than_400chars(self):
+        if len(self.text) > 400:
             return 1
         else:
             return 0

@@ -108,11 +108,12 @@ def restart_server():
 
 @task
 def deploy_latest():
-    
-    pull_repository()
-    get_dependencies()
-    reconfigure_app()
-    migrate_database()
-    test_repo()
-    install_application()
-    restart_server()
+        
+        pull_repository()
+        get_dependencies()
+        reconfigure_app()
+        migrate_database()
+        test_repo()
+        install_application()
+        restart_server()
+        

@@ -96,8 +96,8 @@
             <div class="pq-quote-text-box">
                 {% if quote.text %}
                     <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                      {{ quote.text|linebreaks|truncatechars:200 }}
-                        {% if quote.is_longer_than_200chars %}
+                      {{ quote.text|linebreaks|truncatechars:400 }}
+                        {% if quote.is_longer_than_400chars %}
                             <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
                                 show
                             </span>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
                       {{ quote.text|linebreaks }}
-                        {% if quote.is_longer_than_200chars %}
+                        {% if quote.is_longer_than_400chars %}
                             <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
                                 hide
                             </div>
@@ -161,15 +161,15 @@
             </form>
             
         </div><!-- /.pq-quote-xs-buttons -->
-    
+
+        {% if quote.time_quote_begins and quote.episode.youtube_url %} 
             <div class="xs-youtube-start-button-wrapper fa fa-play-circle-o hidden-sm hidden-md hidden-lg" id="xs-youtube-start-button-wrapper-{{ forloop.counter }}">
-                {% if quote.time_quote_begins and quote.episode.youtube_url %}    
-                    <div class="youtube-start-button" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
-                        <div id="{{ forloop.counter }}">
-                        </div>
+                <div class="youtube-start-button" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                    <div id="{{ forloop.counter }}">
                     </div>
-                {% endif %}
+                </div>
             </div>
+        {% endif %}
     
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {

@@ -1,3 +1,12 @@
-{% for episode in podcast.episode_set.all reversed %}
-    {{ episode.title }}<br>
-{% endfor %}
+<big><strong>{{ podcast.title }}</strong></big><br><br>
+
+<span style="font-style:16px;font-family:Verdana;text-decoration:none;">
+    {% for episode in podcast.episode_set.all reversed %}
+        {% if episode.youtube_url %}
+            __{connected}__ <a href="{{ episode.youtube_url }}" style="font-style:16px;font-family:Verdana;text-decoration:none;" target="_blank">{{ episode.title }}</a> --- <small><a href="{{ episode.get_absolute_url }}edit">edit</a></small><br><br>
+        {% endif %}
+        {% if not episode.youtube_url %}
+            {not} {{ episode.title }} --- <small><a href="{{ episode.get_absolute_url }}edit" target="_blank">edit</a></small><br><br>
+        {% endif %}
+    {% endfor %}
+</span>
