@@ -98,10 +98,14 @@ class QuoteDeleteView(DeleteView):
             raise Http404
 
 def quote(request, quote_id):
-    q = Quote.objects.get(id=quote_id)
+    # this ghastly list containing one object is needed to make Mitch's kluge
+    # youtube.js file work on quote_detail pages
+    q_list = Quote.objects.filter(id=quote_id)
+    q_object = Quote.objects.get(id=quote_id)
     
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all().order_by('title'),
-                 'episodes': Episode.objects.filter(podcast_id=q.episode.podcast.id).exclude(youtube_url__exact='').order_by('-publication_date'),
-                 'quote': q,
+                 'episodes': Episode.objects.filter(podcast_id=q_object.episode.podcast.id).exclude(youtube_url__exact='').order_by('-publication_date'),
+                 'quote_list': q_list,
+                 'quote': q_object,
                  'is_quote_page': 1})

@@ -9,8 +9,10 @@
 {% endblock %}<!-- /block header -->
     
 {% block quotes %}
-
-    {% include 'quotes.html' %}
+    <!-- quote_list is tech debt that needs to be banished after a non-kluge youtube.js file is created -->
+    {% for quote in quote_list %}
+        {% include 'quotes.html' %}
+    {% endfor %}
 
     </div><!-- /.col-sm-11 ***you must include this close tag***-->
 

@@ -3,19 +3,27 @@ for (var i=1; i < 11; i++) {
     videoPlayers.push(document.getElementById("youtube-player-wrapper-" + i));
 }
 
+console.log(videoPlayers);
+
 var startButtons = []
 for (var i=1; i < 11; i++) {
     startButtons.push(document.getElementById("youtube-start-button-wrapper-" + i));
 }
+
+console.log(startButtons);
 
 var xsStartButtons = []
 for (var i=1; i < 11; i++) {
     xsStartButtons.push(document.getElementById("xs-youtube-start-button-wrapper-" + i));
 }
 
+console.log(xsStartButtons);
+
 for (var i=0; i < 10; i++) {
   
   var forloopCounter = i + 1;
+  
+  console.log("hello");
   
   if(startButtons[i].childNodes[1] == null) {continue;}
   
