@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.forms import ModelForm
+from django.http import Http404
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from captcha.fields import ReCaptchaField
 
@@ -109,7 +110,7 @@ class QuoteForm(forms.ModelForm):
         if episode in episode_list:
             return episode
         else:
-            Http404
+            raise Http404
         
     def clean_time_quote_begins(self):
         begins_with_delims = self.cleaned_data['time_quote_begins']

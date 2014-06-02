@@ -59,14 +59,14 @@ class UpdateFeedTests(TestCase):
         self.test_podcast = Podcast()
         
         # patch
-        patcher = patch('quotes_app.views.get_object_or_404', 
+        patcher = patch('quotes_app.views.podcast.get_object_or_404', 
             return_value=self.test_podcast)
         self.get_spy = patcher.start()
         self.addCleanup(patcher.stop)
         
         
         patcher = patch(
-            'quotes_app.views.podcast_syndication_service.collect_episodes', 
+            'quotes_app.views.podcast.podcast_syndication_service.collect_episodes', 
             return_value="hi")
         self.parse_spy = patcher.start()
         self.addCleanup(patcher.stop)
@@ -119,12 +119,22 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
         # The module under test
         self.podcast_create_view = PodcastCreateView()
         
+        self.configure_request()
+        
         # Mock/stub this call.. it's touching too many other things
         self.podcast_create_view.get_success_url = lambda: \
             "test_redirect_url"
             
         self.act()
         
+    def configure_request(self):
+        
+        self.podcast_create_view.request = \
+            RequestFactory().post('/what/ever/')
+        
+        # Make authenticated user for this request.
+        self.podcast_create_view.request.user = User.objects.create()
+    
     def patch_obtain_podcast_information(self):
         
         self.test_rss_title = title = 'TEST!'
@@ -132,7 +142,7 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
         self.test_rss_homepage = homepage = 'test123123123'
         
         patcher = patch(
-            'quotes_app.views.podcast_syndication_service.' + 
+            'quotes_app.views.podcast.podcast_syndication_service.' + 
             'obtain_podcast_information', 
             return_value={
                 'title':       title,
@@ -300,17 +310,28 @@ class QuoteCreateTests(TestCase):
             # Form's queryset is filtered to only show with youtube url
             youtube_url="http://youtube.com/asdf")
         
+        # The module under test
+        self.quote_create_view = QuoteCreateView()
+        
+        # Mock/stub this call.. it's touching too many other things
+        # and begins loading admin site crap *brain explode*
+        self.quote_create_view.get_success_url = lambda: \
+            "test_redirect_url"
+        
     def act(self):
 
         request = self.request_factory.post('/whatever', self.form_data)
         request.user = User.objects.create()
-
-        quote_create(request)
+        
+        # Wire up class based view and process the test request.
+        self.quote_create_view.request = request
+        self.quote_create_view.dispatch(request)
     
     def test_no_error_case(self):
         """ Wiring test to exsiting code for the happy case."""
 
         self.form_data = {
+            'podcast' : self.episode.podcast.pk,
             'episode': self.episode.pk,
             'summary': 'asdf',
             'text': 'asdf',
@@ -332,3 +353,11 @@ class QuoteCreateTests(TestCase):
         }
         
         self.act()
+
+    @unittest.expectedFailure
+    def test_success_currently_authenticated_user_added_as_mod(self):
+        self.fail("Behavior not tested")
+
+    @unittest.expectedFailure
+    def test_success_redirects_to_success_url(self):
+        self.fail("Behavior not tested")
