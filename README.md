@@ -1,23 +1,28 @@
+
+
+
 podcastquotes
 =============
 [![Build Status](https://travis-ci.org/podcastquotes/podcastquotes.svg?branch=master)](https://travis-ci.org/podcastquotes/podcastquotes)
 [![Coverage Status](https://coveralls.io/repos/podcastquotes/podcastquotes/badge.png?branch=master)](https://coveralls.io/r/podcastquotes/podcastquotes?branch=master)
 
-A podcast transcription, highlight sharing, and rating system inspired by reddit.
+A podcast transcription, highlight sharing, and rating system inspired by reddit.  Django & Python 2 (>.<)
 
 
 Development Install
 ===================
 
 ### Obtain dependencies
-```pip install --allow-all-external -r requirements.txt```
+```pip install -r requirements.txt```
+
+Sometimes this external version of argparse sneaks in, I don't know what it is but if your version of pip is very new then you need to allow external dependencies using ```--allow-all-external```.  It's a mess.
 
 ### Use podcastquotes settings and site_settings skeleton
 ```cp ./podcastquotes/settings.py.skel ./podcastquotes/settings.py```
 ```cp ./podcastquotes/site_settings.py.skel ./podcastquotes/site_settings.py```
 
 ### Init database
-```./manage.py syncdb```
+```./manage.py syncdb```  
 ```./manage.py migrate```
 
 ### Seed database with some things for allauth
@@ -27,3 +32,19 @@ Run App for Development
 =======================
 ```./manage.py runserver```
 
+
+Dev Tricks
+==========
+
+## Aliases
+
+```source set_aliases```
+
+* autotest
+    * Automatically watches files in the project and reruns tests when they change (using py.test)
+* manage
+    * shortcut for manage.py
+* masks ```*.pyc``` files when using ```ls```
+
+## Focus on particular test
+```autotest -k test_name```
