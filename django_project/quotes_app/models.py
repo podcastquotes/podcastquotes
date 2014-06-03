@@ -117,7 +117,7 @@ class Episode(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
-    guid = models.URLField(blank=True)
+    guid = models.CharField(max_length=200)
     publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)

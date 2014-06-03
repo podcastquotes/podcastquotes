@@ -18,6 +18,16 @@
             {% endif %}
 
             <div class="pq-form-input">
+                {% if form.podcast.errors %}
+                    <p class="error">
+                        {{ form.podcast.errors }}
+                    </p>
+                {% endif %}
+                <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="podcast">Podcast</label>
+                {{ form.podcast }}
+            </div><!-- /.pq-form-input -->
+            
+            <div class="pq-form-input">
                 {% if form.episode.errors %}
                     <p class="error">
                         {{ form.episode.errors }}

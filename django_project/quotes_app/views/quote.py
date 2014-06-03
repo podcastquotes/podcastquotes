@@ -63,7 +63,7 @@ class QuoteUpdateView(UpdateView):
     
     def get_initial(self):
         q = Quote.objects.get(id=self.kwargs['pk'])
-        return { 'time_quote_begins': q.converted_time_begins, 'time_quote_ends': q.converted_time_ends }
+        return { 'podcast': q.episode.podcast, 'time_quote_begins': q.converted_time_begins, 'time_quote_ends': q.converted_time_ends }
     
     def get_object(self, *args, **kwargs):
         quote = super(QuoteUpdateView, self).get_object(*args, **kwargs)
