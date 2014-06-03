@@ -42,55 +42,60 @@
         </form>
         
     </div><!-- /.pq-quote-buttons hidden-xs -->
-
-    <div class="youtube-start-button-wrapper hidden-xs" id="youtube-start-button-wrapper-{{ forloop.counter }}">
-        {% if quote.time_quote_begins and quote.episode.youtube_url %}    
-            <div class="youtube-start-button fa fa-play-circle-o" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
-                <div id="{{ forloop.counter }}">
-                </div>
-            </div>
-        {% endif %}
-    </div>
-    
-    {% if is_episode_page or is_quote_page %}
-    {% else %}
-        <div class="pq-quote-breadcrumbs" {% if quote.episode.podcast.image %}style="margin-bottom:10px;"{% endif %}>
-            {% if is_home_page or is_user_page %}
-                {% if quote.episode.podcast.image %}
-                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                        <span class="pq-quote-breadcrumbs-profile-picture">
-                            <img src="/media/{{ quote.episode.podcast.image }}">
-                        </span>
-                    </a>
-                {% endif %}
-                {% if quote.episode.podcast.title %}
-                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                        {{ quote.episode.podcast.title }}
-                    </a>
-                    >
-                {% endif %}
-            {% endif %}
-            
-            {% if is_home_page or is_podcast_page or is_user_page %}
-                {% if quote.episode.title %} 
-                    <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
-                        {{ quote.episode.title }}
-                    </a>
-                {% endif %}
-            {% endif %}
-        </div>
-    {% endif %}
-    
-    <div class="youtube-player-wrapper" id="youtube-player-wrapper-{{ forloop.counter }}">
-    <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
-    </div>
     
     <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
         {% if quote.summary %}
-            <div class="pq-quote-summary">
+            <div class="pq-quote-title dark-link">
                 <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
-            </div><!-- /.pq-quote-summary -->
+            </div>
         {% endif %}
+        
+        {% if is_episode_page or is_quote_page %}
+        {% else %}
+            {% if is_home_page or is_user_page %}
+                {% if quote.episode.podcast.image %}
+                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                        <div class="pq-quote-profile-picture">
+                            <img src="/media/{{ quote.episode.podcast.image }}">
+                        </div>
+                    </a>
+                {% endif %}
+            {% endif %}
+        
+            <div class="pq-quote-subtitle gray-link">
+                {% if is_home_page or is_user_page %}
+                    {% if quote.episode.podcast.title %}
+                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                            Podcast: {{ quote.episode.podcast.title }}
+                        </a>
+                        <br>
+                    {% endif %}
+                {% endif %}
+                
+                {% if is_home_page or is_podcast_page or is_user_page %}
+                    {% if quote.episode.title %} 
+                        <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
+                            <span style="padding-right:1px">Episode:</span> {{ quote.episode.title }}
+                        </a>
+                        <br>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="youtube-start-button-wrapper hidden-xs" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+            {% if quote.time_quote_begins and quote.episode.youtube_url %}    
+                <div class="youtube-start-button fa fa-play" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                    <div class="youtube-start-button-text" id="{{ forloop.counter }}">
+                        PLAY
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="youtube-player-wrapper" id="youtube-player-wrapper-{{ forloop.counter }}">
+        <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
+        </div>
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div class="pq-quote-text-box">
@@ -161,15 +166,6 @@
             </form>
             
         </div><!-- /.pq-quote-xs-buttons -->
-
-        {% if quote.time_quote_begins and quote.episode.youtube_url %} 
-            <div class="xs-youtube-start-button-wrapper fa fa-play-circle-o hidden-sm hidden-md hidden-lg" id="xs-youtube-start-button-wrapper-{{ forloop.counter }}">
-                <div class="youtube-start-button" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
-                    <div id="{{ forloop.counter }}">
-                    </div>
-                </div>
-            </div>
-        {% endif %}
     
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {

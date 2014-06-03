@@ -29,8 +29,8 @@ Color Guide
 *****************************************
 Typography Guide
 
-Headings - Roboto (?px - ?px)
-Body - Roboto 16px
+Headings - Montserrat (?px - ?px)
+Body - Open Sans (?px - ?px)
 ... - ...
 
 *****************************************
@@ -67,8 +67,8 @@ THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MIT
 
 body {
     margin:0 auto;
-    background-color:#fcfcfc;
-    font-family:"Roboto", Arial, sans-serif;
+    background-color:#dfdbda;
+    font-family:"Open Sans", Arial, sans-serif;
     font-size:16px;
     color:#222;
 }
@@ -142,6 +142,14 @@ body {
 
 .med-dark-link a:hover {
     color:#2a2a2a;
+}
+
+.gray-link a {
+    color:#6b6b6b
+}
+
+.gray-link a:hover {
+    color:#3d3d3d
 }
 
 .blue-link a {
@@ -458,13 +466,15 @@ a {
 @media (max-width:550px) {
     .pq-breadcrumb {
         display:none;
+        font-size:13px;
     }
 }
 
 @media (min-width:551px) {
     .pq-breadcrumb {
-        margin:-5px 0 15px 0;
-        font-size:16px;
+        float:left;
+        margin:0 0 25px 0;
+        font-size:13px;
     }
 }
 
@@ -494,7 +504,7 @@ a {
 @media (max-width:991px) {
     .pq-home-title {
         clear:left;
-        margin:0 0 25px 0;
+        margin:0 0 10px 0;
         font-size:22px;
         font-weight:bold;
         color:#222;
@@ -503,7 +513,7 @@ a {
 
 @media (min-width:992px) {
     .pq-home-title {
-        margin:0 0 25px 0;
+        margin:0 0 10px 0;
         font-size:22px;
         font-weight:bold;
         color:#222;
@@ -512,8 +522,9 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:0 10px 0 0;
+    margin:5px 10px 10px 0;
     padding:3px 10px;
+    background:#fff;
     border:1px solid #777;
     border-radius:3px;
     color:#B25900;
@@ -528,7 +539,7 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#eee;
-    margin:0 10px 0 0;
+    margin:5px 10px 0 0;
     padding:3px 10px;
     border:1px solid #777;
     border-radius:3px;
@@ -648,11 +659,43 @@ a {
 }
 
 .pq-podcast-header {
+    padding:20px 15px 15px 15px;
+    margin:0 0 10px 0;
+    background:#fff;
     font-size:16px;
 }
 
+.pq-podcast-profile {
+    clear:both;
+}
+
+@media (max-width:767px) {
+    .pq-podcast-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 20px 15px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-podcast-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 20px 20px 0;
+    }
+}
+
+.pq-podcast-profile-picture img {
+    max-width:80px;
+}
+
+.pq-podcast-profile-text {
+    float:left;
+    margin:-5px 0 0 0;
+}
+
 .pq-podcast-title {
-    margin:-4px 0 10px 0;
+    margin:0 0 10px 0;
     font-size:24px;
     font-weight:bold;
     color:#222;
@@ -665,78 +708,28 @@ a {
     }
 }
 
-@media (min-width:768px) {
-    .pq-podcast-title {
-        overflow:hidden;
-    }
+.pq-podcast-subtitle {
+    color:#6b6b6b;
+    font-size:14px;
+    font-style:italic;
 }
 
 @media (max-width:767px) {
-    .pq-episode-title {
-        clear:left;
-        padding:0 0 15px 0;
+    .pq-episode-finder {
+        clear:both;
+        margin:15px 0;
         font-weight:bold;
         color:#222;
     }
 }
 
 @media (min-width:768px) {
-    .pq-episode-title {
+    .pq-episode-finder {
+        clear:both;
         overflow:hidden;
-        padding:0 0 15px 0;
+        margin:15px 0;
         font-weight:bold;
         color:#222;
-    }
-}
-
-@media (max-width:767px) {
-    .pq-podcast-profile-picture {
-        clear:left;
-        float:left;
-        margin:0 20px 15px 0;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-podcast-profile-picture {
-        float:left;
-        margin:0 20px 20px 0;
-    }
-}
-
-.pq-podcast-profile-picture img {
-    max-width:100px;
-}
-
-@media (max-width:767px) {
-    .pq-episode-profile-picture {
-        clear:left;
-        float:left;
-        margin:0 20px 15px 0;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-episode-profile-picture {
-        float:left;
-        margin:0 20px 20px 0;
-    }
-}
-
-.pq-episode-profile-picture img {
-    max-width:100px;
-}
-
-@media (max-width:550px) {
-    .pq-podcast-header-box {
-        clear:left;
-        overflow:hidden;
-    }
-}
-
-@media (min-width:551px) {
-    .pq-podcast-header-box {
-        overflow:hidden;
     }
 }
 
@@ -747,13 +740,13 @@ a {
 }
 
 .pq-podcast-header-social-icons {
-    clear:left;
-    margin:-5px 0 10px 0;
+    float:right;
+    margin:-7px 0 10px 0;
 }
 
 .pq-podcast-header-social-icon {
-    margin:0 7px 0 0;
-    font-size:24px;
+    margin:0 5px 0 0;
+    font-size:22px;
 }
 
 .pq-podcast-header-social-icon a {
@@ -764,10 +757,21 @@ a {
     color:#777;
 }
 
+.pq-podcast-description {
+    clear:both;
+    margin:0 0 15px 0;
+    font-size:13px;
+}
+
+.pq-podcast-karma {
+    font-size:13px;
+    font-weight:bold;
+}
+
 @media (max-width:767px) {
     .pq-podcast-buttons {
         float:left;
-        font-size:14px;
+        font-size:13px;
         margin:0 0 10px 0;
     }
 }
@@ -775,8 +779,8 @@ a {
 @media (min-width:768px) {
     .pq-podcast-buttons {
         float:right;
-        margin:2px 0 15px 0;
-        font-size:14px;
+        margin:0 0 15px 0;
+        font-size:13px;
     }
 }
 
@@ -784,7 +788,6 @@ a {
     .pq-podcast-button {
         float:left;
         margin:0 20px 0 0;
-        font-size:14px;
         font-weight:bold;
         padding:0;
         background-color:#fcfcfc;
@@ -799,7 +802,6 @@ a {
         padding:0;
         background-color:#fcfcfc;
         border:none;
-        font-size:14px;
         font-weight:bold;
     }
 }
@@ -832,46 +834,6 @@ a {
     font-size:18px;
 }
 
-@media (max-width:767px) {
-    .pq-podcast-info {
-        clear:left;
-        font-size:16px;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-podcast-info {
-        overflow:hidden;
-        font-size:16px;
-    }
-}
-
-.pq-podcast-header-info-right {
-    float:right;
-    margin:0 0 10px 0;
-}
-
-.pq-podcast-header-info-left {
-    clear:left;
-    margin:0 0 10px 0;
-    padding:0 0 5px 0;
-}
-
-.pq-podcast-header-info-full {
-    margin:0 0 10px 0;
-}
-
-.pq-podcast-header-info-inline {
-    display:inline-block;
-    margin:0 20px 0 0;
-}
-
-.pq-episode-header-info-left {
-    clear:left;
-    margin-bottom:10px;
-    font-size:16px;
-}
-
 .pq-episode-header {
     padding:0 0 5px 0;
     margin:0 0 25px 0;
@@ -900,6 +862,13 @@ a {
 *******************************
 ******************************/
 
+.pq-quote {
+    clear:both;
+    padding:15px;
+    background:#fff;
+    border-bottom:3px dotted #ddd;
+}
+
 .pq-quote-header {
     padding:0 0 5px 0;
     border-bottom:1px dotted #bbb;
@@ -910,55 +879,10 @@ a {
     height:28px;
 }
 
-@media (max-width:767px) {
-    .pq-quote-profile-picture {
-        clear:left;
-        float:left;
-        margin:0 10px 15px 0;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-quote-profile-picture {
-        float:left;
-        margin:0 10px 15px 0;
-    }
-}
-
-.pq-quote-profile-picture img {
-    max-width:30px;
-}
-
 .pq-quote-header-breadcrumbs {
     font-size:20px;
     margin:0 0 10px 0;
     color:#444;
-}
-
-.pq-quote {
-    clear:both;
-    padding:20px 0 5px 0;
-    border-bottom:1px solid #ddd;
-}
-
-@media (max-width:767px) {
-    .pq-quote-text-wrapper {
-        clear:left;
-        overflow:hidden;
-        font-size:14px;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-quote-text-wrapper {
-        clear:left;
-        font-size:14px;
-    }
-}
-
-.pq-quote-text-wrapper-cleared {
-    clear:both;
-    overflow:none;
 }
 
 @media (max-width:767px) {
@@ -984,85 +908,31 @@ a {
     color:#bbb;
 }
 
-@media (max-width:767px) {
-    .pq-quote-summary {
-        max-width:560px;
-        overflow:hidden;
-        padding:0 0 5px 0;
-        font-weight:bold;
-        font-size:18px;
-    }
+.pq-quote-title {
+    max-width:560px;
+    margin:0 0 5px 0;
+    overflow:hidden;
+    font-weight:bold;
+    font-size:18px;
 }
 
-@media (min-width:768px) {
-    .pq-quote-summary {
-        max-width:560px;
-        overflow:hidden;
-        margin:-1px 0 0 0;
-        padding:0 0 10px 0;
-        font-weight:bold;
-        font-size:20px;
-    }
+.pq-quote-profile-picture {
+    clear:left;
+    display:inline-block;
+    vertical-align:top;
+    margin:3px 5px 0 0;
 }
 
-.pq-quote-summary a, 
-.pq-quote-summary-xs a {
-    color:#222;
+.pq-quote-profile-picture img {
+    width:32px;
+    height:32px;
 }
 
-.pq-quote-summary a:hover, 
-.pq-quote-summary-xs a:hover {
-    color:#555;
-}
-
-@media (max-width:767px) {
-    .pq-quote-breadcrumbs {
-        clear:left;
-        overflow:hidden;
-        font-size:14px;
-        margin:0 0 5px 0;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-quote-breadcrumbs {
-        overflow:hidden;
-        font-size:14px;
-        margin:0 0 5px 0;
-    }
-}
-
-.pq-quote-breadcrumbs a {
-    color:#777;
-}
-
-.pq-quote-breadcrumbs a:hover {
-    color:#444;
-}
-
-.pq-quote-breadcrumbs-profile-picture {
-    margin:0 5px 0 0;
-}
-
-.pq-quote-breadcrumbs-profile-picture img {
-    width:24px;
-    height:24px;
-}
-
-@media (max-width:767px) {
-    .pq-quote-player {
-        clear:left;
-        float:left;
-        margin:0 0 10px 0;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-quote-player {
-        clear:right;
-        float:right;
-        margin:10px 0 0 0;
-    }
+.pq-quote-subtitle {
+    display:inline-block;
+    vertical-align:top;
+    font-size:13px;
+    font-style:italic;
 }
 
 @media (max-width:450px) {
@@ -1437,31 +1307,33 @@ button {
 ******************************/
 
 .youtube-start-button-wrapper {
-    margin:-2px 5px 0 0;
-    font-size:41px;
-    color:#444;
-    cursor:pointer;
-    clear:right;
-    float:right;
+    clear:left;
+    font-size:16px;
+    color:#fff;
 }
 
-.youtube-start-button-wrapper:hover {
-    color:#888;
-}
-
-.xs-youtube-start-button-wrapper {
-    margin:2px 5px 0 25px;
-    font-size:40px;
-    color:#444;
-    cursor:pointer;
-}
-
-.xs-youtube-start-button-wrapper:hover {
+.youtube-start-button:hover {
     color:#888;
 }
 
 .youtube-player-wrapper iframe {
-    margin:5px 0 10px 0;
+    margin:15px 0;
+}
+
+.youtube-start-button {
+    width:85px;
+    height:47px;
+    margin:15px 0;
+    padding:15px 0 0 0;
+    background:#d10101;
+    text-align:center;
+    cursor:pointer;
+    border-radius:15px;
+}
+
+.youtube-start-button-text {
+    display:inline-block;
+    font-family:"Montserrat", Arial, sans-serif;
 }
 
 .preview-published {
@@ -1559,38 +1431,10 @@ button {
     }
 }
 
-@media (min-width:768px) and (max-width:800px) {
+@media (min-width:768px) and (max-width:991px) {
     .iframe-size {
-        width:580px;
-        height:359px;
-    }
-}
-
-@media (min-width:801px) and (max-width:850px) {
-    .iframe-size {
-        width:580px;
-        height:359px;
-    }
-}
-
-@media (min-width:851px) and (max-width:900px) {
-    .iframe-size {
-        width:580px;
-        height:359px;
-    }
-}
-
-@media (min-width:901px) and (max-width:950px) {
-    .iframe-size {
-        width:580px;
-        height:359px;
-    }
-}
-
-@media (min-width:951px) and (max-width:991px) {
-    .iframe-size {
-        width:580px;
-        height:359px;
+        width:540px;
+        height:333px;
     }
 }
 
@@ -1603,16 +1447,15 @@ button {
 
 @media (min-width:1080px) and (max-width:1199px) {
     .iframe-size {
-        width:540px;
-        height:334px;
+        width:510px;
+        height:316px;
     }
 }
 
 @media (min-width:1200px) {
     .iframe-size {
-        width:590px;
-        height:365px;
-        margin:0;
+        width:540px;
+        height:334px;
     }
 }
 
