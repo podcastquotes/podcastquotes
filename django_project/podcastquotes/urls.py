@@ -40,18 +40,6 @@ urlpatterns = patterns('',
     
     url(r'^podcasts/(?P<pk>\d+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
     
-    url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
-    
-    url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
-    
-    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
-    
-    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
-    
-    url(r'^episodes/(?P<pk>\d+)/delete/$', EpisodeDeleteView.as_view(), name='episode_delete'),  
-    
-    url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
-    
     # this view is useful for Mitch to check episodes in a podcast rss feed
     url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
     
@@ -65,6 +53,18 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<podcast_id>\d+)/update_feed/$', 
         'quotes_app.views.podcast.update_feed', 
         name='update_feed',),
+    
+    url(r'^podcasts/(?P<pk>\d+)/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
+    
+    url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
+    
+    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
+    
+    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
+    
+    url(r'^episodes/(?P<pk>\d+)/delete/$', EpisodeDeleteView.as_view(), name='episode_delete'),  
+    
+    url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
     url(r'^quotes/create/$', QuoteCreateView.as_view(), name='quote_create'),
     

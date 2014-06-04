@@ -129,6 +129,9 @@ class Episode(models.Model):
     donation_recipient_about = models.TextField(blank=True)
     # keywords = ... I think these are available in RSS feed episode data
     
+    class Meta:
+        ordering = ['-publication_date']
+    
     def video_id(self):
         """
         Examples:
