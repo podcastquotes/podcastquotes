@@ -86,6 +86,7 @@ class Podcast(models.Model):
     facebook_url = models.URLField(blank=True)
     instagram_url = models.URLField(blank=True)
     google_plus_url = models.URLField(blank=True)
+    tumblr_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
     
     def get_absolute_url(self):

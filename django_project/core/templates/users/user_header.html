@@ -1,68 +1,10 @@
-<div class="pq-user-header">
-  
-    {% if person.userprofile.image %}
-        <div class="pq-podcast-profile-picture">
-            <a href="{{ person.userprofile.get_absolute_url }}">
-                <img src="/media/{{ person.userprofile.image }}" />
-            </a>
-        </div><!-- /.pq-podcast-profile-picture -->
-    {% endif %}
-  
-    <div class="pq-podcast-info">
-  
-        <div class="pq-podcast-title dark-link">
-            <a href="{{ person.userprofile.get_absolute_url }}">
-                {{ person }}
-            </a>
-        </div><!-- /.pq-podcast-title -->
-        
-        <div class="pq-podcast-buttons">
-            
-            <button class="pq-podcast-button pq-podcast-share-button" 
-                    style="margin-left:0;padding-left:0;" 
-                    data-toggle="modal" 
-                    data-target="#personShareModal">
-                share
-            </button>
-            
-            <!-- Modal - Share Podcast -->
-            <div class="modal fade" id="personShareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
-                        </div>
-                        <div class="modal-body">
-                            http://www.podcastquotes.com{{ person.userprofile.get_absolute_url }}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal fade -->
-                
-            {% if person.userprofile.donate_url %}
-                <div class="pq-podcast-button text-orange">
-                    <a href="{{ person.userprofile.donate_url }}" target="_blank">
-                        donate
-                    </a>
-                </div>
-            {% endif %}
-                
-            {% if user == person or user.is_superuser %}
-                <div class="pq-podcast-button text-purple">
-                    <a href="{{ person.username.get_absolute_url }}edit/">
-                        edit
-                    </a>
-                </div>
-            {% endif %}
-            
-        </div><!-- /.pq-podcast-buttons -->
-        
-        <div class="pq-podcast-header-social-icons">
-            {% if person.userprofile.hompage %}
+<div class="pq-podcast-header">
+    
+    {% include 'breadcrumb.html' %}
+    
+    {% if person.userprofile or person.userprofile.twitter_url or person.userprofile.facebook_url or person.userprofile.instagram_url or person.userprofile.google_plus_url or person.userprofile.tumblr_url or person.userprofile.youtube_url %}
+        <div class="pq-podcast-header-social-icons dark-link">
+            {% if person.userprofile.homepage %}
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ person.userprofile.homepage }}" target="_blank">
                         <i class="fa fa-home"></i>
@@ -97,6 +39,13 @@
                     </a>
                 </span>
             {% endif %}
+            {% if person.userprofile.tumblr_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ person.userprofile.tumblr_url }}" target="_blank">
+                        <i class="fa fa-tumblr-square"></i>
+                    </a>
+                </span>
+            {% endif %}
             {% if person.userprofile.youtube_url %}
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ person.userprofile.youtube_url }}" target="_blank">
@@ -104,20 +53,79 @@
                     </a>
                 </span>
             {% endif %}
-        </div><!-- /.pq-podcast-header-info-left -->
+        </div><!-- /.pq-podcast-header-social-icons -->
+    {% endif %}
+    
+    <div class="pq-podcast-profile">
+    
+        {% if person.userprofile.image %}
+            <div class="pq-podcast-profile-picture">
+                <a href="/people/{{ person.userprofile.id }}">
+                  <img src="/media/{{ person.userprofile.image }}" />
+                </a>
+            </div><!-- /.pq-podcast-profile-picture -->
+        {% endif %}
         
-        <div class="pq-podcast-header-info-left" style="margin-bottom:0">
-            <div class="pq-podcast-header-info-inline">
-                <strong><small>Karma: {{ person.userprofile.karma_total }}</small></strong>
+        <div class="pq-podcast-profile-text">
+  
+            <div class="pq-podcast-title dark-link">
+                <a href="{{ person.userprofile.get_absolute_url }}">
+                    {{ person.username }}
+                </a>
+            </div><!-- /.pq-podcast-title -->
+            
+            <div class="pq-podcast-subtitle">
+                {{ person.userprofile.about }}
             </div>
-            <div class="pq-podcast-header-info-inline" style="margin-right:0;padding-right:0;">
-                <strong><small>Quotes: {{ person.userprofile.all_added_quotes_count }}</small></strong>
+            
+        </div><!-- /.pq-podcast-profile-text -->
+        
+            <div class="pq-podcast-buttons">
+                
+                <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#personShareModal{{ person.userprofile.id }}">
+                    share
+                </button>
+            
+                <!-- Modal - Share Podcast -->
+                <div class="modal fade" id="personShareModal{{ person.userprofile.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                            </div>
+                            <div class="modal-body">
+                                http://www.podcastquotes.com{{ person.userprofile.get_absolute_url }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal fade -->
+                
+                {% if person.userprofile.donate_url %}
+                    <div class="pq-podcast-button text-orange">
+                        <a href="{{ person.userprofile.donate_url }}" target="_blank">
+                            support
+                        </a>
+                    </div>
+                {% endif %}
+                    
+                {% if user == person or user.is_superuser %}
+                    <div class="pq-podcast-button text-purple">
+                        <a href="{{ person.userprofile.get_absolute_url }}edit/">
+                            edit profile
+                        </a>
+                    </div>
+                {% endif %}
+                    
+            </div><!-- /.pq-podcast-buttons -->
+        
+            <div class="pq-podcast-karma">
+                Karma: {{ person.userprofile.karma_total }} &nbsp &nbsp &nbsp Quotes: {{ person.userprofile.all_added_quotes_count }}
             </div>
-        </div><!-- /.pq-podcast-header-info-left -->
+        
+    </div><!-- /.pq-podcast-profile -->
 
-    </div><!-- /.pq-podcast-info -->
-
-    <div class="clearfix">
-    </div>
-
-</div><!-- /.pq-user-header -->
+</div><!-- /.pq-podcast-header -->

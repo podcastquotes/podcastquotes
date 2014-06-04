@@ -3,7 +3,7 @@
 
 <div class="pq-quote">
     
-    <div class="pq-quote-buttons hidden-xs">
+    <div class="pq-quote-buttons">
         
         <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
             {% csrf_token %}
@@ -41,49 +41,50 @@
             {% endif %}
         </form>
         
-    </div><!-- /.pq-quote-buttons hidden-xs -->
+    </div><!-- /.pq-quote-buttons -->
     
     <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
-        {% if quote.summary %}
-            <div class="pq-quote-title dark-link">
+        <div class="pq-quote-title dark-link" {% if is_episode_page %}style="margin-bottom:15px"{% endif %}>
+            {% if quote.summary %}
                 <a href="{{ quote.get_absolute_url }}">{{ quote.summary }}</a>
-            </div>
-        {% endif %}
+            {% elif not quote.summary %}
+                <a href="{{ quote.get_absolute_url }}">{{ quote.converted_time_begins }} to {{ quote.converted_time_ends }} {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %} from '{{ quote.episode.title }}'{% endif %} {% if is_home_page or is_user_page or is_quote_page %} on '{{ quote.episode.podcast.title }}'{% endif %}</a>
+            {% endif %}
+        </div>
         
-        {% if is_episode_page or is_quote_page %}
+        {% if is_episode_page %}
         {% else %}
-            {% if is_home_page or is_user_page %}
+            {% if is_home_page or is_quote_page or is_user_page %}
                 {% if quote.episode.podcast.image %}
-                    <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                        <div class="pq-quote-profile-picture">
+                    <div class="pq-quote-profile-picture">
+                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
                             <img src="/media/{{ quote.episode.podcast.image }}">
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 {% endif %}
             {% endif %}
         
             <div class="pq-quote-subtitle gray-link">
-                {% if is_home_page or is_user_page %}
+                {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title }}
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:36 }}
                         </a>
                         <br>
                     {% endif %}
                 {% endif %}
                 
-                {% if is_home_page or is_podcast_page or is_user_page %}
+                {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list' pk=quote.episode.id query_filter='hot' %}">
-                            <span style="padding-right:1px">Episode:</span> {{ quote.episode.title }}
+                            <span style="padding-right:1px">Episode:</span> {{ quote.episode.title|truncatechars:36 }}
                         </a>
-                        <br>
                     {% endif %}
                 {% endif %}
             </div>
         {% endif %}
         
-        <div class="youtube-start-button-wrapper hidden-xs" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+        <div class="youtube-start-button-wrapper" id="youtube-start-button-wrapper-{{ forloop.counter }}">
             {% if quote.time_quote_begins and quote.episode.youtube_url %}    
                 <div class="youtube-start-button fa fa-play" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
                     <div class="youtube-start-button-text" id="{{ forloop.counter }}">
@@ -182,7 +183,13 @@
           });
         </script>
     
-        <div class="pq-quote-date">
+        {% if is_quote_page %}
+            <div class="pq-quote-posted-by blue-link">
+                posted 4 hours ago by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
+            </div>
+        {% endif %}
+
+        <div class="pq-quote-date gray-link">
             <a href="{{ quote.get_absolute_url }}">
                 {% if is_home_page or is_podcast_page %} 
                     {{ quote.episode.publication_date|date:'M d, Y' }} -
@@ -193,66 +200,61 @@
                 {% endif %}
             </a>
         </div>
-    
-        {% if is_quote_page %}
-            <div class="pq-quote-posted-by blue-link">
-                posted 4 hours ago by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
-            </div>
-        {% endif %}
-
   
         <div class="pq-quote-bottom-buttons">
         
-        <!-- Button trigger modal -->
-        
-        <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
-            share
-        </button>
-        
-        
-        <!-- Modal -->
-        <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
-                    </div>
-                    <div class="modal-body">
-                        http://www.podcastquotes.com{{ quote.get_absolute_url }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- Button trigger modal -->
+            
+            <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
+                share
+            </button>
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
+                        </div>
+                        <div class="modal-body">
+                            http://www.podcastquotes.com{{ quote.get_absolute_url }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- /.modal fade -->
-          
-        {% if quote.episode.podcast.donate_url or quote.episode.donate_url %}
-            <div class="pq-quote-bottom-button text-orange">
-                <a href=
-                "{% if quote.episode.donate_url %}
-                    {{ quote.episode.donate_url }}
-                {% else %}
-                    {{ quote.episode.podcast.donate_url }}
-                {% endif %}"
-                target="_blank">
-                    donate
-                </a>
-            </div>
-        {% endif %}
-        
-        {% if request.user == quote.submitted_by or user.is_superuser %}
-            <div class="pq-quote-bottom-button text-purple">
-                <a href="{{ quote.get_absolute_url }}edit/">
-                    edit quote
-                </a>
-            </div>
-        {% endif %}
+            </div><!-- /.modal fade -->
+            
+            {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
+                {% if quote.episode.podcast.donate_url or quote.episode.donate_url %}
+                    <div class="pq-quote-bottom-button text-orange">
+                        <a href=
+                        "{% if quote.episode.donate_url %}
+                            {{ quote.episode.donate_url }}
+                        {% else %}
+                            {{ quote.episode.podcast.donate_url }}
+                        {% endif %}"
+                        target="_blank">
+                            support
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+            
+            {% if request.user == quote.submitted_by or user.is_superuser %}
+                <div class="pq-quote-bottom-button text-purple">
+                    <a href="{{ quote.get_absolute_url }}edit/">
+                        edit quote
+                    </a>
+                </div>
+            {% endif %}
 
-        <div class="clearfix">
-        </div>
-          
+            <div class="clearfix">
+            </div>
+              
         </div><!-- /.pq-quote-bottom -->
   
     </div><!-- /.pq-quote-text-wrapper --> 
@@ -260,4 +262,4 @@
     <div class="clearfix">
     </div>
 
-</div><!-- /.pq-quote hidden-xs visible-sm visible-md visible-lg -->
+</div><!-- /.pq-quote -->

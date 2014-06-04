@@ -67,14 +67,10 @@ THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MIT
 
 body {
     margin:0 auto;
-    background-color:#dfdbda;
+    background-color:#ddd;
     font-family:"Open Sans", Arial, sans-serif;
     font-size:16px;
     color:#222;
-}
-
-.dropdown-toggle {
-    text-align:left;
 }
 
 .width-100percent {
@@ -122,6 +118,14 @@ body {
 
 .color-edit:hover {
     background-color:#E177A7;
+}
+
+.bright-link a {
+    color:#f7f7f7;
+}
+
+.bright-link a:hover {
+    color:#aaa;
 }
 
 .dark-link a {
@@ -188,7 +192,7 @@ body {
 }
 
 .btn-danger {
-    color:#eee;
+    color:#f7f7f7;
 }
 
 .bg-yellow {
@@ -276,44 +280,49 @@ a {
 }
 
 .navbar {
-        width:100%;
-        min-height:32px;
-        background-color:#e7e7e7;
-        margin:0 0 25px 0;
-        border-bottom:1px solid #777;
-        border-radius:0;
-        color:#222;
-        z-index:100;
+    width:100%;
+    height:85px;
+    padding-top:20px;
+    background-color:#2A323F;
+    border-bottom:1px solid #333;
+    margin:0 0 20px 0;
+    border-radius:0;
+    color:#f7f7f7;
+    z-index:100;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color:#2A323F;
+    text-decoration:underline;
+    color:#bbb;
 }
 
 .navbar-default .navbar-nav > li > a {
     margin-top:-3px;
-    color:#333;
-    font-weight:bold;
+    color:#f7f7f7;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-    color:#777;
+    color:#bbb;
 }
 
 .navbar-default .navbar-toggle {
-    border-color:#999;
+    margin-top:4px;
+    border:1px solid #fff;
+    margin-bottom:25px;
 }
 
-.navbar-default .navbar-toggle .icon-bar {
-    background-color:#555;
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color:#eee;
 }
 
-.navbar-default .navbar-collapse {
-    border-color:#999;
+.navbar-default, .navbar-collapse, .navbar-form {
+    border-top:#777;
 }
 
-@media (max-width:767px) {
-    .navbar-default .navbar-form {
-        border-top:0px solid #777;
-        border-bottom:1px solid #777;
-        box-shadow:0 0 0 0;
-    }
+.navbar-collapse {
+    background-color:#2A323F;
 }
 
 .navbar-form {
@@ -330,13 +339,10 @@ a {
     .pq-navbar-dropdown-1 {
         padding:11px 20px;
         margin:0 -3px 0 0;
-        font-weight:bold;
         cursor:pointer;
-        border-right:1px solid #ccc;
     }
 
     .pq-navbar-dropdown-1 {
-        color:#222;
         text-decoration:none;
     }
     
@@ -354,13 +360,10 @@ a {
 @media (min-width:768px) {
     .pq-navbar-dropdown-2 {
         padding:11px 20px;
-        border-right:1px solid #ccc;
-        font-weight:bold;
         cursor:pointer;
     }
 
     .pq-navbar-dropdown-2 {
-        color:#222;
         text-decoration:none;
     }
     
@@ -376,26 +379,25 @@ a {
 }
 
 .pq-brand {
-    margin:5px 40px 6px 0;
+    margin:6px 10px 5px 0;
     float:left;
     font-size:22px;
 }
 
 .pq-brand a {
-    color:#222;
     text-decoration:none;
+    color:#f7f7f7;
+    font-weight:none;
 }
 
 .pq-brand a:hover {
-    color:#777;
+    color:#bbb;
 }
 
 .pq-login {
     float:right;   
     margin:0 30px 0 0;
     font-size:16px;
-    font-weight:bold;
-    color:#333;
 }
 
 /******************************
@@ -407,7 +409,7 @@ a {
 @media (max-width:550px) {
     .pq-container {
         margin:0 auto;
-        padding:0 20px;
+        padding:0 10px;
     }
 }
 
@@ -463,14 +465,15 @@ a {
     }
 }
 
-@media (max-width:550px) {
+@media (max-width:767px) {
     .pq-breadcrumb {
-        display:none;
+        float:left;
+        margin:0 0 10px 0;
         font-size:13px;
     }
 }
 
-@media (min-width:551px) {
+@media (min-width:768px) {
     .pq-breadcrumb {
         float:left;
         margin:0 0 25px 0;
@@ -522,10 +525,10 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:5px 10px 10px 0;
+    margin:10px 10px 20px 0;
     padding:3px 10px;
     background:#fff;
-    border:1px solid #777;
+    border:1px solid #aaa;
     border-radius:3px;
     color:#B25900;
     font-size:16px;
@@ -539,9 +542,9 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#eee;
-    margin:5px 10px 0 0;
+    margin:10px 10px 20px 0;
     padding:3px 10px;
-    border:1px solid #777;
+    border:1px solid #aaa;
     border-radius:3px;
     color:#222;
     font-size:16px;
@@ -624,7 +627,7 @@ a {
 */
 
 .dropdown-menu-active {
-    background-color:#ddd;
+    background-color:#222;
 }
 
 @media (max-width:767px) {
@@ -659,17 +662,36 @@ a {
 }
 
 .pq-podcast-header {
-    padding:20px 15px 15px 15px;
     margin:0 0 10px 0;
     background:#fff;
     font-size:16px;
+    border:1px solid #ccc;
 }
 
-.pq-podcast-profile {
-    clear:both;
+@media (max-width:549px) {
+    .pq-podcast-header {
+        padding:20px 15px;
+    }
 }
 
-@media (max-width:767px) {
+@media (min-width:550px) {
+    .pq-podcast-header {
+        padding:20px;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-podcast-profile {
+    }
+}
+
+@media (min-width:550px) {
+    .pq-podcast-profile {
+        clear:both;
+    }
+}
+
+@media (max-width:549px) {
     .pq-podcast-profile-picture {
         clear:left;
         float:left;
@@ -677,7 +699,7 @@ a {
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:550px) {
     .pq-podcast-profile-picture {
         clear:left;
         float:left;
@@ -701,7 +723,7 @@ a {
     color:#222;
 }
 
-@media (max-width:767px) {
+@media (max-width:549px) {
     .pq-podcast-title {
         clear:left;
         margin:0 0 10px 0;
@@ -710,26 +732,14 @@ a {
 
 .pq-podcast-subtitle {
     color:#6b6b6b;
-    font-size:14px;
+    font-size:13px;
     font-style:italic;
+    margin:0 0 15px 0;
 }
 
-@media (max-width:767px) {
-    .pq-episode-finder {
-        clear:both;
-        margin:15px 0;
-        font-weight:bold;
-        color:#222;
-    }
-}
-
-@media (min-width:768px) {
-    .pq-episode-finder {
-        clear:both;
-        overflow:hidden;
-        margin:15px 0;
-        font-weight:bold;
-        color:#222;
+@media (max-width:549px) {
+    .pq-podcast-subtitle {
+        margin:0 0 10px 0;
     }
 }
 
@@ -739,52 +749,81 @@ a {
     margin:0 0 20px 0;
 }
 
-.pq-podcast-header-social-icons {
-    float:right;
-    margin:-7px 0 10px 0;
+@media (max-width:767px) {
+    .pq-podcast-header-social-icons {
+        clear:left;
+        margin:0 0 15px 0;
+    }
 }
 
-.pq-podcast-header-social-icon {
-    margin:0 5px 0 0;
-    font-size:22px;
+@media (min-width:768px) {
+    .pq-podcast-header-social-icons {
+        float:right;
+        margin:-7px 0 10px 0;
+    }
 }
 
-.pq-podcast-header-social-icon a {
-    color:#333;
+@media (max-width:767px) {
+    .pq-podcast-header-social-icon {
+        margin:0 5px 0 0;
+        font-size:22px;
+    }
 }
 
-.pq-podcast-header-social-icon a:hover {
-    color:#777;
+@media (min-width:768px) {
+    .pq-podcast-header-social-icon {
+        margin:0 0 0 5px;
+        font-size:22px;
+    }
 }
 
 .pq-podcast-description {
     clear:both;
-    margin:0 0 15px 0;
+    margin:0 0 20px 0;
     font-size:13px;
 }
 
-.pq-podcast-karma {
-    font-size:13px;
-    font-weight:bold;
+@media (max-width:549px) {
+    .pq-podcast-description {
+        margin:0 0 10px 0;
+    }
 }
 
-@media (max-width:767px) {
+@media (max-width:549px) {
+    .pq-podcast-karma {
+        clear:both;
+        font-size:13px;
+        font-weight:bold;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-podcast-karma {
+        clear:left;
+        font-size:13px;
+        font-weight:bold;
+    }
+}
+
+@media (max-width:549px) {
     .pq-podcast-buttons {
+        clear:both;
         float:left;
         font-size:13px;
         margin:0 0 10px 0;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:550px) {
     .pq-podcast-buttons {
+        clear:both;
         float:right;
         margin:0 0 15px 0;
         font-size:13px;
     }
 }
 
-@media (max-width:767px) {
+@media (max-width:549px) {
     .pq-podcast-button {
         float:left;
         margin:0 20px 0 0;
@@ -795,7 +834,7 @@ a {
     }
 }
     
-@media (min-width:768px) {
+@media (min-width:550px) {
     .pq-podcast-button {
         display:inline-block;
         margin:0 0 0 20px;
@@ -827,25 +866,64 @@ a {
     font-size:18px;
 }
 
-.pq-episode-selector {
-    height:40px;
-    line-height:40px;
-    border:1px solid #aaa;
-    font-size:18px;
+.pq-episode-title {
+    display:inline-block;
+    margin:0 10px 10px 0;
+    font-size:20px;
+    font-weight:bold;
 }
 
-.pq-episode-header {
-    padding:0 0 5px 0;
-    margin:0 0 25px 0;
-    border-bottom:1px dotted #bbb;
-    font-size:16px;
+@media (max-width:549px) {
+    .pq-episode-finder {
+        font-weight:bold;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-episode-finder {
+        display:inline-block;
+        font-weight:bold;
+        margin:0;
+    }
+}
+
+@media(min-width:550px) {
+    .pq-hidden-xs {
+        display:none;
+    }
+}
+
+@media(max-width:549px) {
+    .pq-hidden-not-xs {
+        display:none;
+    }
+}
+
+.pq-episode-selector {
+    height:40px;
+    padding:0 5px;
+    line-height:40px;
+    border:1px solid #aaa;
+    font-size:20px;
 }
 
 .pq-user-header {
-    padding:0 0 5px 0;
-    margin:0 0 20px 0;
-    border-bottom:1px dotted #bbb;
+    margin:0 0 10px 0;
+    background:#fff;
     font-size:16px;
+    border:1px solid #ccc;
+}
+
+@media (max-width:549px) {
+    .pq-user-header {
+        padding:20px 15px;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-user-header {
+        padding:20px;
+    }
 }
 
 .pq-episode-spacer {
@@ -864,14 +942,25 @@ a {
 
 .pq-quote {
     clear:both;
-    padding:15px;
+    margin:0 0 20px 0;
     background:#fff;
-    border-bottom:3px dotted #ddd;
+    border:1px solid #ccc;
+}
+
+@media (max-width:549px) {
+    .pq-quote {
+        padding:15px;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-quote {
+        padding:15px 20px;
+    }
 }
 
 .pq-quote-header {
-    padding:0 0 5px 0;
-    border-bottom:1px dotted #bbb;
+    padding:0 0 10px 0;
     font-size:16px;
 }
 
@@ -890,6 +979,7 @@ a {
         max-width:530px;
         clear:left;
         font-size:14px;
+        margin-bottom:5px;
     }
 }
 
@@ -899,6 +989,7 @@ a {
         clear:left;
         font-size:14px;
         overflow:hidden;
+        margin-bottom:5px;
     }
 }
 
@@ -908,19 +999,23 @@ a {
     color:#bbb;
 }
 
+.open:focus {
+    background-color:#f00;
+}
+
 .pq-quote-title {
     max-width:560px;
-    margin:0 0 5px 0;
+    margin:0 0 10px 0;
     overflow:hidden;
     font-weight:bold;
-    font-size:18px;
+    font-size:19px;
 }
 
 .pq-quote-profile-picture {
     clear:left;
-    display:inline-block;
+    float:left;
     vertical-align:top;
-    margin:3px 5px 0 0;
+    margin:3px 10px 0 0;
 }
 
 .pq-quote-profile-picture img {
@@ -929,7 +1024,7 @@ a {
 }
 
 .pq-quote-subtitle {
-    display:inline-block;
+    margin:0 0 15px 0;
     vertical-align:top;
     font-size:13px;
     font-style:italic;
@@ -972,13 +1067,13 @@ a {
     padding:20px 0 0 0;
 }
 
-@media (max-width:767px) {
+@media (max-width:549px) {
     .pq-quote-buttons {
         display:none;
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:550px) {
     .pq-quote-buttons {
         clear:right;
         float:right;
@@ -992,26 +1087,20 @@ button {
 
 .pq-quote-upvote {
     text-align:center;
-    width:46px;
-    padding:3px 0 3px 0;
-    border:1px solid #aaa;
-    border-radius:15px;
-    font-size:18px;
+    width:60px;
+    padding:5px 0;
+    background:#ddd;
+    border-radius:10px;
+    font-size:20px;
     color:#444;
-}
-
-.pq-quote-upvote-active {
-    background-color:#FFB395;
-}
-
-.pq-quote-downvote-active {
-    background-color:#CCCCFF;
+    box-shadow:none;
+    border:none;
 }
 
 .pq-quote-vote-total {
     text-align:center;
-    width:46px;
-    margin:1px 0;
+    width:60px;
+    margin:5px 0;
     font-size:14px;
     color:#444;
 }
@@ -1022,38 +1111,18 @@ button {
 
 .pq-quote-downvote {
     text-align:center;
-    width:46px;
-    padding:3px 0 3px 3px;
-    border:1px solid #aaa;
-    border-radius:15px;
-    font-size:18px;
-    color:#444;
-}
-
-.pq-quote-comments {
-    clear:right;
-    float:right;
-    text-align:center;
-    width:50px;
-    margin:15px 0 0 0;
+    width:60px;
     padding:5px 0;
-    border:1px solid #aaa;
-    border-radius:15px;
+    margin:0 0 15px 0;
+    background:#ddd;
+    border-radius:10px;
     font-size:20px;
     color:#444;
+    box-shadow:none;
+    border:none;
 }
 
-.pq-quote-comments-total {
-    clear:right;
-    float:right;
-    text-align:center;
-    width:50px;
-    margin:7px 0 20px 0;
-    font-size:15px;
-    color:#444;
-}
-
-@media (max-width:767px) {
+@media (max-width:549px) {
     .pq-quote-xs-buttons {
         float:left;
         clear:left;
@@ -1061,21 +1130,23 @@ button {
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:550px) {
     .pq-quote-xs-buttons {
         display:none;
     }
 }
 
 .pq-quote-xs-upvote {
-    display:inline-block;
+    display:inline-block;    
     text-align:center;
-    width:46px;
-    padding:3px 0 3px 2px;
-    border:1px solid #aaa;
-    border-radius:15px;
+    width:60px;
+    padding:5px 0;
+    background:#ddd;
+    border-radius:10px;
     font-size:20px;
     color:#444;
+    box-shadow:none;
+    border:none;
 }
 
 .pq-quote-xs-vote-total {
@@ -1090,69 +1161,51 @@ button {
 .pq-quote-xs-downvote {
     display:inline-block;
     text-align:center;
-    width:46px;
-    padding:3px 0 3px 2px;
-    border:1px solid #aaa;
-    border-radius:15px;
+    width:60px;
+    padding:5px 0;
+    background:#ddd;
+    border-radius:10px;
     font-size:20px;
     color:#444;
+    box-shadow:none;
+    border:none;
 }
 
-@media (max-width:499px) {
-    .pq-quote-date {
-        display:none;
-    }
+.pq-quote-upvote-active {
+    background-color:#FFB395;
 }
 
-@media (min-width:500px) {
-    .pq-quote-date {
-        clear:left;
-        margin:0 0 10px 0;
-        font-size:14px;
-        color:#777;
-    }
-}
-
-.pq-quote-date a {
-    color:#777;
-}
-
-.pq-quote-date a:hover {
-    color:#444;
+.pq-quote-downvote-active {
+    background-color:#AAAAE7;
 }
 
 .pq-quote-text {
     clear:left;
     display:none;
-    max-width:550px;
-    font-size:14px;
+    max-width:510px;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        max-width:550px;
-        font-size:14px;
+        max-width:510px;
     }
 }
 
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        max-width:550px;
-        font-size:14px;
+        max-width:510px;
     }
 }
 
 .pq-show-more {
     margin:0 0 10px 0;
-    font-size:14px;
     cursor:pointer;
     color:#428bca;
 }
 
 @media (max-width:991px) {
     .pq-show-more {
-        font-size:14px;
     }
 }
 
@@ -1163,7 +1216,6 @@ button {
 .pq-show-less {
     display:none;
     margin:0 0 10px 0;
-    font-size:14px;
     cursor:pointer;
     color:#428bca;
 }
@@ -1172,19 +1224,53 @@ button {
    color:#226b9a;
 }
 
-.pq-quote-bottom {
-    clear:left;
-    margin:0 0 15px 0;
+.pq-quote-date {
+    clear:both;
+    float:left;
+    font-size:13px;
+    color:#777;
+}
+
+@media (max-width:549px) {
+    .pq-quote-date {
+        margin-bottom:10px;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-quote-bottom-buttons {
+        clear:left;
+        margin:-1px 0 0 0;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-quote-bottom-buttons {
+        float:right;
+        margin:-1px 0 0 0;
+    }
 }
 
 .pq-quote-bottom-button {
-    float:left;
-    margin:0 25px 15px 0;
     padding:0;
     background-color:#fcfcfc;
     border:none;
-    font-size:14px;
+    font-size:13px;
     font-weight:bold;
+}
+
+@media (max-width:549px) {
+    .pq-quote-bottom-button {
+        float:left;
+        margin:0 25px 0 0;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-quote-bottom-button {
+        float:left;
+        margin:0 0 0 25px;
+    }
 }
 
 .pq-quote-bottom-button:hover {
@@ -1244,12 +1330,9 @@ button {
     }
 }
 
-.pq-menu a {
-    color:#222;
-}
-
-.pq-menu a:hover {
-    color:#777;
+.pq-menu {
+    background:#fff;
+    border:1px solid #ccc;
 }
 
 @media (max-width:767px) {
@@ -1262,7 +1345,6 @@ button {
     .pq-menu {
         margin:0 0 20px 0;
         padding:10px 12px 20px 12px;
-        border:1px solid #bbb;
     }
 }
 
@@ -1285,7 +1367,7 @@ button {
 }
 
 .pq-menu hr {
-    border-top:1px solid #bbb;
+    border-top:1px solid #ccc;
     margin:-5px 0 0 0;
 }
 
@@ -1296,8 +1378,8 @@ button {
 }
 
 .pq-menu-option {
-    padding:15px 0;
-    border-bottom:1px solid #ddd;
+    padding:15px 5px 15px 0;
+    border-bottom:1px solid #e7e7e7;
 }
 
 /******************************
@@ -1308,8 +1390,8 @@ button {
 
 .youtube-start-button-wrapper {
     clear:left;
-    font-size:16px;
-    color:#fff;
+    font-size:14px;
+    color:#f7f7f7;
 }
 
 .youtube-start-button:hover {
@@ -1317,18 +1399,23 @@ button {
 }
 
 .youtube-player-wrapper iframe {
-    margin:15px 0;
+    margin:0 0 15px 0;
 }
 
 .youtube-start-button {
     width:85px;
-    height:47px;
-    margin:15px 0;
-    padding:15px 0 0 0;
-    background:#d10101;
+    height:40px;
+    margin:0 0 15px 0;
+    padding:13px 0 0 0;
+    background:#41a141;
     text-align:center;
     cursor:pointer;
-    border-radius:15px;
+    border-radius:10px;
+}
+
+.youtube-start-button:hover {
+    color:#f7f7f7;
+    background:#218121;
 }
 
 .youtube-start-button-text {
@@ -1363,92 +1450,92 @@ button {
 
 @media (max-width:300px) {
     .iframe-size {
-        width:190px;
-        height:117px;
+        width:200px;
+        height:123px;
     }
 }
 
 @media (min-width:301px) and (max-width:350px) {
     .iframe-size {
-        width:240px;
-        height:149px;
+        width:200px;
+        height:123px;
     }
 }
 
 @media (min-width:351px) and (max-width:400px) {
     .iframe-size {
-        width:290px;
-        height:183px;
+        width:220px;
+        height:136px;
     }
 }
 
 @media (min-width:401px) and (max-width:450px) {
     .iframe-size {
-        width:340px;
-        height:215px;
+        width:270px;
+        height:167px;
     }
 }
 
 @media (min-width:451px) and (max-width:500px) {
     .iframe-size {
-        width:390px;
-        height:241px;
+        width:320px;
+        height:196px;
     }
 }
 
 @media (min-width:501px) and (max-width:550px) {
     .iframe-size {
-        width:440px;
-        height:278px;
+        width:370px;
+        height:228px;
     }
 }
 
 @media (min-width:551px) and (max-width:600px) {
     .iframe-size {
-        width:490px;
-        height:309px;
+        width:370px;
+        height:228px;
     }
 }
 
 @media (min-width:601px) and (max-width:650px) {
     .iframe-size {
-        width:540px;
-        height:341px;
+        width:420px;
+        height:259px;
     }
 }
 
 @media (min-width:651px) and (max-width:700px) {
     .iframe-size {
-        width:590px;
-        height:365px;
+        width:450px;
+        height:278px;
     }
 }
 
 @media (min-width:701px) and (max-width:767px) {
     .iframe-size {
-        width:640px;
-        height:396px;
+        width:500px;
+        height:310px;
     }
 }
 
 @media (min-width:768px) and (max-width:991px) {
     .iframe-size {
-        width:540px;
-        height:333px;
+        width:500px;
+        height:310px;
     }
 }
 
 @media (min-width:992px) and (max-width:1079px) {
     .iframe-size {
-        width:510px;
-        height:316px;
+        width:490px;
+        height:304px;
     }
 }
 
 @media (min-width:1080px) and (max-width:1199px) {
     .iframe-size {
-        width:510px;
-        height:316px;
+        width:490px;
+        height:304px;
     }
 }
 
@@ -1466,36 +1553,19 @@ button {
 *******************************
 ******************************/
 
-@media (max-width:1219px) {
-    .pq-footer {
-        background-color:#eee;
-        padding:15px 0;
-        margin:80px 0 0 0;
-        border-top:1px solid #555;
-    }
-}
-
-@media (min-width:1220px) {
-    .pq-footer {
-        background-color:#ddd;
-        padding:15px 0;
-        margin:80px 0 0 0;
-        border-top:1px solid #555;
-        border-right:1px solid #555;
-        border-left:1px solid #555;
-    }
-}
-
-.pq-footer a {
-    color:#222;
+.pq-footer {
+    background-color:#2A323F;
+    color:#f7f7f7;
+    padding:25px 0;
+    margin:25px 0 0 0;
+    border-top:1px solid #333;
 }
 
 @media (max-width:991px) {
     .pq-footer-brand {
         float:left;
         margin:0 30px 5px 0;
-        font-size:24px;
-        font-weight:bold;
+        font-size:22px;
     }
 }
 
@@ -1503,18 +1573,17 @@ button {
     .pq-footer-brand {
         float:left;
         margin:0 30px 0 0;
-        font-size:24px;
-        font-weight:bold;
+        font-size:22px;
     }
 }
 
 .pq-footer-brand a {
-    color:#222;
+    color:#f7f7f7;
     text-decoration:none;
 }
 
 .pq-footer-brand a:hover {
-    color:#555;
+    color:#aaa;
 }
 
 @media (max-width:991px) {
@@ -1522,7 +1591,6 @@ button {
         float:left;
         margin:7px 15px 0 7px;
         font-size:26px;
-        color:#222;
     }
 }
 
@@ -1531,7 +1599,6 @@ button {
         float:right;
         margin:-2px 0 0 20px;
         font-size:26px;
-        color:#222;
     }
 }
 
@@ -1541,8 +1608,6 @@ button {
         margin:0 5px;
         padding:5px 0 5px 0;
         font-size:16px;
-        font-weight:bold;
-        color:#222;
     }
 }
 
@@ -1552,8 +1617,6 @@ button {
         margin:0 15px;
         padding:5px 0 0 0;
         font-size:16px;
-        font-weight:bold;
-        color:#222;
     }
 }
 
@@ -1568,7 +1631,7 @@ button {
     margin:10px 0 25px 0;
     padding:15px 15px 20px 15px;
     background-color:#f7f7f7;
-    border:1px solid #aaa;
+    border:1px solid #bbb;
 }
 
 .episode_selector {
@@ -1656,7 +1719,7 @@ button {
 
 .pq-form-buttons a,
 .pq-form-buttons a:hover {
-    color:#eee;
+    color:#f7f7f7;
 }
 
 .pq-form-divider {
@@ -1681,7 +1744,6 @@ button {
 .form-control {
     height:36px;
     vertical-align:top;
-    border:1px solid #555;
     color:#222;
     font-size:16px;
 }
@@ -1712,4 +1774,8 @@ button {
 .pq-form-chevron {
     float:right;
     color:#555;
+}
+
+.step-links {
+    font-weight:bold;
 }

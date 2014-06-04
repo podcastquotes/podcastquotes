@@ -25,6 +25,7 @@ class PodcastCreateForm(forms.ModelForm):
             'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'tumblr_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
@@ -43,6 +44,7 @@ class PodcastForm(forms.ModelForm):
             'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'tumblr_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
         
@@ -171,6 +173,7 @@ class UserProfileForm(forms.ModelForm):
         
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(*args, **kw)
+        print self.cleaned_data
         self.instance.username = self.cleaned_data.get('username')
         self.instance.first_name = self.cleaned_data.get('first_name')
         self.instance.last_name = self.cleaned_data.get('last_name')
