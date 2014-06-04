@@ -5,7 +5,7 @@ To deploy latest code:
 > fab -H hostname_of_webfaction deploy_latest
 """
 
-from fabric.api import task, run, env, settings, hide
+from fabric.api import task, run, env
 from fabric.context_managers import cd
 from fabtools.python import virtualenv
 from fabtools import require
@@ -108,16 +108,11 @@ def restart_server():
 
 @task
 def deploy_latest():
-        
-        with settings(
-            hide('warnings', 'running', 'stdout', 'stderr'),
-            warn_only=True
-        ):
-        pull_repository()
-        get_dependencies()
-        reconfigure_app()
-        migrate_database()
-        test_repo()
-        install_application()
-        restart_server()
-        
+    
+    pull_repository()
+    get_dependencies()
+    reconfigure_app()
+    migrate_database()
+    test_repo()
+    install_application()
+    restart_server()
