@@ -5,7 +5,7 @@
     {% include 'main_col_width.html' %}
 
       <div class="pq-title">
-          Add a Quote <i class="fa fa-comments-o"></i>
+          Add Quote <i class="fa fa-comments-o"></i>
       </div><!-- /.pq-title -->
       
       <div class="pq-form">
@@ -65,7 +65,7 @@
                 {% if form.text.errors %}
                     <p class="error">{{ form.text.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label-optional {% if form.text.errors %}error{% endif %}" for="text">Quote text<small>(optional)</small></label>
+                <label class="pq-form-label-optional {% if form.text.errors %}error{% endif %}" for="text">Quote text <small>(optional)</small></label>
                 {{ form.text }}
             </div><!-- /.pq-form-input -->
 
