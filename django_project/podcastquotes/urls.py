@@ -16,6 +16,10 @@ from quotes_app.views.vote import VoteFormView
 
 urlpatterns = patterns('',
     
+    url(r'^about/$', 'quotes_app.views.pq.about', name='about'),
+    
+    url(r'^claim-page/$', 'quotes_app.views.pq.claim_page', name='claim_page'),
+    
     url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     
     url(r'^people/(?P<slug>\w+)/edit/$', UserProfileUpdateView.as_view(), name='user_update'),

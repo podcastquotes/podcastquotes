@@ -11,11 +11,11 @@
             <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
             <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
             {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}" title="Please login to vote">
+                <button disabled class="pq-quote-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}" title="Please login to vote">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             {% else %}
-                <button class="pq-quote-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}">
+                <button class="pq-quote-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             {% endif %}
@@ -31,11 +31,11 @@
             <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
             <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
             {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}" title="Please login to vote">
+                <button disabled class="pq-quote-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-down"></i>
                 </button>
             {% else %}
-                <button class="pq-quote-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}">
+                <button class="pq-quote-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}">
                         <i class="fa fa-arrow-down"></i>
                 </button>
             {% endif %}
@@ -90,9 +90,9 @@
         
         <div class="youtube-start-button-wrapper" id="youtube-start-button-wrapper-{{ forloop.counter }}">
             {% if quote.time_quote_begins and quote.episode.youtube_url %}    
-                <div class="youtube-start-button fa fa-play" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
                     <div class="youtube-start-button-text" id="{{ forloop.counter }}">
-                        PLAY
+                        <small>&nbsp</small> PLAY
                     </div>
                 </div>
             {% endif %}
@@ -140,11 +140,11 @@
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
                 {% if not user.is_authenticated %}
-                    <button disabled class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
+                    <button disabled class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-up"></i>
                     </button>
                 {% else %}
-                    <button class="pq-quote-xs-upvote {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
+                    <button class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
                         <i class="fa fa-arrow-up"></i>
                     </button>
                 {% endif %}
@@ -160,11 +160,11 @@
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
                 {% if not user.is_authenticated %}
-                    <button disabled class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
+                    <button disabled class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-down"></i>
                     </button>
                 {% else %}
-                    <button class="pq-quote-xs-downvote {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
+                    <button class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
                         <i class="fa fa-arrow-down"></i>
                     </button>
                 {% endif %}
@@ -193,7 +193,7 @@
             </div>
         {% endif %}
 
-        <div class="pq-quote-date gray-link">
+        <div class="pq-quote-date dark-link">
             <a href="{{ quote.get_absolute_url }}">
                 {% if is_home_page or is_podcast_page %} 
                     {{ quote.episode.publication_date|date:'M d, Y' }} -
