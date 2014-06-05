@@ -16,9 +16,13 @@ from quotes_app.views.vote import VoteFormView
 
 urlpatterns = patterns('',
     
-    url(r'^about/$', 'quotes_app.views.pq.about', name='about'),
+    url(r'^about/$', 'quotes_app.views.pq.about_pq', name='about_pq'),
     
     url(r'^claim-page/$', 'quotes_app.views.pq.claim_page', name='claim_page'),
+    
+    url(r'^contact/$', 'quotes_app.views.pq.contact_pq', name='contact_pq'),
+    
+    url(r'^support-pq/$', 'quotes_app.views.pq.support_pq', name='support_pq'),
     
     url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     

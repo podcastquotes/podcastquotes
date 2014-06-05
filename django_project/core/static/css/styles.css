@@ -1834,6 +1834,15 @@ button {
     color:#111;
 }
 
+.pq-logo {
+    max-width:600px;
+    margin:0 0 10px 0;
+}
+
+.pq-logo img {
+    max-width:600px;
+}
+
 .pq-about {
     max-width:600px;
     padding:20px;
