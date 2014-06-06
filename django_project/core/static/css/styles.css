@@ -1583,7 +1583,7 @@ button {
 .pq-form-login {
     max-width:500px;
     margin:10px auto 25px auto;
-    padding:10px 15px 30px 15px;
+    padding:10px 15px;
     background-color:#eee;
     border:1px solid #aaa;
     border-radius:5px;
