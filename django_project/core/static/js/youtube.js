@@ -3,20 +3,14 @@ for (var i=1; i < 11; i++) {
     videoPlayers.push(document.getElementById("youtube-player-wrapper-" + i));
 }
 
-console.log(videoPlayers);
-
 var startButtons = []
 for (var i=1; i < 11; i++) {
     startButtons.push(document.getElementById("youtube-start-button-wrapper-" + i));
 }
 
-console.log(startButtons);
-
 for (var i=0; i < 10; i++) {
   
   var forloopCounter = i + 1;
-  
-  console.log("hello");
   
   if(startButtons[i].childNodes[1] == null) {continue;}
   
@@ -38,11 +32,15 @@ for (var i=0; i < 10; i++) {
     
     // The height and width of the iFrame should be the same as parent
     iframe.setAttribute("class", "iframe-size");
+    
+    iframe.setAttribute("allowfullscreen", '');
       
     // Replace the YouTube thumbnail with YouTube HTML5 Player
     this.style.display = 'none';
     
     videoPlayers[getPlayerId].appendChild(iframe);
+    
+    videoPlayers[getPlayerId].style.display = 'block';
  
   };
   
