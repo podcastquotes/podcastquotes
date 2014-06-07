@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     
     url(r'^about/$', 'quotes_app.views.pq.about_pq', name='about_pq'),
     
-    url(r'^claim-page/$', 'quotes_app.views.pq.claim_page', name='claim_page'),
+    url(r'^claim-your-page/$', 'quotes_app.views.pq.claim_page', name='claim_page'),
     
     url(r'^contact/$', 'quotes_app.views.pq.contact_pq', name='contact_pq'),
     

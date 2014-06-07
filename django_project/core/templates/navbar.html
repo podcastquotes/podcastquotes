@@ -13,11 +13,30 @@
                 <span class="icon-bar"></span>
               </button>
               <div class="pq-brand">
-                <a href="/">PodcastQuotes <i class="fa fa-rss rss-icon-disappear"></i></a>
+                <a href="/"><img class="pq-brand-img" src="/static/img/podcast-quotes-brand.png"></a>
               </div><!-- /.pq-brand -->
             </div><!-- /.navbar-header -->
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar1">
+              <!-- probably not include this, makes navbar too busy
+              <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a class="pq-navbar-dropdown-2 bright-link" href="{% url 'about_pq' %}">
+                            <small><small>About</small></small>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="pq-navbar-dropdown-2 bright-link" href="{% url 'claim_page' %}">
+                            <small><small>Claim Your Page</small></small>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="pq-navbar-dropdown-2 bright-link" href="{% url 'support_pq' %}">
+                            <small><small>Support PQ</small></small>
+                        </a>
+                    </li>
+              </ul>
+              -->
               <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     

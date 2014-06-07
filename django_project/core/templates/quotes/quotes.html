@@ -11,7 +11,7 @@
             <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
             <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
             {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}" title="Please login to vote">
+                <button onclick="location.href = '/accounts/login/';" class="pq-quote-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-upvote-{{ quote.id }}" title="Please login to vote">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             {% else %}
@@ -31,7 +31,7 @@
             <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
             <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
             {% if not user.is_authenticated %}
-                <button disabled class="pq-quote-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}" title="Please login to vote">
+                <button onclick="location.href = '/accounts/login/';" class="pq-quote-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-downvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-down"></i>
                 </button>
             {% else %}
@@ -140,7 +140,7 @@
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
                 {% if not user.is_authenticated %}
-                    <button disabled class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
+                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-up"></i>
                     </button>
                 {% else %}
@@ -160,7 +160,7 @@
                 <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
                 <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
                 {% if not user.is_authenticated %}
-                    <button disabled class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
+                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
                         <i class="fa fa-arrow-down"></i>
                     </button>
                 {% else %}

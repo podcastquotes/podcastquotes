@@ -125,7 +125,7 @@ body {
 }
 
 .bright-link a:hover {
-    color:#aaa;
+    color:#C1C6C9;
 }
 
 .dark-link a {
@@ -244,7 +244,14 @@ a {
 *******************************
 ******************************/
 
-@media (max-width:767px) {
+@media (max-width:549px) {
+    .pq-navbar-container {
+        margin:0 auto;
+        padding:0 0 0 11px;
+    }
+}
+
+@media (min-width:550px) and (max-width:767px) {
     .pq-navbar-container {
         margin:0 auto;
         padding:0 0 0 15px;
@@ -328,6 +335,7 @@ a {
 @media (max-width:767px) {
     .navbar-collapse {
         background-color:#2A323F;
+        margin-top:-6px;
     }
 }
 
@@ -349,10 +357,6 @@ a {
         font-family:"Roboto Slab", Georgia, serif;
         text-decoration:none;
     }
-    
-    .pq-navbar-dropdown-1:hover {
-        color:#777;
-    }
 }
 
 @media (max-width:767px) {
@@ -368,10 +372,6 @@ a {
         font-family:"Roboto Slab", Georgia, serif;
         text-decoration:none;
     }
-    
-    .pq-navbar-dropdown-2:hover {
-        color:#777;
-    }
 }
 
 @media (max-width:370px) {
@@ -381,10 +381,25 @@ a {
 }
 
 .pq-brand {
-    margin:6px 10px 5px 0;
+    margin:4px 30px 5px 0;
     float:left;
     font-size:22px;
     font-weight:300;
+}
+
+@media (max-width:767px) {
+    .pq-brand {
+    }
+}
+
+.pq-brand-img {
+    height:32px;
+}
+
+@media (max-width:350px) {
+    .pq-brand-img {
+        width:170px;
+    }
 }
 
 .pq-brand a {
@@ -411,7 +426,7 @@ a {
 @media (max-width:550px) {
     .pq-container {
         margin:0 auto;
-        padding:0 10px;
+        padding:0 15px;
     }
 }
 
@@ -1486,7 +1501,7 @@ button {
     color:#fff;
     padding:20px 0;
     margin:25px 0 0 0;
-    font-family:"Roboto Slab", Georgia, serif;
+    font-weight:300;
 }
 
 .pq-footer a:hover {
@@ -1539,7 +1554,7 @@ button {
 @media (max-width:991px) {
     .pq-footer-nav {
         float:left;
-        margin:0 5px;
+        margin:0 5px 0 0;
         padding:5px 0 5px 0;
         font-size:16px;
     }
@@ -1548,7 +1563,7 @@ button {
 @media (min-width:992px) {
     .pq-footer-nav {
         float:left;
-        margin:0 20px;
+        margin:0 40px 0 0;
         padding:5px 0 0 0;
         font-size:16px;
     }
@@ -1767,4 +1782,10 @@ button {
     clear:both;
     margin:0 0 20px 0;
     background:#fff;
+    font-size:16px;
+}
+
+.pq-mid-title {
+    font-size:20px;
+    font-weight:bold;
 }
