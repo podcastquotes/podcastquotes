@@ -61,7 +61,7 @@
         {% if podcast.image %}
             <div class="pq-podcast-profile-picture">
                 <a href="/podcasts/{{ podcast.id }}">
-                  <img src="/media/{{ podcast.image }}" />
+                  <img src="{{MEDIA_URL}}{{ podcast.image }}" />
                 </a>
             </div><!-- /.pq-podcast-profile-picture -->
         {% endif %}
