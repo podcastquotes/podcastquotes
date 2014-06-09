@@ -1424,8 +1424,10 @@ button {
 
 .youtube-start-button-wrapper {
     clear:left;
+    float:left;
     font-size:14px;
     color:#f7f7f7;
+    width:90px;
 }
 
 .youtube-player-wrapper {
@@ -1501,7 +1503,7 @@ button {
     color:#fff;
     padding:20px 0;
     margin:25px 0 0 0;
-    font-weight:300;
+    font-family:"Roboto Slab", Georgia, serif;
 }
 
 .pq-footer a:hover {
@@ -1513,7 +1515,6 @@ button {
         float:left;
         margin:0 30px 5px 0;
         font-size:22px;
-        font-weight:300;
     }
 }
 
@@ -1522,7 +1523,6 @@ button {
         float:left;
         margin:0 30px 0 0;
         font-size:22px;
-        font-weight:300;
     }
 }
 
@@ -1538,7 +1538,7 @@ button {
 @media (max-width:991px) {
     .pq-footer-social-icon {
         float:left;
-        margin:7px 15px 0 7px;
+        margin:7px 20px 0 0;
         font-size:26px;
     }
 }
@@ -1563,7 +1563,7 @@ button {
 @media (min-width:992px) {
     .pq-footer-nav {
         float:left;
-        margin:0 40px 0 0;
+        margin:0 30px 0 0;
         padding:5px 0 0 0;
         font-size:16px;
     }
