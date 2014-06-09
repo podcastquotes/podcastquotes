@@ -96,7 +96,7 @@ class QuoteForm(forms.ModelForm):
         widgets = {
             'episode': forms.Select(attrs={'class':'form-control', 'placeholder': ''}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
-            'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format, with the name of the speaker followed by the colon symbol (:)."'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format."'}),
         }
     
     def __init__(self, *args, **kw):
@@ -148,47 +148,50 @@ class UserProfileForm(forms.ModelForm):
         self.fields['first_name'].initial = self.instance.first_name
         self.fields['last_name'].initial = self.instance.last_name
         self.fields['email'].initial = self.instance.email
-        self.fields['image'].initial = self.instance.userprofile.image
-        self.fields['about'].initial = self.instance.userprofile.about
-        self.fields['homepage'].initial = self.instance.userprofile.homepage
-        self.fields['donate_url'].initial = self.instance.userprofile.donate_url
-        self.fields['twitter_url'].initial = self.instance.userprofile.twitter_url
-        self.fields['facebook_url'].initial = self.instance.userprofile.twitter_url
-        self.fields['instagram_url'].initial = self.instance.userprofile.twitter_url
-        self.fields['google_plus_url'].initial = self.instance.userprofile.twitter_url
-        self.fields['youtube_url'].initial = self.instance.userprofile.twitter_url
+        ### Stuff below can be revisited after AUTH_USER_MODEL is successfully configured.
+        # self.fields['image'].initial = self.instance.userprofile.image
+        # self.fields['about'].initial = self.instance.userprofile.about
+        # self.fields['homepage'].initial = self.instance.userprofile.homepage
+        # self.fields['donate_url'].initial = self.instance.userprofile.donate_url
+        # self.fields['twitter_url'].initial = self.instance.userprofile.twitter_url
+        # self.fields['facebook_url'].initial = self.instance.userprofile.twitter_url
+        # self.fields['instagram_url'].initial = self.instance.userprofile.twitter_url
+        # self.fields['google_plus_url'].initial = self.instance.userprofile.twitter_url
+        # self.fields['youtube_url'].initial = self.instance.userprofile.twitter_url
         
         self.fields['username'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['first_name'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['last_name'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['email'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['about'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['homepage'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['donate_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['twitter_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['facebook_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['instagram_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['google_plus_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        self.fields['youtube_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        ### Stuff below can be revisited after AUTH_USER_MODEL is successfully configured.
+        # self.fields['about'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # elf.fields['homepage'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['donate_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['twitter_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['facebook_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['instagram_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['google_plus_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['youtube_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(*args, **kw)
-        print self.cleaned_data
         self.instance.username = self.cleaned_data.get('username')
         self.instance.first_name = self.cleaned_data.get('first_name')
         self.instance.last_name = self.cleaned_data.get('last_name')
         self.instance.email = self.cleaned_data.get('email')
-        self.instance.userprofile.image = self.cleaned_data.get('image')
-        self.instance.userprofile.about = self.cleaned_data.get('about')
-        self.instance.userprofile.homepage = self.cleaned_data.get('homepage')
-        self.instance.userprofile.donate_url = self.cleaned_data.get('donate_url')
-        self.instance.userprofile.twitter_url = self.cleaned_data.get('twitter_url')
-        self.instance.userprofile.facebook_url = self.cleaned_data.get('facebook_url')
-        self.instance.userprofile.instagram_url = self.cleaned_data.get('instagram_url')
-        self.instance.userprofile.google_plus_url = self.cleaned_data.get('google_plus_url')
-        self.instance.userprofile.youtube_url = self.cleaned_data.get('youtube_url')
         self.instance.save()
-        self.instance.userprofile.save()
+        
+        ### Stuff below can be revisited after AUTH_USER_MODEL is successfully configured.
+        # self.instance.userprofile.image = self.cleaned_data.get('image')
+        # self.instance.userprofile.about = self.cleaned_data.get('about')
+        # self.instance.userprofile.homepage = self.cleaned_data.get('homepage')
+        # self.instance.userprofile.donate_url = self.cleaned_data.get('donate_url')
+        # self.instance.userprofile.twitter_url = self.cleaned_data.get('twitter_url')
+        # self.instance.userprofile.facebook_url = self.cleaned_data.get('facebook_url')
+        # self.instance.userprofile.instagram_url = self.cleaned_data.get('instagram_url')
+        # self.instance.userprofile.google_plus_url = self.cleaned_data.get('google_plus_url')
+        # self.instance.userprofile.youtube_url = self.cleaned_data.get('youtube_url')
+        # self.instance.userprofile.save()
     
     class Meta:
         model = UserProfile

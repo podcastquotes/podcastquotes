@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block header %}
+    
+    {% include 'main_col_width.html' %}
+        
+        <div class="pq-about">
+        
+            <div class="pq-title">
+                Support Podverse <i class="fa fa-thumbs-o-up"></i>
+            </div><!-- /.pq-title -->
+            
+            <div style="margin-bottom:15px;">
+            <strong>Podverse is a free and open source platform designed to raise awareness and funding for independent media. Your support helps us dedicate our time to improving Podverse as a free service.</strong>
+            </div>
+            
+            <hr>
+            
+            <div class="pq-mid-title">
+                Donate
+            </div>
+            
+            You can make a one-time donation to Podverse using PayPal, Bitcoin, Dogecoin, or Flattr.
+            <br><br>
+
+            <!-- PayPal Donate button -->
+            <form action="https://www.paypal.com/cgi-bin/webscr" style="margin:0 0 20px 0;" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="BXEUJ35AP8GCE">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+            <!-- Bitcoin Donate button -->
+            <div style="margin:0 0 5px 0;">
+                <a class="coinbase-button" data-code="3ee01e0c5b66394b596d74a7250f3045" data-button-style="donation_large" href="https://coinbase.com/checkouts/3ee01e0c5b66394b596d74a7250f3045">Donate Bitcoins</a>
+            </div>
+            <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+            
+            <!-- Dogecoin Donate button -->
+            <div class='doge-widget-wrapper' style="margin-bottom:15px;">
+                <form style="text-align:center;margin:auto;" method='get' action='https://www.dogeapi.com/checkout'>
+                    <input type='hidden' name='widget_type' value='donate'>
+                    <input type='hidden' name='payment_address' value='DJQbm31cyzmDPQUxyVQajizU13TMNPJoz5'>
+                    <div style="text-align:center;margin:auto;" class='doge-widget' style="display:none"></div>
+                </form>
+            </div>
+            <script src='https://www.dogeapi.com/widget/dogeapi.js' type='text/javascript'></script>
+            
+            <!-- Flattr button -->
+            <div style="margin-bottom:20px;">
+                <a href="https://flattr.com/submit/auto?user_id=podverse&url=http%3A%2F%2Fwww.podverse.tv%2Fsupport-podverse%2F" target="_blank"><img src="//api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+            </div>
+
+            <hr>
+            
+            <div class="pq-mid-title">
+                Subscribe
+            </div>
+            
+            You can make an automatic donation to Podverse each month using PayPal, Bitcoin, or Flattr.
+            <br><br>
+            
+            <!-- PayPal Subscribe button -->
+            <form action="https://www.paypal.com/cgi-bin/webscr" style="margin:0 0 20px 0;" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="KC76HRHNXK7DA">
+                <table>
+                <tr><td><input type="hidden" name="on0" value="Subscription options"></td></tr><tr><td><select name="os0">
+                 <option value="Washington">Washington : $1.00 USD - monthly</option>
+                 <option value="Jefferson">Jefferson : $2.00 USD - monthly</option>
+                 <option value="Lincoln">Lincoln : $5.00 USD - monthly</option>
+                 <option value="Hamilton">Hamilton : $10.00 USD - monthly</option>
+                 <option value="Jackson">Jackson : $20.00 USD - monthly</option>
+                 <option value="Grant">Grant : $50.00 USD - monthly</option>
+                 <option value="Franklin">Franklin : $100.00 USD - monthly</option>
+                </select> </td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+            <div style="margin:0 0 5px 0;">
+                <a class="coinbase-button" data-code="3020a0b7cc135cff495728fcdcce662a" data-button-style="subscription_large" href="https://coinbase.com/checkouts/3020a0b7cc135cff495728fcdcce662a">Subscribe With Bitcoin</a>
+            </div>    
+            <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+            
+            <!-- Flattr button -->
+            <div>
+                <a href="https://flattr.com/submit/auto?user_id=podverse&url=http%3A%2F%2Fwww.podverse.tv%2Fsupport-podverse%2F" target="_blank"><img src="//api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+            </div>
+            
+            <hr>
+            
+            <div class="pq-mid-title">
+                <strong>Can't donate or subscribe?</strong>
+            </div>
+            It's ok, we know what that's like. Want some <a href="http://dogecointutorial.com/">doge?</a> After you create a wallet, <a href="https://www.twitter.com/home?status=%40pod_quotes%20Wow%20such%20podcast!%20%5Breplace%20this%20with%20your%20doge%20address%5D">tweet us</a> your doge address ;)
+            <br><br>
+            You can still help out without money by introducing people to the site, following us on social media and sending some kind words.
+            <br><br>
+            Twitter: <a href="https://www.twitter.com/podverse/">@podverse</a>
+            <br><br>
+            Facebook: <a href="https://www.facebook.com/pages/Podverse/803510522993823">www.facebook.com/pages/Podverse</a>
+            
+            <hr>
+            
+            <div class="pq-mid-title">
+                <strong>Ideas for improving Podverse?</strong>
+            </div>
+            
+            We'd love to hear from you at <a href="mailto:contact@podverse.tv">contact@podverse.tv</a>. If we act on any of your ideas, we'll be sure to give you kudos for your help.
+            <br><br>
+            Thanks for stopping by!
+        </div>
+        
+    </div>
+
+
+    
+{% endblock %}<!-- / block header -->
