@@ -1661,6 +1661,21 @@ button {
     margin:0 0 15px 0;
 }
 
+.tt-dropdown-menu {
+    padding:0 10px;
+    background:#fff;
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    border-left:1px solid #ddd;
+    font-size:16px;
+    cursor:pointer;
+    
+}
+
+.twitter-typeahead {
+    width:100%;
+}
+
 .pq-form-buttons {
     clear:right;
     padding:20px 0 0 0;

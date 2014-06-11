@@ -1,28 +1,31 @@
-<label class="pq-form-label" for="{{podcast_title_form_name}}">Podcast</label>
-<label class="pq-form-label" for="{{episode_title_form_name}}">Episode</label>
-<input 
-    type="text"
-    class="typeahead podcast-typeahead" 
-    name="{{podcast_title_form_name}}" 
-    placeholder="Podcast" 
-    value="{{podcast_id_value}}" />
-<span id="podcast-selection-indicator"></span>
-<input type="hidden" 
-       name="{{podcast_id_form_name}}" 
-       id="podcast_id" 
-       value="{{podcast_id_value}}" />
-<br/>
+<div class="pq-form-input">
+    <label class="pq-form-label" for="{{podcast_title_form_name}}">Podcast</label>
+    <input 
+        type="text"
+        class="typeahead podcast-typeahead form-control"
+        name="{{podcast_title_form_name}}" 
+        placeholder="Type podcast title" 
+        value="{{podcast_id_value}}" />
+    <span id="podcast-selection-indicator"></span>
+    <input type="hidden" 
+           name="{{podcast_id_form_name}}" 
+           id="podcast_id" 
+           value="{{podcast_id_value}}" />
+</div>
 
-<input type="text" 
-       class="typeahead episode-typeahead" 
-       name="{{episode_title_form_name}}" 
-       placeholder="Episode" 
-       value="{{episode_title_value}}" />
-<span id="episode-selection-indicator"></span>
-<input type="hidden" 
-       name="{{episode_id_form_name}}" 
-       id="episode_id" 
-       value="{{episode_id_value}}" /><br/>
+<div class="pq-form-input">
+    <label class="pq-form-label" for="{{episode_title_form_name}}">Episode</label>
+    <input type="text" 
+           class="typeahead episode-typeahead form-control"
+           name="{{episode_title_form_name}}" 
+           placeholder="Type episode title" 
+           value="{{episode_title_value}}" />
+    <span id="episode-selection-indicator"></span>
+    <input type="hidden" 
+           name="{{episode_id_form_name}}" 
+           id="episode_id" 
+           value="{{episode_id_value}}" />
+</div>
 
 <script>
 
