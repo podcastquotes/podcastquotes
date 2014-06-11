@@ -59,7 +59,7 @@ class UpdateFeedTests(TestCase):
     
     def setUp(self):
         
-        self.test_podcast = Podcast()
+        self.test_podcast = Podcast.objects.create()
         
         # patch
         patcher = patch('quotes_app.views.podcast.get_object_or_404', 

@@ -39,11 +39,8 @@ class PodcastCreateView(CreateView):
         """
         
         # Create podcast model from form
-        print self.object
-        print self.object
-        print self.object
         self.object = podcast = form.save(commit=False)
-        print podcast
+        
         # Parse feed
         rss_url = podcast.rss_url
         
@@ -67,7 +64,7 @@ class PodcastCreateView(CreateView):
         podcast.save()
         podcast.moderators.add(self.request.user)
         podcast.save()
-        print podcast
+        
         # Collect episodes (should be made asynchronous)
         podcast_syndication_service.collect_episodes(podcast)
         
