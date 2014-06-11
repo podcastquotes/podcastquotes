@@ -1,0 +1,41 @@
+<label class="pq-form-label" for="{{podcast_title_form_name}}">Podcast</label>
+<label class="pq-form-label" for="{{episode_title_form_name}}">Episode</label>
+<input 
+    type="text"
+    class="typeahead podcast-typeahead" 
+    name="{{podcast_title_form_name}}" 
+    placeholder="Podcast" 
+    value="{{podcast_id_value}}" />
+<span id="podcast-selection-indicator"></span>
+<input type="hidden" 
+       name="{{podcast_id_form_name}}" 
+       id="podcast_id" 
+       value="{{podcast_id_value}}" />
+<br/>
+
+<input type="text" 
+       class="typeahead episode-typeahead" 
+       name="{{episode_title_form_name}}" 
+       placeholder="Episode" 
+       value="{{episode_title_value}}" />
+<span id="episode-selection-indicator"></span>
+<input type="hidden" 
+       name="{{episode_id_form_name}}" 
+       id="episode_id" 
+       value="{{episode_id_value}}" /><br/>
+
+<script>
+
+$(document).ready(function () {
+    
+   initEpisodeEstablisherWidget({
+        'podcastInputElm': $('.podcast-typeahead'),
+        'episodeInputElm': $('.episode-typeahead'),
+        'podcast_id_elm': $('#podcast_id'),
+        'episode_id_elm': $('#episode_id'),
+        'episodeSelectionIndicator': $('#episode-selection-indicator'),
+        'podcastSelectionIndicator': $('#podcast-selection-indicator')
+   }); 
+});
+
+</script>

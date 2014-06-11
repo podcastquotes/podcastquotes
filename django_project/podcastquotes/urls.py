@@ -84,7 +84,10 @@ urlpatterns = patterns('',
     
     url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
     
-    url(r'^get-episodes/(?P<podcast_id>\d+)/$', 'quotes_app.views.quote.get_episodes', name="get_episodes"),
+	# JSON Endpoints
+    url(r'^episodes/json$', 'quotes_app.views.episode.thin_json_episode_query', name="thin_json_episode_query"),
+    url(r'^podcasts/json$', 'quotes_app.views.podcast.thin_json_podcast_query', name="thin_json_podcast_query"),
+    
     
     # Allauth urls
     (r'^accounts/', include('allauth.urls')),

@@ -2,15 +2,15 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.utils.decorators import method_decorator
 from core.forms import PodcastCreateForm, PodcastForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-
 from quotes_app.services import PodcastSyndicationService
+import json
 
 podcast_syndication_service = PodcastSyndicationService()
 
@@ -231,3 +231,16 @@ class PodcastEpisodeTitlePrint(ListView):
         context = super(PodcastEpisodeTitlePrint, self).get_context_data(**kwargs)
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         return context
+
+def thin_json_podcast_query(request):
+    
+    title_query = request.GET.get('q')
+    
+    podcast_queryset = Podcast.objects.filter(
+        title__icontains=title_query).values('id', 'title')[:10]
+    
+    podcasts = [podcast for podcast in podcast_queryset]
+    
+    json_payload = json.dumps(podcasts)
+    
+    return HttpResponse(json_payload, content_type="application/json")

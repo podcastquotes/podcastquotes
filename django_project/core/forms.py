@@ -4,6 +4,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.http import Http404
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+from quotes_app.fields import EpisodeField
 from captcha.fields import ReCaptchaField
 
 def getSec(hhmmss):
@@ -80,9 +81,8 @@ class EpisodeForm(forms.ModelForm):
         }
 
 class QuoteForm(forms.ModelForm):
-
-    # These are included for the dynamic podcast and episode dropdowns/comboboxes.
-    podcast = forms.ModelChoiceField(queryset=Podcast.objects.all())
+    
+    episode = EpisodeField()
     
     # We must override time_quote_begins and time_quote_ends in order for form
     # to validate and clean successfully. If we do not label the fields as CharFields,
@@ -92,32 +92,23 @@ class QuoteForm(forms.ModelForm):
     
     class Meta:
         model = Quote
-        exclude = ('rank_score', 'submitted_by',)
+        exclude = ('rank_score', 'submitted_by')
         widgets = {
-            'episode': forms.Select(attrs={'class':'form-control', 'placeholder': ''}),
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format."'}),
         }
-    
+
     def __init__(self, *args, **kw):
         super(QuoteForm, self).__init__(*args, **kw)
-        self.fields['podcast'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+
+        # Tech Debt? Do we have to do this now that I'm defining the
+        # form explicitly?
         self.fields['time_quote_begins'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         self.fields['time_quote_ends'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        
-    def clean_episode(self):
-        podcast = self.data.get('podcast')
-        episode = self.cleaned_data.get('episode')
-        episode_list = Episode.objects.filter(podcast=podcast)
-        if episode in episode_list:
-            return episode
-        else:
-            raise Http404
-        
+    
     def clean_time_quote_begins(self):
         begins_with_delims = self.cleaned_data['time_quote_begins']
         converted_time_begins = getSec(begins_with_delims)
-        print converted_time_begins
         return converted_time_begins
         
     def clean_time_quote_ends(self):

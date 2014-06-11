@@ -2,8 +2,10 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.http import HttpResponse
 from core.forms import EpisodeCreateForm, EpisodeForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+import json
 
 class EpisodeCreateView(CreateView):
     model = Episode
@@ -171,3 +173,24 @@ class EpisodeQuoteListView(ListView):
             return Quote.quote_vote_manager.query_birthdays().filter(episode_id=e.id)
         else:
             return Quote.quote_vote_manager.query_hot().filter(episode_id=e.id)
+
+def thin_json_episode_query(request):
+    
+    podcast_id = request.GET.get('podcast_id')
+    title_query = request.GET.get('q')
+    
+    if podcast_id == '' or None:
+        json_payload = '[]'
+        
+    else:
+    
+        episodes_queryset = Episode.objects.filter(
+            podcast_id=podcast_id,
+            title__icontains=title_query).values('id', 'title')[:10]
+        
+        episodes = [episode for episode in episodes_queryset]
+        
+        json_payload = json.dumps(episodes)
+    
+    return HttpResponse(json_payload, content_type="application/json")
+   

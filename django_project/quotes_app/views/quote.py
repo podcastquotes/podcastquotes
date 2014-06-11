@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
@@ -13,15 +13,7 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 def getSec(hhmmss):
     l = map(int, hhmmss.split(':'))
     return sum(n * sec for n, sec in zip(l[::-1], (1, 60, 3600)))
-
-def get_episodes(request, podcast_id):
-    podcast = Podcast.objects.get(pk=podcast_id)
-    episodes = Episode.objects.filter(podcast=podcast)
-    episode_dict = {}
-    for episode in episodes:
-        episode_dict[episode.id] = episode.title
-    return HttpResponse(json.dumps(episode_dict), content_type="application/json")
-    
+ 
 class QuoteCreateView(CreateView):
     model = Quote
     template_name = 'quote_create.html'

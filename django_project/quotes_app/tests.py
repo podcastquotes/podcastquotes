@@ -3,8 +3,9 @@ from quotes_app.views.podcast import (update_feed, PodcastCreateView)
 from quotes_app.views.quote import QuoteCreateView
 
 import unittest
+from django.core.exceptions import ValidationError
 from django.test import TestCase
-from django.test.client import RequestFactory
+from django.test.client import RequestFactory, Client
 from django.contrib.auth.models import User
 
 from mock import patch, ANY, MagicMock
@@ -13,6 +14,8 @@ import feedparser
 
 from quotes_app.models import Podcast, Episode
 from quotes_app.services import PodcastSyndicationService
+from quotes_app.widgets import EpisodeEstablisherWidget
+from quotes_app.fields import EpisodeField
 
 from core.forms import PodcastCreateForm
 
@@ -331,8 +334,12 @@ class QuoteCreateTests(TestCase):
         """ Wiring test to exsiting code for the happy case."""
 
         self.form_data = {
-            'podcast' : self.episode.podcast.pk,
-            'episode': self.episode.pk,
+            # Widget data
+            'episode_episode_id': self.episode.podcast.pk,
+            'episode_episode_title': self.episode.title,
+            'episode_podcast_title': self.episode.podcast.title,
+            'episode_podcast_id': self.episode.pk,
+            
             'summary': 'asdf',
             'text': 'asdf',
             'time_quote_ends': '02:03:04',
@@ -361,3 +368,267 @@ class QuoteCreateTests(TestCase):
     @unittest.expectedFailure
     def test_success_redirects_to_success_url(self):
         self.fail("Behavior not tested")
+
+class EpisodeFieldTests(TestCase):
+    
+    def setUp(self):
+        
+        podcast = Podcast.objects.create(
+            id=300303,
+            title='My_test_podcast'
+        )
+        
+        Episode.objects.create(
+            id=4034,
+            podcast=podcast,
+            title='Hork',
+            episode_url='http://test'
+        )
+        
+        self.field = EpisodeField()
+    
+    def test_that_no_provided_podcast_fails(self):
+        
+        value = ('', '', 234, 'myEpisode')
+        
+        def test():
+            self.field.to_python(value)
+            
+        self.assertRaises(ValidationError, test)
+        
+    def test_that_no_provided_episode_fails(self):
+        
+        value = ('234', 'Rogannn', '', '')
+        
+        def test():
+            self.field.to_python(value)
+            
+        self.assertRaises(ValidationError, test)
+        
+    
+    def test_when_episode_doesnt_exist(self):
+        
+        value = ('300303', 'My_test_podcast', '', 'fff')
+        
+        return_value = self.field.to_python(value)
+        
+        # Asserts
+        try:
+            database_episode = Episode.objects.get(title='fff')
+        except Episode.DoesNotExist:
+            self.fail('Episode was not created when it should have.')
+        
+        self.assertEqual(return_value, database_episode,
+            'to_python did not return the episode created')
+        
+    def test_when_episode_exists(self):
+        
+        value = ('300303', 'Fried Podcast', '4034', 'Flaffy!')
+        
+        result = self.field.to_python(value)
+        
+        self.assertIsEpisode(result,
+            "to_python did not return an Episode")
+        
+        self.assertEqual(result.title, 'Hork')
+        self.assertEqual(result.episode_url, 'http://test')
+    
+    def test_when_podcast_doesnt_exist(self):
+        
+        value = ('', 'This is a new podcast', '', 'FHHOO')
+        
+        result = self.field.to_python(value)
+
+
+        try:
+            episode = Episode.objects.get(title='FHHOO')
+        except Episode.DoesNotExist:
+            self.fail('episode was not created')
+        
+        self.assertEqual(episode.podcast.title, 
+            'This is a new podcast')
+                
+        self.assertIsEpisode(result)
+        self.assertEqual(result, episode)
+        
+    def test_that_invalid_podcast_pk_fails(self):
+        value = ('999', '', '', 'Flaffy!')
+        
+        def test():
+            self.field.to_python(value)
+
+        self.assertRaises(ValidationError, test)
+    
+    def test_that_invalid_episode_pk_fails(self):
+        
+        value = ('999', '', '1234', 'Fluffy!')
+        
+        def test():
+            self.field.to_python(value)
+    
+        self.assertRaises(ValidationError, test)
+    #
+    ## Helper assert methods
+    #
+    def assertIsEpisode(self, obj, msg='value is not an episode'):
+        self.assertTrue(type(obj) is Episode, msg)
+        
+
+class EpisodeEstablisherWidgetTests(TestCase):
+    
+    def setUp(self):
+        # Patch render_to_string at some point
+        self.widget = EpisodeEstablisherWidget()
+        
+    def test_render_produces_html(self):
+        name = 'foowidget'
+        value = ('33', 'testpodcasttitle', '449', 'testepisodetitle')
+        result = self.widget.render(name, value, attrs=None)
+        
+    def test_value_from_datadict_returns_tuple(self):
+        
+        name = 'foowidget'
+        
+        data = { 
+            self.widget.get_episode_id_form_name(name): 'eid',
+            self.widget.get_episode_title_form_name(name): 'etitle',
+            self.widget.get_podcast_id_form_name(name): 'pid',
+            self.widget.get_podcast_title_form_name(name): 'ptitle',
+        }
+        
+        result = self.widget.value_from_datadict(data, None, name)
+        
+        self.assertEqual(result[0], 'pid')
+        self.assertEqual(result[1], 'ptitle')
+        self.assertEqual(result[2], 'eid')
+        self.assertEqual(result[3], 'etitle')
+        
+    def test_when_render_is_passed_None_value(self):
+        
+        name = 'fooowidget'
+        value = None
+        
+        result = self.widget.render(name, value)
+        
+    def test_x(self):
+        pass
+        #self.fail(self.widget.media)
+
+from quotes_app.views.episode import thin_json_episode_query
+from quotes_app.views.podcast import thin_json_podcast_query
+
+import json
+
+class EpisodeListJSONEndpointTests(TestCase):
+    
+    def setUp(self):
+        
+        self.test_podcast = Podcast.objects.create(title='TestPodcast')
+        
+        # Assemble
+        
+        for i in range(0,10):
+            Episode.objects.create(
+                podcast=self.test_podcast,
+                title='Episode {0}'.format(i)
+            )
+        
+        self.req_factory = RequestFactory()
+        
+    def perform_request(self, podcast_id, query):
+        
+        url = '/episodes/json?podcast_id={0}&q={1}' \
+            .format(podcast_id, query)
+            
+        req = self.req_factory.get(url)
+        
+        resp = thin_json_episode_query(req)
+        resp = json.loads(resp.content)
+        
+        return resp
+    
+    def test_basic_query(self):
+    
+        resp = self.perform_request(self.test_podcast.id, 'Episode')
+        
+        # Assert
+        self.assertEqual(10, len(resp),
+            "Didn't return 10 episodes")
+        
+        for e in resp:
+            try:
+                e['id']
+                e['title']
+            except KeyError as e:
+                self.fail('Did not find key "{0}" in all episodes'\
+                    .format(e.message))
+    
+    def test_no_podcast_query(self):
+        
+        resp = self.perform_request(9999, 'blah')
+        
+        self.assertEqual(0, len(resp),
+            "It didn't return an empty array")
+            
+    def test_with_empty_podcast(self):
+        
+        resp = self.perform_request('', 'FASDF')
+        
+        # Shouldn't throw errors
+            
+    def test_endpoint_returns_200(self):
+        c = Client()
+        r = c.get('/episodes/json?podcast_id=1&q=Episode 3')
+        
+        self.assertEqual(200, r.status_code)
+    
+class PodcastListJSONEndpointTests(TestCase):
+    
+    def setUp(self):
+        
+        self.test_podcast = Podcast.objects.create(title='TestPodcast')
+        
+        # Assemble
+        
+        for i in range(0,10):
+            Podcast.objects.create(
+                title='Podcast {0}'.format(i)
+            )
+        
+        self.req_factory = RequestFactory()
+        
+    def perform_request(self, query):
+        
+        url = '/podcasts/json?q={0}' \
+            .format(query)
+            
+        req = self.req_factory.get(url)
+        
+        resp = thin_json_podcast_query(req)
+        resp = json.loads(resp.content)
+        
+        return resp
+    
+    def test_basic_query(self):
+    
+        resp = self.perform_request('Podcast')
+        
+        # Assert
+        self.assertEqual(10, len(resp),
+            "Didn't return 10 podcasts")
+        
+        for e in resp:
+            try:
+                e['id']
+                e['title']
+            except KeyError as e:
+                self.fail('Did not find key "{0}" in all episodes'\
+                    .format(e.message))
+    
+    def test_endpoint_returns_200(self):
+        c = Client()
+        r = c.get('/podcasts/json?q=Podcast')
+        
+        self.assertEqual(200, r.status_code)
+        
+        

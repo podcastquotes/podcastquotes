@@ -9,27 +9,18 @@
       </div><!-- /.pq-title -->
       
       <div class="pq-form">
-        
+          
           <form method="post" action="" enctype="multipart/form-data" role="form">
             {% csrf_token %}
             {% if form.errors %}
                 <p>Please correct the following fields:</p>
                 {{ form.errors }}
             {% endif %}
-
-            <div class="pq-form-input">
-                {% if form.podcast.errors %}
-                    <p class="error">{{ form.podcast.errors }}</p>
-                {% endif %}
-                <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="podcast">Podcast</label>
-                {{ form.podcast }}
-            </div><!-- /.pq-form-input -->
             
-            <div class="pq-form-input" id="episode_selector" style="display:none;">
+            <div class="pq-form-input" id="episode_selector">
                 {% if form.episode.errors %}
                     <p class="error">{{ form.episode.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="episode">Episode</label>
                 {{ form.episode }}
             </div><!-- /.pq-form-input -->
             
@@ -78,7 +69,7 @@
             </div>
             
           </form>
-
+        {{ form.media }}
       </div><!-- /.pq-form -->
       
   </div><!-- /.col-sm-11 -->

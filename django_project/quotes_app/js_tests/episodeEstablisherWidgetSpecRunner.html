@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Jasmine Spec Runner v2.0.0</title>
+
+        <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0/jasmine_favicon.png">
+        <link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.0/jasmine.css">
+        <link rel="stylesheet" type="text/css" href="../../core/static/css/bootstrap.css"/>
+
+
+        <script data-require="jquery@2.0.3" data-semver="2.0.3" src="../../core/static/js/jquery-1.11.0.min.js"></script>
+        <script src="../../core/static/js/typeahead.bundle.js"></script>
+
+
+        <style>
+
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+        .tt-hint {
+            display: block;
+            width: 100%;
+            height: 38px;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+        .tt-dropdown-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+
+        }
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <div id='playfield'>
+
+            <input class="typeahead podcast-typeahead" name="podcast_title" type="text" placeholder="Podcast" />
+            <span id="podcast-selection-indicator"></span>
+            <input type="hidden" name="podcast_id" id="podcast_id" />
+            <br/>
+            <input class="typeahead episode-typeahead" name="episode_title" type="text" placeholder="Episode" />
+            <span id="episode-selection-indicator"></span>
+            <input type="hidden" name="episode_id" id="episode_id" /><br/>
+
+        </div>
+
+        <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine.js"></script>
+        <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine-html.js"></script>
+        <script type="text/javascript" src="lib/jasmine-2.0.0/boot.js"></script>
+        
+        <!-- include source files here... -->
+        <script type="text/javascript" src="../static/js/episodeEstablisherWidget.js"></script>
+
+        <!-- include spec files here... -->
+        <script type="text/javascript" src="spec/SpecHelper.js"></script>
+        <script type="text/javascript" src="spec/episodeEstablisherWidgetSpec.js"></script>
+
+    </body>
+</html>
