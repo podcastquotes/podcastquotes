@@ -194,7 +194,7 @@
     
         {% if is_quote_page %}
             <div class="pq-quote-posted-by blue-link">
-                posted 4 hours ago by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
+                posted {{ quote.time_since_created }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
             </div>
         {% endif %}
   
