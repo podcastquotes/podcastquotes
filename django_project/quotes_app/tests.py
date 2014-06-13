@@ -298,6 +298,33 @@ class PodcastSyndicationServiceIntegrationTests(TestCase):
             "HTML tags should be stripped from the description")
         self.assertEqual(episode.guid, self.test_guid)
         
+    def test_existing_are_not_updated(self):
+        
+        # Create an episode in the database and spy on it's .save()
+        podcast = Podcast(id=0, rss_url=self.test_rss_document)
+        episode_existing = Episode.objects.create(
+            podcast=podcast,
+            title=self.test_title,
+            guid=self.test_guid)
+        episode_existing.save = MagicMock()
+        
+        # patch mechanism which either creates or obtains a podcast
+        # to always return an existing podcast.
+        patcher = patch('quotes_app.models.Episode.objects.get_or_create',
+            return_value=(episode_existing, False))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        
+        # Act
+        svc = PodcastSyndicationService()
+        svc.collect_episodes(podcast)
+        
+        # Assert
+        self.assertFalse(episode_existing.save.called,
+            "It shouldn't update an already existing episode.")
+            
+        
+            
 
 class QuoteCreateTests(TestCase):
     
