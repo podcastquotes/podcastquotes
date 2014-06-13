@@ -6,7 +6,7 @@ podcastquotes
 [![Build Status](https://travis-ci.org/podcastquotes/podcastquotes.svg?branch=master)](https://travis-ci.org/podcastquotes/podcastquotes)
 [![Coverage Status](https://coveralls.io/repos/podcastquotes/podcastquotes/badge.png?branch=master)](https://coveralls.io/r/podcastquotes/podcastquotes?branch=master)
 
-A podcast transcription, highlight sharing, and rating system inspired by reddit.  Django & Python 2 (>.<)
+A podcast transcription, highlight sharing, and rating system inspired by reddit.  Django & Python 2 
 
 
 Development Install
@@ -32,6 +32,11 @@ Run App for Development
 =======================
 ```./manage.py runserver```
 
+
+Database tasks
+===============
+```./manage.py update_rss_feeds``` - Poll all rss feeds  
+```./manage.py rank_quotes``` - Recalculate 'hot' score for quotes  
 
 Dev Tricks
 ==========
