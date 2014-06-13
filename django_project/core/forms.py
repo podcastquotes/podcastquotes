@@ -49,10 +49,6 @@ class PodcastForm(forms.ModelForm):
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
         
-    def __init__(self, *args, **kw):
-        super(PodcastForm, self).__init__(*args, **kw)
-        self.fields['rss_url'].initial = self.instance.rss_url
-        
 class EpisodeCreateForm(forms.ModelForm):
     
     class Meta:
