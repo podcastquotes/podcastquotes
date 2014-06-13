@@ -49,6 +49,10 @@ class PodcastForm(forms.ModelForm):
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
         
+    def __init__(self, *args, **kw):
+        super(PodcastForm, self).__init__(*args, **kw)
+        self.fields['rss_url'].initial = self.instance.rss_url
+        
 class EpisodeCreateForm(forms.ModelForm):
     
     class Meta:
@@ -87,8 +91,8 @@ class QuoteForm(forms.ModelForm):
     # We must override time_quote_begins and time_quote_ends in order for form
     # to validate and clean successfully. If we do not label the fields as CharFields,
     # they will validate as IntegerFields, when the hh:mm:ss format is a string.
-    time_quote_begins = forms.CharField(max_length=8)
-    time_quote_ends = forms.CharField(max_length=8)
+    time_quote_begins = forms.CharField(max_length=8, required=True)
+    time_quote_ends = forms.CharField(max_length=8, required=False)
     
     class Meta:
         model = Quote
@@ -112,9 +116,10 @@ class QuoteForm(forms.ModelForm):
         return converted_time_begins
         
     def clean_time_quote_ends(self):
-        ends_with_delims = self.cleaned_data['time_quote_ends']
-        converted_time_ends = getSec(ends_with_delims)
-        return converted_time_ends
+        if self.cleaned_data['time_quote_ends']:
+            ends_with_delims = self.cleaned_data['time_quote_ends']
+            converted_time_ends = getSec(ends_with_delims)
+            return converted_time_ends
 
 class VoteForm(forms.ModelForm):
 
