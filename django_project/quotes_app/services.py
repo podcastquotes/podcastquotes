@@ -4,6 +4,9 @@ from django.utils.html import strip_tags
 from datetime import datetime
 import calendar
 import pytz
+import logging
+
+logger = logging.getLogger(__name__)
 
 class PodcastSyndicationService():
         
@@ -29,10 +32,15 @@ class PodcastSyndicationService():
         if not podcast_model:
             raise TypeError("podcast_model is not defined")
         
+        logger.info('Starting to collect episodes for {0}'\
+            .format(podcast_model.title))
+        
         podcast_id = podcast_model.id
         rss_url = podcast_model.rss_url
         
         feed = feedparser.parse(rss_url)
+        
+        new_episode_count = 0
         
         for e in feed.entries:
             e_guid = e.guid
@@ -46,6 +54,14 @@ class PodcastSyndicationService():
             episode.description = strip_tags(e.description)
             episode.episode_url = e.link
             episode.save()
+            
+            new_episode_count = new_episode_count + 1
+            
+        logger.info('Found {0} episodes for {1}; {2} new.'\
+            .format(
+                len(feed.entries),
+                    podcast_model.title,
+                    new_episode_count))
         
     def _queue_episode_extraction(self, uri):
         """ 
