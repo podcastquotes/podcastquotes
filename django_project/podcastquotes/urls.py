@@ -7,9 +7,10 @@ from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote, UserProfile
 from quotes_app.views.episode import EpisodeQuoteListView, EpisodeCreateView, EpisodeUpdateView, EpisodeDeleteView
 from quotes_app.views.home import HomeQuoteListView
-from quotes_app.views.podcast import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView, PodcastEpisodeTitlePrint
+from quotes_app.views.podcast import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDeleteView
 from quotes_app.views.rank import rank_all
+from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint
 from quotes_app.views.user import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views.vote import VoteFormView
 
@@ -23,6 +24,12 @@ urlpatterns = patterns('',
     url(r'^contact/$', 'quotes_app.views.pq.contact_pq', name='contact_pq'),
     
     url(r'^support-pq/$', 'quotes_app.views.pq.support_pq', name='support_pq'),
+    
+    # this view is useful for superuser to check for episodes which do not have a YouTube link for playing clips
+    url(r'^need-youtube-links/$', NeedYouTubeLinks.as_view(), name='podcast_episode_title_print'),
+    
+    # this view is useful for Mitch to check episodes in a podcast rss feed
+    url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
     
     url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     
@@ -47,9 +54,6 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),
     
     url(r'^podcasts/(?P<pk>\d+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
-    
-    # this view is useful for Mitch to check episodes in a podcast rss feed
-    url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
     
     url(r'^podcasts/create/$', 
         PodcastCreateView.as_view(

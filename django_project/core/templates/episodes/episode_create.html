@@ -34,6 +34,14 @@
           </div><!-- /.pq-form-input -->
           
           <div class="pq-form-input">
+              {% if form.youtube_url.errors %}
+                  <p class="error">{{ form.youtube_url.errors }}</p>
+              {% endif %}
+              <label class="pq-form-label-optional {% if form.youtube_url.errors %}error{% endif %}" for="youtube_url">YouTube Video URL <small>(optional, enables media player)</small></label>
+              {{ form.youtube_url }}
+          </div><!-- /.pq-form-input -->
+          
+          <div class="pq-form-input">
               {% if form.guid.errors %}
                   <p class="error">{{ form.guid.errors }}</p>
               {% endif %}
@@ -63,14 +71,6 @@
               {% endif %}
               <label class="pq-form-label-optional {% if form.description.errors %}error{% endif %}" for="description">Description <small>(optional)</small></label>
               {{ form.description }}
-          </div><!-- /.pq-form-input -->
-          
-          <div class="pq-form-input">
-              {% if form.youtube_url.errors %}
-                  <p class="error">{{ form.youtube_url.errors }}</p>
-              {% endif %}
-              <label class="pq-form-label-optional {% if form.youtube_url.errors %}error{% endif %}" for="youtube_url">YouTube Video URL <small>(optional, enables media player)</small></label>
-              {{ form.youtube_url }}
           </div><!-- /.pq-form-input -->
           
           <div class="pq-form-input">

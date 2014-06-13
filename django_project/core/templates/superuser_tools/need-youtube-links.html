@@ -1,0 +1,10 @@
+<big><strong>EPISODES WITHOUT YOUTUBE LINKS</strong></big>
+<br>
+{% if episodes_without_youtube_links %}
+    {% for episode in episodes_without_youtube_links %}
+        {{ episode.title }} -
+        <a href="{{ episode.get_absolute_url }}edit">add YouTube link</a><br>
+    {% endfor %}
+{% else %}
+    All episodes have YouTube links! :)
+{% endif %}

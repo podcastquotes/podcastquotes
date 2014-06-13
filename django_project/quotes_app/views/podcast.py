@@ -223,16 +223,6 @@ class PodcastQuoteListView(ListView):
             return Quote.quote_vote_manager.query_birthdays().filter(episode__podcast_id=p.id)
         else:
             return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id)
-            
-# this view is useful for Mitch to check the titles of a podcast's episodes
-class PodcastEpisodeTitlePrint(ListView):
-    model = Podcast
-    template_name = 'podcast_episode_title_print.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super(PodcastEpisodeTitlePrint, self).get_context_data(**kwargs)
-        context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
-        return context
 
 def thin_json_podcast_query(request):
     
