@@ -89,6 +89,7 @@ class Podcast(models.Model):
     google_plus_url = models.URLField(blank=True)
     tumblr_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
+    managed_by_superuser = models.BooleanField(default=False)
     
     def get_absolute_url(self):
         return reverse('podcast_quote_list_root', kwargs={'pk': self.pk})
@@ -209,8 +210,8 @@ class Quote(models.Model):
     episode = models.ForeignKey(Episode)
     summary = models.CharField(max_length=200, blank=True)
     text = models.TextField(blank=True)
-    time_quote_begins = models.IntegerField(blank=True)
-    time_quote_ends = models.IntegerField(blank=True)
+    time_quote_begins = models.IntegerField()
+    time_quote_ends = models.IntegerField(null=True, blank=True)
     
     quote_vote_manager = QuoteVoteManager()
     objects = models.Manager() # default manager
@@ -229,66 +230,6 @@ class Quote(models.Model):
         self.rank_score = vote_score / pow((item_hour_age+2), GRAVITY)
         print self.rank_score
         self.save()
-    
-    def time_since_created(self):
-        delta = datetime.now(pytz.utc) - self.created_at
-        seconds = delta.total_seconds()
-        if seconds < 2:
-            second = int(seconds)
-            time_since_created = str(seconds) + " second ago"
-            return time_since_created
-        elif seconds < 60:
-            seconds = int(seconds)
-            time_since_created = str(seconds) + " seconds ago"
-            return time_since_created
-        elif seconds < 120:
-            minute = int(round(seconds / 60))
-            time_since_created = str(minute) + " minute ago"
-            return time_since_created
-        elif seconds < 3600:
-            minutes = int(round(seconds / 60))
-            time_since_created = str(minutes) + " minutes ago"
-            return time_since_created
-        elif seconds < 7200:
-            hour = int(round(seconds / 3600))
-            time_since_created = str(hour) + " hour ago"
-            return time_since_created
-        elif seconds < 86400:
-            hours = int(round(seconds / 3600))
-            time_since_created = str(hours) + " hours ago"
-            return time_since_created
-        elif seconds < 172800:
-            day = int(round(seconds / 86400))
-            time_since_created = str(day) + " day ago"
-            return time_since_created
-        elif seconds < 604800:
-            days = int(round(seconds / 86400))
-            time_since_created = str(days) + " days ago"
-            return time_since_created
-        elif seconds < 1209600:
-            week = int(round(seconds / 604800))
-            time_since_created = str(week) + " week ago"
-            return time_since_created
-        elif seconds < 2629744:
-            weeks = int(round(seconds / 604800))
-            time_since_created = str(weeks) + " weeks ago"
-            return time_since_created
-        elif seconds < 5259487:
-            month = int(round(seconds / 2629743))
-            time_since_created = str(month) + " month ago"
-            return time_since_created
-        elif seconds < 31556926:
-            months = int(round(seconds / 2629743))
-            time_since_created = str(months) + " months ago"
-            return time_since_created
-        elif seconds < 63113852:
-            year = int(round(seconds / 31556926))
-            time_since_created = str(year) + " year ago"
-            return time_since_created
-        elif seconds > 63113852:
-            years = int(round(seconds / 31556926))
-            time_since_created = str(years) + " years ago"
-            return time_since_created
             
     def is_longer_than_400chars(self):
         if len(self.text) > 400:

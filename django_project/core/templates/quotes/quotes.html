@@ -1,5 +1,6 @@
 {% load quote_filters %}
 {% load static %}
+{% load humanize %}
 
 <div class="pq-quote">
     
@@ -51,7 +52,10 @@
                 </a>
             {% elif not quote.summary %}
                 <a href="{{ quote.get_absolute_url }}">
-                    {{ quote.converted_time_begins }} to {{ quote.converted_time_ends }}
+                    {{ quote.converted_time_begins }} 
+                    {% if quote.time_quote_ends %}
+                        to {{ quote.converted_time_ends }}
+                    {% endif %}
                 </a>
             {% endif %}
         </div>
@@ -194,7 +198,7 @@
     
         {% if is_quote_page %}
             <div class="pq-quote-posted-by blue-link">
-                posted {{ quote.time_since_created }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
+                posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
             </div>
         {% endif %}
   
@@ -203,7 +207,9 @@
     <div class="pq-quote-date dark-link">
         <a href="{{ quote.get_absolute_url }}">
             {% if is_home_page or is_podcast_page %} 
-                {{ quote.episode.publication_date|date:'M d, Y' }} -
+                {% if quote.episode.publication_date %}
+                    {{ quote.episode.publication_date|date:'M d, Y' }} -
+                {% endif %}
             {% endif %}
                 {{ quote.converted_time_begins }} 
             {% if quote.time_quote_ends %}
