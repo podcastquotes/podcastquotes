@@ -4,7 +4,7 @@ from django.utils.html import strip_tags
 from datetime import datetime
 import calendar
 import pytz
-
+ 
 class PodcastSyndicationService():
         
     def obtain_podcast_information(self, uri):
@@ -19,7 +19,9 @@ class PodcastSyndicationService():
         podcast_info = {
             'title':       parsed_url.feed.title,
             'description': parsed_url.feed.description,
-            'homepage':    parsed_url.feed.link
+            'homepage':    parsed_url.feed.link,
+            'image_url':   parsed_url.feed.image.url,
+            'keywords_list':    parsed_url.feed.tags,
         }
         
         return podcast_info

@@ -10,9 +10,26 @@ from django.utils.decorators import method_decorator
 from core.forms import PodcastCreateForm, PodcastForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 from quotes_app.services import PodcastSyndicationService
+from time import time
 import json
+import requests
+
+from django.core.files import File
+from tempfile import NamedTemporaryFile
 
 podcast_syndication_service = PodcastSyndicationService()
+
+def get_upload_file_name(filename):
+    return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+
+def save_image_from_url(model, url, podcast_title):
+    r = requests.get(url)
+    
+    img_temp = NamedTemporaryFile(delete=True)
+    img_temp.write(r.content)
+    img_temp.flush()
+    
+    model.image.save(get_upload_file_name(podcast_title), File(img_temp), save=True)
 
 @login_required
 def update_feed(request, podcast_id):
@@ -60,6 +77,20 @@ class PodcastCreateView(CreateView):
         podcast.title = feed['title']
         podcast.description = feed['description']
         podcast.homepage = feed['homepage']
+        
+        # gather keywords to put in the podcast_info dictionary
+        ### !!! keywords needs to be added to tests !!! ###
+        keywords_list = feed['keywords_list']
+        keywords = ''
+        for t in keywords_list:
+           term = t.term.lower()
+           keywords += term + ', '
+        podcast.keywords = keywords[:-2]
+        
+        ### !!! does image need to be added to tests? !!! ###
+        image_url = feed['image_url']
+        save_image_from_url(podcast, image_url, podcast.title)
+        
         podcast.rss_url = rss_url
         podcast.save()
         podcast.moderators.add(self.request.user)

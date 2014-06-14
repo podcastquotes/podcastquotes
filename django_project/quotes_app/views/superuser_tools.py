@@ -8,7 +8,7 @@ class NeedYouTubeLinks(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(NeedYouTubeLinks, self).get_context_data(**kwargs)
-        context['episodes_without_youtube_links'] = Episode.objects.filter(podcast__managed_by_superuser=True).filter(youtube_url='');
+        context['episodes_without_youtube_links'] = Episode.objects.filter(podcast__managed_by_superuser=True).filter(youtube_url='').order_by('podcast');
         return context
 
 # this view is useful for Mitch to check the titles of a podcast's episodes

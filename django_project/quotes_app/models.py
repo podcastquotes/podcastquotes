@@ -80,6 +80,7 @@ class Podcast(models.Model):
     rss_url = models.URLField(blank=True)
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
+    keywords = models.CharField(max_length=500, blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     homepage = models.URLField(blank=True)
     donate_url = models.URLField(blank=True)
