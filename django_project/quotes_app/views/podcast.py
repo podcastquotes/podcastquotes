@@ -9,31 +9,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.utils.decorators import method_decorator
 from core.forms import PodcastCreateForm, PodcastForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-from quotes_app.services import PodcastSyndicationService
-from time import time
+from quotes_app.services import PodcastSyndicationService, save_image_from_url, get_upload_file_name
 import json
-import requests
-
-from django.core.files import File
-from tempfile import NamedTemporaryFile
 
 podcast_syndication_service = PodcastSyndicationService()
 
-def get_upload_file_name(filename):
-    return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
-
-def save_image_from_url(model, url, podcast_title):
-    r = requests.get(url)
-    
-    img_temp = NamedTemporaryFile(delete=True)
-    img_temp.write(r.content)
-    img_temp.flush()
-    
-    model.image.save(get_upload_file_name(podcast_title), File(img_temp), save=True)
-
-@login_required
+@staff_member_required
 def update_feed(request, podcast_id):
-    p = get_object_or_404(Podcast, pk=podcast_id)
+    p = get_object_or_404(Podcast, id=podcast_id)
 
     podcast_syndication_service.collect_episodes(p)
     
@@ -85,6 +68,7 @@ class PodcastCreateView(CreateView):
         for t in keywords_list:
            term = t.term.lower()
            keywords += term + ', '
+        # remove the ', ' at the end of keywords
         podcast.keywords = keywords[:-2]
         
         ### !!! does image need to be added to tests? !!! ###

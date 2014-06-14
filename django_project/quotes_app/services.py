@@ -1,17 +1,30 @@
 import feedparser
 from quotes_app.models import Episode
 from django.utils.html import strip_tags
-from datetime import datetime
 import calendar
+from datetime import datetime
 import pytz
-<<<<<<< HEAD
- 
-=======
+from time import time
+import requests
+from django.core.files import File
+from tempfile import NamedTemporaryFile
+
 import logging
 
 logger = logging.getLogger(__name__)
 
->>>>>>> origin/master
+def get_upload_file_name(filename):
+    return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+
+def save_image_from_url(model, url, podcast_title):
+    r = requests.get(url)
+    
+    img_temp = NamedTemporaryFile(delete=True)
+    img_temp.write(r.content)
+    img_temp.flush()
+    
+    model.image.save(get_upload_file_name(podcast_title), File(img_temp), save=True)
+
 class PodcastSyndicationService():
         
     def obtain_podcast_information(self, uri):
@@ -24,11 +37,11 @@ class PodcastSyndicationService():
         parsed_url = feedparser.parse(uri)
         
         podcast_info = {
-            'title':       parsed_url.feed.title,
-            'description': parsed_url.feed.description,
-            'homepage':    parsed_url.feed.link,
-            'image_url':   parsed_url.feed.image.url,
-            'keywords_list':    parsed_url.feed.tags,
+            'title':          parsed_url.feed.title,
+            'description':    parsed_url.feed.description,
+            'homepage':       parsed_url.feed.link,
+            'image_url':      parsed_url.feed.image.url,
+            'keywords_list':  parsed_url.feed.tags,
         }
         
         return podcast_info

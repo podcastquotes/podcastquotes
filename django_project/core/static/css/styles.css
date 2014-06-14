@@ -744,8 +744,16 @@ a {
     }
 }
 
-.pq-podcast-profile-text {
-    overflow:hidden;
+@media (max-width:549px) {
+    .pq-podcast-profile-text {
+        clear:left;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-podcast-profile-text {
+        overflow:hidden;
+    }
 }
 
 .pq-podcast-title {
@@ -904,6 +912,12 @@ a {
     margin:0 10px 10px 0;
     font-size:20px;
     font-weight:bold;
+}
+
+@media (max-width:549px) {
+    .pq-episode-title {
+        display:none;
+    }
 }
 
 @media (max-width:549px) {
@@ -1376,7 +1390,7 @@ button {
 @media (min-width:768px) {
     .pq-menu {
         margin:0 0 20px 0;
-        padding:10px 12px 20px 12px;
+        padding:15px;
     }
 }
 
@@ -1503,6 +1517,12 @@ button {
     padding:20px 0;
     margin:25px 0 0 0;
     font-family:"Roboto Slab", Georgia, serif;
+}
+
+@media (max-width:767px) {
+    .pq-footer {
+        padding:20px 5px;
+    }
 }
 
 .pq-footer a:hover {

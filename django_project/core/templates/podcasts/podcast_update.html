@@ -35,6 +35,14 @@
           </div><!-- /.pq-form-input -->
 
           <div class="pq-form-input">
+              {% if form.keywords.errors %}
+                  <p class="error">{{ form.keywords.errors }}</p>
+              {% endif %}
+              <label class="pq-form-label-optional {% if form.keywords.errors %}error{% endif %}" for="title">Keywords</label>
+              {{ form.keywords }}
+          </div><!-- /.pq-form-input -->
+          
+          <div class="pq-form-input">
               {% if form.description.errors %}
                   <p class="error">{{ form.description.errors }}</p>
               {% endif %}

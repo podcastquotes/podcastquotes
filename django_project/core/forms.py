@@ -39,6 +39,7 @@ class PodcastForm(forms.ModelForm):
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
+            'keywords': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'twitter_url': forms.URLInput(attrs={'class':'form-control', 'placeholder':''}),
