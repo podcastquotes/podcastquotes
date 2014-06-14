@@ -18,11 +18,10 @@
 
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
-                
+            
+            {{ form.errors }}
+
             <div class="pq-form-input">
-                {% if form.login.errors %}
-                    <div class="text-red">{{ form.login.errors }}</div>
-                {% endif %}
                 <label class="pq-form-label" for="login">
                     Username
                 </label>
@@ -30,9 +29,6 @@
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-                {% if form.password.errors %}
-                    <div class="text-red">{{ form.password.errors }}</div>
-                {% endif %}
                 <label class="pq-form-label" for="password">
                     Password
                 </label>
