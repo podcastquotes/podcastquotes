@@ -9,7 +9,6 @@ from quotes_app.views.episode import EpisodeQuoteListView, EpisodeCreateView, Ep
 from quotes_app.views.home import HomeQuoteListView
 from quotes_app.views.podcast import PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDeleteView
-from quotes_app.views.rank import rank_all
 from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint
 from quotes_app.views.user import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views.vote import VoteFormView
@@ -38,9 +37,7 @@ urlpatterns = patterns('',
     url(r'^people/(?P<slug>\w+)/delete/$', UserProfileDeleteView.as_view(), name='user_delete'),
     
     url(r'^people/(?P<slug>\w+)/(?P<query_filter>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list'),
-    
-    url(r'^rerank/', 'quotes_app.views.rank.rank_all', name='rank_all_quotes'),
-    
+        
     url(r'^$', HomeQuoteListView.as_view(), name='home'),
  
     url(r'^admin/', include(admin.site.urls)),

@@ -12,10 +12,11 @@ from mock import patch, ANY, MagicMock
 
 import feedparser
 
-from quotes_app.models import Podcast, Episode
+from quotes_app.models import Podcast, Episode, Quote
 from quotes_app.services import PodcastSyndicationService
 from quotes_app.widgets import EpisodeEstablisherWidget
 from quotes_app.fields import EpisodeField
+from quotes_app.tasks import update_rss_feeds, rank_all
 
 from core.forms import PodcastCreateForm
 
@@ -298,6 +299,33 @@ class PodcastSyndicationServiceIntegrationTests(TestCase):
             "HTML tags should be stripped from the description")
         self.assertEqual(episode.guid, self.test_guid)
         
+    def test_existing_are_not_updated(self):
+        
+        # Create an episode in the database and spy on it's .save()
+        podcast = Podcast(id=0, rss_url=self.test_rss_document)
+        episode_existing = Episode.objects.create(
+            podcast=podcast,
+            title=self.test_title,
+            guid=self.test_guid)
+        episode_existing.save = MagicMock()
+        
+        # patch mechanism which either creates or obtains a podcast
+        # to always return an existing podcast.
+        patcher = patch('quotes_app.models.Episode.objects.get_or_create',
+            return_value=(episode_existing, False))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        
+        # Act
+        svc = PodcastSyndicationService()
+        svc.collect_episodes(podcast)
+        
+        # Assert
+        self.assertFalse(episode_existing.save.called,
+            "It shouldn't update an already existing episode.")
+            
+        
+            
 
 class QuoteCreateTests(TestCase):
     
@@ -631,4 +659,42 @@ class PodcastListJSONEndpointTests(TestCase):
         
         self.assertEqual(200, r.status_code)
         
+class TaskTests(TestCase):
         
+    def test_rank_all_calls_set_rank_on_quotes(self):
+        
+        # Create spy quote to be returned when all quotes are asked
+        # for through the quote_vote_manager.
+        spied_quote = Quote(episode=Episode())
+        spied_quote.set_rank = MagicMock()
+        
+        patcher = patch('quotes_app.tasks.Quote.quote_vote_manager.all',
+            return_value=[spied_quote])
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        
+        # Act
+        rank_all()
+        
+        # Assert
+        self.assertTrue(spied_quote.set_rank.called)
+    
+    def test_update_rss_feeds(self):
+        
+        # Arrange
+        
+        # Listen for collect_episode calls
+        patcher = patch('quotes_app.tasks.podcast_syndication_service.collect_episodes')
+        self.collect_episodes_spy = patcher.start()
+        self.addCleanup(patcher.stop)
+        
+        # Give a podcast with an rss feed to make it do something.
+        podcast = Podcast.objects.create(rss_url='asdf')
+
+        # Act
+        update_rss_feeds()
+        
+        # Assert
+        self.assertTrue(self.collect_episodes_spy.called)
+        
+    
