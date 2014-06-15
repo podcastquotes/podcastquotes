@@ -1819,6 +1819,10 @@ button {
     font-size:16px;
 }
 
+.pq-about hr {
+    border-top:1px solid #ddd;
+}
+
 .pq-mid-title {
     font-size:20px;
     font-weight:bold;
