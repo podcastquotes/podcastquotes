@@ -31,6 +31,8 @@ class PatchFeedparserMixin():
     expected_feed_title = 'test'
     expected_feed_description = 'test2'
     expected_feed_homepage = 'test3'
+    expected_feed_image_url = 'test4'
+    expected_feed_tags = 'test5'
     
     def _patch_feedparser(self, 
         path='quotes_app.services.feedparser.parse'):
@@ -39,7 +41,11 @@ class PatchFeedparserMixin():
             feed=MicroMock(
                 title=self.expected_feed_title,
                 description=self.expected_feed_description, 
-                link=self.expected_feed_homepage
+                link=self.expected_feed_homepage,
+                image=MicroMock(
+                    url=self.expected_feed_image_url
+                ),
+                tags=self.expected_feed_tags
             ),
             entries=[MicroMock(
                 title="Why is yoda so old?",
@@ -103,6 +109,7 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
     def setUp(self):
         
         self.patch_obtain_podcast_information()
+        self.patch_save_image_from_url()
         
         # Arrange the form inputs.
         self.test_create_form = {
@@ -144,6 +151,10 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
         self.test_rss_title = title = 'TEST!'
         self.test_rss_description = description = 'TEST123!'
         self.test_rss_homepage = homepage = 'test123123123'
+        self.test_rss_image_url = image_url = 'http://hasdf.png'
+        self.test_keywords_list = keywords_list = [
+            MicroMock(term='asdf')
+        ]
         
         patcher = patch(
             'quotes_app.views.podcast.podcast_syndication_service.' + 
@@ -151,13 +162,24 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
             return_value={
                 'title':       title,
                 'description': description,
-                'homepage':    homepage
+                'homepage':    homepage,
+                'image_url': image_url,
+                'keywords_list': keywords_list
             })
         self.obtain_info_spy = patcher.start()
         self.addCleanup(patcher.stop)
 
+    def patch_save_image_from_url(self):
+        
+        patcher = patch('quotes_app.views.podcast.save_image_from_url')
+        self.save_image_from_url_spy = patcher.start()
+        self.addCleanup(patcher.stop)
+
     def act(self):
         self.podcast_create_view.form_valid(self.form)
+
+    def test_that_image_url_downloaded(self):
+        self.assertTrue(self.save_image_from_url_spy.called)
 
     def test_that_podcast_information_retrieved(self):
         
