@@ -61,6 +61,7 @@ class PatchFeedparserMixin():
         self.parse_spy = patcher.start()
         self.addCleanup(patcher.stop)
 
+from django.contrib.sessions.middleware import SessionMiddleware
 
 class UpdateFeedTests(TestCase):
     
@@ -80,13 +81,17 @@ class UpdateFeedTests(TestCase):
             return_value="hi")
         self.parse_spy = patcher.start()
         self.addCleanup(patcher.stop)
-    
+
     def test_update_feed_invokes_episode_collection(self):
         
         # Arrange
         user=User()
-        r=RequestFactory()
+        self.make_user_staff(user)
+        
+        r=RequestFactory().get('/something/')
         r.user = user
+        
+        self.add_session_to_request(r)
         
         # Act
         update_feed(r, 0)
@@ -99,6 +104,15 @@ class UpdateFeedTests(TestCase):
         self.assertEqual(parse_call_arg, self.test_podcast,
             "Episodes collected for test_podcast")
 
+    def make_user_staff(self, user):
+        user.is_active = True 
+        user.is_staff = True
+
+    def add_session_to_request(self, request):
+        """Annotate a request object with a session"""
+        middleware = SessionMiddleware()
+        middleware.process_request(request)
+        request.session.save()
 
 class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
     """ 
