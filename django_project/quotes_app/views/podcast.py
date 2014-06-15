@@ -64,11 +64,22 @@ class PodcastCreateView(CreateView):
         # gather keywords to put in the podcast_info dictionary
         ### !!! keywords needs to be added to tests !!! ###
         keywords_list = feed['keywords_list']
+        
+        # remove duplicates from keywords_list
+        # this unique_list method is not suited for long lists
+        ulist = []
+        def unique_list(l):
+            for x in l: 
+                keyword = x.term.lower()
+                if keyword not in ulist: 
+                    ulist.append(keyword)
+            return ulist
+        unique_list(keywords_list)
+        
         keywords = ''
-        for t in keywords_list:
-           term = t.term.lower()
-           keywords += term + ', '
-        # remove the ', ' at the end of keywords
+        for t in ulist:
+           keywords += t + ', '
+        # remove the ', ' at the end of keywords string
         podcast.keywords = keywords[:-2]
         
         ### !!! does image need to be added to tests? !!! ###
