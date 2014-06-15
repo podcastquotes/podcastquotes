@@ -81,13 +81,21 @@ var initEpisodeEstablisherWidget = function (config) {
         source: podcastBloodhound.ttAdapter()
     })
         .on('typeahead:selected', podcastSelectionHandler)
+        .on('typeahead:autocompleted', podcastSelectionHandler)
         .on('typeahead:cursorchanged', podcastSelectionHandler)
         .keypress(function() {
             podcastSelectionIndicator.html('A new podcast will be created');
             episodeInputElm.prop('disabled', false);
         });
 
+    var episodeSelectionHandler = function (event, episode, name) {
+        // Set value of podcast_id to selected podcast
+        episode_id_elm.val(episode.id);
 
+        // Indicate that an existing episode was selected
+        episodeSelectionIndicator.html('Found Episode');
+    };
+    
     episodeInputElm.typeahead({
         hint: true,
         highlight: true,
@@ -97,13 +105,9 @@ var initEpisodeEstablisherWidget = function (config) {
         displayKey: 'title',
         source: episodeBloodhound.ttAdapter()
     })
-        .on('typeahead:selected', function (event, episode, name) {
-            // Set value of podcast_id to selected podcast
-            episode_id_elm.val(episode.id);
-
-            // Indicate that an existing episode was selected
-            episodeSelectionIndicator.html('Found Episode');
-        })
+        .on('typeahead:selected', episodeSelectionHandler)
+        .on('typeahead:autocompleted', episodeSelectionHandler)
+        .on('typeahead:cursorchanged', episodeSelectionHandler)
         .keypress(function() {
             episodeSelectionIndicator.html('A new episode will be created');
         });

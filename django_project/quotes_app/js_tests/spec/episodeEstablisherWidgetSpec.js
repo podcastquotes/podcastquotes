@@ -81,7 +81,7 @@ describe('The episode establisher widget', function () {
             });
             
             it('should enable the episode selector', function () {
-                    expect(config.episodeInputElm).not.toBeDisabled();
+                expect(config.episodeInputElm).not.toBeDisabled();
             });
             
             it('should indicate that it was matched', function () {
@@ -102,6 +102,8 @@ describe('The episode establisher widget', function () {
         'typeahead:selected');
     podcastSelectionSpec("when a suggested podcast is scrolled to", 
         'typeahead:cursorchanged');
+    podcastSelectionSpec("when a suggested podcast is tabbed to",
+        'typeahead:autocompleted');
     
     
     describe('when an episode title is typed in', function () {
@@ -126,33 +128,45 @@ describe('The episode establisher widget', function () {
         });
     });
     
+    var episodeSelectionSpec = function (specText, triggerName) {
+        
+        describe(specText, function () {
+            
+            var selectedEpisode;
+            
+            beforeEach(function () {
+                
+                selectedEpisode = {
+                    id: 193, 
+                    title: 'Lyfe in the real world ladies and gentlemen.' 
+                };
+                
+                // Select a podcast
+                config.episodeInputElm
+                    .trigger(triggerName, selectedEpisode)
+                
+            });
+            
+            it('should indicate that it was matched', function () {
+                expect(config.episodeSelectionIndicator.html())
+                    .toContain('Found Episode');
+            });
+            
+            it('should set the episode pk input value to the episode id', 
+                function () {
+                expect(config.episode_id_elm.val())
+                    .toEqual(String(selectedEpisode.id))
+            });
+        });
     
-    describe('when a suggested episode is clicked', function () {
-        
-        var selectedEpisode;
-        
-        beforeEach(function () {
-            
-            selectedEpisode = {
-                id: 193, 
-                title: 'Lyfe in the real world ladies and gentlemen.' 
-            };
-            
-            // Select a podcast
-            config.episodeInputElm
-                .trigger('typeahead:selected', selectedEpisode)
-            
-        });
-        
-        it('should indicate that it was matched', function () {
-            expect(config.episodeSelectionIndicator.html())
-                .toContain('Found Episode');
-        });
-        
-        it('should set the episode pk input value to the episode id', 
-            function () {
-            expect(config.episode_id_elm.val())
-                .toEqual(String(selectedEpisode.id))
-        });
-    });
+    };
+    
+    episodeSelectionSpec('when a suggested episode is clicked', 
+        'typeahead:selected');
+    episodeSelectionSpec('when as suggested epsisode is scrolled to',
+        'typeahead:cursorchanged');
+    episodeSelectionSpec('when a suggested episode is tabbed to', 
+        'typeahead:autocompleted');
+    
+
 });
