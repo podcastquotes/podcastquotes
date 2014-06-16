@@ -21,8 +21,9 @@ REPO_DJANGO_DIR = REPO_DIR + '/django_project'
 
 APP_DIR = '/home/oceancron/webapps/podcastquotes'
 DJANGO_PROJECT = APP_DIR+'/django_project'
-VIRTUALENV = APP_DIR+'/venv'
+VIRTUALENV = '/home/oceancron/python-virtualenvs/podverse'
 SITE_SETTINGS = APP_DIR + '/site_settings.py'
+SECRETS_CFG = APP_DIR + '/secrets.cfg'
 
 if None in [REPO_DIR, APP_DIR, DJANGO_PROJECT, VIRTUALENV, 
     SITE_SETTINGS]:
@@ -60,16 +61,23 @@ def test_repo():
 @task
 def reconfigure_app():
     
-    # Rename skeletons
+    # Rename setting skeleton
     with cd(REPO_DJANGO_DIR):
-        run('cp podcastquotes/site_settings.py.skel podcastquotes/site_settings.py')
         run('cp podcastquotes/settings.py.skel podcastquotes/settings.py')
     
-    # Copy over site_settings
-    run('cp {site_settings} {repo_django_dir}/podcastquotes/site_settings.py'.format(
-        site_settings=SITE_SETTINGS,
-        repo_django_dir=REPO_DJANGO_DIR
-    ))
+    # Link over site_settings
+    with cd(REPO_DJANGO_DIR + '/podcastquotes'):
+        run('rm site_settings.py')
+        run('ln -s {site_settings}'.format(
+            site_settings=SITE_SETTINGS
+        ))
+    
+    # Link over site secrets config
+    with cd(REPO_DJANGO_DIR):
+        run('rm secrets.cfg')
+        run('ln -s {secrets_cfg}'.format(
+            secrets_cfg=SECRETS_CFG
+        ))
 
 @task
 def migrate_database():
@@ -105,6 +113,12 @@ def install_application():
 @task
 def restart_server():
     run(APP_DIR+'/apache2/bin/restart')
+    
+@task
+def deployment_tests():
+    with virtualenv(VIRTUALENV):
+        with cd(DJANGO_PROJECT):
+            run('./manage.py deploy_tests')
 
 @task
 def deploy_latest():
@@ -115,4 +129,5 @@ def deploy_latest():
     migrate_database()
     test_repo()
     install_application()
+    deployment_tests()
     restart_server()
