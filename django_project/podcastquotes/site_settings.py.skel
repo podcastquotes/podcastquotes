@@ -7,6 +7,10 @@ import os
 import sys
 from settings import BASE_DIR
 
+#
+# DATABASES
+#
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -17,8 +21,16 @@ DATABASES = {
 if 'test' in sys.argv:
     DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
+#
+# RECAPTCHA
+#
+
 RECAPTCHA_PUBLIC_KEY = 'changeme'
 RECAPTCHA_PRIVATE_KEY = 'changeme'
+
+#
+# STATIC / MEDIA
+#
 
 # Where can the browser find the static files?
 STATIC_URL = '/static/'
@@ -26,13 +38,27 @@ STATIC_URL = '/static/'
 # Where on the server filesystem are these static files?
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # Where can the browser find the media files (uploaded files)?
 MEDIA_URL = '/media/'
 
 # Where on the server filesystem are these media files?
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#
+# EMAIL
+# Use only one section
+
+# (1) Development console emailer
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# (2) MailGun emailer
+#EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+#MAILGUN_ACCESS_KEY = ''
+#MAILGUN_SERVER_NAME = ''
+
+#
+# MISC
+#
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # CHANGE THIS TO BE UNIQUE ON EACH DEPLOYMENT
@@ -40,9 +66,9 @@ SECRET_KEY = 'd4(k72p7w7cfm30hy58+ul2z%+k0rplz&79*p&i(t^54__8k6!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-TEMPLATE_DEBUG = True
-
+# Set to the domains this will be running on.
 ALLOWED_HOSTS = []
 
 #
