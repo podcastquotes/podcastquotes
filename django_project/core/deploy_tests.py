@@ -6,8 +6,11 @@ from ConfigParser import ConfigParser
 from allauth.socialaccount.models import SocialApp
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.core.mail import send_mail
+import django.test
 
 import unittest
+import platform
 
 
 ### Obtain Config Values ###
@@ -108,4 +111,17 @@ class AllAuthConfigTests(unittest.TestCase):
         
         client_id = SocialApp.objects.get(provider='facebook').sites.get().pk
         self.assertEqual(client_id, settings.SITE_ID)
+
+class EmailTests(django.test.TestCase):
+    
+    def test_email_configured(self):
+        
+        node_name = platform.node()
+        send_mail(
+            'Verification of Podverse Email System', 
+            'This was sent from ' + node_name, 
+            'noreply@podverse.tv',
+            ['vinciple@gmail.com'], fail_silently=False)
+            
+            # Manual verification needed.
         
