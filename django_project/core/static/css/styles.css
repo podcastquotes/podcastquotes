@@ -1582,7 +1582,7 @@ button {
 @media (min-width:992px) {
     .pq-footer-nav {
         float:left;
-        margin:0 30px 0 0;
+        margin:0 35px 0 0;
         padding:5px 0 0 0;
         font-size:16px;
     }
@@ -1617,7 +1617,7 @@ button {
 .pq-form-login {
     max-width:500px;
     margin:10px auto 25px auto;
-    padding:10px 15px;
+    padding:10px 15px 20px 15px;
     background-color:#eee;
     border:1px solid #aaa;
     border-radius:5px;
