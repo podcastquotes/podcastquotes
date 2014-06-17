@@ -61,30 +61,33 @@ class PodcastCreateView(CreateView):
         podcast.description = feed['description']
         podcast.homepage = feed['homepage']
         
-        # gather keywords to put in the podcast_info dictionary
-        ### !!! keywords needs to be added to tests !!! ###
-        keywords_list = feed['keywords_list']
+        if feed['keywords_list'] == '':
+            pass
+        else:
+            keywords_list = feed['keywords_list']
+            
+            # remove duplicates from keywords_list
+            # this unique_list method is not suited for long lists
+            ulist = []
+            def unique_list(l):
+                for x in l: 
+                    keyword = x.term.lower()
+                    if keyword not in ulist: 
+                        ulist.append(keyword)
+                return ulist
+            unique_list(keywords_list)
+            
+            keywords = ''
+            for t in ulist:
+               keywords += t + ', '
+            # remove the ', ' at the end of keywords string
+            podcast.keywords = keywords[:-2]
         
-        # remove duplicates from keywords_list
-        # this unique_list method is not suited for long lists
-        ulist = []
-        def unique_list(l):
-            for x in l: 
-                keyword = x.term.lower()
-                if keyword not in ulist: 
-                    ulist.append(keyword)
-            return ulist
-        unique_list(keywords_list)
-        
-        keywords = ''
-        for t in ulist:
-           keywords += t + ', '
-        # remove the ', ' at the end of keywords string
-        podcast.keywords = keywords[:-2]
-        
-        ### !!! does image need to be added to tests? !!! ###
-        image_url = feed['image_url']
-        save_image_from_url(podcast, image_url, podcast.title)
+        if feed['image_url'] == '':
+            pass
+        else:
+            image_url = feed['image_url']
+            save_image_from_url(podcast, image_url, podcast.title)
         
         podcast.rss_url = rss_url
         podcast.save()

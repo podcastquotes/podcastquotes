@@ -74,15 +74,19 @@
                 </a>
             </div><!-- /.pq-podcast-title -->
             
-            <div class="pq-podcast-subtitle">
-                Keywords: {{ podcast.keywords }}
-            </div>
+            {% if podcast.keywords %}            
+                <div class="pq-podcast-subtitle">
+                    Keywords: {{ podcast.keywords }}
+                </div>
+            {% endif %}
             
         </div><!-- /.pq-podcast-profile-text -->
-            
-        <div class="pq-podcast-description">
-            {{ podcast.description }}
-        </div>
+        
+        {% if podcast.description %}
+            <div class="pq-podcast-description">
+                {{ podcast.description }}
+            </div>
+        {% endif %}
         
         {% if is_podcast_page %}
             <div class="pq-podcast-buttons">
