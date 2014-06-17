@@ -99,7 +99,7 @@
         
         <div class="youtube-start-button-wrapper" id="youtube-start-button-wrapper-{{ forloop.counter }}">
             {% if quote.time_quote_begins and quote.episode.youtube_url %}    
-                <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=1&showinfo=0&fs=1">
+                <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&vq=small&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=0&showinfo=0&fs=1">
                     <div class="youtube-start-button-text" id="{{ forloop.counter }}">
                         <small>&nbsp</small> PLAY
                     </div>
