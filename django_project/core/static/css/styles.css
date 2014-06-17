@@ -308,8 +308,11 @@ a {
     color:#bbb;
 }
 
+.navbar-right {
+    margin-top:-1px;
+}
+
 .navbar-default .navbar-nav > li > a {
-    margin-top:-3px;
     color:#fff;
 }
 
@@ -318,7 +321,7 @@ a {
 }
 
 .navbar-default .navbar-toggle {
-    margin-top:4px;
+    margin-top:6px;
     border:1px solid #fff;
     margin-bottom:25px;
 }
@@ -354,7 +357,7 @@ a {
         padding:11px 20px;
         margin:0 -3px 0 0;
         cursor:pointer;
-        font-family:"Roboto Slab", Georgia, serif;
+        font-family:"Comfortaa", Georgia, serif;
         text-decoration:none;
     }
 }
@@ -369,7 +372,7 @@ a {
     .pq-navbar-dropdown-2 {
         padding:11px 20px;
         cursor:pointer;
-        font-family:"Roboto Slab", Georgia, serif;
+        font-family:"Comfortaa", Georgia, serif;
         text-decoration:none;
     }
 }
@@ -522,7 +525,7 @@ a {
 @media (min-width:992px) {
     .pq-title {
         margin:0 0 15px 0;
-        font-family:"Roboto Slab", Georgia, serif;
+        font-family:"Comfortaa", Georgia, serif;
         font-size:22px;
         font-weight:bold;
         color:#111;
@@ -760,7 +763,7 @@ a {
     margin:-2px 0 5px 0;
     font-size:24px;
     font-weight:bold;
-    font-family:"Roboto Slab", Georgia, serif;
+    font-family:"Comfortaa", Georgia, serif;
     color:#111;
 }
 
@@ -1057,7 +1060,7 @@ a {
     overflow:hidden;
     font-weight:bold;
     font-size:20px;
-    font-family:"Roboto Slab", Georgia, serif;
+    font-family:"Comfortaa", Georgia, serif;
 }
 
 .pq-quote-profile-picture {
@@ -1398,7 +1401,7 @@ button {
     margin:0 0 5px 0;
     font-size:20px;
     font-weight:bold;
-    font-family:"Roboto Slab", Georgia, serif;
+    font-family:"Comfortaa", Georgia, serif;
 }
 
 .pq-menu-pulldown {
@@ -1516,7 +1519,7 @@ button {
     color:#fff;
     padding:20px 0;
     margin:25px 0 0 0;
-    font-family:"Roboto Slab", Georgia, serif;
+    font-family:"Comfortaa", Georgia, serif;
 }
 
 @media (max-width:767px) {
