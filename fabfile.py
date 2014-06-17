@@ -121,6 +121,18 @@ def deployment_tests():
             run('./manage.py deploy_tests')
 
 @task
+def install_cronjobs():
+    
+    install_cron = '{REPO_DIR}/install_cron.sh'.format(
+        REPO_DIR=REPO_DIR)
+    
+    run('{install_cron} {django_project} {virtualenv}'.format(
+        install_cron=install_cron,
+        django_project=DJANGO_PROJECT,
+        virtualenv=VIRTUALENV
+    ))
+
+@task
 def deploy_latest():
     
     pull_repository()
@@ -129,5 +141,7 @@ def deploy_latest():
     migrate_database()
     test_repo()
     install_application()
+    install_cronjobs()
     deployment_tests()
     restart_server()
+    
