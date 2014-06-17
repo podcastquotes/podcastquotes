@@ -7,7 +7,8 @@ from core import deploy_tests
 
 class Command(BaseCommand):
     
-    help = 'Inserts some values into the database'
+    help = 'Tests that configured deployment is working ' + \
+           ' to some degree.'
 
     def handle(self, *args, **options):
 

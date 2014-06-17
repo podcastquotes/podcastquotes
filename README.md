@@ -38,6 +38,13 @@ Database tasks
 ```./manage.py update_rss_feeds``` - Poll all rss feeds  
 ```./manage.py rank_quotes``` - Recalculate 'hot' score for quotes  
 
+CRON Jobs
+=========
+
+```install_cron.sh /full/path/to/django_project /full/path/to/virtualenv``` 
+
+The provided script idempotently installs required scheduled tasks on to the current user's crontab.
+
 Dev Tricks
 ==========
 
