@@ -13,6 +13,6 @@ def contact_pq(request):
     return render(request, 'contact.html',
                  {'podcasts': Podcast.objects.all().order_by('title')})
                  
-def support_pq(request):
-    return render(request, 'support-pq.html',
+def support_pv(request):
+    return render(request, 'support-pv.html',
                  {'podcasts': Podcast.objects.all().order_by('title')})
