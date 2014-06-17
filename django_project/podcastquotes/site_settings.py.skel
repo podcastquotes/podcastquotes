@@ -46,7 +46,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #
 # EMAIL
-# Use only one section
+#
+
+DEFAULT_FROM_EMAIL = 'Podverse Development <noreply@example.com>'
+
+#*** Use one of the following options
 
 # (1) Development console emailer
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -70,6 +74,12 @@ TEMPLATE_DEBUG = DEBUG
 
 # Set to the domains this will be running on.
 ALLOWED_HOSTS = []
+
+# Who cares about this instance?
+ADMINS = (
+    ('John', 'john@example.com'), 
+    ('Mary', 'mary@example.com')
+)
 
 #
 # LOGGING

@@ -1,5 +1,6 @@
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ProtectThePros.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", 
+    "podcastquotes.settings")
 
 from ConfigParser import ConfigParser
 
@@ -116,12 +117,20 @@ class EmailTests(django.test.TestCase):
     
     def test_email_configured(self):
         
-        node_name = platform.node()
-        send_mail(
-            'Verification of Podverse Email System', 
-            'This was sent from ' + node_name, 
-            'noreply@podverse.tv',
-            ['vinciple@gmail.com'], fail_silently=False)
+        recipients = [email for name, email in settings.ADMINS]
+        
+        subject = "Verification of Podverse e-mail system."
+        
+        body = "Greetings! " + \
+               "This was sent from the {script} script on {host}. " + \
+               "If you are reading this: the email " + \
+               "configuration is working on this instance of " + \
+               "Podverse.  You were sent this message because you " + \
+               "are listed as an admin in the instance configration."
+        body = body.format(script=__name__, host=platform.node())
+        
+        send_mail(subject, body, None, recipients, 
+            fail_silently=False)
             
-            # Manual verification needed.
+        # Manual verification needed.
         
