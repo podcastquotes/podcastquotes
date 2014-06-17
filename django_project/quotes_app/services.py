@@ -57,7 +57,7 @@ class PodcastSyndicationService():
         else: 
             podcast_info['keywords_list'] = ''
             
-        if hasattr(feed, 'image.url'):
+        if hasattr(feed, 'image'):
             podcast_info['image_url'] = feed.image.url
         else: 
             podcast_info['image_url'] = ''
