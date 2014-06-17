@@ -35,18 +35,22 @@ class PatchFeedparserMixin():
     expected_feed_tags = 'test5'
     
     def _patch_feedparser(self, 
-        path='quotes_app.services.feedparser.parse'):
+        path='quotes_app.services.feedparser.parse', image=True):
+        
+        feed_dict = {
+            'title':self.expected_feed_title,
+            'description':self.expected_feed_description, 
+            'link':self.expected_feed_homepage,
+            'tags':self.expected_feed_tags
+        }
+        
+        if image == True:
+            feed_dict['image'] = MicroMock(
+                url=self.expected_feed_image_url
+            )
         
         mock_feedparser_results = MicroMock(
-            feed=MicroMock(
-                title=self.expected_feed_title,
-                description=self.expected_feed_description, 
-                link=self.expected_feed_homepage,
-                image=MicroMock(
-                    url=self.expected_feed_image_url
-                ),
-                tags=self.expected_feed_tags
-            ),
+            feed=MicroMock(**feed_dict),
             entries=[MicroMock(
                 title="Why is yoda so old?",
                 publication_date="Thu, 04 Aug 2005 17:02:29 -0400",
@@ -243,10 +247,6 @@ class PodcastSyndicationService_podcast_info_Tests(TestCase,
         self.expected_feed_description = 'It\'s a star wars podcast'
         self.expected_feed_homepage = 'http://starwars.fke'
     
-        self._patch_feedparser()
-        
-        self.act()
-    
     def act(self):
         
         self.svc = svc = PodcastSyndicationService()
@@ -258,6 +258,10 @@ class PodcastSyndicationService_podcast_info_Tests(TestCase,
     
     def test_feedparser_parse_called(self):
         
+        self._patch_feedparser()
+        
+        self.act()
+        
         self.assertTrue(self.parse_spy.called)
         
         feed_param = self.parse_spy.call_args[0][0]
@@ -265,6 +269,10 @@ class PodcastSyndicationService_podcast_info_Tests(TestCase,
         self.assertEqual(self.feed_url, feed_param)
     
     def test_returned_dictionary_correct(self):
+        
+        self._patch_feedparser()
+        
+        self.act()
         
         self.assertEqual(self.podcast_info.get('title'), 
             self.expected_feed_title)
@@ -275,6 +283,11 @@ class PodcastSyndicationService_podcast_info_Tests(TestCase,
         self.assertEqual(self.podcast_info.get('homepage'),
             self.expected_feed_homepage)
 
+    def test_that_no_image_does_not_raise_errors(self):
+        
+        self._patch_feedparser(image=False)
+        
+        self.act()
 
 class PodcastSyndicationServiceIntegrationTests(TestCase):
     
