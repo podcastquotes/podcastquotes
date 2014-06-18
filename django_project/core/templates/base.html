@@ -5,12 +5,14 @@
   
 <head>
 <meta charset=”utf-8”> 
-<title>Podverse - Today's Top Podcast Highlights</title>
+{% block head_title %}
+    <title>Podverse - Today's Top Podcast Highlights</title>
+{% endblock %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with listeners of your podcast. Raise money for your podcast. Inspired by reddit.">
 <link rel="publisher" href="">
 {% include 'facebook_open_graph.html' %}
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800|Comfortaa:400,700|Montserrat' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,400,600,700,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>

@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     
     url(r'^contact/$', 'quotes_app.views.pq.contact_pq', name='contact_pq'),
     
-    url(r'^support-pv/$', 'quotes_app.views.pq.support_pv', name='support_pv'),
+    url(r'^support-podverse/$', 'quotes_app.views.pq.support_pv', name='support_pv'),
     
     # this view is useful for superuser to check for episodes which do not have a YouTube link for playing clips
     url(r'^need-youtube-links/$', NeedYouTubeLinks.as_view(), name='podcast_episode_title_print'),

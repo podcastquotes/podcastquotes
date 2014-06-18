@@ -12,5 +12,11 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 
-for model in [Podcast, Episode, Quote, Vote]:
+class EpisodeAdmin(admin.ModelAdmin):
+    list_display = ('podcast', 'title', 'youtube_url')
+    list_editable = ('youtube_url',)
+    
+admin.site.register(Episode, EpisodeAdmin)
+
+for model in [Podcast, Quote, Vote]:
     admin.site.register(model)

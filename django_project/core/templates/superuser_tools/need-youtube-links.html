@@ -1,9 +1,16 @@
 <big><strong>EPISODES WITHOUT YOUTUBE LINKS</strong></big>
-<br>
+<br><br>
+{% regroup episodes_without_youtube_links by podcast as items_by_podcast %}
+
 {% if episodes_without_youtube_links %}
-    {% for episode in episodes_without_youtube_links %}
-        {{ episode.title }} -
-        <a href="{{ episode.get_absolute_url }}edit">add YouTube link</a><br>
+    {% for episode_list in items_by_podcast %}
+        <big><strong><i>{{ episode_list.grouper }}</i></strong></big>
+        <br>
+        {% for episode in episode_list.list %}
+            {{ episode.title }} -
+            <a href="{{ episode.get_absolute_url }}edit" target="_blank">add YouTube link</a><br>
+        {% endfor %}
+        <br><br>
     {% endfor %}
 {% else %}
     All episodes have YouTube links! :)

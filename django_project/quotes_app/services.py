@@ -36,13 +36,31 @@ class PodcastSyndicationService():
         
         parsed_url = feedparser.parse(uri)
         
+        feed = parsed_url.feed
+        
         podcast_info = {
-            'title':          parsed_url.feed.title,
-            'description':    parsed_url.feed.description,
-            'homepage':       parsed_url.feed.link,
-            'image_url':      parsed_url.feed.image.url,
-            'keywords_list':  parsed_url.feed.tags,
+            'title': feed.title,
         }
+        
+        if hasattr(feed, 'description'):
+            podcast_info['description'] = feed.description
+        else: 
+            podcast_info['description'] = ''
+            
+        if hasattr(feed, 'link'):
+            podcast_info['homepage'] = feed.link
+        else: 
+            podcast_info['homepage'] = ''
+            
+        if hasattr(feed, 'tags'):
+            podcast_info['keywords_list'] = feed.tags
+        else: 
+            podcast_info['keywords_list'] = ''
+            
+        if hasattr(feed, 'image'):
+            podcast_info['image_url'] = feed.image.url
+        else: 
+            podcast_info['image_url'] = ''
         
         return podcast_info
     

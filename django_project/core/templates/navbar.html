@@ -43,7 +43,7 @@
                     {% if request.user.is_superuser %}
                     <li>
                         <a class="pq-navbar-dropdown-2" href="{% url 'podcast_create' %}">
-                            <small><small>Add Podcast</small></small>
+                            Add Podcast
                         </a>
                     </li>
                     {% endif %}
@@ -51,7 +51,7 @@
                     {% if request.user.is_superuser %}
                     <li>
                         <a class="pq-navbar-dropdown-2" href="{% url 'podcast_create' %}">
-                            <small><small>Add Episode</small></small>
+                            Add Episode
                         </a>
                     </li>
                     {% endif %}
@@ -68,7 +68,7 @@
                         </a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="/people/{{ request.user.username }}">My Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+                            <li><a href="/people/{{ request.user.username }}/edit">Settings</a></li>
                             <li class="divider"></li>
                             <li><a href="/logout">Sign Out</a></li>
                           </ul>
