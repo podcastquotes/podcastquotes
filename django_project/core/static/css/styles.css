@@ -359,6 +359,7 @@ a {
         cursor:pointer;
         font-family:"Quicksand", Georgia, serif;
         text-decoration:none;
+        font-size:18px;
     }
 }
 
@@ -374,6 +375,7 @@ a {
         cursor:pointer;
         font-family:"Quicksand", Georgia, serif;
         text-decoration:none;
+        font-size:18px;
     }
 }
 
@@ -525,7 +527,6 @@ a {
 @media (min-width:992px) {
     .pq-title {
         margin:0 0 15px 0;
-        font-family:"Quicksand", Georgia, serif;
         font-size:22px;
         font-weight:bold;
         color:#111;
@@ -762,8 +763,8 @@ a {
 .pq-podcast-title {
     margin:-2px 0 5px 0;
     font-size:24px;
-    font-weight:bold;
-    font-family:"Quicksand", Georgia, serif;
+    font-weight:600;
+    font-family:"Open Sans", Georgia, serif;
     color:#111;
 }
 
@@ -1058,9 +1059,9 @@ a {
     max-width:560px;
     margin:0 0 5px 0;
     overflow:hidden;
-    font-weight:bold;
-    font-size:20px;
-    font-family:"Quicksand", Georgia, serif;
+    font-weight:600;
+    font-size:18px;
+    font-family:"Open Sans", Georgia, serif;
 }
 
 .pq-quote-profile-picture {
@@ -1399,9 +1400,9 @@ button {
 
 .pq-menu-title {
     margin:0 0 5px 0;
-    font-size:20px;
-    font-weight:bold;
-    font-family:"Quicksand", Georgia, serif;
+    font-size:18px;
+    font-weight:600;
+    font-family:"Open Sans", Georgia, serif;
 }
 
 .pq-menu-pulldown {
@@ -1519,6 +1520,7 @@ button {
     color:#fff;
     padding:20px 0;
     margin:25px 0 0 0;
+    font-size:18px;
     font-family:"Quicksand", Georgia, serif;
 }
 
@@ -1578,7 +1580,7 @@ button {
         float:left;
         margin:0 5px 0 0;
         padding:5px 0 5px 0;
-        font-size:16px;
+        font-size:18px;
     }
 }
 
@@ -1587,7 +1589,7 @@ button {
         float:left;
         margin:0 35px 0 0;
         padding:5px 0 0 0;
-        font-size:16px;
+        font-size:18px;
     }
 }
 
