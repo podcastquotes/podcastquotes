@@ -1,6 +1,8 @@
 
 from quotes_app.views.podcast import (update_feed, PodcastCreateView)
 from quotes_app.views.quote import QuoteCreateView
+from quotes_app.views.episode import thin_json_episode_query
+from quotes_app.views.podcast import thin_json_podcast_query
 
 import unittest
 from django.core.exceptions import ValidationError
@@ -19,6 +21,8 @@ from quotes_app.fields import EpisodeField
 from quotes_app.tasks import update_rss_feeds, rank_all
 
 from core.forms import PodcastCreateForm
+
+import json
 
 
 class MicroMock(object):
@@ -587,15 +591,6 @@ class EpisodeEstablisherWidgetTests(TestCase):
         
         result = self.widget.render(name, value)
         
-    def test_x(self):
-        pass
-        #self.fail(self.widget.media)
-
-from quotes_app.views.episode import thin_json_episode_query
-from quotes_app.views.podcast import thin_json_podcast_query
-
-import json
-
 class EpisodeListJSONEndpointTests(TestCase):
     
     def setUp(self):
