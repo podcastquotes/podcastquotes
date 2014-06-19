@@ -1,5 +1,6 @@
 from django.forms.widgets import Widget
 from django.template.loader import render_to_string
+from quotes_app.models import Episode
 
 class EpisodeEstablisherWidget(Widget):
     
@@ -34,6 +35,21 @@ class EpisodeEstablisherWidget(Widget):
         # Expand None into blank tuple.
         if (value == None):
             value = ('', '', '', '')
+            
+        # KLUGE ALERT TODO
+        """ I don't like how the widget is touching the database here.
+            It would be nice if the EpisodeField would do this 
+            extrapolation """
+        
+        # If the value is an int, this is probably a pk for an episode.
+        if type(value) is int:
+            episode = Episode.objects.get(id=value)
+            value = (
+                episode.podcast.id, 
+                episode.podcast.title,
+                episode.id,
+                episode.title)
+        # END KLUGE
         
         podcast_id = value[0]
         podcast_title = value[1]
@@ -67,7 +83,7 @@ class EpisodeEstablisherWidget(Widget):
         """
         Return the tuple of values from this widget.
         """
-        
+
         return (
             data[self.get_podcast_id_form_name(name)],
             data[self.get_podcast_title_form_name(name)],

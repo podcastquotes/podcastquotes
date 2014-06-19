@@ -244,6 +244,10 @@ class Quote(models.Model):
         return "%d:%02d:%02d" % (h, m, s)
         
     def converted_time_ends(self):
+        
+        if self.time_quote_ends == None:
+            return None
+        
         m, s = divmod(self.time_quote_ends, 60)
         h, m = divmod(m, 60)
         return "%d:%02d:%02d" % (h, m, s)

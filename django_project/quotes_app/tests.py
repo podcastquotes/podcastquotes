@@ -1,6 +1,6 @@
 
 from quotes_app.views.podcast import (update_feed, PodcastCreateView)
-from quotes_app.views.quote import QuoteCreateView
+from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView
 from quotes_app.views.episode import thin_json_episode_query
 from quotes_app.views.podcast import thin_json_podcast_query
 
@@ -450,6 +450,50 @@ class QuoteCreateTests(TestCase):
     def test_success_redirects_to_success_url(self):
         self.fail("Behavior not tested")
 
+class QuoteUpdateTests(TestCase):
+    
+    def setUp(self):
+        
+        self.test_user = User.objects.create()
+        
+        # Create the holy trinity (pod/episode/quote)
+        self.test_podcast = Podcast.objects.create(title='Hoagie Talk')
+        
+        self.test_episode = Episode.objects.create(
+            title='Click of Death',
+            podcast=self.test_podcast)
+            
+        self.test_quote = Quote.objects.create(
+            episode=self.test_episode,
+            time_quote_begins=56,
+            time_quote_ends=59,
+            submitted_by=self.test_user)
+            
+        # Arrange
+        self.request = request = RequestFactory().get('/whatever!')
+        request.user = self.test_user
+        
+    def act(self):
+        quote_update_view = QuoteUpdateView.as_view()
+        response = quote_update_view(self.request, pk=self.test_quote.id)
+        
+        # Act
+        response.render()
+        
+    def test_quote_update_view_renders(self):
+        
+        self.act()
+        
+    def test_update_view_renders_without_quote_end_time(self):
+        
+        # Create the state without quote end time
+        self.test_quote.time_quote_ends = None
+        self.test_quote.save()
+        
+        self.act()
+
+    
+    
 class EpisodeFieldTests(TestCase):
     
     def setUp(self):
@@ -553,7 +597,8 @@ class EpisodeFieldTests(TestCase):
     #
     def assertIsEpisode(self, obj, msg='value is not an episode'):
         self.assertTrue(type(obj) is Episode, msg)
-        
+    
+
 
 class EpisodeEstablisherWidgetTests(TestCase):
     
