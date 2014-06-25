@@ -5,7 +5,7 @@
     {% include 'main_col_width.html' %}
 
       <div class="pq-title">
-          Edit Quote <i class="fa fa-pencil"></i>
+          Edit Clip <i class="fa fa-pencil"></i>
       </div><!-- /.pq-title -->
       
       <div class="pq-form">
@@ -24,7 +24,8 @@
                     </p>
                 {% endif %}
                 <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="podcast">Podcast</label>
-                {{ form.podcast }}
+                <br>
+                {{ podcast.title }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
@@ -34,7 +35,8 @@
                     </p>
                 {% endif %}
                 <label class="pq-form-label {% if form.podcast.errors %}error{% endif %}" for="episode">Episode</label>
-                {{ form.episode }}
+                <br>
+                {{ episode.title }}
             </div><!-- /.pq-form-input -->
           
              <div class="pq-form-input">

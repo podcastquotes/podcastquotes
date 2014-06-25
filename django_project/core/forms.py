@@ -83,8 +83,6 @@ class EpisodeForm(forms.ModelForm):
 
 class QuoteForm(forms.ModelForm):
     
-    episode = EpisodeField()
-    
     # We must override time_quote_begins and time_quote_ends in order for form
     # to validate and clean successfully. If we do not label the fields as CharFields,
     # they will validate as IntegerFields, when the hh:mm:ss format is a string.
@@ -117,6 +115,18 @@ class QuoteForm(forms.ModelForm):
             ends_with_delims = self.cleaned_data['time_quote_ends']
             converted_time_ends = getSec(ends_with_delims)
             return converted_time_ends
+
+class QuoteCreateForm(QuoteForm):
+    episode = EpisodeField()
+
+class QuoteUpdateForm(QuoteForm):
+    class Meta:
+        model = Quote
+        exclude = ('episode', 'rank_score', 'submitted_by')
+        widgets = {
+            'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format."'}),
+        }
 
 class VoteForm(forms.ModelForm):
 

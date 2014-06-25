@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from core.forms import QuoteForm
+from core.forms import QuoteForm, QuoteCreateForm, QuoteUpdateForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 def getSec(hhmmss):
@@ -17,7 +17,7 @@ def getSec(hhmmss):
 class QuoteCreateView(CreateView):
     model = Quote
     template_name = 'quote_create.html'
-    form_class = QuoteForm
+    form_class = QuoteCreateForm
     
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -42,15 +42,21 @@ class QuoteCreateView(CreateView):
 class QuoteUpdateView(UpdateView):
     model = Quote
     template_name = 'quote_update.html'
-    form_class = QuoteForm
+    form_class = QuoteUpdateForm
+    
+    class Meta:
+        model = Quote
+        exclude = ['episode']
     
     def get_context_data(self, **kwargs):
         context = super(QuoteUpdateView, self).get_context_data(**kwargs)
+        q = Quote.objects.get(id=self.kwargs['pk'])
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
-        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        context['podcast'] = Podcast.objects.get(id=q.episode.podcast.id)
+        context['episode'] = Episode.objects.get(id=q.episode.id)        
         return context
     
     def get_initial(self):

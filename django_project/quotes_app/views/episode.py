@@ -104,6 +104,7 @@ class EpisodeQuoteListView(ListView):
         context['episode_hot_is_active'] = False
         context['episode_not_is_active'] = False
         context['episode_controversial_is_active'] = False
+        context['episode_ordered_is_active'] = False
         context['episode_new_is_active'] = False
         context['episode_top_is_active'] = False
         context['episode_bottom_is_active'] = False
@@ -119,6 +120,8 @@ class EpisodeQuoteListView(ListView):
             context['episode_not_is_active'] = True
         elif f == 'controversial':
             context['episode_controversial_is_active'] = True
+        elif f == 'ordered':
+            context['episode_ordered_is_active'] = True
         elif f == 'new':
             context['episode_new_is_active'] = True
         elif f == 'top':
@@ -155,6 +158,8 @@ class EpisodeQuoteListView(ListView):
             return Quote.quote_vote_manager.query_not().filter(episode_id=e.id)
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().filter(episode_id=e.id)
+        elif f == 'ordered':
+            return Quote.quote_vote_manager.query_ordered().filter(episode_id=e.id)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().filter(episode_id=e.id)
         elif f == 'top':

@@ -35,7 +35,14 @@ class QuoteVoteManager(models.Manager):
         ###
         # Most evenly upvoted and downvoted trending algorithm
         return super(QuoteVoteManager, self).get_query_set()
-        
+    
+    def query_ordered(self):
+        # Order by time quote begins from earliest to latest
+        ### This will need some kind of smart filter to prevent quotes with
+        ### significantly overlapping times from appearing right after one another
+        ### any ideas how to achieve this?
+        return super(QuoteVoteManager, self).get_query_set().order_by('time_quote_begins')
+    
     def query_new(self):
         # Order by most recently submitted to least recently submitted
         return super(QuoteVoteManager, self).get_query_set().order_by('-created_at')
