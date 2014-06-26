@@ -86,7 +86,7 @@ class PodcastCreateView(CreateView):
         if feed['image_url'] == '':
             pass
         else:
-        ### Tech Debt? See issue # in the issue tracker
+        ### Tech Debt? See issue #80 in the issue tracker
             try:
                 image_url = feed['image_url']
                 save_image_from_url(podcast, image_url, podcast.title)
