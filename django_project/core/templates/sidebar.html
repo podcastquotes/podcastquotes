@@ -19,11 +19,17 @@
 
           <div class="pq-menu-options">
               {% for podcast in podcasts %}        
-                  <a href="/podcasts/{{ podcast.id }}">
-                    <div class="pq-menu-option">
-                       {{ podcast.title }}
-                    </div><!-- /.pq-menu-option -->
-                  </a>
+                  <div class="pq-menu-option">
+                      <a href="/podcasts/{{ podcast.id }}">
+                          <img class="pq-menu-option-image" src="{{MEDIA_URL}}{{ podcast.image }}">
+                          <span class="hidden-xs hidden-sm hidden-lg">
+                              {{ podcast.title|truncatechars:25 }}
+                          </span>
+                          <span class="hidden-xs hidden-sm hidden-md">
+                              {{ podcast.title|truncatechars:30 }}
+                          </span>
+                      </a>
+                  </div>
               {% endfor %}
           </div><!-- /.pq-menu-options -->
 
@@ -34,11 +40,11 @@
               
                 <div class="pq-menu-title">
                     Episodes
-                </div><!-- /.pq-menu-title -->
+                </div>
                 
                 <div class="pq-menu-pulldown">
                     Chronological <i class="fa fa-chevron-down"></i>
-                </div><!-- /.pq-menu-pulldown -->
+                </div>
                 
                 <div class="clearfix">
                 </div>
@@ -47,11 +53,12 @@
 
                 <div class="pq-menu-options">
                     {% for episode in podcast.episode_set.all %}        
-                        <a href="/episodes/{{ episode.id}}">
-                            <div class="pq-menu-option">
-                                {{ episode.title }}
-                            </div><!-- /.pq-menu-option -->
-                        </a>
+                        <div class="pq-menu-option">
+                            <a href="/episodes/{{ episode.id}}">
+                                {{ episode.title }}<br>
+                                <i>{{ episode.publication_date|date:'M d, Y' }}</i>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div><!-- /.pq-menu-options -->
 

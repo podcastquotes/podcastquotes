@@ -1429,8 +1429,14 @@ button {
 }
 
 .pq-menu-option {
-    padding:15px 5px 15px 0;
+    padding:7px 0;
     border-bottom:1px solid #e7e7e7;
+}
+
+.pq-menu-option-image {
+    width:34px;
+    height:34px;
+    margin:5px 5px 5px 0;
 }
 
 /******************************
