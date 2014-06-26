@@ -218,22 +218,24 @@
     <div class="pq-quote-date dark-link">
         <a href="{{ quote.get_absolute_url }}">
             Length: {{ quote.duration }}
-        </a>
-    </div>
-    
-    <div class="pq-quote-date dark-link">
-        <a href="{{ quote.get_absolute_url }}">
             {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %} 
                 {% if quote.episode.publication_date %}
-                    {{ quote.episode.publication_date|date:'M d, Y' }} -
+                    - Date: {{ quote.episode.publication_date|date:'M d, Y' }}
                 {% endif %}
-            {% endif %}
-                {{ quote.converted_time_begins }} 
-            {% if quote.time_quote_ends %}
-                - {{ quote.converted_time_ends }}
             {% endif %}
         </a>
     </div>
+
+    {% if episode_ordered_is_active %}
+        <div class="pq-quote-date dark-link">
+            <a href="{{ quote.get_absolute_url }}">
+                Starts: {{ quote.converted_time_begins }} 
+                {% if quote.time_quote_ends %}
+                    - Ends: {{ quote.converted_time_ends }}
+                {% endif %}
+            </a>
+        </div>
+    {% endif %}
 
     <div class="pq-quote-bottom-buttons">
     

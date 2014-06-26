@@ -4,12 +4,6 @@
     </div>
 </a>
 
-<a href="/episodes/{{ episode.id }}/ordered/">
-    <div class="pq-nav{% if episode_ordered_is_active %}-active{% endif %}">
-        ordered
-    </div>
-</a>
-
 <!--
 <a href="/episodes/{{ episode.id }}/not/">
     <div class="pq-nav{% if episode_not_is_active %}-active{% endif %}">
@@ -35,6 +29,12 @@
 <a href="/episodes/{{ episode.id }}/top/">
     <div class="pq-nav{% if episode_top_is_active %}-active{% endif %} pq-nav-disappear-3">
         top
+    </div>
+</a>
+
+<a href="/episodes/{{ episode.id }}/ordered/">
+    <div class="pq-nav{% if episode_ordered_is_active %}-active{% endif %}">
+        ordered
     </div>
 </a>
 

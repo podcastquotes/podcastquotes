@@ -267,14 +267,14 @@ a {
 
 @media (min-width:992px) and (max-width:1080px) {
     .pq-navbar-container {
-        max-width:900px;
+        max-width:920px;
         margin:0 auto;
     }
 }
 
 @media (min-width:1081px) and (max-width:1199px) {
     .pq-navbar-container {
-        max-width:960px;
+        max-width:990px;
         margin:0 auto;
     }
 }
@@ -282,7 +282,7 @@ a {
 @media (min-width:1200px) {
     .pq-navbar-container {
         margin:0 auto;
-        max-width:1030px;
+        max-width:1060px;
     }
 }
 
@@ -295,7 +295,9 @@ a {
     height:70px;
     padding-top:12px;
     /* background-color:#2A323F; */
+    border-right:1px solid #2A323F;
     border-bottom:1px solid #333;
+    border-left:1px solid #2A323F;
     margin:0 0 20px 0;
     border-radius:0;
     color:#fff;
@@ -403,7 +405,7 @@ a {
 
 @media (max-width:350px) {
     .pq-brand-img {
-        height:34px;
+        height:38px;
     }
 }
 
@@ -451,21 +453,21 @@ a {
 
 @media (min-width:992px) and (max-width:1079px) {
     .pq-container {
-        max-width:900px;
+        max-width:920px;
         margin:0 auto;
     }
 }
 
 @media (min-width:1080px) and (max-width:1199px) {
     .pq-container {
-        max-width:960px;
+        max-width:980px;
         margin:0 auto;
     }
 }
 
 @media (min-width:1200px) {
     .pq-container {
-        max-width:1000px;
+        max-width:1020px;
         margin:0 auto;
     }
 }
@@ -913,7 +915,7 @@ a {
 
 .pq-episode-title {
     display:inline-block;
-    margin:0 10px 10px 0;
+    margin:0 17px 10px 0;
     font-size:20px;
     font-weight:bold;
 }
@@ -995,6 +997,7 @@ a {
     clear:both;
     margin:0 0 20px 0;
     background:#fff;
+    border:1px solid #ccc;
 }
 
 @media (max-width:549px) {
@@ -1056,11 +1059,11 @@ a {
 }
 
 .pq-quote-title {
-    max-width:560px;
+    max-width:600px;
     margin:0 0 5px 0;
     overflow:hidden;
     font-weight:600;
-    font-size:18px;
+    font-size:19px;
     font-family:"Open Sans", Georgia, serif;
 }
 
@@ -1144,10 +1147,10 @@ button {
 .pq-quote-upvote {
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0;
     background:#ddd;
     border-radius:10px;
-    font-size:20px;
+    font-size:18px;
     color:#444;
     box-shadow:none;
     border:none;
@@ -1156,7 +1159,7 @@ button {
 .pq-quote-vote-total {
     text-align:center;
     width:50px;
-    margin:5px 0;
+    margin:3px 0;
     font-size:14px;
     color:#444;
 }
@@ -1168,11 +1171,11 @@ button {
 .pq-quote-downvote {
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0;
     margin:0 0 15px 0;
     background:#ddd;
     border-radius:10px;
-    font-size:20px;
+    font-size:18px;
     color:#444;
     box-shadow:none;
     border:none;
@@ -1196,10 +1199,10 @@ button {
     display:inline-block;    
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0;
     background:#ddd;
     border-radius:10px;
-    font-size:20px;
+    font-size:18px;
     color:#444;
     box-shadow:none;
     border:none;
@@ -1218,10 +1221,10 @@ button {
     display:inline-block;
     text-align:center;
     width:50px;
-    padding:5px 0;
+    padding:3px 0;
     background:#ddd;
     border-radius:10px;
-    font-size:20px;
+    font-size:18px;
     color:#444;
     box-shadow:none;
     border:none;
@@ -1383,6 +1386,7 @@ button {
 
 .pq-menu {
     background:#fff;
+    border:1px solid #ccc;
 }
 
 @media (max-width:767px) {
