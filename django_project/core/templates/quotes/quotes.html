@@ -217,6 +217,12 @@
     
     <div class="pq-quote-date dark-link">
         <a href="{{ quote.get_absolute_url }}">
+            Length: {{ quote.duration }}
+        </a>
+    </div>
+    
+    <div class="pq-quote-date dark-link">
+        <a href="{{ quote.get_absolute_url }}">
             {% if is_home_page or is_podcast_page %} 
                 {% if quote.episode.publication_date %}
                     {{ quote.episode.publication_date|date:'M d, Y' }} -

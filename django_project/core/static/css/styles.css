@@ -1060,7 +1060,7 @@ a {
     margin:0 0 5px 0;
     overflow:hidden;
     font-weight:600;
-    font-size:19px;
+    font-size:18px;
     font-family:"Open Sans", Georgia, serif;
 }
 
@@ -1133,7 +1133,7 @@ a {
     .pq-quote-buttons {
         clear:right;
         float:right;
-        margin:0 0 0 15px;
+        margin:0 0 0 20px;
     }
 }
 
@@ -1143,7 +1143,7 @@ button {
 
 .pq-quote-upvote {
     text-align:center;
-    width:60px;
+    width:50px;
     padding:5px 0;
     background:#ddd;
     border-radius:10px;
@@ -1155,7 +1155,7 @@ button {
 
 .pq-quote-vote-total {
     text-align:center;
-    width:60px;
+    width:50px;
     margin:5px 0;
     font-size:14px;
     color:#444;
@@ -1167,7 +1167,7 @@ button {
 
 .pq-quote-downvote {
     text-align:center;
-    width:60px;
+    width:50px;
     padding:5px 0;
     margin:0 0 15px 0;
     background:#ddd;
@@ -1195,7 +1195,7 @@ button {
 .pq-quote-xs-upvote {
     display:inline-block;    
     text-align:center;
-    width:60px;
+    width:50px;
     padding:5px 0;
     background:#ddd;
     border-radius:10px;
@@ -1217,7 +1217,7 @@ button {
 .pq-quote-xs-downvote {
     display:inline-block;
     text-align:center;
-    width:60px;
+    width:50px;
     padding:5px 0;
     background:#ddd;
     border-radius:10px;

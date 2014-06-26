@@ -248,17 +248,36 @@ class Quote(models.Model):
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)
         h, m = divmod(m, 60)
-        return "%d:%02d:%02d" % (h, m, s)
+        if h > 0:
+            return "%d:%02d:%02d" % (h, m, s)
+        else:
+            return "%02d:%02d" % (m, s)
+
         
     def converted_time_ends(self):
-        
         if self.time_quote_ends == None:
             return None
         
         m, s = divmod(self.time_quote_ends, 60)
         h, m = divmod(m, 60)
-        return "%d:%02d:%02d" % (h, m, s)
+        if h > 0:
+            return "%d:%02d:%02d" % (h, m, s)
+        else:
+            return "%02d:%02d" % (m, s)
         
+    def duration(self):
+        if self.time_quote_ends == None:
+            return None
+        
+        duration = self.time_quote_ends - self.time_quote_begins
+        m, s = divmod(duration, 60)
+        h, m = divmod(m, 60)
+        if h > 0:
+            return "%d:%02d:%02d" % (h, m, s)
+        else:
+            return "%02d:%02d" % (m, s)
+
+    
     def get_absolute_url(self):
         return reverse('quote', kwargs={'quote_id': self.pk})
         
