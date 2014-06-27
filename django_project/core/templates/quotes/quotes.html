@@ -75,8 +75,11 @@
             <div class="pq-quote-subtitle gray-link">
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
-                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:36 }}
+                        <a class="hidden-sm hidden-md hidden-lg" href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:25 }}
+                        </a>
+                        <a class="hidden-xs" href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:55 }}
                         </a>
                         <br>
                     {% endif %}
@@ -85,10 +88,10 @@
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a class="hidden-sm hidden-md hidden-lg" href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:36 }}
+                           Episode: {{ quote.episode.title|truncatechars:25 }}
                         </a>
                         <a class="hidden-xs" href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title }}
+                           Episode: {{ quote.episode.title|truncatechars:55 }}
                         </a>
                     {% endif %}
                 {% endif %}
@@ -96,7 +99,7 @@
         {% endif %}
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-            <div class="youtube-start-button-wrapper" style="{% if not quote.episode.youtube_url %}margin:0{% endif %}" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+            <div class="youtube-start-button-wrapper" id="youtube-start-button-wrapper-{{ forloop.counter }}">
                 {% if quote.time_quote_begins and quote.episode.youtube_url %}    
                     <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=0&showinfo=0&fs=1">
                         <div class="youtube-start-button-text" id="{{ forloop.counter }}">
