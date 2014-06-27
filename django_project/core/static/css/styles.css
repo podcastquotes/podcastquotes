@@ -1063,7 +1063,7 @@ a {
     margin:0 0 5px 0;
     overflow:hidden;
     font-weight:600;
-    font-size:19px;
+    font-size:18px;
     font-family:"Open Sans", Georgia, serif;
 }
 
@@ -1452,6 +1452,7 @@ button {
 .youtube-start-button-wrapper {
     clear:left;
     float:left;
+    margin:15px 5px 15px 0;
     font-size:14px;
     color:#f7f7f7;
     width:90px;
@@ -1476,8 +1477,7 @@ button {
 
 .youtube-start-button {
     width:85px;
-    height:40px;
-    margin:15px 0 15px 0;
+    height:38px;
     padding:13px 0 0 0;
     background:#41a141;
     text-align:center;

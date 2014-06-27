@@ -95,13 +95,8 @@
             </div>
         {% endif %}
         
-        {% if not quote.episode.youtube_url and not quote.episode.time_quote_begins %}
-            <div style="margin-bottom:10px">
-            </div>
-        {% endif %}
-        
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-            <div class="youtube-start-button-wrapper" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+            <div class="youtube-start-button-wrapper" style="{% if not quote.episode.youtube_url %}margin:0{% endif %}" id="youtube-start-button-wrapper-{{ forloop.counter }}">
                 {% if quote.time_quote_begins and quote.episode.youtube_url %}    
                     <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=0&showinfo=0&fs=1">
                         <div class="youtube-start-button-text" id="{{ forloop.counter }}">

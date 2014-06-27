@@ -324,7 +324,9 @@ class UserProfile(models.Model):
     
     def all_added_quotes_count(self):
         return Quote.objects.filter(submitted_by=self.user).count()
-        
+    
+    leaderboard_all_added_quotes_count = property(all_added_quotes_count)
+    
     def karma_total(self):
         q_list = Quote.objects.filter(submitted_by=self.user).annotate(karma_total=Sum('vote__vote_type'))
         
@@ -332,7 +334,11 @@ class UserProfile(models.Model):
         k = 0
         for q in q_list:
            k += q.karma_total
-        return k
+        if k > 0:
+            return k
+        else:
+            pass
+        
     leaderboard_karma_total = property(karma_total)
     
     def get_absolute_url(self):

@@ -22,7 +22,14 @@ class HomeQuoteListView(ListView):
         
         all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
-        context['karma_leaders'] = all_karma_leaders[:5]
+        # take only the top 5 karma_leaders
+        all_karma_leaders = all_karma_leaders[:5]
+        
+        # remove the users who have submitted 0 quotes
+        # they may not want to have their username public
+        all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
+        
+        context['karma_leaders'] = all_karma_leaders
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True
