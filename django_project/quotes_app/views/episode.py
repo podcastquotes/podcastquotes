@@ -18,6 +18,8 @@ class EpisodeCreateView(CreateView):
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['podcast'] = Podcast.objects.get(id=e.podcast.id)
 
         return context
 
@@ -29,10 +31,17 @@ class EpisodeUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EpisodeUpdateView, self).get_context_data(**kwargs)
         
+        e = get_object_or_404(Episode, id=self.kwargs['pk'])
+        podcast_id = e.podcast.id
+        
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
-        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        context['podcast'] = Podcast.objects.get(id=e.podcast.id)
+        
+        all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
+        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
+        context['episodes'] = all_episodes_with_quotes
         return context
         
     def get_object(self, *args, **kwargs):
@@ -54,12 +63,17 @@ class EpisodeDeleteView(DeleteView):
         context = super(EpisodeDeleteView, self).get_context_data(**kwargs)
         
         e = get_object_or_404(Episode, id=self.kwargs['pk'])
-        p_id = e.podcast.id
+        podcast_id = e.podcast.id
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['podcast'] = Podcast.objects.get(id=e.podcast.id)
 
-        context['episodes'] = Episode.objects.filter(podcast_id=p_id)
+        all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
+        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
+        
+        context['episodes'] = all_episodes_with_quotes
         return context
         
     def get_object(self, *args, **kwargs):
@@ -92,7 +106,12 @@ class EpisodeQuoteListView(ListView):
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
         context['podcast'] = Podcast.objects.get(id=e.podcast.id)
-        context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        
+        all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
+        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
+        
+        context['episodes'] = all_episodes_with_quotes
+        
         context['episode'] = Episode.objects.get(id=self.kwargs['pk'])
         
         all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)

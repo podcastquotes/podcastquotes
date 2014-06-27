@@ -152,11 +152,11 @@
                         <select class="form-control pq-episode-selector " ONCHANGE="location = this.options[this.selectedIndex].value;" style="border-radius:10px">
                             {% if episode.title %}
                             <option value="episodes/{{ podcast.episode.id }}" selected="selected">{{ episode.title }} - {{ episode.publication_date|date:'m/d/y' }}</option>
-                            <option value="/podcasts/{{ podcast.id }}">All Episodes</option>
+                            <option value="/podcasts/{{ podcast.id }}">All Episodes with Clips</option>
                             {% else %}
-                            <option value="/podcasts/{{ podcast.id }}/episodes/{{ podcast.episode.id }}" selected="selected">All Episodes</option>
+                            <option value="/podcasts/{{ podcast.id }}/episodes/{{ podcast.episode.id }}" selected="selected">All Episodes with Clips</option>
                             {% endif %}
-                            {% for episode in podcast.episode_set.all %}
+                            {% for episode in episodes %}
                                 <option value="/episodes/{{ episode.id }}">
                                     {{ episode.title }} - {{ episode.publication_date|date:'m/d/y' }}
                                 </option>

@@ -195,6 +195,8 @@ class Episode(models.Model):
     def all_episode_quotes_count(self):
        return Quote.objects.filter(episode__id=self.id).count()
     
+    all_episode_quotes_property = property(all_episode_quotes_count)
+    
     def karma_total(self):
         q_list = Quote.objects.filter(episode__id=self.id).annotate(karma_total=Sum('vote__vote_type'))
         

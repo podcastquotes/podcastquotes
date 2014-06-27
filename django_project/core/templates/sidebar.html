@@ -43,7 +43,7 @@
                 </div>
                 
                 <div class="pq-menu-pulldown">
-                    Chronological
+                    With Clips
                 </div>
                 
                 <div class="clearfix">
@@ -52,13 +52,19 @@
                 <hr />
 
                 <div class="pq-menu-options">
-                    {% for episode in podcast.episode_set.all %}        
+                    {% for episode in episodes %}        
                         <div class="pq-menu-option">
                             <a href="/episodes/{{ episode.id}}">
                                 {{ episode.title }}<br>
                                 <i>{{ episode.publication_date|date:'M d, Y' }}</i>
                             </a>
                         </div>
+                        {% empty %}
+                        <div class="pq-menu-option">
+                            No clips yet!<br>
+                            <a href="/quotes/create">Share one now</a>
+                        </div>
+                        
                     {% endfor %}
                 </div><!-- /.pq-menu-options -->
 
