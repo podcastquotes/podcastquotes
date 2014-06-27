@@ -126,8 +126,8 @@
             <div class="pq-quote-text-box" {% if not quote.episode.youtube_url %}style="margin-top:15px"{% endif %}>
                 {% if quote.text %}
                     <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
-                      {{ quote.text|linebreaks|truncatechars:400 }}
-                        {% if quote.is_longer_than_400chars %}
+                      {{ quote.text|linebreaks|truncatechars:200 }}
+                        {% if quote.is_longer_than_200chars %}
                             <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
                                 show
                             </span>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="pq-quote-text" id="pq-quote-text-{{ forloop.counter }}">
                       {{ quote.text|linebreaks }}
-                        {% if quote.is_longer_than_400chars %}
+                        {% if quote.is_longer_than_200chars %}
                             <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
                                 hide
                             </div>

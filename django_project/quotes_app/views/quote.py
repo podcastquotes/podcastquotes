@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
@@ -105,6 +106,7 @@ def quote(request, quote_id):
                  {'podcasts': Podcast.objects.all().order_by('title'),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
                  'episodes': Episode.objects.filter(podcast_id=q_object.episode.podcast.id).order_by('-publication_date'),
+                 'karma_leaders': sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True),
                  'quote_list': q_list,
                  'quote': q_object,
                  'is_quote_page': 1})

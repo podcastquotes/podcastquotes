@@ -1,6 +1,8 @@
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth.models import User
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+
 
 class HomeQuoteListView(ListView):
     model = Quote
@@ -17,6 +19,8 @@ class HomeQuoteListView(ListView):
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
+        
+        context['karma_leaders'] = sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True

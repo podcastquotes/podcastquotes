@@ -14,7 +14,7 @@
           
           <div class="clearfix">
           </div>
-          
+
           <hr />
 
           <div class="pq-menu-options">
@@ -64,6 +64,53 @@
 
             </div><!-- /.pq-menu -->
         {% endif %}
+        
+
+        <div class="pq-menu dark-link">
+          
+            <div class="pq-menu-title">
+                Karma Leaderboard
+            </div><!-- /.pq-menu-title -->
+            
+            <div class="pq-menu-pulldown">
+                {% if is_home_page or is_user_page %}
+                    All Podcasts
+                {% endif %}
+                {% if is_podcast_page or is_episode_page or is_quote_page %}
+                    {{ podcast.title }}
+                {% endif %}
+            </div><!-- /.pq-menu-pulldown -->
+            
+            <div class="clearfix">
+            </div>
+
+            <hr />
+            
+            {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
+                <div class="pq-menu-options" style="height:180px">
+                    {% for karma_leader in karma_leaders %}        
+                        <div class="pq-menu-option">
+                            <a href="/people/{{ karma_leader.username }}">
+                                <span style="display:inline-block; text-align:right; padding-right:5px;">
+                                    <small>#{{ forloop.counter }}</small>
+                                </span>
+                                <img class="pq-menu-option-image" style="inline-block;" src="{{MEDIA_URL}}{{ karma_leader.userprofile.image }}">
+                                <span class="hidden-xs hidden-sm hidden-lg" style="vertical-align:top; display:inline-block; padding-top:1px">
+                                    {{ karma_leader|truncatechars:20 }}
+                                    <br>
+                                    <i>{{ karma_leader.userprofile.karma_total }}</i>
+                                </span>
+                                <span class="hidden-xs hidden-sm hidden-md" style="vertical-align:top; display:inline-block; padding-top:1px">
+                                    {{ karma_leader|truncatechars:25 }}
+                                    <br>
+                                    <i>{{ karma_leader.userprofile.karma_total }}</i>
+                                </span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div><!-- /.pq-menu-options -->
+            {% endif %}
+        </div><!-- /.pq-menu -->
         
     </div><!-- /.pq-sidebar -->
 

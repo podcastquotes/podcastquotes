@@ -1,5 +1,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
@@ -177,6 +178,8 @@ class PodcastQuoteListView(ListView):
         
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
+        
+        context['karma_leaders'] = sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         context['is_home_page'] = False
         context['is_podcast_page'] = True

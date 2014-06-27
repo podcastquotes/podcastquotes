@@ -83,6 +83,8 @@ class UserQuoteListView(ListView):
         
         context['person'] = User.objects.get(username=self.kwargs['slug'])
         
+        context['karma_leaders'] = sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        
         context['is_home_page'] = False
         context['is_podcast_page'] = False
         context['is_episode_page'] = False

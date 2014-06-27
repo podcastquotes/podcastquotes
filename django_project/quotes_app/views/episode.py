@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
@@ -93,6 +94,8 @@ class EpisodeQuoteListView(ListView):
         context['podcast'] = Podcast.objects.get(id=e.podcast.id)
         context['episodes'] = Episode.objects.filter(podcast_id=self.kwargs['pk'])
         context['episode'] = Episode.objects.get(id=self.kwargs['pk'])
+        
+        context['karma_leaders'] = sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         context['is_home_page'] = False
         context['is_podcast_page'] = False

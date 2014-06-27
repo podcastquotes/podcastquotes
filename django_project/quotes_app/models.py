@@ -239,8 +239,8 @@ class Quote(models.Model):
         print self.rank_score
         self.save()
             
-    def is_longer_than_400chars(self):
-        if len(self.text) > 400:
+    def is_longer_than_200chars(self):
+        if len(self.text) > 200:
             return 1
         else:
             return 0
@@ -333,6 +333,7 @@ class UserProfile(models.Model):
         for q in q_list:
            k += q.karma_total
         return k
+    leaderboard_karma_total = property(karma_total)
     
     def get_absolute_url(self):
         return reverse('user_quote_list_root', kwargs={'slug': self.user})

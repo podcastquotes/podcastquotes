@@ -1398,7 +1398,7 @@ button {
 @media (min-width:768px) {
     .pq-menu {
         margin:0 0 20px 0;
-        padding:15px;
+        padding:12px 15px 15px 15px;
     }
 }
 
@@ -1427,7 +1427,7 @@ button {
 }
 
 .pq-menu-options {
-    height:285px;
+    height:295px;
     overflow:auto;
     font-size:14px;
 }
