@@ -28,7 +28,7 @@ class QuoteCreateView(CreateView):
         self.object = quote = form.save(commit=False)
         quote.submitted_by = self.request.user
         quote.save()
-        vote = Vote.create(voter=self.request.user, quote=quote, vote_type=0)
+        vote = Vote.create(voter=self.request.user, quote=quote, vote_type=1)
         vote.save()
         return HttpResponseRedirect(self.get_success_url())
     
