@@ -61,8 +61,10 @@
                         </div>
                         {% empty %}
                         <div class="pq-menu-option">
-                            No clips yet!<br>
-                            <a href="/quotes/create">Share one now</a>
+                            No clips shared yet!<br>
+                            <span class="blue-link">
+                                <a href="{% url 'quote_create' %}">Share one now</a>
+                            </span>
                         </div>
                         
                     {% endfor %}

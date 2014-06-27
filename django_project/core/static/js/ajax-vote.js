@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
             var btn_downvote = document.getElementById('pq-quote-downvote-' + q_id);
             var currentValue = parseInt($('#pq-quote-vote-total-' + q_id).text(),10);
             btn.attr('disabled', true);
-            $.post("/quotes/vote/", $(this).serializeArray(),
+            $.post("/clips/vote/", $(this).serializeArray(),
                 function(data) {
                     if(data["newupvoteobj"]) {
                         $('#pq-quote-upvote-' + q_id).addClass("pq-quote-upvote-active");

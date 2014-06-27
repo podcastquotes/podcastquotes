@@ -75,15 +75,15 @@ urlpatterns = patterns('',
     
     url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
-    url(r'^quotes/create/$', QuoteCreateView.as_view(), name='quote_create'),
+    url(r'^clips/create/$', QuoteCreateView.as_view(), name='quote_create'),
     
-    url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
+    url(r'^clips/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
     
-    url(r'^quotes/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
+    url(r'^clips/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
     
-    url(r'^quotes/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
+    url(r'^clips/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
     
-    url(r'^quotes/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
+    url(r'^clips/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
     
 	# JSON Endpoints
     url(r'^episodes/json$', 'quotes_app.views.episode.thin_json_episode_query', name="thin_json_episode_query"),
