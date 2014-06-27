@@ -23,7 +23,7 @@
         </form>
 
         <div class="pq-quote-vote-total" id="pq-quote-vote-total-{{ quote.id }}">
-            {{ quote.vote_score }}
+            {{ quote.karma_total }}
         </div>
         
         <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
@@ -172,7 +172,7 @@
             </form>
             
             <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
-                {{ quote.vote_score }}
+                {{ quote.karma_total }}
             </div>
             
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">

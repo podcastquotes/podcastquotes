@@ -22,13 +22,13 @@ class QuoteVoteManager(models.Manager):
         ### need to implement hot algorithm
         ###
         # Most upvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('-rank_score', '-vote_score')
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-rank_score', '-karma_total')
 
     def query_not(self):
         ### need to implement not algorithm
         ###
         # Most downvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('rank_score', 'vote_score')
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('rank_score', 'karma_total')
 
     def query_controversial(self):
         ### need to implement controversial algorithm
@@ -48,12 +48,12 @@ class QuoteVoteManager(models.Manager):
         return super(QuoteVoteManager, self).get_query_set().order_by('-created_at')
         
     def query_top(self):
-        # Order by highest vote_score to lowest vote_score
-        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('-vote_score')
+        # Order by highest karma_total to lowest karma_total
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-karma_total')
         
     def query_bottom(self):
-        # Order by lowest vote_score to highest vote_score
-        return super(QuoteVoteManager, self).get_query_set().annotate(vote_score=Sum('vote__vote_type')).order_by('vote_score')
+        # Order by lowest karma_total to highest karma_total
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('karma_total')
         
     def query_mainstream(self):
         # Order by total number of votes
@@ -77,7 +77,7 @@ class QuoteVoteManager(models.Manager):
         
     def query_birthdays(self):
         ### need to implement birthdays algorithm
-        ### Quotes that were publicized on the same month/day as today in any year, ordered by highest vote_score to lowest vote_score
+        ### Quotes that were publicized on the same month/day as today in any year, ordered by highest karma_total to lowest karma_total
         return super(QuoteVoteManager, self).get_query_set()
     
 class Podcast(models.Model):
@@ -226,7 +226,7 @@ class Quote(models.Model):
     quote_vote_manager = QuoteVoteManager()
     objects = models.Manager() # default manager
     
-    def vote_score(self):
+    def karma_total(self):
         return Vote.objects.filter(quote__id=self.id).filter(vote_type=1).count() - Vote.objects.filter(quote__id=self.id).filter(vote_type=-1).count()
     
     def set_rank(self):
@@ -236,8 +236,8 @@ class Quote(models.Model):
         
         delta = now() - self.created_at
         item_hour_age = delta.total_seconds() / SECS_IN_HOUR
-        vote_score = self.vote_score()
-        self.rank_score = vote_score / pow((item_hour_age+2), GRAVITY)
+        karma_total = self.karma_total()
+        self.rank_score = karma_total / pow((item_hour_age+2), GRAVITY)
         print self.rank_score
         self.save()
             
