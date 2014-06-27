@@ -229,7 +229,7 @@
         </a>
     </div>
 
-    {% if episode_ordered_is_active %}
+    {% if episode_ordered_is_active or is_quote_page %}
         <div class="pq-quote-date dark-link">
             <a href="{{ quote.get_absolute_url }}">
                 Starts: {{ quote.converted_time_begins }} 

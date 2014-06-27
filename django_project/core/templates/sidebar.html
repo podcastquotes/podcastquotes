@@ -94,7 +94,9 @@
                                     <span style="display:inline-block; text-align:right; padding-right:5px;">
                                         <small>#{{ forloop.counter }}</small>
                                     </span>
-                                    <img class="pq-menu-option-image" style="inline-block;" src="{{MEDIA_URL}}{{ karma_leader.userprofile.image }}">
+                                    {% if karma_leader.userprofile.image %}
+                                        <img class="pq-menu-option-image" style="inline-block;" src="{{MEDIA_URL}}{{ karma_leader.userprofile.image }}">
+                                    {% endif %}
                                     <span class="hidden-xs hidden-sm hidden-lg" style="vertical-align:top; display:inline-block; padding-top:1px">
                                         {{ karma_leader|truncatechars:20 }}
                                         <br>
