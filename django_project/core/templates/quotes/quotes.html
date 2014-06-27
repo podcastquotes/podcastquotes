@@ -224,19 +224,14 @@
                     - Date: {{ quote.episode.publication_date|date:'M d, Y' }}
                 {% endif %}
             {% endif %}
+            {% if is_episode_page or is_quote_page %}
+                / {{ quote.converted_time_begins }} 
+                {% if quote.time_quote_ends %}
+                    - {{ quote.converted_time_ends }}
+                {% endif %}
+            {% endif %}
         </a>
     </div>
-
-    {% if episode_ordered_is_active or is_quote_page %}
-        <div class="pq-quote-date dark-link">
-            <a href="{{ quote.get_absolute_url }}">
-                Starts: {{ quote.converted_time_begins }} 
-                {% if quote.time_quote_ends %}
-                    - Ends: {{ quote.converted_time_ends }}
-                {% endif %}
-            </a>
-        </div>
-    {% endif %}
 
     <div class="pq-quote-bottom-buttons">
     
