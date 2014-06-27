@@ -20,7 +20,9 @@ class HomeQuoteListView(ListView):
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
-        context['karma_leaders'] = sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        
+        context['karma_leaders'] = all_karma_leaders[:5]
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True

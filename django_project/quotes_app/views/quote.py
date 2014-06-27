@@ -102,11 +102,13 @@ def quote(request, quote_id):
     q_list = Quote.objects.filter(id=quote_id)
     q_object = Quote.objects.get(id=quote_id)
     
+    all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+    
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all().order_by('title'),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
                  'episodes': Episode.objects.filter(podcast_id=q_object.episode.podcast.id).order_by('-publication_date'),
-                 'karma_leaders': sorted(User.objects.all(), key=lambda u: u.userprofile.leaderboard_karma_total, reverse=True),
+                 ('karma_leaders'): all_karma_leaders[:5],
                  'quote_list': q_list,
                  'quote': q_object,
                  'is_quote_page': 1})
