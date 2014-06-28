@@ -79,6 +79,8 @@ urlpatterns = patterns('',
     
     url(r'^clips/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
     
+    url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote'), name='quote_alternate'),
+    
     url(r'^clips/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
     
     url(r'^clips/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
