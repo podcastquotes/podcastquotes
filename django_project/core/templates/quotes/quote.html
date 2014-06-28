@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block og_image %}
+    <meta property="og:image" content="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+{% endblock %}
+
 {% block content %}
     
     {% include 'main_col_width.html' %}
