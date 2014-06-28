@@ -1334,7 +1334,7 @@ button {
 
 .pq-quote-posted-by {
     clear:left;
-    margin:10px 0 10px 0;
+    margin:0 0 10px 0;
     font-size:14px;
     color:#777;
 }
