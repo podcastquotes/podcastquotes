@@ -11,7 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Post quotes of your favorite podcasts. Find the top podcast quotes of the day. Connect with listeners of your podcast. Raise money for your podcast. Inspired by reddit.">
 <link rel="publisher" href="">
-{% include 'facebook_open_graph.html' %}
+
+<meta property="og:url" content="http://www.podverse.tv">
+<meta property="og:title" content="Podverse.tv">
+<meta property="og:description" content="Inspired by reddit. Post highlights of your favorite podcasts. Find the top voted highlights of the day. Connect with podcast listeners. Raise money for your podcast. ">
+{% block og_image %}
+    <meta property="og:image" content="{% static 'img/podverse-logo-square.jpg' %}">
+{% endblock %}
+
 <link href='//fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,400,600,700,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
