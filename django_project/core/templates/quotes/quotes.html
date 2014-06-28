@@ -123,7 +123,7 @@
         <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
         </div>
         
-        {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
+        {% if is_home_page or is_podcast_page or is_episode_page or is_user_page or is_quote_page %}
             <div class="pq-quote-text-box" {% if not quote.episode.youtube_url %}style="margin-top:15px"{% endif %}>
                 {% if quote.text %}
                     <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
@@ -146,14 +146,6 @@
             </div><!-- /.pq-quote-text-box -->
         {% endif %}
         
-        {% if is_quote_page %}
-            {% if quote.text %}
-                <div class="pq-quote-text-box">
-                    {{ quote.text|linebreaks }}
-                </div>
-            {% endif %}
-        {% endif %}
-    
         <div class="pq-quote-xs-buttons hidden-sm hidden-md hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
