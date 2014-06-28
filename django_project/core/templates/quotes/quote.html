@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block og_image %}
+{% block opengraph %}
+    <meta property="og:url" content="https://www.podverse.tv/clips/{{ quote.id }}">
+    <meta property="og:title" content="Podverse.tv">
+    <meta property="og:description" content="Inspired by reddit. Post highlights of your favorite podcasts. Find the top voted highlights of the day. Connect with podcast listeners. Raise money for your podcast. ">
     <meta property="og:image" content="https://podverse.tv/media/{{ quote.episode.podcast.image }}">
 {% endblock %}
 
