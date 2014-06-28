@@ -218,24 +218,23 @@
     
     <div class="pq-quote-date dark-link">
         <a href="{{ quote.get_absolute_url }}">
-            {% if quote.time_quote_begins and quote.time_quote_ends %}
+            {% if quote.time_quote_ends %}
                 Length: {{ quote.duration }}
+            {% elif not quote.time_quote_ends %}
+                Starts: {{ quote.converted_time_begins }}
             {% endif %}
+            
             {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %} 
                 {% if quote.episode.publication_date %}
-                    {% if quote.time_quote_begins and quote.time_quote_ends %}
-                        - 
-                    {% endif %}
-                    Date: {{ quote.episode.publication_date|date:'M d, Y' }}
+                    - Date: {{ quote.episode.publication_date|date:'M d, Y' }}
                 {% endif %}
             {% endif %}
             {% if is_episode_page %}
-                {% if quote.time_quote_begins and quote.time_quote_ends %}
-                    / 
-                {% endif %}
-                {{ quote.converted_time_begins }} 
                 {% if quote.time_quote_ends %}
-                    - {{ quote.converted_time_ends }}
+                    / {{ quote.converted_time_begins }} 
+                    {% if quote.time_quote_ends %}
+                        - {{ quote.converted_time_ends }}
+                    {% endif %}
                 {% endif %}
             {% endif %}
         </a>
