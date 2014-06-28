@@ -269,7 +269,7 @@ class Quote(models.Model):
         
     def duration(self):
         if self.time_quote_ends == None:
-            return None
+            pass
         
         duration = self.time_quote_ends - self.time_quote_begins
         m, s = divmod(duration, 60)
