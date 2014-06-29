@@ -400,12 +400,12 @@ a {
 }
 
 .pq-brand-img {
-    height:38px;
+    height:40px;
 }
 
 @media (max-width:350px) {
     .pq-brand-img {
-        height:38px;
+        height:40px;
     }
 }
 
@@ -1222,7 +1222,7 @@ button {
     .pq-quote-xs-buttons {
         float:left;
         clear:left;
-        padding:15px 15px 15px 0;
+        padding:15px 20px 15px 0;
     }
 }
 
@@ -1276,7 +1276,6 @@ button {
 @media (max-width:767px) {
     .pq-quote-text-preview {
         max-width:510px;
-        padding:0 0 5px 0;
     }
 }
 
@@ -1284,12 +1283,10 @@ button {
     .pq-quote-text-preview {
         clear:left;
         max-width:510px;
-        padding:0 0 5px 0;
     }
 }
 
 .pq-show-more {
-    margin:0 0 10px 0;
     cursor:pointer;
     color:#428bca;
 }
@@ -1375,6 +1372,27 @@ button {
     margin:0 0 10px 0;
     font-size:14px;
     color:#777;
+}
+
+.pq-quote-more-headline {
+    margin:0 0 5px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.pq-quote-more {
+
+}
+
+.pq-quote-more-box {
+    margin:0 0 10px 0;
+    padding:10px 15px;
+    background:#fff;
+    border:1px solid #ccc;
+}
+
+.pq-quote-more-text {
+    font-size:14px;
 }
 
 /******************************

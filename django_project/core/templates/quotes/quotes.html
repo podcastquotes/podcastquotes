@@ -76,7 +76,7 @@
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:55 }}
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:23 }}
                         </a>
                         <br>
                     {% endif %}
@@ -85,7 +85,7 @@
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:55 }}
+                           Episode: {{ quote.episode.title|truncatechars:23 }}
                         </a>
                     {% endif %}
                 {% endif %}
@@ -159,7 +159,7 @@
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:25 }}
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:50 }}
                         </a>
                         <br>
                     {% endif %}
@@ -168,7 +168,7 @@
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:25 }}
+                           Episode: {{ quote.episode.title|truncatechars:50 }}
                         </a>
                     {% endif %}
                 {% endif %}
@@ -341,3 +341,31 @@
     </div>
 
 </div><!-- /.pq-quote -->
+
+{% if is_quote_page %}
+    <div class="pq-quote-more-headline">
+        More clips from this episode
+    </div>
+    <div class="pq-quote-more dark-link">
+        {% for quote in more_episode_quotes %}
+            <a href="{{ quote.get_absolute_url }}">
+            <div class="pq-quote-more-box">
+                <div class="pq-quote-more-text">
+                    <strong>{{ quote.summary|truncatechars:150 }}</strong><br>
+                    {% if quote.time_quote_ends %}
+                        Length: {{ quote.duration }}
+                    {% else %}
+                        Starts: {{ quote.converted_time_begins }}
+                    {% endif %}
+                    <span class="pull-right">{{ quote.karma_total }}</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="clearfix">
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endif %}

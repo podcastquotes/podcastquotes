@@ -84,7 +84,7 @@ class EpisodeDeleteView(DeleteView):
             return episode
         else:
             raise Http404
-
+            
 class EpisodeQuoteListView(ListView):
     model = Quote
     template_name = 'episode_detail.html'
