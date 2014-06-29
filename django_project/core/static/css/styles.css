@@ -556,7 +556,7 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:10px 10px 20px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     background:#fff;
     border:1px solid #aaa;
@@ -573,7 +573,7 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#eee;
-    margin:10px 10px 20px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #aaa;
     border-radius:3px;
@@ -995,7 +995,7 @@ a {
 
 .pq-quote {
     clear:both;
-    margin:0 0 20px 0;
+    margin:0 0 15px 0;
     background:#fff;
     border:1px solid #ccc;
 }
@@ -1014,7 +1014,7 @@ a {
 
 .pq-quote-header {
     clear:both;
-    margin:0 0 15px 0;
+    margin:0 0 10px 0;
     background:#fff;
     font-size:14px;
     border:1px solid #ccc;
@@ -1065,7 +1065,7 @@ a {
 
 .pq-quote-title {
     max-width:600px;
-    margin:0 0 5px 0;
+    margin:0 0 10px 0;
     overflow:hidden;
     font-weight:600;
     font-size:18px;
@@ -1090,6 +1090,39 @@ a {
 }
 
 .pq-quote-subtitle a:hover {
+    text-decoration:underline;
+}
+
+@media (max-width:549px) {
+    .display-none-549px {
+        display:none;
+    }
+}
+
+@media (min-width:550px) {
+    .display-none-550px {
+        display:none;
+    }
+}
+
+.pq-quote-xs-profile-picture {
+    float:left;
+    vertical-align:top;
+    margin:4px 10px 0 0;
+}
+
+.pq-quote-xs-profile-picture img {
+    width:32px;
+    height:32px;
+}
+
+.pq-quote-xs-subtitle {
+    vertical-align:top;
+    font-size:14px;
+    font-style:italic;
+}
+
+.pq-quote-xs-subtitle a:hover {
     text-decoration:underline;
 }
 
@@ -1176,7 +1209,7 @@ button {
     text-align:center;
     width:44px;
     padding:3px 0;
-    margin:0 0 15px 0;
+    margin:0 0 10px 0;
     background:#ddd;
     border-radius:10px;
     font-size:16px;
@@ -1453,13 +1486,26 @@ button {
 *******************************
 ******************************/
 
-.youtube-start-button-wrapper {
-    clear:left;
-    float:left;
-    margin:15px 5px 15px 0;
-    font-size:14px;
-    color:#f7f7f7;
-    width:90px;
+@media (max-width:549px) {
+    .youtube-start-button-wrapper {
+        clear:left;
+        float:left;
+        margin:15px 10px 14px 0;
+        font-size:14px;
+        color:#f7f7f7;
+        width:90px;
+    }
+}
+
+@media (min-width:550px) {
+    .youtube-start-button-wrapper {
+        clear:left;
+        float:left;
+        margin:1px 5px 15px 0;
+        font-size:14px;
+        color:#f7f7f7;
+        width:90px;
+    }
 }
 
 .youtube-player-wrapper {
@@ -1481,7 +1527,7 @@ button {
 
 .youtube-start-button {
     width:85px;
-    height:38px;
+    height:39px;
     padding:13px 0 0 0;
     background:#41a141;
     text-align:center;

@@ -64,7 +64,7 @@
         {% else %}
             {% if is_home_page or is_quote_page or is_user_page %}
                 {% if quote.episode.podcast.image %}
-                    <div class="pq-quote-profile-picture">
+                    <div class="pq-quote-profile-picture display-none-550px">
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         </a>
@@ -72,13 +72,10 @@
                 {% endif %}
             {% endif %}
         
-            <div class="pq-quote-subtitle gray-link">
+            <div class="pq-quote-subtitle display-none-550px gray-link">
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
-                        <a class="hidden-sm hidden-md hidden-lg" href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:25 }}
-                        </a>
-                        <a class="hidden-xs" href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
                             Podcast: {{ quote.episode.podcast.title|truncatechars:55 }}
                         </a>
                         <br>
@@ -87,10 +84,7 @@
                 
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
-                        <a class="hidden-sm hidden-md hidden-lg" href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:25 }}
-                        </a>
-                        <a class="hidden-xs" href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                        <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
                            Episode: {{ quote.episode.title|truncatechars:55 }}
                         </a>
                     {% endif %}
@@ -106,6 +100,38 @@
                             <small>&nbsp</small> PLAY
                         </div>
                     </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if is_episode_page %}
+        {% else %}
+            {% if is_home_page or is_quote_page or is_user_page %}
+                {% if quote.episode.podcast.image %}
+                    <div class="pq-quote-xs-profile-picture display-none-549px">
+                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                            <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        
+            <div class="pq-quote-xs-subtitle display-none-549px gray-link">
+                {% if is_home_page or is_quote_page or is_user_page %}
+                    {% if quote.episode.podcast.title %}
+                        <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:25 }}
+                        </a>
+                        <br>
+                    {% endif %}
+                {% endif %}
+                
+                {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
+                    {% if quote.episode.title %} 
+                        <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                           Episode: {{ quote.episode.title|truncatechars:25 }}
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
         {% endif %}
