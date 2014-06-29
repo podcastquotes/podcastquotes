@@ -1013,18 +1013,23 @@ a {
 }
 
 .pq-quote-header {
-    padding:0 0 10px 0;
-    font-size:16px;
+    clear:both;
+    margin:0 0 15px 0;
+    background:#fff;
+    font-size:14px;
+    border:1px solid #ccc;
 }
 
-.pq-quote-header tr {
-    height:28px;
+@media (max-width:549px) {
+    .pq-quote-header {
+        padding:10px 15px;
+    }
 }
 
-.pq-quote-header-breadcrumbs {
-    font-size:20px;
-    margin:0 0 10px 0;
-    color:#444;
+@media (min-width:550px) {
+    .pq-quote-header {
+        padding:10px 20px 0 15px;
+    }
 }
 
 @media (max-width:767px) {
