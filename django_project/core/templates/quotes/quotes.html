@@ -45,7 +45,7 @@
     </div><!-- /.pq-quote-buttons -->
     
     <div class="pq-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
-        <div class="pq-quote-title dark-link" {% if is_episode_page %}style="margin-bottom:0"{% endif %}>
+        <div class="pq-quote-title dark-link">
             {% if quote.summary %}
                 <a href="{{ quote.get_absolute_url }}">
                     {{ quote.summary }}
