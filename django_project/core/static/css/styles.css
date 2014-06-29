@@ -1108,7 +1108,7 @@ a {
 .pq-quote-xs-profile-picture {
     float:left;
     vertical-align:top;
-    margin:4px 10px 0 0;
+    margin:5px 10px 0 0;
 }
 
 .pq-quote-xs-profile-picture img {
@@ -1222,7 +1222,7 @@ button {
     .pq-quote-xs-buttons {
         float:left;
         clear:left;
-        margin:5px 0 15px 0;
+        padding:15px 15px 15px 0;
     }
 }
 
@@ -1236,7 +1236,7 @@ button {
     display:inline-block;    
     text-align:center;
     width:50px;
-    padding:3px 0;
+    padding:5px 0;
     background:#ddd;
     border-radius:10px;
     font-size:18px;
@@ -1248,7 +1248,7 @@ button {
 .pq-quote-xs-vote-total {
     display:inline-block;
     text-align:center;
-    padding:0 10px;
+    padding:0 7px;
     margin:4px 0;
     font-size:14px;
     color:#444;
@@ -1258,7 +1258,7 @@ button {
     display:inline-block;
     text-align:center;
     width:50px;
-    padding:3px 0;
+    padding:5px 0;
     background:#ddd;
     border-radius:10px;
     font-size:18px;
@@ -1488,7 +1488,6 @@ button {
 
 @media (max-width:549px) {
     .youtube-start-button-wrapper {
-        clear:left;
         float:left;
         margin:15px 10px 14px 0;
         font-size:14px;
@@ -1510,6 +1509,7 @@ button {
 
 .youtube-player-wrapper {
     display:none;
+    clear:left;
     position:relative;
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
@@ -1525,14 +1525,28 @@ button {
     height:100%;
 }
 
-.youtube-start-button {
-    width:85px;
-    height:39px;
-    padding:13px 0 0 0;
-    background:#41a141;
-    text-align:center;
-    cursor:pointer;
-    border-radius:10px;
+@media (max-width:549px) {
+    .youtube-start-button {
+        width:85px;
+        height:35px;
+        padding:11px 0 0 0;
+        background:#41a141;
+        text-align:center;
+        cursor:pointer;
+        border-radius:10px;
+    }
+}
+
+@media (min-width:550px) {
+    .youtube-start-button {
+        width:85px;
+        height:40px;
+        padding:13px 0 0 0;
+        background:#41a141;
+        text-align:center;
+        cursor:pointer;
+        border-radius:10px;
+    }
 }
 
 .youtube-start-button:hover {

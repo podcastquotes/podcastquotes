@@ -92,6 +92,45 @@
             </div>
         {% endif %}
         
+        <div class="pq-quote-xs-buttons hidden-sm hidden-md hidden-lg">
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
+                {% if not user.is_authenticated %}
+                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                {% endif %}
+            </form>
+            
+            <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
+                {{ quote.karma_total }}
+            </div>
+            
+            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
+                {% csrf_token %}
+                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
+                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
+                {% if not user.is_authenticated %}
+                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% else %}
+                    <button class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                {% endif %}
+            </form>
+            
+        </div><!-- /.pq-quote-xs-buttons -->
+        
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div class="youtube-start-button-wrapper" {% if not quote.episode.youtube_url %}style="margin:0"{% endif %} id="youtube-start-button-wrapper-{{ forloop.counter }}">
                 {% if quote.episode.youtube_url %}    
@@ -172,45 +211,6 @@
             </div><!-- /.pq-quote-text-box -->
         {% endif %}
         
-        <div class="pq-quote-xs-buttons hidden-sm hidden-md hidden-lg">
-            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
-                {% csrf_token %}
-                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
-                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
-                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="1" />
-                {% if not user.is_authenticated %}
-                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}" title="Please login to vote">
-                        <i class="fa fa-arrow-up"></i>
-                    </button>
-                {% else %}
-                    <button class="pq-quote-xs-upvote gray-gradient {{ quote.id | class_if_upvote_active:user.id }}" id="pq-quote-xs-upvote-{{ quote.id }}">
-                        <i class="fa fa-arrow-up"></i>
-                    </button>
-                {% endif %}
-            </form>
-            
-            <div class="pq-quote-xs-vote-total" id="pq-quote-xs-vote-total-{{ quote.id }}">
-                {{ quote.karma_total }}
-            </div>
-            
-            <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
-                {% csrf_token %}
-                <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
-                <input type="hidden" id="id_voter" name="voter" class="hidden_id" value="{{ user.pk }}" />
-                <input type="hidden" id="id_vote_type" name="vote_type" class="hidden_id" value="-1" />
-                {% if not user.is_authenticated %}
-                    <button onclick="location.href = '/accounts/login/';" class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}" title="Please login to vote">
-                        <i class="fa fa-arrow-down"></i>
-                    </button>
-                {% else %}
-                    <button class="pq-quote-xs-downvote gray-gradient {{ quote.id | class_if_downvote_active:user.id }}" id="pq-quote-xs-downvote-{{ quote.id }}">
-                        <i class="fa fa-arrow-down"></i>
-                    </button>
-                {% endif %}
-            </form>
-            
-        </div><!-- /.pq-quote-xs-buttons -->
-    
         <script>
           $("#show-more-{{ forloop.counter }}").click(function() {
               $("#pq-quote-text-{{ forloop.counter }}").show();
@@ -225,7 +225,7 @@
               $("#show-more-{{ forloop.counter }}").show();
           });
         </script>
-    
+        
         {% if is_quote_page %}
             <div class="pq-quote-posted-by blue-link">
                 posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
