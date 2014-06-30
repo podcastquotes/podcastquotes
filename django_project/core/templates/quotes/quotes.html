@@ -404,11 +404,15 @@
                         <span class="font-semibold">{{ quote.summary|truncatechars:110 }}</span>
                     </a>
                     <br>
-                    <a href="{{ quote.episode.get_absolute_url }}">
-                        <small>
-                            Episode: {{ quote.episode.title|truncatechars:50 }}
-                        </small>
-                    </a>
+                    <small>
+                        <a href="{{ quote.get_absolute_url }}">
+                            {% if quote.time_quote_ends %}
+                                Length: {{ quote.duration }}
+                            {% else %}
+                                Starts: {{ quote.converted_time_begins }}
+                            {% endif %}
+                        </a>
+                    </small>
                 </div>
             </div>
             <div class="clearfix">
