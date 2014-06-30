@@ -73,6 +73,10 @@ body {
     color:#111;
 }
 
+hr {
+    border-top:1px solid #bcc0c3;
+}
+
 .width-100percent {
     width:100%;
 }
@@ -196,7 +200,7 @@ body {
 }
 
 .bg-yellow {
-    background:#FFFFDF;
+    background-color:#fdfdfdFDF;
 }
 
 .text-orange, .text-orange a {
@@ -274,7 +278,7 @@ a {
 
 @media (min-width:1081px) and (max-width:1199px) {
     .pq-navbar-container {
-        max-width:990px;
+        max-width:980px;
         margin:0 auto;
     }
 }
@@ -558,7 +562,7 @@ a {
     display:inline-block;
     margin:5px 10px 15px 0;
     padding:3px 10px;
-    background:#fff;
+    background-color:#fdfdfd;
     border:1px solid #aaa;
     border-radius:3px;
     color:#B25900;
@@ -694,7 +698,7 @@ a {
 
 .pq-podcast-header {
     margin:0 0 10px 0;
-    background:#fff;
+    background-color:#fdfdfd;
     font-size:16px;
     border:1px solid #ccc;
 }
@@ -836,6 +840,18 @@ a {
     }
 }
 
+.pq-episode-description {
+    clear:both;
+    margin:20px 0 15px 0;
+    font-size:14px;
+}
+
+@media (max-width:549px) {
+    .pq-episode-description {
+        margin:0 0 10px 0;
+    }
+}
+
 @media (max-width:549px) {
     .pq-podcast-karma {
         clear:both;
@@ -935,8 +951,8 @@ a {
 @media (min-width:550px) {
     .pq-episode-finder {
         display:inline-block;
+        width:100%;
         font-weight:bold;
-        margin:0;
     }
 }
 
@@ -953,16 +969,13 @@ a {
 }
 
 .pq-episode-selector {
-    height:40px;
-    padding:0 5px;
-    line-height:40px;
     border:1px solid #aaa;
     font-size:20px;
 }
 
 .pq-user-header {
     margin:0 0 10px 0;
-    background:#fff;
+    background-color:#fdfdfd;
     font-size:16px;
     border:1px solid #ccc;
 }
@@ -996,7 +1009,7 @@ a {
 .pq-quote {
     clear:both;
     margin:0 0 15px 0;
-    background:#fff;
+    background-color:#fdfdfd;
     border:1px solid #ccc;
 }
 
@@ -1014,8 +1027,8 @@ a {
 
 .pq-quote-header {
     clear:both;
-    margin:0 0 10px 0;
-    background:#fff;
+    margin:0 0 15px 0;
+    background-color:#fdfdfd;
     font-size:14px;
     border:1px solid #ccc;
 }
@@ -1065,7 +1078,7 @@ a {
 
 .pq-quote-title {
     max-width:600px;
-    margin:0 0 10px 0;
+    margin:0 0 5px 0;
     overflow:hidden;
     font-weight:600;
     font-size:18px;
@@ -1375,20 +1388,47 @@ button {
 }
 
 .pq-quote-more-headline {
-    margin:0 0 5px 0;
+    margin:0 0 10px 0;
     font-size:18px;
     font-weight:bold;
 }
 
-.pq-quote-more {
+@media (max-width:549px) {
+    .pq-quote-more {
+        padding:15px;
+        margin:20px 0;
+        background-color:#fdfdfd;
+        border:1px solid #ccc;
+    }
+}
 
+@media (min-width:550px) {
+    .pq-quote-more {
+        padding:15px 20px;
+        margin:20px 0;
+        background-color:#fdfdfd;
+        border:1px solid #ccc;
+    }
+}
+
+.pq-quote-more hr {
+    margin:10px 0;
+    border-top:1px solid #ccc;
+}
+
+.pq-quote-more-image {
+    float:right;
+    margin:4px 0 0 20px;
+    width:80px;
+}
+
+.pq-quote-more-image img {
+    max-height:62px;
 }
 
 .pq-quote-more-box {
-    margin:0 0 10px 0;
-    padding:10px 15px;
-    background:#fff;
-    border:1px solid #ccc;
+    background-color:#fdfdfd;
+    overflow:hidden;
 }
 
 .pq-quote-more-text {
@@ -1440,7 +1480,7 @@ button {
 }
 
 .pq-menu {
-    background:#fff;
+    background-color:#fdfdfd;
     border:1px solid #ccc;
 }
 
@@ -1518,7 +1558,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:1px 5px 15px 0;
+        margin:15px 5px 15px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1779,7 +1819,7 @@ button {
 
 .tt-dropdown-menu {
     padding:0 10px;
-    background:#fff;
+    background-color:#fdfdfd;
     border-right:1px solid #ddd;
     border-bottom:1px solid #ddd;
     border-left:1px solid #ddd;
@@ -1912,7 +1952,7 @@ button {
     padding:20px;
     clear:both;
     margin:0 0 20px 0;
-    background:#fff;
+    background-color:#fdfdfd;
     font-size:16px;
 }
 
@@ -1923,4 +1963,8 @@ button {
 .pq-mid-title {
     font-size:20px;
     font-weight:bold;
+}
+
+.font-semibold {
+    font-weight:600;
 }
