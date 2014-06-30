@@ -139,6 +139,6 @@ def quote(request, quote_id):
                  ('karma_leaders'): all_karma_leaders,
                  'quote_list': q_list,
                  'quote': q_object,
-                 'more_episode_quotes': Quote.quote_vote_manager.query_hot().filter(episode_id=q_object.episode.id)[:5],
-                 'more_podcast_quotes': Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=q_object.episode.podcast.id)[:5],
+                 'more_episode_quotes': Quote.quote_vote_manager.query_top().filter(episode_id=q_object.episode.id)[:5],
+                 'more_podcast_quotes': Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:5],
                  'is_quote_page': 1})
