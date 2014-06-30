@@ -1,4 +1,5 @@
 import json
+import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
@@ -132,6 +133,14 @@ def quote(request, quote_id):
     all_episodes = Episode.objects.filter(podcast_id=q_object.episode.podcast_id).order_by('-publication_date')
     all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
     
+    # this gives the top quotes that appear a degree of randomness
+    more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode_id=q_object.episode.id)[:10], key=lambda x: random.random())
+    more_episode_quotes = more_episode_quotes[:5]
+    
+    # this gives the top quotes that appear a degree of randomness
+    more_podcast_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode_id=q_object.episode.id)[:20], key=lambda x: random.random())
+    more_podcast_quotes = more_podcast_quotes[:5]
+    
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all().order_by('title'),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
@@ -139,6 +148,6 @@ def quote(request, quote_id):
                  ('karma_leaders'): all_karma_leaders,
                  'quote_list': q_list,
                  'quote': q_object,
-                 'more_episode_quotes': Quote.quote_vote_manager.query_top().filter(episode_id=q_object.episode.id)[:5],
-                 'more_podcast_quotes': Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:5],
+                 'more_episode_quotes': more_episode_quotes,
+                 'more_podcast_quotes': more_podcast_quotes,
                  'is_quote_page': 1})

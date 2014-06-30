@@ -363,7 +363,18 @@
             <div class="pq-quote-more-box">
                 <div class="pq-quote-more-text">
                     <a href="{{ quote.get_absolute_url }}">
-                        <span class="font-semibold">{{ quote.summary|truncatechars:110 }}</span>
+                        <span class="font-semibold hidden-xs hidden-sm hidden-md">
+                            {{ quote.summary|truncatechars:130 }}
+                        </span>
+                        <span class="font-semibold hidden-xs hidden-sm hidden-lg">
+                            {{ quote.summary|truncatechars:105 }}
+                        </span>
+                        <span class="font-semibold display-none-549px hidden-md hidden-lg">
+                            {{ quote.summary|truncatechars:125 }}
+                        </span>
+                        <span class="font-semibold display-none-550px">
+                            {{ quote.summary|truncatechars:100 }}
+                        </span>
                     </a>
                     <br>
                     <small>
@@ -401,7 +412,18 @@
             <div class="pq-quote-more-box">
                 <div class="pq-quote-more-text">
                     <a href="{{ quote.get_absolute_url }}">
-                        <span class="font-semibold">{{ quote.summary|truncatechars:110 }}</span>
+                        <span class="font-semibold hidden-xs hidden-sm hidden-md">
+                            {{ quote.summary|truncatechars:130 }}
+                        </span>
+                        <span class="font-semibold hidden-xs hidden-sm hidden-lg">
+                            {{ quote.summary|truncatechars:105 }}
+                        </span>
+                        <span class="font-semibold display-none-549px hidden-md hidden-lg">
+                            {{ quote.summary|truncatechars:125 }}
+                        </span>
+                        <span class="font-semibold display-none-550px">
+                            {{ quote.summary|truncatechars:100 }}
+                        </span>
                     </a>
                     <br>
                     <small>

@@ -1398,7 +1398,7 @@ button {
 @media (max-width:549px) {
     .pq-quote-more {
         padding:15px;
-        margin:30px 0;
+        margin:20px 0;
         background-color:#fdfdfd;
         border:1px solid #bcc0c3;
     }
@@ -1407,7 +1407,7 @@ button {
 @media (min-width:550px) {
     .pq-quote-more {
         padding:15px 20px;
-        margin:30px 0;
+        margin:20px 0;
         background-color:#fdfdfd;
         border:1px solid #bcc0c3;
     }
