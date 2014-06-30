@@ -244,7 +244,7 @@
             
             {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %} 
                 {% if quote.episode.publication_date %}
-                    - Date: {{ quote.episode.publication_date|date:'M d, Y' }}
+                    - Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
                 {% endif %}
             {% endif %}
             {% if is_episode_page %}
