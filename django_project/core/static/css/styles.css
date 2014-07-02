@@ -525,7 +525,7 @@ a {
         clear:left;
         margin:0 0 15px 0;
         font-size:22px;
-        font-weight:bold;
+        font-weight:600;
         color:#111;
     }
 }
@@ -534,7 +534,7 @@ a {
     .pq-title {
         margin:0 0 15px 0;
         font-size:22px;
-        font-weight:bold;
+        font-weight:600;
         color:#111;
     }
 }
@@ -544,7 +544,7 @@ a {
         clear:left;
         margin:0 0 10px 0;
         font-size:22px;
-        font-weight:bold;
+        font-weight:600;
         color:#111;
     }
 }
@@ -553,7 +553,7 @@ a {
     .pq-home-title {
         margin:0 0 10px 0;
         font-size:22px;
-        font-weight:bold;
+        font-weight:600;
         color:#111;
     }
 }
@@ -663,37 +663,6 @@ a {
 
 .dropdown-menu-active {
     background-color:#111;
-}
-
-@media (max-width:767px) {
-    .pq-votes-shown {
-        clear:both;
-        float:left;
-        margin:5px 0;
-        font-size:18px;
-        font-weight:bold;
-        color:#111;
-    }
-}
-
-@media (min-width:768px) and (max-width:991px) {
-    .pq-votes-shown {
-        float:right;
-        margin:14px 10px 0 0;
-        font-size:18px;
-        font-weight:bold;
-        color:#111;
-    }
-}
-
-@media (min-width:992px) {
-    .pq-votes-shown {
-        float:right;
-        margin:14px 35px 0 0;
-        font-size:18px;
-        font-weight:bold;
-        color:#111;
-    }
 }
 
 .pq-podcast-header {
@@ -1511,7 +1480,6 @@ button {
 }
 
 .pq-menu-title {
-    margin:0 0 5px 0;
     font-size:18px;
     font-weight:600;
     font-family:"Open Sans", Georgia, serif;
@@ -1520,6 +1488,7 @@ button {
 .pq-menu-pulldown {
     color:#333;
     padding:0 0 10px 0;
+    font-size:13px;
 }
 
 .pq-menu-advanced {
