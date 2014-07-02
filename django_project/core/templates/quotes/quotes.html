@@ -188,7 +188,7 @@
         <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
         </div>
         
-        {% if is_home_page or is_podcast_page or is_episode_page or is_user_page or is_quote_page %}
+        {% if is_quote_page %}
             <div class="pq-quote-text-box" {% if not quote.episode.youtube_url %}style="margin-top:15px"{% endif %}>
                 {% if quote.text %}
                     <div class="pq-quote-text-preview" id="pq-quote-text-preview-{{ forloop.counter }}">
@@ -345,7 +345,7 @@
 {% if is_quote_page %}
     <div class="pq-quote-more dark-link">
         <div class="pq-quote-more-headline">
-            More from this episode
+            <a href="{% url 'episode_quote_list_root' quote.episode.id %}">More from this episode</a>
         </div>
         {% for quote in more_episode_quotes %}
             <hr>
@@ -394,7 +394,7 @@
     </div>
     <div class="pq-quote-more dark-link">
         <div class="pq-quote-more-headline">
-            More from this podcast
+            <a href="{% url 'podcast_quote_list_root' quote.episode.podcast.id %}">More from this podcast</a>
         </div>
         {% for quote in more_podcast_quotes %}
             <hr>

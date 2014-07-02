@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
  
-    url(r'^(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
+    url(r'^home/(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list'),
     
     url(r'^podcasts/(?P<pk>\d+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     

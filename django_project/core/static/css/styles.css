@@ -560,7 +560,7 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:5px 10px 15px 0;
+    margin:10px 10px 20px 0;
     padding:3px 10px;
     background-color:#fdfdfd;
     border:1px solid #a7adb0;
@@ -577,7 +577,7 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#e3e6e8;
-    margin:5px 10px 15px 0;
+    margin:10px 10px 20px 0;
     padding:3px 10px;
     border:1px solid #a7adb0;
     border-radius:5px;
@@ -1352,6 +1352,7 @@ button {
 @media (min-width:550px) {
     .pq-quote-bottom-buttons {
         float:right;
+        clear:left;
         margin:-1px 0 0 0;
     }
 }
