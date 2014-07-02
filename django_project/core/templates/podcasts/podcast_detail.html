@@ -11,7 +11,10 @@
             Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit.
         {% endif %}
     ">
-    <meta property="og:image" content="https://podverse.tv/media/{{ podcast.image }}">
+    {% if podcast.image %}
+        <meta property="og:image" content="https://podverse.tv/media/{{ podcast.image }}">
+    {% endif %}
+    <meta property="og:image" content="https://podverse.tv/static/img/podverse-logo-square.jpg" />
 {% endblock %}
 
 {% block content %}
