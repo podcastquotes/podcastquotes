@@ -4,7 +4,15 @@
     <meta property="og:url" content="https://podverse.tv/clips/{{ quote.id }}">
     <meta property="og:title" content="{{ quote.summary }}">
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Inspired by reddit. Post highlights of your favorite podcasts. Find the top voted highlights of the day. Connect with podcast listeners. Raise money for your podcast. ">
+    <meta property="og:description" content="
+        {% if quote.episode.description %}
+            {{ quote.episode.description }}
+        {% elif quote.episode.podcast.description %}
+            {{ quote.episode.podcast.description }}
+        {% else %}
+            Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit.
+        {% endif %}
+        ">
     <meta property="og:image" content="http://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
 {% endblock %}
 

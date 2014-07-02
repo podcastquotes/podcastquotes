@@ -2,9 +2,17 @@
 
 {% block opengraph %}
     <meta property="og:url" content="https://podverse.tv/episodes/{{ episode.id }}">
-    <meta property="og:title" content="{{ podcast.title }} - {{ episode.title }} on Podverse.tv">
+    <meta property="og:title" content="Highlights from {{ podcast.title }} - {{ episode.title }}">
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Inspired by reddit. Post highlights of your favorite podcasts. Find the top voted highlights of the day. Connect with podcast listeners. Raise money for your podcast. ">
+    <meta property="og:description" content="
+        {% if episode.description %}
+            {{ episode.description }}
+        {% elif episode.podcast.description %}
+            {{ episode.podcast.description }}
+        {% else %}
+            Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit.
+        {% endif %}
+    ">
     <meta property="og:image" content="https://podverse.tv/media/{{ episode.podcast.image }}">
 {% endblock %}
 
