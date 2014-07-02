@@ -1028,9 +1028,9 @@ a {
 
 .pq-quote-header {
     clear:both;
-    margin:0 0 5px 0;
+    margin:0 0 20px 0;
     background-color:#fdfdfd;
-    font-size:14px;
+    font-size:18px;
     border:1px solid #bcc0c3;
 }
 
@@ -1352,7 +1352,6 @@ button {
 @media (min-width:550px) {
     .pq-quote-bottom-buttons {
         float:right;
-        clear:left;
         margin:-1px 0 0 0;
     }
 }
@@ -1393,7 +1392,7 @@ button {
 .pq-quote-more-headline {
     margin:0 0 10px 0;
     font-size:18px;
-    font-weight:bold;
+    font-weight:600;
 }
 
 @media (max-width:549px) {

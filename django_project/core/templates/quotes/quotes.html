@@ -171,6 +171,9 @@
                             <small>&nbsp</small> PLAY
                         </div>
                     </div>
+                {% else %}
+                    <div style="margin-bottom:10px">
+                    </div>
                 {% endif %}
             </div>
         {% endif %}
@@ -342,7 +345,10 @@
 
 </div><!-- /.pq-quote -->
 
-{% if is_quote_page %}
+{% if is_quote_page %}    
+    {% include 'quote_header.html' %}
+    
+    <!--
     <div class="pq-quote-more dark-link">
         <div class="pq-quote-more-headline">
             <a href="{% url 'episode_quote_list_root' quote.episode.id %}">More from this episode</a>
@@ -377,21 +383,20 @@
                         </span>
                     </a>
                     <br>
-                    <small>
-                        <a href="{{ quote.get_absolute_url }}">
-                            {% if quote.time_quote_ends %}
-                                Length: {{ quote.duration }}
-                            {% else %}
-                                Starts: {{ quote.converted_time_begins }}
-                            {% endif %}
-                        </a>
-                    </small>
+                    <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
+                        {% if quote.time_quote_ends %}
+                            Length: {{ quote.duration }}
+                        {% else %}
+                            Starts: {{ quote.converted_time_begins }}
+                        {% endif %}
+                    </a>
                 </div>
             </div>
             <div class="clearfix">
             </div>
         {% endfor %}
     </div>
+    -->
     <div class="pq-quote-more dark-link">
         <div class="pq-quote-more-headline">
             <a href="{% url 'podcast_quote_list_root' quote.episode.podcast.id %}">More from this podcast</a>
@@ -426,15 +431,13 @@
                         </span>
                     </a>
                     <br>
-                    <small>
-                        <a href="{{ quote.get_absolute_url }}">
-                            {% if quote.time_quote_ends %}
-                                Length: {{ quote.duration }}
-                            {% else %}
-                                Starts: {{ quote.converted_time_begins }}
-                            {% endif %}
-                        </a>
-                    </small>
+                    <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
+                        {% if quote.time_quote_ends %}
+                            Length: {{ quote.duration }}
+                        {% else %}
+                            Starts: {{ quote.converted_time_begins }}
+                        {% endif %}
+                    </a>
                 </div>
             </div>
             <div class="clearfix">

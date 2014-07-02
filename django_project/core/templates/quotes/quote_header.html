@@ -1,14 +1,13 @@
 {% if quote.episode.donate_url and quote.episode.donation_recipient %}
     <div class="pq-quote-header">
 
-            <div style="margin-bottom:5px;">
-                <strong><span class="text-orange">Donations for this episode go to</span>
+            <div class="font-semibold" style="margin-bottom:5px;">
                 <a class="text-blue" href="{{ quote.episode.donate_url }}">
                     {{ quote.episode.donation_recipient }}
                 </a></strong>
             </div>
             {% if quote.episode.donation_recipient_about %}
-                <span style="font-size:13px;">{{ quote.episode.donation_recipient_about|linebreaks }}
+                <span style="font-size:14px;">{{ quote.episode.donation_recipient_about|linebreaks }}
             {% endif %}
         
         <div class="clearfix">
