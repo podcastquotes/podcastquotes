@@ -6,7 +6,7 @@
     {% for episode_list in items_by_podcast %}
         <big><strong><i>{{ episode_list.grouper }}</i></strong></big>
         <br>
-        {% for episode in episode_list.list %}
+        {% for episode in episode_list.list|dictsortreversed:"publication_date" %}
             {{ episode.title }} -
             <a href="{{ episode.get_absolute_url }}edit" target="_blank">add YouTube link</a><br>
         {% endfor %}
