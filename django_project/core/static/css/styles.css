@@ -67,7 +67,7 @@ THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MIT
 
 body {
     margin:0 auto;
-    background-color:#D1D6D9;
+    background-color:#d5dadc;
     font-family:"Open Sans", Arial, sans-serif;
     font-size:16px;
     color:#111;
@@ -510,7 +510,7 @@ a {
 @media (min-width:768px) {
     .pq-breadcrumb {
         float:left;
-        margin:0 0 25px 0;
+        margin:0 0 20px 0;
         font-size:13px;
         font-weight:600;
     }
@@ -560,7 +560,7 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:10px 10px 20px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     background-color:#fdfdfd;
     border:1px solid #a7adb0;
@@ -577,7 +577,7 @@ a {
 .pq-nav {
     display:inline-block;
     background-color:#e3e6e8;
-    margin:10px 10px 20px 0;
+    margin:5px 10px 15px 0;
     padding:3px 10px;
     border:1px solid #a7adb0;
     border-radius:5px;
@@ -744,13 +744,13 @@ a {
 
 @media (max-width:549px) {
     .pq-podcast-profile-picture img {
-        max-width:100px;
+        max-width:120px;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-profile-picture img {
-        max-width:80px;
+        max-width:120px;
     }
 }
 
@@ -767,7 +767,7 @@ a {
 }
 
 .pq-podcast-title {
-    margin:-2px 0 5px 0;
+    margin:-5px 0 10px 0;
     font-size:24px;
     font-weight:600;
     font-family:"Open Sans", Georgia, serif;
@@ -785,7 +785,7 @@ a {
     font-size:14px;
     font-style:italic;
     color:#555;
-    margin:0 0 15px 0;
+    margin:0 0 10px 0;
 }
 
 @media (max-width:549px) {
@@ -803,7 +803,7 @@ a {
 @media (max-width:767px) {
     .pq-podcast-header-social-icons {
         clear:left;
-        margin:0 0 15px 0;
+        margin:0 0 10px 0;
     }
 }
 
@@ -830,8 +830,8 @@ a {
 
 .pq-podcast-description {
     clear:both;
-    margin:0 0 20px 0;
     font-size:14px;
+    margin:0 0 10px 0;
 }
 
 @media (max-width:549px) {
@@ -840,31 +840,26 @@ a {
     }
 }
 
-.pq-episode-description {
-    clear:both;
-    margin:0 0 15px 0;
-    font-size:14px;
-}
-
-@media (max-width:549px) {
-    .pq-episode-description {
-        margin:0 0 10px 0;
-    }
+.pq-podcast-box {
+    margin:0 0 20px 0;
+    border-bottom:1px solid #ddd;
 }
 
 @media (max-width:549px) {
     .pq-podcast-karma {
         clear:both;
         font-size:13px;
-        font-weight:bold;
+        font-weight:600;
+        margin:0 0 10px 0;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-karma {
-        clear:left;
+        clear:right;
+        float:left;
         font-size:13px;
-        font-weight:bold;
+        font-weight:600;
     }
 }
 
@@ -879,9 +874,7 @@ a {
 
 @media (min-width:550px) {
     .pq-podcast-buttons {
-        clear:both;
         float:right;
-        margin:0 0 15px 0;
         font-size:13px;
     }
 }
@@ -890,7 +883,7 @@ a {
     .pq-podcast-button {
         float:left;
         margin:0 20px 0 0;
-        font-weight:bold;
+        font-weight:600;
         padding:0;
         background-color:#fcfcfc;
         border:none;
@@ -904,7 +897,7 @@ a {
         padding:0;
         background-color:#fcfcfc;
         border:none;
-        font-weight:bold;
+        font-weight:600;
     }
 }
 
@@ -929,30 +922,86 @@ a {
     font-size:18px;
 }
 
-.pq-episode-title {
-    display:inline-block;
-    margin:0 17px 10px 0;
-    font-size:20px;
-    font-weight:bold;
+@media (max-width:549px) {
+    .pq-episode-profile-picture {
+        clear:left;
+        float:left;
+        margin:0 20px 20px 0;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-episode-profile-picture {
+        clear:left;
+        float:right;
+        margin:0 0 20px 20px;
+    }
 }
 
 @media (max-width:549px) {
-    .pq-episode-title {
-        display:none;
+    .pq-episode-profile-picture img {
+        max-width:120px;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-episode-profile-picture img {
+        max-width:140px;
+    }
+}
+
+.pq-episode-text-box {
+    overflow:hidden;
+}
+
+@media (max-width:549px) {
+    .pq-episode-text-box {
+        clear:left;
     }
 }
 
 @media (max-width:549px) {
     .pq-episode-finder {
-        font-weight:bold;
+        font-weight:600;
     }
 }
 
 @media (min-width:550px) {
     .pq-episode-finder {
-        display:inline-block;
-        width:100%;
-        font-weight:bold;
+        font-weight:600;
+        overflow:hidden;
+        padding:0;
+    }
+}
+
+.pq-episode-selector {
+    margin:0 0 5px 0;
+    font-size:18px;
+}
+
+.pq-episode-description {
+    margin:10px 0 10px 0;
+    font-size:14px;
+}
+
+@media (max-width:549px) {
+    .pq-episode-description {
+        margin:15px 0 10px 0;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-episode-buttons {
+        clear:both;
+        float:left;
+        font-size:13px;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-episode-buttons {
+        float:right;
+        font-size:13px;
     }
 }
 
@@ -966,12 +1015,6 @@ a {
     .pq-hidden-not-xs {
         display:none;
     }
-}
-
-.pq-episode-selector {
-    margin:0 0 15px 0;
-    border:1px solid #a7adb0;
-    font-size:20px;
 }
 
 .pq-user-header {
@@ -1017,6 +1060,7 @@ a {
 @media (max-width:549px) {
     .pq-quote {
         padding:15px;
+        margin:0 0 15px 0;
     }
 }
 
