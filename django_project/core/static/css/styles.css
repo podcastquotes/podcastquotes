@@ -67,14 +67,14 @@ THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MIT
 
 body {
     margin:0 auto;
-    background-color:#d5dadc;
+    background-color:#ddd;
     font-family:"Open Sans", Arial, sans-serif;
     font-size:16px;
     color:#111;
 }
 
 hr {
-    border-top:1px solid #D1D6D9;
+    border-top:1px solid #d5d5d5;
 }
 
 .width-100percent {
@@ -200,15 +200,15 @@ hr {
 }
 
 .bg-yellow {
-    background-color:#fdfdfdFDF;
+    background-color:#fcfcfc;
 }
 
 .text-orange, .text-orange a {
-    color:#D56A00;
+    color:#111;
 }
 
 .text-orange a:hover {
-    color:#a74500;
+    color:#777;
 }
 
 .text-blue {
@@ -560,14 +560,14 @@ a {
 
 .pq-nav-active {
     display:inline-block;
-    margin:5px 10px 15px 0;
+    margin:0 10px 10px 0;
     padding:3px 10px;
-    background-color:#fdfdfd;
-    border:1px solid #a7adb0;
-    border-radius:5px;
-    color:#B25900;
-    font-size:16px;
-    font-weight:bold;
+    background-color:#fcfcfc;
+    border:1px solid #888;
+    border-radius:20px;
+    color:#111;
+    font-size:14px;
+    font-weight:600;
 }
 
 .btn-group {
@@ -576,14 +576,14 @@ a {
 
 .pq-nav {
     display:inline-block;
-    background-color:#e3e6e8;
-    margin:5px 10px 15px 0;
+    background-color:#eee;
+    margin:0 10px 10px 0;
     padding:3px 10px;
-    border:1px solid #a7adb0;
-    border-radius:5px;
+    border:1px solid #888;
+    border-radius:20px;
     color:#111;
-    font-size:16px;
-    font-weight:bold;
+    font-size:14px;
+    font-weight:600;
 }
 
 /* Delete this style rule below when all nav filters are working properly. */
@@ -698,20 +698,20 @@ a {
 
 .pq-podcast-header {
     margin:0 0 10px 0;
-    background-color:#fdfdfd;
+    background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bcc0c3;
+    border:1px solid #bbb;
 }
 
 @media (max-width:549px) {
     .pq-podcast-header {
-        padding:20px 15px;
+        padding:15px;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-header {
-        padding:20px;
+        padding:15px;
     }
 }
 
@@ -754,7 +754,7 @@ a {
     }
 }
 
-@media (max-width:549px) {
+@media (max-width:767px) {
     .pq-podcast-profile-text {
         clear:left;
     }
@@ -768,7 +768,7 @@ a {
 
 .pq-podcast-title {
     margin:-5px 0 10px 0;
-    font-size:24px;
+    font-size:22px;
     font-weight:600;
     font-family:"Open Sans", Georgia, serif;
     color:#111;
@@ -782,8 +782,7 @@ a {
 }
 
 .pq-podcast-subtitle {
-    font-size:14px;
-    font-style:italic;
+    font-size:13px;
     color:#555;
     margin:0 0 10px 0;
 }
@@ -830,7 +829,7 @@ a {
 
 .pq-podcast-description {
     clear:both;
-    font-size:14px;
+    font-size:13px;
     margin:0 0 10px 0;
 }
 
@@ -842,7 +841,7 @@ a {
 
 .pq-podcast-box {
     margin:0 0 20px 0;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px solid #d5d5d5;
 }
 
 @media (max-width:549px) {
@@ -914,7 +913,7 @@ a {
     height:40px;
     line-height:40px;
     width:100%;
-    border:1px solid #a7adb0;
+    border:1px solid #a7a7a7;
     font-size:24px;
 }
 
@@ -934,7 +933,7 @@ a {
     .pq-episode-profile-picture {
         clear:left;
         float:right;
-        margin:0 0 20px 20px;
+        margin:0 0 0 20px;
     }
 }
 
@@ -981,7 +980,7 @@ a {
 
 .pq-episode-description {
     margin:10px 0 10px 0;
-    font-size:14px;
+    font-size:13px;
 }
 
 @media (max-width:549px) {
@@ -1019,9 +1018,9 @@ a {
 
 .pq-user-header {
     margin:0 0 10px 0;
-    background-color:#fdfdfd;
+    background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bcc0c3;
+    border:1px solid #bbb;
 }
 
 @media (max-width:549px) {
@@ -1052,30 +1051,30 @@ a {
 
 .pq-quote {
     clear:both;
-    margin:0 0 20px 0;
-    background-color:#fdfdfd;
-    border:1px solid #bcc0c3;
+    margin:0 0 10px 0;
+    background-color:#fcfcfc;
+    border:1px solid #bbb;
 }
 
 @media (max-width:549px) {
     .pq-quote {
-        padding:15px;
-        margin:0 0 15px 0;
+        padding:10px 15px;
+        margin:0 0 10px 0;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote {
-        padding:15px 20px;
+        padding:10px 15px;
     }
 }
 
 .pq-quote-header {
     clear:both;
     margin:0 0 20px 0;
-    background-color:#fdfdfd;
+    background-color:#fcfcfc;
     font-size:18px;
-    border:1px solid #bcc0c3;
+    border:1px solid #bbb;
 }
 
 @media (max-width:549px) {
@@ -1092,7 +1091,7 @@ a {
 
 @media (max-width:767px) {
     .pq-quote-text-box {
-        max-width:530px;
+        max-width:550px;
         clear:left;
         font-size:14px;
     }
@@ -1100,7 +1099,7 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-text-box {
-        max-width:530px;
+        max-width:550px;
         clear:left;
         font-size:14px;
         overflow:hidden;
@@ -1123,9 +1122,7 @@ a {
 
 .pq-quote-title {
     max-width:600px;
-    margin:0 0 5px 0;
     overflow:hidden;
-    font-weight:600;
     font-size:18px;
     font-family:"Open Sans", Georgia, serif;
 }
@@ -1137,14 +1134,13 @@ a {
 }
 
 .pq-quote-profile-picture img {
-    width:32px;
-    height:32px;
+    width:30px;
+    height:30px;
 }
 
 .pq-quote-subtitle {
     vertical-align:top;
-    font-size:14px;
-    font-style:italic;
+    font-size:13px;
 }
 
 .pq-quote-subtitle a:hover {
@@ -1170,14 +1166,14 @@ a {
 }
 
 .pq-quote-xs-profile-picture img {
-    width:32px;
-    height:32px;
+    width:30px;
+    height:30px;
 }
 
 .pq-quote-xs-subtitle {
     vertical-align:top;
-    font-size:14px;
-    font-style:italic;
+    font-size:13px;
+    margin-top:1px;
 }
 
 .pq-quote-xs-subtitle a:hover {
@@ -1255,7 +1251,7 @@ button {
     text-align:center;
     width:44px;
     margin:2px 0;
-    font-size:14px;
+    font-size:13px;
     color:#444;
 }
 
@@ -1308,7 +1304,7 @@ button {
     text-align:center;
     padding:0 7px;
     margin:4px 0;
-    font-size:14px;
+    font-size:13px;
     color:#444;
 }
 
@@ -1373,7 +1369,7 @@ button {
 .pq-quote-date {
     clear:both;
     float:left;
-    font-size:14px;
+    font-size:13px;
 }
 
 .pq-quote-date:hover {
@@ -1405,7 +1401,7 @@ button {
     background-color:#fcfcfc;
     border:none;
     font-size:13px;
-    font-weight:bold;
+    font-weight:600;
 }
 
 @media (max-width:549px) {
@@ -1429,7 +1425,7 @@ button {
 .pq-quote-posted-by {
     clear:left;
     margin:0 0 10px 0;
-    font-size:14px;
+    font-size:13px;
     color:#777;
 }
 
@@ -1441,39 +1437,38 @@ button {
 
 @media (max-width:549px) {
     .pq-quote-more {
-        padding:15px;
+        padding:10px 15px;
         margin:20px 0;
-        background-color:#fdfdfd;
-        border:1px solid #bcc0c3;
+        background-color:#fcfcfc;
+        border:1px solid #bbb;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote-more {
-        padding:15px 20px;
+        padding:10px 15px;
         margin:20px 0;
-        background-color:#fdfdfd;
-        border:1px solid #bcc0c3;
+        background-color:#fcfcfc;
+        border:1px solid #bbb;
     }
 }
 
 .pq-quote-more hr {
     margin:10px 0;
-    border-top:1px solid #D1D6D9;
+    border-top:1px solid #d5d5d5;
 }
 
 .pq-quote-more-image {
     float:right;
-    margin:4px 0 0 20px;
-    width:80px;
+    margin:2px 0 0 15px;
 }
 
 .pq-quote-more-image img {
-    max-height:62px;
+    max-height:80px;
 }
 
 .pq-quote-more-box {
-    background-color:#fdfdfd;
+    background-color:#fcfcfc;
     overflow:hidden;
 }
 
@@ -1498,8 +1493,8 @@ button {
 }
 
 .pq-menu {
-    background-color:#fdfdfd;
-    border:1px solid #bcc0c3;
+    background-color:#fcfcfc;
+    border:1px solid #bbb;
 }
 
 @media (max-width:767px) {
@@ -1511,7 +1506,7 @@ button {
 @media (min-width:768px) {
     .pq-menu {
         margin:0 0 20px 0;
-        padding:12px 15px 15px 15px;
+        padding:10px 15px 10px 15px;
     }
 }
 
@@ -1535,7 +1530,7 @@ button {
 }
 
 .pq-menu hr {
-    border-top:1px solid #D1D6D9;
+    border-top:1px solid #d5d5d5;
     margin:-5px 0 0 0;
 }
 
@@ -1547,7 +1542,7 @@ button {
 
 .pq-menu-option {
     padding:7px 0;
-    border-bottom:1px solid #D1D6D9;
+    border-bottom:1px solid #d5d5d5;
 }
 
 .pq-menu-option-image {
@@ -1576,7 +1571,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:15px 5px 15px 0;
+        margin:10px 5px 10px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1590,7 +1585,7 @@ button {
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
     height:0;
-    margin:15px 0;
+    margin:15px 0 15px 0;
 }
 
 .youtube-player-wrapper iframe {
@@ -1754,7 +1749,7 @@ button {
     margin:10px 0 25px 0;
     padding:15px 15px 20px 15px;
     background-color:#eee;
-    border:1px solid #bcc0c3;
+    border:1px solid #bbb;
 }
 
 .episode_selector {
@@ -1774,7 +1769,7 @@ button {
     margin:10px auto 25px auto;
     padding:10px 15px 20px 15px;
     background-color:#eee;
-    border:1px solid #bcc0c3;
+    border:1px solid #bbb;
     border-radius:5px;
 }
 
@@ -1837,10 +1832,10 @@ button {
 
 .tt-dropdown-menu {
     padding:0 10px;
-    background-color:#fdfdfd;
-    border-right:1px solid #D1D6D9;
-    border-bottom:1px solid #D1D6D9;
-    border-left:1px solid #D1D6D9;
+    background-color:#fcfcfc;
+    border-right:1px solid #d5d5d5;
+    border-bottom:1px solid #d5d5d5;
+    border-left:1px solid #d5d5d5;
     font-size:16px;
     cursor:pointer;
     
@@ -1863,7 +1858,7 @@ button {
 .pq-form-divider {
     clear:both;
     margin:30px 0;
-    border-top:1px solid #bcc0c3;
+    border-top:1px solid #bbb;
 }
 
 .pq-form-captcha {
@@ -1884,7 +1879,7 @@ button {
     vertical-align:top;
     color:#111;
     font-size:16px;
-    border:1px solid #a7adb0;
+    border:1px solid #a7a7a7;
 }
 
 .form-quote-input {
@@ -1970,12 +1965,12 @@ button {
     padding:20px;
     clear:both;
     margin:0 0 20px 0;
-    background-color:#fdfdfd;
+    background-color:#fcfcfc;
     font-size:16px;
 }
 
 .pq-about hr {
-    border-top:1px solid #D1D6D9;
+    border-top:1px solid #d5d5d5;
 }
 
 .pq-mid-title {
