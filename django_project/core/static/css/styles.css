@@ -1048,13 +1048,13 @@ a {
 
 @media (max-width:549px) {
     .pq-quote-header {
-        padding:10px 15px;
+        padding:10px 15px 0 15px;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote-header {
-        padding:15px 20px 5px 20px;
+        padding:15px 15px 5px 15px;
     }
 }
 
