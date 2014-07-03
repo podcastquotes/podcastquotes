@@ -204,11 +204,11 @@ hr {
 }
 
 .text-orange, .text-orange a {
-    color:#111;
+    color:#D56A00;
 }
 
 .text-orange a:hover {
-    color:#777;
+    color:#a74500;
 }
 
 .text-blue {
@@ -1040,7 +1040,7 @@ a {
 
 .pq-quote-header {
     clear:both;
-    margin:0 0 20px 0;
+    margin:20px 0 20px 0;
     background-color:#fcfcfc;
     font-size:18px;
     border:1px solid #bbb;
