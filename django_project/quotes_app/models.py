@@ -232,7 +232,7 @@ class Quote(models.Model):
     def set_rank(self):
         # Based on HN ranking algo at http://amix.dk/blog/post/19574
         SECS_IN_HOUR = float(60*60)
-        GRAVITY = 1.2
+        GRAVITY = 1.001
         
         delta = now() - self.created_at
         item_hour_age = delta.total_seconds() / SECS_IN_HOUR
