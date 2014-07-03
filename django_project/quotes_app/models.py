@@ -231,14 +231,16 @@ class Quote(models.Model):
     
     def set_rank(self):
         # Based on HN ranking algo at http://amix.dk/blog/post/19574
-        SECS_IN_HOUR = float(60*60)
-        GRAVITY = 1.001
+        # SECS_IN_HOUR = float(60*60)
+        SECS_IN_WEEK = float(604800)
+        GRAVITY = 1.2
         
         delta = now() - self.created_at
-        item_hour_age = delta.total_seconds() / SECS_IN_HOUR
+        # item_hour_age = delta.total_seconds() / SECS_IN_HOUR
+        item_week_age = delta.total_seconds() / SECS_IN_WEEK
         karma_total = self.karma_total()
-        self.rank_score = karma_total / pow((item_hour_age+2), GRAVITY)
-        print self.rank_score
+        # self.rank_score = karma_total / pow((item_hour_age+2), GRAVITY)
+        self.rank_score = karma_total / pow((item_week_age+2), GRAVITY)
         self.save()
             
     def is_longer_than_200chars(self):
