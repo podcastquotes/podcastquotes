@@ -1,3 +1,8 @@
+{% load static %}
+
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
 <div id="sidebar" class="col-md-5 pull-right hidden-xs hidden-sm">
     
     {% if is_quote_page %}
@@ -120,6 +125,10 @@
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
             <div class="pq-menu dark-link">
               
+                <div class="pq-menu-toggle" id="karma-leaderboard-button">
+                    <i class="fa fa-plus-square-o"></i>
+                </div>
+              
                 <div class="pq-menu-title">
                     Karma Leaderboard
                 </div><!-- /.pq-menu-title -->
@@ -139,7 +148,7 @@
                 <hr />
                 
                 {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
-                    <div class="pq-menu-options" style="height:180px">
+                    <div class="pq-menu-options" id="karma-leaderboard" style="display:none;height:180px">
                         {% for karma_leader in karma_leaders %}        
                             <div class="pq-menu-option">
                                 <a href="/people/{{ karma_leader.username }}">
@@ -160,6 +169,15 @@
                             </div>
                         {% endfor %}
                     </div><!-- /.pq-menu-options -->
+                    
+                    <script>
+                        $(document).ready(function() {
+                            $("#karma-leaderboard-button").click(function(){
+                                $("#karma-leaderboard").toggle();
+                            });
+                        });
+                    </script>
+                    
                 {% endif %}
             </div><!-- /.pq-menu -->
         {% endif %}

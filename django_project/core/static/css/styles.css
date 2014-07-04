@@ -161,11 +161,11 @@ hr {
 }
 
 .gray-link a {
-    color:#6b6b6b
+    color:#696969
 }
 
 .gray-link a:hover {
-    color:#3d3d3d
+    color:#363636
 }
 
 .blue-link a {
@@ -1137,7 +1137,7 @@ a {
 }
 
 .pq-quote-subtitle a:hover {
-    text-decoration:underline;
+    text-decoration:none;
 }
 
 @media (max-width:549px) {
@@ -1170,7 +1170,7 @@ a {
 }
 
 .pq-quote-xs-subtitle a:hover {
-    text-decoration:underline;
+    text-decoration:none;
 }
 
 @media (max-width:450px) {
@@ -1501,6 +1501,12 @@ button {
         margin:0 0 15px 0;
         padding:10px 15px 10px 15px;
     }
+}
+
+.pq-menu-toggle {
+    float:right;
+    margin-top:-2px;
+    font-size:18px;
 }
 
 .pq-menu-title {
