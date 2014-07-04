@@ -29,11 +29,26 @@
     
     {% include 'main_col_width.html' %}
     
+    {% if quote_previous %}
+        <div class="pq-previous-clip gray-link">
+            <a href="{{ quote_previous.get_absolute_url }}">
+                < prev
+            </a>
+        </div>
+    {% endif %}
+    {% if quote_next %}
+        <div class="pq-next-clip gray-link">
+            <a href="{{ quote_next.get_absolute_url }}">
+                next >
+            </a>
+        </div>
+    {% endif %}
+    
 {% endblock %}<!-- /block content -->
     
 {% block quotes %}
     <!-- quote_list is tech debt that needs to be banished after a non-kluge youtube.js file is created -->
-    {% for quote in quote_list %}
+    {% for quote in quote_pseudo_list %}
         {% include 'quotes.html' %}
     {% endfor %}
 

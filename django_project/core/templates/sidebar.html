@@ -1,5 +1,12 @@
 <div id="sidebar" class="col-md-5 pull-right hidden-xs hidden-sm">
     
+    {% if is_quote_page %}
+        {% if quote_previous or quote_next %}
+            <div style="margin-top:6px">
+            </div>
+        {% endif %}
+    {% endif %}
+    
     <div class="pq-sidebar">
     
         <div class="pq-menu dark-link">
@@ -72,6 +79,43 @@
 
             </div><!-- /.pq-menu -->
         {% endif %}
+        
+        <!--
+        {% if is_home_page %}
+            <div class="pq-menu dark-link">
+              
+                <div class="pq-menu-title">
+                    Top Episodes
+                </div>
+                
+                <div class="pq-menu-pulldown">
+                </div>
+                
+                <div class="clearfix">
+                </div>
+                
+                <hr />
+
+                <div class="pq-menu-options">
+                    {% for episode in top_episodes %}        
+                        <div class="pq-menu-option">
+                            <a href="/episodes/{{ episode.id}}">
+                                <img class="pq-menu-option-image" src="{{MEDIA_URL}}{{ episode.podcast.image }}">
+                                <span class="hidden-xs hidden-sm hidden-lg">
+                                    {{ episode.title|truncatechars:25 }}
+                                </span>
+                                <span class="hidden-xs hidden-sm hidden-md">
+                                    {{ episode.title|truncatechars:29 }}
+                                </span>
+                            </a>
+                        </div>                        
+                    {% endfor %}
+                </div>
+
+            </div>
+        {% endif %}
+        -->
+        
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
             <div class="pq-menu dark-link">

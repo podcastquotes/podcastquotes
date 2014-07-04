@@ -152,6 +152,14 @@ hr {
     color:#2a2a2a;
 }
 
+.light-gray-link a {
+    color:#888
+}
+
+.light-gray-link a:hover {
+    color:#696969
+}
+
 .gray-link a {
     color:#6b6b6b
 }
@@ -1038,6 +1046,22 @@ a {
     }
 }
 
+.pq-previous-clip {
+    float:left;
+    margin:-17px 0 0 0;
+    padding:0 0 5px 0;
+    font-size:13px;
+    font-weight:600;
+}
+
+.pq-next-clip {
+    float:right;
+    margin:-17px 0 0 0;
+    padding:0 0 5px 0;
+    font-size:13px;
+    font-weight:600;
+}
+
 .pq-quote-header {
     clear:both;
     margin:20px 0 20px 0;
@@ -1416,7 +1440,7 @@ button {
 @media (min-width:550px) {
     .pq-quote-more {
         padding:10px 15px;
-        margin:20px 0;
+        margin:15px 0;
         background-color:#fcfcfc;
         border:1px solid #bbb;
     }

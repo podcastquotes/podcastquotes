@@ -118,8 +118,26 @@ class QuoteDeleteView(DeleteView):
 def quote(request, quote_id):
     ### TechDebt - list containing one object is needed to make
     # Mitch's kluge youtube.js file work on quote_detail pages
-    q_list = Quote.objects.filter(id=quote_id)
+    q_pseudo_list = Quote.objects.filter(id=quote_id)
     q_object = Quote.objects.get(id=quote_id)
+    
+    q_objects = Quote.objects.filter(episode_id=q_object.episode.id).order_by('time_quote_begins')
+    
+    for idx, item in enumerate(q_objects):
+        if item == q_object:
+            q_object_index = idx
+        else:
+            pass
+    
+    q_object_prev = None
+    q_object_next = None
+    
+    for idx, item in enumerate(q_objects):
+        if idx == q_object_index - 1:
+            q_object_prev = item
+        if idx == q_object_index + 1:
+            q_object_next = item
+            break
     
     all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
     
@@ -146,8 +164,10 @@ def quote(request, quote_id):
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
                  'episodes': all_episodes_with_quotes,
                  ('karma_leaders'): all_karma_leaders,
-                 'quote_list': q_list,
+                 'quote_pseudo_list': q_pseudo_list,
                  'quote': q_object,
+                 'quote_previous': q_object_prev,
+                 'quote_next': q_object_next,
                  'more_episode_quotes': more_episode_quotes,
                  'more_podcast_quotes': more_podcast_quotes,
                  'is_quote_page': 1})

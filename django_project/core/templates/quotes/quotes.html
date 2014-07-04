@@ -398,7 +398,9 @@
                     <br>
                     <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
                         {% if quote.time_quote_ends %}
-                            Length: {{ quote.duration }}
+                            Length: {{ quote.duration }} 
+                            / {{ quote.converted_time_begins }} 
+                            - {{ quote.converted_time_ends }}
                         {% else %}
                             Starts: {{ quote.converted_time_begins }}
                         {% endif %}
@@ -445,7 +447,9 @@
                     <br>
                     <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
                         {% if quote.time_quote_ends %}
-                            Length: {{ quote.duration }}
+                            Length: {{ quote.duration }} 
+                            / {{ quote.converted_time_begins }} 
+                            - {{ quote.converted_time_ends }}
                         {% else %}
                             Starts: {{ quote.converted_time_begins }}
                         {% endif %}
