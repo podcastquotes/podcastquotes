@@ -229,11 +229,11 @@ class Quote(models.Model):
     
     def set_rank(self):
         # Based on HN ranking algo at http://amix.dk/blog/post/19574
-        SECS_IN_WEEK = float(604800)
+        SECS_IN_HALF_WEEK = float(302400)
         GRAVITY = 1.2
         
         delta = now() - self.created_at
-        item_week_age = delta.total_seconds() / SECS_IN_WEEK
+        item_week_age = delta.total_seconds() / SECS_IN_HALF_WEEK
         karma_total = self.karma_total()
         self.rank_score = karma_total / pow((item_week_age+2), GRAVITY)
         self.save()
