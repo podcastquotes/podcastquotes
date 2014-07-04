@@ -134,9 +134,9 @@
                 </div><!-- /.pq-menu-title -->
                 
                 <div class="pq-menu-pulldown">
-                    <!--{% if is_home_page or is_user_page %}-->
+                    {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
                         All Podcasts
-                    <!--{% endif %}-->
+                    {% endif %}
                     <!--{% if is_podcast_page or is_episode_page or is_quote_page %}
                         {{ podcast.title }}
                     {% endif %}-->
