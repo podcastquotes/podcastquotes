@@ -20,8 +20,9 @@
 <link href='//fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,400,600,700,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
-<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+
 <script src="{% static 'js/cookies.js' %}"></script>
 <script src="{% static 'js/ajax-vote.js' %}"></script>
 <script src="{% static 'js/ajax-get-episodes.js' %}"></script>
@@ -34,23 +35,30 @@
     {% endblock %}
     
     <div class="pq-container">
-      
         <div class="row">
+            {% block sidebar %}
+                {% include 'sidebar.html' %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
 
-          {% block sidebar %}
-              {% include 'sidebar.html' %}
-          {% endblock %}
-        
-          {% block content %}
-          {% endblock %}
-
-          {% block quotes %}
-          {% endblock %}
-        
+            <div class="pq-quotes-wrapper">
+                {% block quotes %}
+                {% endblock %}
+            </div>
+            
+            {% block more %}
+            {% endblock %}
+            
+            {% block pagination %}
+                {% include 'quote_pagination.html' %}
+            {% endblock %}
+            
+            </div><!-- /.col-sm-11 ***you must include this close tag***-->
+            
         </div><!-- /.row -->
-    
     </div><!-- /.pq-container -->
-    
+
     {% block footer %}
         {% include 'footer.html' %}
     {% endblock %}

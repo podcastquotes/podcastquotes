@@ -161,11 +161,11 @@ hr {
 }
 
 .gray-link a {
-    color:#696969
+    color:#555
 }
 
 .gray-link a:hover {
-    color:#363636
+    color:#232323
 }
 
 .blue-link a {
@@ -566,9 +566,18 @@ a {
     }
 }
 
+.pq-nav-wrapper {
+    padding:10px 15px;
+    border-top:1px solid #bbb;
+    border-left:1px solid #bbb;
+    border-bottom:1px solid #bbb;
+    border-right:1px solid #bbb;
+    background-color:#f1f1f1;
+}
+
 .pq-nav-active {
     float:left;
-    margin:0 10px 10px 0;
+    margin:0 10px 0 0;
     padding:3px 10px;
     background-color:#fcfcfc;
     border:1px solid #888;
@@ -585,7 +594,7 @@ a {
 .pq-nav {
     float:left;
     background-color:#eee;
-    margin:0 10px 10px 0;
+    margin:0 10px 0 0;
     padding:3px 10px;
     border:1px solid #888;
     border-radius:20px;
@@ -674,10 +683,11 @@ a {
 }
 
 .pq-podcast-header {
-    margin:0 0 10px 0;
     background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bbb;
+    border-top:1px solid #bbb;
+    border-right:1px solid #bbb;
+    border-left:1px solid #bbb;
 }
 
 @media (max-width:549px) {
@@ -759,7 +769,7 @@ a {
 }
 
 .pq-podcast-subtitle {
-    font-size:13px;
+    font-size:15px;
     color:#555;
     margin:0 0 10px 0;
 }
@@ -806,7 +816,7 @@ a {
 
 .pq-podcast-description {
     clear:both;
-    font-size:13px;
+    font-size:14px;
     margin:0 0 10px 0;
 }
 
@@ -1028,21 +1038,19 @@ a {
 
 .pq-quote {
     clear:both;
-    margin:0 0 10px 0;
     background-color:#fcfcfc;
-    border:1px solid #bbb;
+    border-bottom:1px dotted #bbb;
 }
 
 @media (max-width:549px) {
     .pq-quote {
-        padding:10px 15px;
-        margin:0 0 10px 0;
+        padding:15px;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote {
-        padding:10px 15px;
+        padding:15px;
     }
 }
 
@@ -1067,6 +1075,18 @@ a {
     text-align:center;
     font-size:13px;
     font-weight:600;
+}
+
+@media (max-width:767px) {
+    .pq-responsive-autoplay-button  {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-responsive-autoplay-button  {
+        float:right;
+    }
 }
 
 @media (max-width:767px) {
@@ -1124,6 +1144,12 @@ a {
     background-color:#f3f3f3;
 }
 
+.pq-quotes-wrapper {
+    background-color:#fcfcfc;
+    border-right:1px solid #bbb;
+    border-left:1px solid #bbb;
+}
+
 .pq-quote-header {
     clear:both;
     margin:20px 0 20px 0;
@@ -1142,6 +1168,10 @@ a {
     .pq-quote-header {
         padding:15px 15px 5px 15px;
     }
+}
+
+.pq-quote-text-box p {
+    margin:0;
 }
 
 @media (max-width:767px) {
@@ -1180,6 +1210,8 @@ a {
     overflow:hidden;
     font-size:18px;
     font-family:"Open Sans", Georgia, serif;
+    font-weight:600;
+    margin:0 0 5px 0;
 }
 
 .pq-quote-profile-picture {
@@ -1189,13 +1221,23 @@ a {
 }
 
 .pq-quote-profile-picture img {
-    width:30px;
-    height:30px;
+    width:40px;
+    height:40px;
+}
+
+.pq-quote-profile-picture-episode {
+    float:left;
+    vertical-align:top;
+    margin:5px 10px 0 0;
+}
+
+.pq-quote-profile-picture-episode img {
+    max-width:40px;
 }
 
 .pq-quote-subtitle {
     vertical-align:top;
-    font-size:13px;
+    font-size:14px;
     margin-top:1px;
 }
 
@@ -1210,13 +1252,23 @@ a {
 }
 
 .pq-quote-xs-profile-picture img {
-    width:30px;
-    height:30px;
+    width:60px;
+    height:60px;
+}
+
+.pq-quote-xs-profile-picture-episode {
+    float:left;
+    vertical-align:top;
+    margin:4px 10px 0 0;
+}
+
+.pq-quote-xs-profile-picture-episode img {
+    max-width:60px;
 }
 
 .pq-quote-xs-subtitle {
     vertical-align:top;
-    font-size:13px;
+    font-size:14px;
 }
 
 .pq-quote-xs-subtitle a:hover {
@@ -1318,7 +1370,6 @@ button {
     text-align:center;
     width:44px;
     padding:3px 0;
-    margin:0 0 10px 0;
     background:#ddd;
     border-radius:10px;
     font-size:16px;
@@ -1331,7 +1382,7 @@ button {
     .pq-quote-xs-buttons {
         float:left;
         clear:left;
-        padding:15px 20px 15px 0;
+        padding:15px 20px 5px 0;
     }
 }
 
@@ -1380,11 +1431,13 @@ button {
     clear:left;
     display:none;
     max-width:510px;
+    margin:5px 0 0 0;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
         max-width:510px;
+        margin:5px 0 0 0;
     }
 }
 
@@ -1392,6 +1445,7 @@ button {
     .pq-quote-text-preview {
         clear:left;
         max-width:510px;
+        margin:5px 0 0 0;
     }
 }
 
@@ -1412,9 +1466,9 @@ button {
 
 .pq-show-less {
     display:none;
-    margin:0 0 10px 0;
     cursor:pointer;
     color:#225b9a;
+    margin:5px 0 0 0;
 }
 
 .pq-show-less:hover {
@@ -1425,6 +1479,7 @@ button {
     clear:both;
     float:left;
     font-size:13px;
+    margin:10px 0 0 0;
 }
 
 .pq-quote-date:hover {
@@ -1433,21 +1488,21 @@ button {
 
 @media (max-width:549px) {
     .pq-quote-date {
-        margin-bottom:10px;
+        margin:10px 0;
     }
 }
 
 @media (max-width:549px) {
     .pq-quote-bottom-buttons {
         clear:left;
-        margin:-1px 0 0 0;
+        margin:10px 0 0 0;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote-bottom-buttons {
         float:right;
-        margin:-1px 0 0 0;
+        margin:10px 0 0 0;
     }
 }
 
@@ -1479,7 +1534,6 @@ button {
 
 .pq-quote-posted-by {
     clear:left;
-    margin:0 0 10px 0;
     font-size:13px;
     color:#777;
 }
@@ -1531,6 +1585,14 @@ button {
     font-size:16px;
 }
 
+.pagination {
+    display:block;
+    margin:0;
+    padding:20px 15px 0 15px;
+    background-color:#ddd;
+    border-radius:0;
+}
+
 /******************************
 *******************************
 5. Sidebar Styles
@@ -1568,7 +1630,8 @@ button {
 .pq-menu-toggle {
     float:right;
     margin-top:-2px;
-    font-size:18px;
+    font-size:20px;
+    cursor:pointer;
 }
 
 .pq-menu-title {
@@ -1579,7 +1642,6 @@ button {
 
 .pq-menu-pulldown {
     color:#333;
-    padding:0 0 10px 0;
     font-size:13px;
 }
 
@@ -1592,7 +1654,7 @@ button {
 
 .pq-menu hr {
     border-top:1px solid #d5d5d5;
-    margin:-5px 0 0 0;
+    margin:5px 0 0 0;
 }
 
 .pq-menu-options {
@@ -1621,7 +1683,7 @@ button {
 @media (max-width:549px) {
     .youtube-start-button-wrapper {
         float:left;
-        margin:15px 10px 14px 0;
+        margin:15px 10px 0 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1632,7 +1694,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:10px 5px 10px 0;
+        margin:10px 5px 0 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1646,7 +1708,7 @@ button {
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
     height:0;
-    margin:15px 0 15px 0;
+    margin:15px 0 5px 0;
 }
 
 .youtube-player-wrapper iframe {

@@ -1,66 +1,69 @@
-<a href="{{ user.userprofile.get_absolute_url }}hot/">
-    <div class="pq-nav{% if user_hot_is_active %}-active{% endif %}">
-        hot
+<div class="pq-nav-wrapper">
+    <a href="{{ user.userprofile.get_absolute_url }}hot/">
+        <div class="pq-nav{% if user_hot_is_active %}-active{% endif %}">
+            hot
+        </div>
+    </a>
+
+    <a href="{{ user.userprofile.get_absolute_url }}new/">
+        <div class="pq-nav{% if user_new_is_active %}-active{% endif %} pq-nav-disappear-4">
+            new
+        </div>
+    </a>
+
+    <a href="{{ user.userprofile.get_absolute_url }}top/">
+        <div class="pq-nav{% if user_top_is_active %}-active{% endif %} pq-nav-disappear-3">
+            top
+        </div>
+    </a>
+
+    <!--
+    <a href="{{ user.userprofile.get_absolute_url }}not/">
+        <div class="pq-nav{% if user_not_is_active %}-active{% endif %}">
+            not
+        </div>
+    </a>
+    -->
+
+    <!--
+    <a href="{{ user.userprofile.get_absolute_url }}controversial/">
+        <div class="pq-nav{% if user_controversial_is_active %}-active{% endif %} pq-nav-disappear-5">
+            controversial
+        </div>
+    </a>
+    -->
+
+    <!--
+    <a href="{{ user.userprofile.get_absolute_url }}bottom/">
+        <div class="pq-nav{% if user_bottom_is_active %}-active{% endif %} pq-nav-disappear-2">
+            bottom
+        </div>
+    </a>
+    -->
+
+    <!--
+    <div class="btn-group">
+        <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
+            more <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li class="{% if user_controversial_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-5"><a href="{{ user.userprofile.get_absolute_url }}controversial/">controversial</a></li>
+            <li class="{% if user_new_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-4"><a href="{{ user.userprofile.get_absolute_url }}new/">new</a></li>
+            <li class="{% if user_top_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-3"><a href="{{ user.userprofile.get_absolute_url }}">top</a></li>
+            <li class="{% if user_bottom_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-2"><a href="{{ user.userprofile.get_absolute_url }}bottom/">bottom</a></li>
+            <li class="{% if user_mainstream_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}mainstream/">mainstream</a></li>
+            <li class="{% if user_underground_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}underground/">underground</a></li>
+            <li class="{% if user_chronological_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}chronological/">chronological</a></li>
+            <li class="{% if user_ghosts_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}ghosts/">ghosts</a></li>
+            <li class="{% if user_birthdays_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}birthdays/">birthdays</a></li>
+            <li class="divider"></li>
+            <li><a href="#">custom</a></li>
+        </ul>
     </div>
-</a>
-
-<a href="{{ user.userprofile.get_absolute_url }}new/">
-    <div class="pq-nav{% if user_new_is_active %}-active{% endif %} pq-nav-disappear-4">
-        new
+    -->
+    <div class="pq-responsive-autoplay-button">
+        <div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
+        <div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
     </div>
-</a>
-
-<a href="{{ user.userprofile.get_absolute_url }}top/">
-    <div class="pq-nav{% if user_top_is_active %}-active{% endif %} pq-nav-disappear-3">
-        top
-    </div>
-</a>
-
-<!--
-<a href="{{ user.userprofile.get_absolute_url }}not/">
-    <div class="pq-nav{% if user_not_is_active %}-active{% endif %}">
-        not
-    </div>
-</a>
--->
-
-<!--
-<a href="{{ user.userprofile.get_absolute_url }}controversial/">
-    <div class="pq-nav{% if user_controversial_is_active %}-active{% endif %} pq-nav-disappear-5">
-        controversial
-    </div>
-</a>
--->
-
-<!--
-<a href="{{ user.userprofile.get_absolute_url }}bottom/">
-    <div class="pq-nav{% if user_bottom_is_active %}-active{% endif %} pq-nav-disappear-2">
-        bottom
-    </div>
-</a>
--->
-
-<!--
-<div class="btn-group">
-    <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
-        more <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li class="{% if user_controversial_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-5"><a href="{{ user.userprofile.get_absolute_url }}controversial/">controversial</a></li>
-        <li class="{% if user_new_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-4"><a href="{{ user.userprofile.get_absolute_url }}new/">new</a></li>
-        <li class="{% if user_top_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-3"><a href="{{ user.userprofile.get_absolute_url }}">top</a></li>
-        <li class="{% if user_bottom_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-2"><a href="{{ user.userprofile.get_absolute_url }}bottom/">bottom</a></li>
-        <li class="{% if user_mainstream_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}mainstream/">mainstream</a></li>
-        <li class="{% if user_underground_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}underground/">underground</a></li>
-        <li class="{% if user_chronological_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}chronological/">chronological</a></li>
-        <li class="{% if user_ghosts_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}ghosts/">ghosts</a></li>
-        <li class="{% if user_birthdays_is_active %}dropdown-menu-active{% endif %}"><a href="{{ user.userprofile.get_absolute_url }}birthdays/">birthdays</a></li>
-        <li class="divider"></li>
-        <li><a href="#">custom</a></li>
-    </ul>
-</div>
--->
-
-<div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
-<div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
+</div><!-- pq-nav-wrapper -->

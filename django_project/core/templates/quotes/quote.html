@@ -66,7 +66,114 @@
     {% for quote in quote_pseudo_list %}
         {% include 'quotes.html' %}
     {% endfor %}
-
-    </div><!-- /.col-sm-11 ***you must include this close tag***-->
+    
+{% if is_quote_page %}    
+    {% include 'quote_header.html' %}
+{% endif %}
 
 {% endblock %}<!-- / block quotes -->
+
+{% block more %}
+    <div class="pq-quote-more dark-link">
+        <div class="pq-quote-more-headline">
+            <a href="{% url 'podcast_quote_list_root' quote.episode.podcast.id %}">More from this podcast</a>
+        </div>
+        {% for quote in more_podcast_quotes %}
+            <hr>
+            <a href="{{ quote.get_absolute_url }}">
+                <div class="pq-quote-more-image display-none-549px">
+                    {% if quote.episode.youtube_url %}
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                    {% elif quote.episode.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                    {% elif quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                </div>
+            </a>
+            <div class="pq-quote-more-box">
+                <div class="pq-quote-more-text">
+                    <a href="{{ quote.get_absolute_url }}">
+                        <span class="hidden-xs hidden-sm hidden-md">
+                            {{ quote.summary }}
+                        </span>
+                        <span class="hidden-xs hidden-sm hidden-lg">
+                            {{ quote.summary}}
+                        </span>
+                        <span class="display-none-549px hidden-md hidden-lg">
+                            {{ quote.summary|truncatechars:125 }}
+                        </span>
+                        <span class="display-none-550px">
+                            {{ quote.summary|truncatechars:100 }}
+                        </span>
+                    </a>
+                    <br>
+                    <a style="font-size:13px;" href="{{ quote.episode.get_absolute_url }}">
+                        Episode: {{ quote.episode.title|truncatechars:60 }}
+                    </a>
+                    <br>
+                    <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
+                        {% if quote.time_quote_ends %}
+                            Length: {{ quote.duration }} 
+                            / {{ quote.converted_time_begins }} 
+                            - {{ quote.converted_time_ends }}
+                        {% else %}
+                            Starts: {{ quote.converted_time_begins }}
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+        {% endfor %}
+    </div>
+    <div class="pq-quote-more dark-link">
+        <div class="pq-quote-more-headline">
+            <a href="{% url 'episode_quote_list_root' quote.episode.id %}">More from this episode</a>
+        </div>
+        {% for quote in more_episode_quotes %}
+            <hr>
+            <a href="{{ quote.get_absolute_url }}">
+                <div class="pq-quote-more-image display-none-549px">
+                    {% if quote.episode.youtube_url %}
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                    {% elif quote.episode.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                    {% elif quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                </div>
+            </a>
+            <div class="pq-quote-more-box">
+                <div class="pq-quote-more-text">
+                    <a href="{{ quote.get_absolute_url }}">
+                        <span class="hidden-xs hidden-sm hidden-md">
+                            {{ quote.summary }}
+                        </span>
+                        <span class="hidden-xs hidden-sm hidden-lg">
+                            {{ quote.summary}}
+                        </span>
+                        <span class="display-none-549px hidden-md hidden-lg">
+                            {{ quote.summary|truncatechars:125 }}
+                        </span>
+                        <span class="display-none-550px">
+                            {{ quote.summary|truncatechars:100 }}
+                        </span>
+                    </a>
+                    <br>
+                    <a style="font-size:13px;" href="{{ quote.get_absolute_url }}">
+                        {% if quote.time_quote_ends %}
+                            Length: {{ quote.duration }} 
+                            / {{ quote.converted_time_begins }} 
+                            - {{ quote.converted_time_ends }}
+                        {% else %}
+                            Starts: {{ quote.converted_time_begins }}
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

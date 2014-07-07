@@ -1,66 +1,69 @@
-<a href="/podcasts/{{ podcast.id }}/hot/">
-    <div class="pq-nav{% if podcast_hot_is_active %}-active{% endif %}">
-        hot
+<div class="pq-nav-wrapper">
+    <a href="/podcasts/{{ podcast.id }}/hot/">
+        <div class="pq-nav{% if podcast_hot_is_active %}-active{% endif %}">
+            hot
+        </div>
+    </a>
+
+    <a href="/podcasts/{{ podcast.id }}/new/">
+        <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
+            new
+        </div>
+    </a>
+
+    <a href="/podcasts/{{ podcast.id }}/top/">
+        <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">
+            top
+        </div>
+    </a>
+
+    <!--
+    <a href="/podcasts/{{ podcast.id }}/not/">
+        <div class="pq-nav{% if podcast_not_is_active %}-active{% endif %}">
+            not
+        </div>
+    </a>
+    -->
+
+    <!--
+    <a href="/podcasts/{{ podcast.id }}/controversial/">
+        <div class="pq-nav{% if podcast_controversial_is_active %}-active{% endif %} pq-nav-disappear-5">
+            controversial
+        </div>
+    </a>
+    -->
+
+    <!--
+    <a href="/podcasts/{{ podcast.id }}/bottom/">
+        <div class="pq-nav{% if podcast_bottom_is_active %}-active{% endif %} pq-nav-disappear-2">
+            bottom
+        </div>
+    </a>
+    -->
+
+    <!--
+    <div class="btn-group">
+        <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
+            more <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li class="{% if podcast_controversial_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-5"><a href="/podcasts/{{ podcast.id }}/controversial/">controversial</a></li>
+            <li class="{% if podcast_new_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-4"><a href="/podcasts/{{ podcast.id }}/new/">new</a></li>
+            <li class="{% if podcast_top_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-3"><a href="/podcasts/{{ podcast.id }}/">top</a></li>
+            <li class="{% if podcast_bottom_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-2"><a href="/podcasts/{{ podcast.id }}/bottom/">bottom</a></li>
+            <li class="{% if podcast_mainstream_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/mainstream/">mainstream</a></li>
+            <li class="{% if podcast_underground_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/underground/">underground</a></li>
+            <li class="{% if podcast_chronological_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/chronological/">chronological</a></li>
+            <li class="{% if podcast_ghosts_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/ghosts/">ghosts</a></li>
+            <li class="{% if podcast_birthdays_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/birthdays/">birthdays</a></li>
+            <li class="divider"></li>
+            <li><a href="#">custom</a></li>
+        </ul>
     </div>
-</a>
-
-<a href="/podcasts/{{ podcast.id }}/new/">
-    <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
-        new
+    -->
+    <div class="pq-responsive-autoplay-button">
+        <div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
+        <div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
     </div>
-</a>
-
-<a href="/podcasts/{{ podcast.id }}/top/">
-    <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">
-        top
-    </div>
-</a>
-
-<!--
-<a href="/podcasts/{{ podcast.id }}/not/">
-    <div class="pq-nav{% if podcast_not_is_active %}-active{% endif %}">
-        not
-    </div>
-</a>
--->
-
-<!--
-<a href="/podcasts/{{ podcast.id }}/controversial/">
-    <div class="pq-nav{% if podcast_controversial_is_active %}-active{% endif %} pq-nav-disappear-5">
-        controversial
-    </div>
-</a>
--->
-
-<!--
-<a href="/podcasts/{{ podcast.id }}/bottom/">
-    <div class="pq-nav{% if podcast_bottom_is_active %}-active{% endif %} pq-nav-disappear-2">
-        bottom
-    </div>
-</a>
--->
-
-<!--
-<div class="btn-group">
-    <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
-        more <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li class="{% if podcast_controversial_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-5"><a href="/podcasts/{{ podcast.id }}/controversial/">controversial</a></li>
-        <li class="{% if podcast_new_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-4"><a href="/podcasts/{{ podcast.id }}/new/">new</a></li>
-        <li class="{% if podcast_top_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-3"><a href="/podcasts/{{ podcast.id }}/">top</a></li>
-        <li class="{% if podcast_bottom_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-2"><a href="/podcasts/{{ podcast.id }}/bottom/">bottom</a></li>
-        <li class="{% if podcast_mainstream_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/mainstream/">mainstream</a></li>
-        <li class="{% if podcast_underground_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/underground/">underground</a></li>
-        <li class="{% if podcast_chronological_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/chronological/">chronological</a></li>
-        <li class="{% if podcast_ghosts_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/ghosts/">ghosts</a></li>
-        <li class="{% if podcast_birthdays_is_active %}dropdown-menu-active{% endif %}"><a href="/podcasts/{{ podcast.id }}/birthdays/">birthdays</a></li>
-        <li class="divider"></li>
-        <li><a href="#">custom</a></li>
-    </ul>
-</div>
--->
-
-<div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
-<div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
+</div><!-- /.pq-nav-wrapper -->
