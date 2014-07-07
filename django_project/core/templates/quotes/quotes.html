@@ -6,6 +6,8 @@
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;border-bottom:1px solid #bbb;">
 {% elif forloop.last and forloop.first %}
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb; border-bottom:1px solid #bbb;">
+{% elif forloop.last %}
+    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-bottom:1px solid #bbb;">
 {% elif forloop.first %}
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;">
 {% else %}

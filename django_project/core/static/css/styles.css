@@ -1038,7 +1038,7 @@ a {
 .pq-quote {
     clear:both;
     background-color:#fcfcfc;
-    border-bottom:1px dotted #bbb;
+    border-top:1px dotted #bbb;
 }
 
 @media (max-width:549px) {
