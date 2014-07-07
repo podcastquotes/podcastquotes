@@ -4,6 +4,18 @@
     </div>
 </a>
 
+<a href="/podcasts/{{ podcast.id }}/new/">
+    <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
+        new
+    </div>
+</a>
+
+<a href="/podcasts/{{ podcast.id }}/top/">
+    <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">
+        top
+    </div>
+</a>
+
 <!--
 <a href="/podcasts/{{ podcast.id }}/not/">
     <div class="pq-nav{% if podcast_not_is_active %}-active{% endif %}">
@@ -19,18 +31,6 @@
     </div>
 </a>
 -->
-
-<a href="/podcasts/{{ podcast.id }}/new/">
-    <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
-        new
-    </div>
-</a>
-
-<a href="/podcasts/{{ podcast.id }}/top/">
-    <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">
-        top
-    </div>
-</a>
 
 <!--
 <a href="/podcasts/{{ podcast.id }}/bottom/">
@@ -60,3 +60,7 @@
     </ul>
 </div>
 -->
+
+<div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
+<div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
+<div class="clearfix"></div>

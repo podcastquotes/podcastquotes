@@ -567,7 +567,7 @@ a {
 }
 
 .pq-nav-active {
-    display:inline-block;
+    float:left;
     margin:0 10px 10px 0;
     padding:3px 10px;
     background-color:#fcfcfc;
@@ -583,7 +583,7 @@ a {
 }
 
 .pq-nav {
-    display:inline-block;
+    float:left;
     background-color:#eee;
     margin:0 10px 10px 0;
     padding:3px 10px;
@@ -1047,19 +1047,61 @@ a {
 }
 
 .pq-previous-clip {
-    float:left;
-    margin:-17px 0 0 0;
+    width:30%;
     padding:0 0 5px 0;
+    font-size:13px;
+    font-weight:600;
+    text-align:left;
+}
+
+.pq-next-clip {
+    width:30%;
+    padding:0 0 5px 0;
+    font-size:13px;
+    font-weight:600;
+    text-align:right;
+}
+
+.pq-autoplay {
+    width:40%;
+    text-align:center;
     font-size:13px;
     font-weight:600;
 }
 
-.pq-next-clip {
+.pq-autoplay-button {
+    padding:1px 20px 2px 20px;
+    display:inline-block;
+    text-align:center;
+    margin:0 auto;
+    border:1px solid #999;
+    border-radius:20px;
+}
+
+.pq-filter-autoplay-button {
+    padding:3px 10px 3px 10px;
     float:right;
-    margin:-17px 0 0 0;
-    padding:0 0 5px 0;
-    font-size:13px;
+    text-align:center;
+    font-size:14px;
     font-weight:600;
+    border:1px solid #999;
+    border-radius:20px;
+}
+
+@media (max-width:449px) {
+    .pq-filter-autoplay-button {
+        clear:left;
+        float:left;
+        margin:0 0 10px 0;
+    }
+}
+
+.autoplay-on {
+    background-color:#FFF8C6;
+}
+
+.autoplay-off {
+    background-color:#f3f3f3;
 }
 
 .pq-quote-header {
@@ -1123,7 +1165,7 @@ a {
 .pq-quote-profile-picture {
     float:left;
     vertical-align:top;
-    margin:4px 10px 0 0;
+    margin:5px 10px 0 0;
 }
 
 .pq-quote-profile-picture img {
@@ -1134,9 +1176,30 @@ a {
 .pq-quote-subtitle {
     vertical-align:top;
     font-size:13px;
+    margin-top:1px;
 }
 
 .pq-quote-subtitle a:hover {
+    text-decoration:none;
+}
+
+.pq-quote-xs-profile-picture {
+    float:left;
+    vertical-align:top;
+    margin:4px 10px 0 0;
+}
+
+.pq-quote-xs-profile-picture img {
+    width:30px;
+    height:30px;
+}
+
+.pq-quote-xs-subtitle {
+    vertical-align:top;
+    font-size:13px;
+}
+
+.pq-quote-xs-subtitle a:hover {
     text-decoration:none;
 }
 
@@ -1150,27 +1213,6 @@ a {
     .display-none-550px {
         display:none;
     }
-}
-
-.pq-quote-xs-profile-picture {
-    float:left;
-    vertical-align:top;
-    margin:5px 10px 0 0;
-}
-
-.pq-quote-xs-profile-picture img {
-    width:30px;
-    height:30px;
-}
-
-.pq-quote-xs-subtitle {
-    vertical-align:top;
-    font-size:13px;
-    margin-top:1px;
-}
-
-.pq-quote-xs-subtitle a:hover {
-    text-decoration:none;
 }
 
 @media (max-width:450px) {

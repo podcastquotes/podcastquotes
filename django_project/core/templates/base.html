@@ -22,6 +22,7 @@
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/cookies.js' %}"></script>
 <script src="{% static 'js/ajax-vote.js' %}"></script>
 <script src="{% static 'js/ajax-get-episodes.js' %}"></script>
 </head>
@@ -56,8 +57,9 @@
     
     {% include 'google_analytics_code.html' %}
 
-    <script src="{% static 'js/youtube.js' %}"></script>
-
+<script src="http://www.youtube.com/player_api"></script>
+<script src="{% static 'js/youtube.js' %}"></script>
+    
 </body>
   
 </html>

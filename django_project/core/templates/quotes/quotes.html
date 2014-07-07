@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 
-<div class="pq-quote">
+<div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
     
     <div class="pq-quote-buttons">
         
@@ -164,29 +164,44 @@
         </div><!-- /.pq-quote-xs-buttons -->
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-            <div class="youtube-start-button-wrapper" style="{% if not quote.episode.youtube_url %} display:none; {% endif %}" id="youtube-start-button-wrapper-{{ forloop.counter }}">
+            <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
+                 class="youtube-start-button-wrapper" 
+                 style="{% if not quote.episode.youtube_url %}
+                            display:none; 
+                        {% endif %}"
+                >
                 {% if quote.episode.youtube_url %}    
-                    <div class="youtube-start-button fa fa-play light-blue-gradient" id="{{ quote.episode.video_id }}?rel=0&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=1&modestbranding=0&showinfo=0&fs=1">
+                    <div class="youtube-start-button fa fa-play light-blue-gradient" 
+                         videoID="{{ quote.episode.video_id }}" 
+                         startTime="{{ quote.time_quote_begins }}" 
+                         endTime="{{ quote.time_quote_ends }}" 
+                         nextVideoURL="{{ quote_next.get_absolute_url }}"
+                        >
                         <div class="youtube-start-button-text" id="{{ forloop.counter }}">
                             <small>&nbsp</small> PLAY
                         </div>
                     </div>
                 {% endif %}
+            </div>        
+            <div id="youtube-player-wrapper-{{ forloop.counter }}" class="youtube-player-wrapper">
+                <div id="youtube-player-{{ forloop.counter }}" 
+                     videoID="{{ quote.episode.video_id }}" 
+                     startTime="{{ quote.time_quote_begins }}" 
+                     endTime="{{ quote.time_quote_ends }}">
+                    <!-- For pages with multiple videos, insert video onclick of youtube-start-button-wrapper via youtube.js -->
+                </div>
             </div>
         {% endif %}
         
         {% if is_quote_page %}
-            {% if quote.episode.youtube_url %}    
-                <div style="display:block;" class="youtube-player-wrapper">
-                    <iframe src="https://www.youtube.com/embed/{{ quote.episode.video_id }}?rel=0&start={{ quote.time_quote_begins }}&end={{ quote.time_quote_ends }}&autoplay=0&modestbranding=0&vq=medium&showinfo=0&fs=1" allowfullscreen>
-                    </iframe>
+            {% if quote.episode.youtube_url %}   
+                <div class="youtube-player-wrapper" style="display:block;">
+                    <div id="youtube-player-alone" videoID="{{ quote.episode.video_id }}" startTime="{{ quote.time_quote_begins }}" endTime="{{ quote.time_quote_ends }}" nextVideoURL="{{ quote_next.get_absolute_url }}">
+                        <!-- insert YouTube player here from youtube.js -->
+                    </div>
                 </div>
             {% endif %}
         {% endif %}
-        
-        <div class="youtube-player-wrapper" id="youtube-player-wrapper-{{ forloop.counter }}">
-        <!-- Insert video onclick of youtube-start-button-wrapper via youtube.js -->
-        </div>
         
         {% if not quote.episode.youtube_url %}
             <div style="margin-top:10px;">
