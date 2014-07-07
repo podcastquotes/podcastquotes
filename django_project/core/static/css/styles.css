@@ -550,7 +550,6 @@ a {
 @media (max-width:991px) {
     .pq-home-title {
         clear:left;
-        margin:0 0 10px 0;
         font-size:22px;
         font-weight:600;
         color:#111;
@@ -559,7 +558,6 @@ a {
 
 @media (min-width:992px) {
     .pq-home-title {
-        margin:0 0 10px 0;
         font-size:22px;
         font-weight:600;
         color:#111;
@@ -568,6 +566,7 @@ a {
 
 .pq-nav-wrapper {
     padding:10px 15px;
+    margin:0 0 10px 0;
     border-top:1px solid #bbb;
     border-left:1px solid #bbb;
     border-bottom:1px solid #bbb;
@@ -731,13 +730,13 @@ a {
 
 @media (max-width:549px) {
     .pq-podcast-profile-picture img {
-        max-width:120px;
+        max-width:100px;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-profile-picture img {
-        max-width:120px;
+        max-width:100px;
     }
 }
 
@@ -827,7 +826,8 @@ a {
 }
 
 .pq-podcast-box {
-    margin:0 0 15px 0;
+    padding:0 0 20px 0;
+    margin:0 0 20px 0;
     border-bottom:1px solid #d5d5d5;
 }
 
@@ -854,7 +854,6 @@ a {
         clear:both;
         float:left;
         font-size:13px;
-        margin:0 0 10px 0;
     }
 }
 
@@ -926,13 +925,13 @@ a {
 
 @media (max-width:549px) {
     .pq-episode-profile-picture img {
-        max-width:120px;
+        max-width:100px;
     }
 }
 
 @media (min-width:550px) {
     .pq-episode-profile-picture img {
-        max-width:120px;
+        max-width:100px;
     }
 }
 
@@ -967,7 +966,7 @@ a {
 
 .pq-episode-description {
     margin:10px 0 10px 0;
-    font-size:13px;
+    font-size:14px;
 }
 
 @media (max-width:549px) {
@@ -1708,7 +1707,7 @@ button {
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
     height:0;
-    margin:15px 0 5px 0;
+    margin:10px 0 5px 0;
 }
 
 .youtube-player-wrapper iframe {

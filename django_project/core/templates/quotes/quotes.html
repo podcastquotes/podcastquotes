@@ -2,9 +2,11 @@
 {% load static %}
 {% load humanize %}
 
-{% if forloop.last %}
+{% if forloop.first %}
+<div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;">
+{% elif forloop.last %}
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="{% if is_quote_page %}border-top:1px solid #bbb;{% endif %} border-bottom:1px solid #bbb;">
-{% elif not forloop.last %}
+{% else %}
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
 {% endif %}
     <div class="pq-quote-buttons">
@@ -212,7 +214,7 @@
             </form>
             
         </div><!-- /.pq-quote-xs-buttons -->
-        
+
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
                  class="youtube-start-button-wrapper" 
@@ -233,6 +235,8 @@
                     </div>
                 {% endif %}
             </div>        
+            <div class="clearfix">
+            </div>
             <div id="youtube-player-wrapper-{{ forloop.counter }}" class="youtube-player-wrapper">
                 <div id="youtube-player-{{ forloop.counter }}" 
                      videoID="{{ quote.episode.video_id }}" 
