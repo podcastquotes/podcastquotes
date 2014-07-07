@@ -44,6 +44,7 @@ $('#autoplay-off').click(function(){
 /* SECTION 2 */
 /* append the YouTube IFRAME API script */
 
+
 var youtube = document.createElement('script');
 youtube.type = "text/javascript";
 youtube.src = "//www.youtube.com/iframe_api";
@@ -56,76 +57,90 @@ s.parentNode.insertBefore(youtube, s);
 
 $(window).load(function () {
     var nodeAlone = "youtube-player-alone";
+    window.nodeAlone = nodeAlone;
 
     if (document.getElementById(nodeAlone)) {
         var playerAlone;
 
-        // Read all the parameter of the DIV tag
+        // Read all the parameter of the DIV tag and store as global variables
         var paramsAlone = document.getElementById(nodeAlone);
+        window.paramsAlone = paramsAlone;
 
         var startTimeAlone = paramsAlone.getAttribute("startTime");
+        window.startTimeAlone = startTimeAlone;
+        
         var endTimeAlone = paramsAlone.getAttribute("endTime");
+        window.endTimeAlone = endTimeAlone;
+        
         var videoIDAlone = paramsAlone.getAttribute("videoID");
+        window.videoIDAlone = videoIDAlone;
+        
         var nextVideoURLAlone = paramsAlone.getAttribute('nextVideoURL');
-        onYouTubeIframeAPIReady();
-
-        // Prepare the YouTube Player
-        // We set rel=0 and showinfo=1 to hide related videos & info bar
-
-        function onYouTubeIframeAPIReady() {
-          playerAlone = new YT.Player(nodeAlone, {
-            playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange,
-            }
-          });
-        }
-
-        // When the player is ready, we load the video.
-        // loadVideoById starts the video automatically.
-        // cueVideoById does not start the video automatically.
-        function onPlayerReady(event) {      
-          var autoplayOn = getCookie('_autoplay');
-          if (autoplayOn==='true') {
-              event.target.loadVideoById({ 
-                videoId: videoIDAlone,
-                startSeconds: startTimeAlone,
-                endSeconds: endTimeAlone
-              });  
-          } else {
-              event.target.cueVideoById({ 
-                videoId: videoIDAlone,
-                startSeconds: startTimeAlone,
-                endSeconds: endTimeAlone
-              });
-          }
-        }
-
-        var done = false;
-        function onPlayerStateChange(event) {
-            if (event.data == 0) {
-                done = true;
-                if (nextVideoURLAlone != '') {
-                    playNextVideoAlone();
-                } else {
-                // do nothing
-                }
-            }
-        };
-
-        function playNextVideoAlone() {
-            var autoplayOn = getCookie('_autoplay');
-            if (autoplayOn == 'true') {
-                window.location.href = nextVideoURLAlone;
-            } else {
-                // do nothing
-            }
-        }
-    }
+        window.nextVideoURLAlone = nextVideoURLAlone;
+        
+        startVideoAlone();
+        
+    };
 });
 
-/* SECTION 3 */
+function startVideoAlone() {
+    onYouTubeIframeAPIReady();
+    
+    // Prepare the YouTube Player
+    function onYouTubeIframeAPIReady() {
+      playerAlone = new YT.Player(nodeAlone, {
+        playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange,
+        }
+      });
+    }
+    
+    // When the player is ready, we load the video.
+    // loadVideoById starts the video automatically.
+    // cueVideoById does not start the video automatically.
+    function onPlayerReady(event) {      
+      var autoplayOn = getCookie('_autoplay');
+      if (autoplayOn==='true') {
+          event.target.loadVideoById({ 
+            videoId: videoIDAlone,
+            startSeconds: startTimeAlone,
+            endSeconds: endTimeAlone
+          });  
+      } else {
+          event.target.cueVideoById({ 
+            videoId: videoIDAlone,
+            startSeconds: startTimeAlone,
+            endSeconds: endTimeAlone
+          });
+      }
+    }
+
+    var done = false;
+    function onPlayerStateChange(event) {
+        if (event.data == 0) {
+            done = true;
+            if (nextVideoURLAlone != '') {
+                playNextVideoAlone();
+            } else {
+            // do nothing
+            }
+        }
+    };
+
+    function playNextVideoAlone() {
+        var autoplayOn = getCookie('_autoplay');
+        if (autoplayOn == 'true') {
+            window.location.href = nextVideoURLAlone;
+        } else {
+            // do nothing
+        }
+    };
+
+};
+
+/* SECTION 4 */
 /* multiple YouTube players loaded on home, podcast, episode, and user pages */
 
 $(window).load(function () {

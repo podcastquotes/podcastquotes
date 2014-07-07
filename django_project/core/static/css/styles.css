@@ -1083,6 +1083,7 @@ a {
         margin:0 auto;
         border:1px solid #999;
         border-radius:20px;
+        cursor:pointer;
     }
 }
 
@@ -1101,6 +1102,7 @@ a {
         font-weight:600;
         border:1px solid #999;
         border-radius:20px;
+        cursor:pointer;
     }
 }
 
