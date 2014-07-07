@@ -21,23 +21,23 @@
 
 var autoplayOn = getCookie('_autoplay');
 if (autoplayOn==='true') {
-    $('#autoplay-off').hide();
+    $('#autoplay-on').css('display', 'inline-block');
 } else {
-    $('#autoplay-on').hide();
+    $('#autoplay-off').css('display', 'inline-block');
 };
 
 $('#autoplay-on').click(function(){
     setCookie('_autoplay', 'false', 14)
     setCookie('_autoplay_continued', 'false', 14)
     $('#autoplay-on').hide();
-    $('#autoplay-off').show();
+    $('#autoplay-off').css('display', 'inline-block');
 });
 
 $('#autoplay-off').click(function(){
     setCookie('_autoplay', 'true', 14)
     setCookie('_autoplay_continued', 'false', 14)
     $('#autoplay-off').hide();
-    $('#autoplay-on').show();
+    $('#autoplay-on').css('display', 'inline-block');
 });
 
 
@@ -54,116 +54,120 @@ s.parentNode.insertBefore(youtube, s);
 /* SECTION 3 */
 /* single YouTube player loaded by itself on the quote page */
 
-var nodeAlone = "youtube-player-alone";
+$(window).load(function () {
+    var nodeAlone = "youtube-player-alone";
 
-if (document.getElementById(nodeAlone)) {
-    var playerAlone;
+    if (document.getElementById(nodeAlone)) {
+        var playerAlone;
 
-    // Read all the parameter of the DIV tag
-    var paramsAlone = document.getElementById(nodeAlone);
+        // Read all the parameter of the DIV tag
+        var paramsAlone = document.getElementById(nodeAlone);
 
-    var startTimeAlone = paramsAlone.getAttribute("startTime");
-    var endTimeAlone = paramsAlone.getAttribute("endTime");
-    var videoIDAlone = paramsAlone.getAttribute("videoID");
-    var nextVideoURLAlone = paramsAlone.getAttribute('nextVideoURL');
-    onYouTubeIframeAPIReady();
+        var startTimeAlone = paramsAlone.getAttribute("startTime");
+        var endTimeAlone = paramsAlone.getAttribute("endTime");
+        var videoIDAlone = paramsAlone.getAttribute("videoID");
+        var nextVideoURLAlone = paramsAlone.getAttribute('nextVideoURL');
+        onYouTubeIframeAPIReady();
 
-    // Prepare the YouTube Player
-    // We set rel=0 and showinfo=1 to hide related videos & info bar
+        // Prepare the YouTube Player
+        // We set rel=0 and showinfo=1 to hide related videos & info bar
 
-    function onYouTubeIframeAPIReady() {
-      playerAlone = new YT.Player(nodeAlone, {
-        playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange,
-        }
-      });
-    }
-
-    // When the player is ready, we load the video.
-    // loadVideoById starts the video automatically.
-    // cueVideoById does not start the video automatically.
-    function onPlayerReady(event) {      
-      var autoplayOn = getCookie('_autoplay');
-      if (autoplayOn==='true') {
-          event.target.loadVideoById({ 
-            videoId: videoIDAlone,
-            startSeconds: startTimeAlone,
-            endSeconds: endTimeAlone
-          });  
-      } else {
-          event.target.cueVideoById({ 
-            videoId: videoIDAlone,
-            startSeconds: startTimeAlone,
-            endSeconds: endTimeAlone
+        function onYouTubeIframeAPIReady() {
+          playerAlone = new YT.Player(nodeAlone, {
+            playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange,
+            }
           });
-      }
-    }
+        }
 
-    var done = false;
-    function onPlayerStateChange(event) {
-        if (event.data == 0) {
-            done = true;
-            if (nextVideoURLAlone != '') {
-                playNextVideoAlone();
+        // When the player is ready, we load the video.
+        // loadVideoById starts the video automatically.
+        // cueVideoById does not start the video automatically.
+        function onPlayerReady(event) {      
+          var autoplayOn = getCookie('_autoplay');
+          if (autoplayOn==='true') {
+              event.target.loadVideoById({ 
+                videoId: videoIDAlone,
+                startSeconds: startTimeAlone,
+                endSeconds: endTimeAlone
+              });  
+          } else {
+              event.target.cueVideoById({ 
+                videoId: videoIDAlone,
+                startSeconds: startTimeAlone,
+                endSeconds: endTimeAlone
+              });
+          }
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == 0) {
+                done = true;
+                if (nextVideoURLAlone != '') {
+                    playNextVideoAlone();
+                } else {
+                // do nothing
+                }
+            }
+        };
+
+        function playNextVideoAlone() {
+            var autoplayOn = getCookie('_autoplay');
+            if (autoplayOn == 'true') {
+                window.location.href = nextVideoURLAlone;
             } else {
-            // do nothing
+                // do nothing
             }
         }
-    };
-
-    function playNextVideoAlone() {
-        var autoplayOn = getCookie('_autoplay');
-        if (autoplayOn == 'true') {
-            window.location.href = nextVideoURLAlone;
-        } else {
-            // do nothing
-        }
     }
-}
+});
 
 /* SECTION 3 */
 /* multiple YouTube players loaded on home, podcast, episode, and user pages */
 
-var videoPlayerWrappers = document.getElementsByClassName('youtube-player-wrapper', i);
-var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
-var quoteWrappers = document.getElementsByClassName('pq-quote', i);
-var players = [];
-var nodes = [];
-var params = [];
-var startTimes = [];
-var endTimes = [];
-var videoIDs = [];
-var nextPageButton = document.getElementById('next-page');
+$(window).load(function () {
+    var videoPlayerWrappers = document.getElementsByClassName('youtube-player-wrapper', i);
+    var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
+    var quoteWrappers = document.getElementsByClassName('pq-quote', i);
+    var players = [];
+    var nodes = [];
+    var params = [];
+    var startTimes = [];
+    var endTimes = [];
+    var videoIDs = [];
+    var nextPageButton = document.getElementById('next-page');
 
-for (var i=0; i < 10; i++) {
-    players[i] = 'player' + i;
-    nodes[i] = 'youtube-player-' + (i + 1);
-    params[i] = document.getElementById(nodes[i]);
-    if (params[i] != null) {
-        startTimes[i] = params[i].getAttribute('startTime');
-        endTimes[i] = params[i].getAttribute('endTime');
-        videoIDs[i] = params[i].getAttribute('videoID');
+    for (var i=0; i < 10; i++) {
+        players[i] = 'player' + i;
+        nodes[i] = 'youtube-player-' + (i + 1);
+        params[i] = document.getElementById(nodes[i]);
+        if (params[i] != null) {
+            startTimes[i] = params[i].getAttribute('startTime');
+            endTimes[i] = params[i].getAttribute('endTime');
+            videoIDs[i] = params[i].getAttribute('videoID');
+        }
     }
-}
 
-// Set as global variables so continueVideos() will work
-window.videoPlayerWrappers = videoPlayerWrappers;
-window.startButtonWrappers = startButtonWrappers;
-window.players = players;
-window.nodes = nodes;
-window.params = params;
-window.startTimes = startTimes;
-window.endTimes = endTimes;
-window.videoIDs = videoIDs;
-window.nextPageButton = nextPageButton;
+    // Set as global variables so continueVideos() will work
+    window.videoPlayerWrappers = videoPlayerWrappers;
+    window.startButtonWrappers = startButtonWrappers;
+    window.players = players;
+    window.nodes = nodes;
+    window.params = params;
+    window.startTimes = startTimes;
+    window.endTimes = endTimes;
+    window.videoIDs = videoIDs;
+    window.nextPageButton = nextPageButton;
 
-for (var i=0; i < 10; i++) {
-    if (startButtonWrappers[i] != null) {
-        startButtonWrappers[i].addEventListener("click", startVideo(i));
+    for (var i=0; i < 10; i++) {
+        if (startButtonWrappers[i] != null) {
+            startButtonWrappers[i].addEventListener("click", startVideo(i));
+        }
     }
-}
+});
 
 function startVideo(i) {
     "use strict";
