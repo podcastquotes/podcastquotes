@@ -277,14 +277,14 @@ a {
     }
 }
 
-@media (min-width:992px) and (max-width:1080px) {
+@media (min-width:992px) and (max-width:1079px) {
     .pq-navbar-container {
         max-width:920px;
         margin:0 auto;
     }
 }
 
-@media (min-width:1081px) and (max-width:1199px) {
+@media (min-width:1080px) and (max-width:1199px) {
     .pq-navbar-container {
         max-width:980px;
         margin:0 auto;
