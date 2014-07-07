@@ -382,7 +382,7 @@
             <a href="{{ quote.get_absolute_url }}">
                 <div class="pq-quote-more-image display-none-549px">
                     {% if quote.episode.youtube_url %}
-                        <img src="http://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
                     {% elif quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.podcast.image %}
@@ -435,7 +435,7 @@
             <a href="{{ quote.get_absolute_url }}">
                 <div class="pq-quote-more-image display-none-549px">
                     {% if quote.episode.youtube_url %}
-                        <img src="http://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
                     {% elif quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.podcast.image %}
