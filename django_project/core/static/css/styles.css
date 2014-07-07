@@ -1043,13 +1043,13 @@ a {
 
 @media (max-width:549px) {
     .pq-quote {
-        padding:15px;
+        padding:10px 15px 15px 15px;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote {
-        padding:15px;
+        padding:10px 15px 15px 15px;
     }
 }
 
@@ -1332,7 +1332,7 @@ a {
     .pq-quote-buttons {
         clear:right;
         float:right;
-        margin:0 0 0 20px;
+        margin:5px 0 0 20px;
     }
 }
 
@@ -1429,13 +1429,13 @@ button {
     clear:left;
     display:none;
     max-width:510px;
-    margin:5px 0 0 0;
+    margin:10px 0 0 0;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
         max-width:510px;
-        margin:5px 0 0 0;
+        margin:10px 0 0 0;
     }
 }
 
@@ -1443,7 +1443,7 @@ button {
     .pq-quote-text-preview {
         clear:left;
         max-width:510px;
-        margin:5px 0 0 0;
+        margin:10px 0 0 0;
     }
 }
 
@@ -1532,6 +1532,7 @@ button {
 
 .pq-quote-posted-by {
     clear:left;
+    margin:10px 0 0 0;
     font-size:13px;
     color:#777;
 }
@@ -1681,7 +1682,7 @@ button {
 @media (max-width:549px) {
     .youtube-start-button-wrapper {
         float:left;
-        margin:15px 10px 0 0;
+        margin:15px 10px 5px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1692,7 +1693,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:10px 5px 0 0;
+        margin:15px 5px 0 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1706,7 +1707,7 @@ button {
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
     height:0;
-    margin:10px 0 5px 0;
+    margin:15px 0 5px 0;
 }
 
 .youtube-player-wrapper iframe {

@@ -2,10 +2,12 @@
 {% load static %}
 {% load humanize %}
 
-{% if forloop.first %}
-<div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;">
-{% elif forloop.last %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="{% if is_quote_page %}border-top:1px solid #bbb;{% endif %} border-bottom:1px solid #bbb;">
+{% if is_quote_page %}
+    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;border-bottom:1px solid #bbb;">
+{% elif forloop.last and forloop.first %}
+    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb; border-bottom:1px solid #bbb;">
+{% elif forloop.first %}
+    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;">
 {% else %}
     <div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
 {% endif %}
@@ -306,7 +308,12 @@
         </script>
         
         {% if is_quote_page %}
-            <div class="pq-quote-posted-by blue-link">
+            <div class="pq-quote-posted-by blue-link" style="{% if not quote.text %}
+                                                                 {% if not quote.episode.video_id %}
+                                                                     margin:5px 0 0 0;
+                                                                 {% endif %}
+                                                             {% endif %}
+                                                             ">
                 posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
             </div>
         {% endif %}
