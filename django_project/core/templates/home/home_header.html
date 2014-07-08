@@ -1,8 +1,8 @@
 <div class="pq-podcast-header">
     <div class="pq-home-title">
         <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
-            <option value="/">All Podcasts</option>
-            <option value="/">My Podcasts</option>
+            <option value="/">All Highlights</option>
+            <option value="/">---</option>
             {% for podcast in podcasts %}
                 <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
             {% endfor %}

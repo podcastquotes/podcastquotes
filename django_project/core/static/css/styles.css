@@ -294,7 +294,7 @@ a {
 @media (min-width:1200px) {
     .pq-navbar-container {
         margin:0 auto;
-        max-width:1130px;
+        max-width:1110px;
     }
 }
 
@@ -479,7 +479,7 @@ a {
 
 @media (min-width:1200px) {
     .pq-container {
-        max-width:1100px;
+        max-width:1080px;
         margin:0 auto;
     }
 }
@@ -565,7 +565,7 @@ a {
 }
 
 .pq-nav-wrapper {
-    padding:10px 5px;
+    padding:10px 15px;
 }
 
 .pq-nav-active {
@@ -676,7 +676,7 @@ a {
 .pq-podcast-header {
     background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 @media (max-width:549px) {
@@ -996,7 +996,7 @@ a {
     margin:0 0 10px 0;
     background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 @media (max-width:549px) {
@@ -1028,7 +1028,7 @@ a {
 .pq-quote {
     clear:both;
     background-color:#fcfcfc;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
     margin-bottom:10px;
 }
 
@@ -1135,8 +1135,8 @@ a {
 
 .pq-quotes-wrapper {
     /* background-color:#fcfcfc;
-    border-right:1px solid #bbb;
-    border-left:1px solid #bbb; */
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc; */
 }
 
 .pq-quote-header {
@@ -1144,7 +1144,7 @@ a {
     margin:20px 0 20px 0;
     background-color:#fcfcfc;
     font-size:18px;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 @media (max-width:549px) {
@@ -1539,7 +1539,7 @@ button {
         padding:10px 15px;
         margin:20px 0;
         background-color:#fcfcfc;
-        border:1px solid #bbb;
+        border:1px solid #ccc;
     }
 }
 
@@ -1548,7 +1548,7 @@ button {
         padding:10px 15px;
         margin:15px 0;
         background-color:#fcfcfc;
-        border:1px solid #bbb;
+        border:1px solid #ccc;
     }
 }
 
@@ -1601,7 +1601,7 @@ button {
 
 .pq-menu {
     background-color:#fcfcfc;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 @media (max-width:767px) {
@@ -1862,7 +1862,7 @@ button {
     margin:10px 0 25px 0;
     padding:15px 15px 20px 15px;
     background-color:#eee;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 .episode_selector {
@@ -1882,7 +1882,7 @@ button {
     margin:10px auto 25px auto;
     padding:10px 15px 20px 15px;
     background-color:#eee;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
     border-radius:5px;
 }
 
@@ -1971,7 +1971,7 @@ button {
 .pq-form-divider {
     clear:both;
     margin:30px 0;
-    border-top:1px solid #bbb;
+    border-top:1px solid #ccc;
 }
 
 .pq-form-captcha {
@@ -2080,7 +2080,7 @@ button {
     margin:0 0 20px 0;
     background-color:#fcfcfc;
     font-size:16px;
-    border:1px solid #bbb;
+    border:1px solid #ccc;
 }
 
 .pq-about hr {

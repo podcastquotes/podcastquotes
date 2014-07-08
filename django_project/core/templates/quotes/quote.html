@@ -93,7 +93,7 @@
             </a>
             <div class="pq-quote-more-box">
                 <div class="pq-quote-more-text">
-                    <a href="{{ quote.get_absolute_url }}">
+                    <a class="font-semibold" href="{{ quote.get_absolute_url }}">
                         <span class="hidden-xs hidden-sm hidden-md">
                             {{ quote.summary }}
                         </span>
@@ -108,7 +108,7 @@
                         </span>
                     </a>
                     <br>
-                    <a style="font-size:13px;" href="{{ quote.episode.get_absolute_url }}">
+                    <a class="font-semibold" style="font-size:13px;" href="{{ quote.episode.get_absolute_url }}">
                         Episode: {{ quote.episode.title|truncatechars:60 }}
                     </a>
                     <br>
@@ -146,7 +146,7 @@
             </a>
             <div class="pq-quote-more-box">
                 <div class="pq-quote-more-text">
-                    <a href="{{ quote.get_absolute_url }}">
+                    <a class="font-semibold" href="{{ quote.get_absolute_url }}">
                         <span class="hidden-xs hidden-sm hidden-md">
                             {{ quote.summary }}
                         </span>
