@@ -75,11 +75,11 @@
             </div>
             
             <div class="pq-form-input">
-                {% if form.donate_url.errors %}
-                    <p class="error">{{ form.donate_url.errors }}</p>
+                {% if form.support_url.errors %}
+                    <p class="error">{{ form.support_url.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label-optional {% if form.donate_url.errors %}error{% endif %}" for="donate_url">Donation Page URL</label>
-                {{ form.donate_url }}
+                <label class="pq-form-label-optional {% if form.support_url.errors %}error{% endif %}" for="support_url">Support Page URL</label>
+                {{ form.support_url }}
             </div>
 
               <div class="pq-form-input">

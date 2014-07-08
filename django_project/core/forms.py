@@ -21,7 +21,7 @@ class PodcastCreateForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'support_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'twitter_url': forms.URLInput(attrs={'class':'form-control', 'placeholder':''}),
             'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
@@ -41,7 +41,7 @@ class PodcastForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'keywords': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
-            'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'support_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'twitter_url': forms.URLInput(attrs={'class':'form-control', 'placeholder':''}),
             'facebook_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'instagram_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
@@ -76,9 +76,9 @@ class EpisodeForm(forms.ModelForm):
             'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':'mm/dd/yy'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to full-length, unedited episode on YouTube'}),
-            'donate_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to donation page for this episode'}),
-            'donation_recipient': forms.TextInput(attrs={'class':'form-control', 'placeholder':'name of donation recipient for this episode'}),
-            'donation_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "text description of this episode's donation recipient"}),
+            'support_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to support for this episode'}),
+            'support_recipient': forms.TextInput(attrs={'class':'form-control', 'placeholder':'name of recipient (will appear as banner on clip page)'}),
+            'support_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "description of recipient (will appear on banner on clip page)"}),
         }
 
 class QuoteForm(forms.ModelForm):
@@ -155,7 +155,7 @@ class UserProfileForm(forms.ModelForm):
         # self.fields['image'].initial = self.instance.userprofile.image
         # self.fields['about'].initial = self.instance.userprofile.about
         # self.fields['homepage'].initial = self.instance.userprofile.homepage
-        # self.fields['donate_url'].initial = self.instance.userprofile.donate_url
+        # self.fields['support_url'].initial = self.instance.userprofile.support_url
         # self.fields['twitter_url'].initial = self.instance.userprofile.twitter_url
         # self.fields['facebook_url'].initial = self.instance.userprofile.twitter_url
         # self.fields['instagram_url'].initial = self.instance.userprofile.twitter_url
@@ -169,7 +169,7 @@ class UserProfileForm(forms.ModelForm):
         ### Stuff below can be revisited after AUTH_USER_MODEL is successfully configured.
         # self.fields['about'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         # elf.fields['homepage'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
-        # self.fields['donate_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
+        # self.fields['support_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         # self.fields['twitter_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         # self.fields['facebook_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
         # self.fields['instagram_url'].widget.attrs.update({'class' : 'form-control', 'placeholder': ''})
@@ -188,7 +188,7 @@ class UserProfileForm(forms.ModelForm):
         # self.instance.userprofile.image = self.cleaned_data.get('image')
         # self.instance.userprofile.about = self.cleaned_data.get('about')
         # self.instance.userprofile.homepage = self.cleaned_data.get('homepage')
-        # self.instance.userprofile.donate_url = self.cleaned_data.get('donate_url')
+        # self.instance.userprofile.support_url = self.cleaned_data.get('support_url')
         # self.instance.userprofile.twitter_url = self.cleaned_data.get('twitter_url')
         # self.instance.userprofile.facebook_url = self.cleaned_data.get('facebook_url')
         # self.instance.userprofile.instagram_url = self.cleaned_data.get('instagram_url')

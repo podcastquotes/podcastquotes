@@ -117,9 +117,9 @@
                         </div>
                     </div><!-- /.modal fade -->
                     
-                    {% if podcast.donate_url %}
+                    {% if podcast.support_url %}
                         <div class="pq-podcast-button text-orange">
-                            <a href="{{ podcast.donate_url }}" target="_blank">
+                            <a href="{{ podcast.support_url }}" target="_blank">
                                 support
                             </a>
                         </div>
@@ -213,15 +213,15 @@
                         </div>
                     </div><!-- /.modal fade -->
                     
-                    {% if episode.donate_url %}
+                    {% if episode.support_url %}
                         <div class="pq-podcast-button text-orange">
-                            <a href="{{ episode.donate_url }}" target="_blank">
+                            <a href="{{ episode.support_url }}" target="_blank">
                                 support
                             </a>
                         </div>
-                    {% elif podcast.donate_url %}
+                    {% elif podcast.support_url %}
                         <div class="pq-podcast-button text-orange">
-                            <a href="{{ podcast.donate_url }}" target="_blank">
+                            <a href="{{ podcast.support_url }}" target="_blank">
                                 support
                             </a>
                         </div>

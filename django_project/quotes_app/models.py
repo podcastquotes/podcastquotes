@@ -90,7 +90,7 @@ class Podcast(models.Model):
     keywords = models.CharField(max_length=500, blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     homepage = models.URLField(blank=True)
-    donate_url = models.URLField(blank=True)
+    support_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
     facebook_url = models.URLField(blank=True)
     instagram_url = models.URLField(blank=True)
@@ -134,9 +134,9 @@ class Episode(models.Model):
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     episode_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
-    donate_url = models.URLField(blank=True)
-    donation_recipient = models.CharField(max_length=100, blank=True)
-    donation_recipient_about = models.TextField(blank=True)
+    support_url = models.URLField(blank=True)
+    support_recipient = models.CharField(max_length=100, blank=True)
+    support_recipient_about = models.TextField(blank=True)
     # keywords = ... I think these are available in RSS feed episode data
     
     class Meta:
@@ -311,7 +311,7 @@ class UserProfile(models.Model):
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
     about = models.TextField(blank=True)
     homepage = models.URLField(blank=True)
-    donate_url = models.URLField(blank=True)
+    support_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
     facebook_url = models.URLField(blank=True)
     instagram_url = models.URLField(blank=True)

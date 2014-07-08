@@ -74,27 +74,27 @@
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-                {% if form.donate_url.errors %}
-                    <p class="error">{{ form.donate_url.errors }}</p>
+                {% if form.support_url.errors %}
+                    <p class="error">{{ form.support_url.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label-optional {% if form.episode_url.errors %}error{% endif %}" for="donate_url">Episode Donate URL <small>(optional, overrides podcast donate URL for only this episode)</small></label>
-                {{ form.donate_url }}
+                <label class="pq-form-label-optional {% if form.episode_url.errors %}error{% endif %}" for="support_url">Episode Support URL <small>(optional, overrides podcast support URL for only this episode)</small></label>
+                {{ form.support_url }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-                {% if form.donation_recipient.errors %}
-                    <p class="error">{{ form.donation_recipient.errors }}</p>
+                {% if form.support_recipient.errors %}
+                    <p class="error">{{ form.support_recipient.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label-optional {% if form.donation_recipient.errors %}error{% endif %}" for="donation_recipient">Episode Donation Recipient <small>(optional)</small></label>
-                {{ form.donation_recipient }}
+                <label class="pq-form-label-optional {% if form.support_recipient.errors %}error{% endif %}" for="support_recipient">Episode Support Recipient <small>(optional)</small></label>
+                {{ form.support_recipient }}
             </div><!-- /.pq-form-input -->
             
             <div class="pq-form-input">
-                {% if form.donation_recipient_about.errors %}
-                    <p class="error">{{ form.donation_recipient_about.errors }}</p>
+                {% if form.support_recipient_about.errors %}
+                    <p class="error">{{ form.support_recipient_about.errors }}</p>
                 {% endif %}
-                <label class="pq-form-label-optional {% if form.donation_recipient_about.errors %}error{% endif %}" for="donation_recipient_about">About Episode Donation Recipient <small>(optional)</small></label>
-                {{ form.donation_recipient_about }}
+                <label class="pq-form-label-optional {% if form.support_recipient_about.errors %}error{% endif %}" for="support_recipient_about">Episode Support Recipient Description<small>(optional)</small></label>
+                {{ form.support_recipient_about }}
             </div><!-- /.pq-form-input -->
 
             <div class="pq-form-buttons">

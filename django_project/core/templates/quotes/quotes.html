@@ -371,21 +371,21 @@
         </div><!-- /.modal fade -->
         
         {% if is_home_page or is_quote_page or is_user_page %}
-            {% if quote.episode.donate_url %}
+            {% if quote.episode.support_url %}
                 <div class="pq-quote-bottom-button text-orange">
                     <a href=
-                    "{% if quote.episode.donate_url %}
-                        {{ quote.episode.donate_url }}
+                    "{% if quote.episode.support_url %}
+                        {{ quote.episode.support_url }}
                     {% endif %}"
                     target="_blank">
                         support
                     </a>
                 </div>
-            {% elif quote.episode.podcast.donate_url %}
+            {% elif quote.episode.podcast.support_url %}
                 <div class="pq-quote-bottom-button text-orange">
                     <a href=
-                    "{% if quote.episode.podcast.donate_url %}
-                        {{ quote.episode.podcast.donate_url }}
+                    "{% if quote.episode.podcast.support_url %}
+                        {{ quote.episode.podcast.support_url }}
                     {% endif %}"
                     target="_blank">
                         support
@@ -396,11 +396,11 @@
         {% endif %}
         
         {% if is_podcast_page %}
-            {% if quote.episode.donate_url %}
+            {% if quote.episode.support_url %}
                 <div class="pq-quote-bottom-button text-orange">
                     <a href=
-                    "{% if quote.episode.podcast.donate_url %}
-                        {{ quote.episode.podcast.donate_url }}
+                    "{% if quote.episode.podcast.support_url %}
+                        {{ quote.episode.podcast.support_url }}
                     {% endif %}"
                     target="_blank">
                         support

@@ -139,7 +139,7 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
             'title': 'Example Podcast',
             'description': 'We study baboons.',
             'homepage': 'http://example.com',
-            'donate_url': 'http://example.com/donate',
+            'support_url': 'http://example.com/donate',
             'twitter_url': 'http://example.com/twitter',
             'facebook_url': 'http://example.com/facebook',
             'instagram_url': 'http://example.com/instagram',
@@ -236,7 +236,7 @@ class PodcastCreateViewTests(TestCase, PatchFeedparserMixin):
         
         # Check that the other fields were populated
         for key in [
-            'donate_url', 'twitter_url', 'facebook_url', 
+            'support_url', 'twitter_url', 'facebook_url', 
             'instagram_url', 'google_plus_url', 'youtube_url']:
                 
             self.assertEqual(getattr(podcast, key), 

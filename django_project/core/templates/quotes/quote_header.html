@@ -1,13 +1,13 @@
-{% if quote.episode.donate_url and quote.episode.donation_recipient %}
+{% if quote.episode.support_url and quote.episode.support_recipient %}
     <div class="pq-quote-header">
 
             <div class="font-semibold" style="margin-bottom:5px;">
-                <a class="text-blue" href="{{ quote.episode.donate_url }}">
-                    {{ quote.episode.donation_recipient }}
+                <a class="text-blue" href="{{ quote.episode.support_url }}">
+                    {{ quote.episode.support_recipient }}
                 </a></strong>
             </div>
-            {% if quote.episode.donation_recipient_about %}
-                <span style="font-size:14px;">{{ quote.episode.donation_recipient_about|linebreaks }}
+            {% if quote.episode.support_recipient_about %}
+                <span style="font-size:14px;">{{ quote.episode.support_recipient_about|linebreaks }}
             {% endif %}
         
         <div class="clearfix">
