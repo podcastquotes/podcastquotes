@@ -67,7 +67,7 @@ THIS IS JUST TEMPLATE INFORMATION FROM LYNDA.COM, WILL USE REAL INFO LATER - MIT
 
 body {
     margin:0 auto;
-    background-color:#ddd;
+    background-color:#e7e7e7;
     font-family:"Open Sans", Arial, sans-serif;
     font-size:16px;
     color:#111;
@@ -294,7 +294,7 @@ a {
 @media (min-width:1200px) {
     .pq-navbar-container {
         margin:0 auto;
-        max-width:1050px;
+        max-width:1130px;
     }
 }
 
@@ -479,7 +479,7 @@ a {
 
 @media (min-width:1200px) {
     .pq-container {
-        max-width:1020px;
+        max-width:1100px;
         margin:0 auto;
     }
 }
@@ -533,7 +533,7 @@ a {
         clear:left;
         margin:0 0 15px 0;
         font-size:22px;
-        font-weight:600;
+        font-weight:bold;
         color:#111;
     }
 }
@@ -542,7 +542,7 @@ a {
     .pq-title {
         margin:0 0 15px 0;
         font-size:22px;
-        font-weight:600;
+        font-weight:bold;
         color:#111;
     }
 }
@@ -565,13 +565,7 @@ a {
 }
 
 .pq-nav-wrapper {
-    padding:10px 15px;
-    margin:0 0 10px 0;
-    border-top:1px solid #bbb;
-    border-left:1px solid #bbb;
-    border-bottom:1px solid #bbb;
-    border-right:1px solid #bbb;
-    background-color:#f1f1f1;
+    padding:10px 5px;
 }
 
 .pq-nav-active {
@@ -583,7 +577,7 @@ a {
     border-radius:20px;
     color:#111;
     font-size:14px;
-    font-weight:600;
+    font-weight:bold;
 }
 
 .btn-group {
@@ -592,14 +586,12 @@ a {
 
 .pq-nav {
     float:left;
-    background-color:#eee;
     margin:0 10px 0 0;
     padding:3px 10px;
     border:1px solid #888;
     border-radius:20px;
     color:#111;
     font-size:14px;
-    font-weight:600;
 }
 
 /* Delete this style rule below when all nav filters are working properly. */
@@ -684,9 +676,7 @@ a {
 .pq-podcast-header {
     background-color:#fcfcfc;
     font-size:16px;
-    border-top:1px solid #bbb;
-    border-right:1px solid #bbb;
-    border-left:1px solid #bbb;
+    border:1px solid #bbb;
 }
 
 @media (max-width:549px) {
@@ -1038,7 +1028,8 @@ a {
 .pq-quote {
     clear:both;
     background-color:#fcfcfc;
-    border-top:1px dotted #bbb;
+    border:1px solid #bbb;
+    margin-bottom:10px;
 }
 
 @media (max-width:549px) {
@@ -1140,13 +1131,12 @@ a {
 
 .autoplay-off {
     display:none;
-    background-color:#f3f3f3;
 }
 
 .pq-quotes-wrapper {
-    background-color:#fcfcfc;
+    /* background-color:#fcfcfc;
     border-right:1px solid #bbb;
-    border-left:1px solid #bbb;
+    border-left:1px solid #bbb; */
 }
 
 .pq-quote-header {
@@ -1205,11 +1195,12 @@ a {
 }
 
 .pq-quote-title {
-    max-width:600px;
+    max-width:700px;
     overflow:hidden;
     font-size:18px;
     font-family:"Open Sans", Georgia, serif;
     margin:0 0 5px 0;
+    font-weight:600;
 }
 
 .pq-quote-profile-picture {
@@ -1219,8 +1210,8 @@ a {
 }
 
 .pq-quote-profile-picture img {
-    width:40px;
-    height:40px;
+    width:60px;
+    height:60px;
 }
 
 .pq-quote-profile-picture-episode {
@@ -1230,7 +1221,7 @@ a {
 }
 
 .pq-quote-profile-picture-episode img {
-    max-width:40px;
+    max-width:60px;
 }
 
 .pq-quote-subtitle {
@@ -1428,13 +1419,13 @@ button {
 .pq-quote-text {
     clear:left;
     display:none;
-    max-width:510px;
+    max-width:520px;
     margin:10px 0 0 0;
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        max-width:510px;
+        max-width:520px;
         margin:10px 0 0 0;
     }
 }
@@ -1442,7 +1433,7 @@ button {
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        max-width:510px;
+        max-width:520px;
         margin:10px 0 0 0;
     }
 }
@@ -1587,8 +1578,8 @@ button {
 .pagination {
     display:block;
     margin:0;
-    padding:20px 15px 0 15px;
-    background-color:#ddd;
+    padding:10px 15px 0 15px;
+    background-color:#e7e7e7;
     border-radius:0;
 }
 
@@ -2089,6 +2080,7 @@ button {
     margin:0 0 20px 0;
     background-color:#fcfcfc;
     font-size:16px;
+    border:1px solid #bbb;
 }
 
 .pq-about hr {

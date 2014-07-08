@@ -80,6 +80,10 @@
             
         </div><!-- /.pq-podcast-profile-text -->
         
+            <div class="pq-podcast-karma">
+                Karma: {{ person.userprofile.karma_total }} &nbsp &nbsp &nbsp Quotes: {{ person.userprofile.all_added_quotes_count }}
+            </div>
+        
             <div class="pq-podcast-buttons">
                 
                 <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#personShareModal{{ person.userprofile.id }}">
@@ -121,10 +125,6 @@
                 {% endif %}
                     
             </div><!-- /.pq-podcast-buttons -->
-        
-            <div class="pq-podcast-karma">
-                Karma: {{ person.userprofile.karma_total }} &nbsp &nbsp &nbsp Quotes: {{ person.userprofile.all_added_quotes_count }}
-            </div>
         
     </div><!-- /.pq-podcast-profile -->
 <div class="clearfix"></div>

@@ -2,17 +2,7 @@
 {% load static %}
 {% load humanize %}
 
-{% if is_quote_page %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;border-bottom:1px solid #bbb;">
-{% elif forloop.last and forloop.first %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb; border-bottom:1px solid #bbb;">
-{% elif forloop.last %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-bottom:1px solid #bbb;">
-{% elif forloop.first %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}" style="border-top:1px solid #bbb;">
-{% else %}
-    <div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
-{% endif %}
+<div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
     <div class="pq-quote-buttons">
         
         <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
@@ -98,7 +88,7 @@
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:23 }}
+                            Podcast: {{ quote.episode.podcast.title|truncatechars:40 }}
                         </a>
                         <br>
                     {% endif %}
@@ -107,7 +97,7 @@
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:23 }}
+                           Episode: {{ quote.episode.title|truncatechars:40 }}
                         </a>
                         <br>
                     {% endif %}
@@ -151,7 +141,7 @@
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.title %}
                         <a href="{% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:50 }}
+                            Podcast: {{ quote.episode.podcast.title }}
                         </a>
                         <br>
                     {% endif %}
@@ -160,7 +150,7 @@
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                           Episode: {{ quote.episode.title|truncatechars:50 }}
+                           Episode: {{ quote.episode.title }}
                         </a>
                         <br>
                     {% endif %}
@@ -224,7 +214,11 @@
                  class="youtube-start-button-wrapper" 
                  style="{% if not quote.episode.youtube_url %}
                             display:none; 
-                        {% endif %}"
+                        {% endif %}
+                        {% if is_episode_page %}
+                            margin-top:10px;
+                        {% endif %}
+                        "
                 >
                 {% if quote.episode.youtube_url %}    
                     <div class="youtube-start-button fa fa-play light-blue-gradient" 
