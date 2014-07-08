@@ -70,7 +70,7 @@ class PodcastSyndicationService():
             raise TypeError("podcast_model is not defined")
         
         logger.info('Starting to collect episodes for {0}'\
-            .format(podcast_model.title))
+            .format(podcast_model.title.encode('ascii', 'ignore')))
         
         podcast_id = podcast_model.id
         rss_url = podcast_model.rss_url
@@ -97,7 +97,7 @@ class PodcastSyndicationService():
         logger.info('Found {0} episodes for {1}; {2} new.'\
             .format(
                 len(feed.entries),
-                    podcast_model.title,
+                    podcast_model.title.encode('ascii', 'ignore'),
                     new_episode_count))
         
     def _queue_episode_extraction(self, uri):

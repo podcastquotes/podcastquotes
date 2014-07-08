@@ -1210,8 +1210,7 @@ a {
 }
 
 .pq-quote-profile-picture img {
-    width:60px;
-    height:60px;
+    max-width:60px;
 }
 
 .pq-quote-profile-picture-episode {
@@ -1241,8 +1240,7 @@ a {
 }
 
 .pq-quote-xs-profile-picture img {
-    width:60px;
-    height:60px;
+    max-width:60px;
 }
 
 .pq-quote-xs-profile-picture-episode {
