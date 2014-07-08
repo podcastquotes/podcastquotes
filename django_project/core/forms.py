@@ -28,6 +28,7 @@ class PodcastCreateForm(forms.ModelForm):
             'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'tumblr_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'reddit_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
 
 class PodcastForm(forms.ModelForm):
@@ -48,6 +49,7 @@ class PodcastForm(forms.ModelForm):
             'google_plus_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'tumblr_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
+            'reddit_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
         }
         
 class EpisodeCreateForm(forms.ModelForm):

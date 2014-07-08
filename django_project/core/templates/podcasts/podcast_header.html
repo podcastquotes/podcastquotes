@@ -2,7 +2,7 @@
     
     {% include 'breadcrumb.html' %}
     
-    {% if podcast.homepage or podcast.twitter_url or podcast.facebook_url or podcast.instagram_url or podcast.google_plus_url or podcast.tumblr_url or podcast.youtube_url %}
+    {% if podcast.homepage or podcast.twitter_url or podcast.facebook_url or podcast.instagram_url or podcast.google_plus_url or podcast.tumblr_url or podcast.youtube_url or reddit_url %}
         <div class="pq-podcast-header-social-icons dark-link">
             {% if podcast.homepage %}
                 <span class="pq-podcast-header-social-icon">
@@ -50,6 +50,13 @@
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ podcast.youtube_url }}" target="_blank">
                         <i class="fa fa-youtube-square"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if podcast.reddit_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ podcast.reddit_url }}" target="_blank">
+                        <i class="fa fa-reddit"></i>
                     </a>
                 </span>
             {% endif %}

@@ -97,6 +97,7 @@ class Podcast(models.Model):
     google_plus_url = models.URLField(blank=True)
     tumblr_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
+    reddit_url = models.URLField(blank=True)
     managed_by_superuser = models.BooleanField(default=False)
     
     def get_absolute_url(self):
@@ -317,6 +318,7 @@ class UserProfile(models.Model):
     instagram_url = models.URLField(blank=True)
     google_plus_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
+    reddit_url = models.URLField(blank=True)
     
     class Meta:
         ordering = ['user']

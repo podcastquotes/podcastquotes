@@ -114,6 +114,14 @@
                 {{ form.youtube_url }}
             </div><!-- /.pq-form-input -->
             
+            <div class="pq-form-input">
+                {% if form.reddit_url.errors %}
+                    <p class="error">{{ form.reddit_url.errors }}</p>
+                {% endif %}
+                <label class="pq-form-label-optional {% if form.youtube_url.errors %}error{% endif %}" for="youtube_url">reddit URL <small>(optional)</small></label>
+                {{ form.reddit_url }}
+            </div><!-- /.pq-form-input -->
+            
             <div class="pq-form-buttons">
                 <button type="submit" class="btn btn-small btn-primary pq-form-button">Submit</button>
                 <a href="/" class="btn btn-small btn-danger pq-form-button">Cancel</a>

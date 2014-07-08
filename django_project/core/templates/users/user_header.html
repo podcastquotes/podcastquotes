@@ -2,7 +2,7 @@
     
     {% include 'breadcrumb.html' %}
     
-    {% if person.userprofile or person.userprofile.twitter_url or person.userprofile.facebook_url or person.userprofile.instagram_url or person.userprofile.google_plus_url or person.userprofile.tumblr_url or person.userprofile.youtube_url %}
+    {% if person.userprofile or person.userprofile.twitter_url or person.userprofile.facebook_url or person.userprofile.instagram_url or person.userprofile.google_plus_url or person.userprofile.tumblr_url or person.userprofile.youtube_url or person.userprofile.reddit_url %}
         <div class="pq-podcast-header-social-icons dark-link">
             {% if person.userprofile.homepage %}
                 <span class="pq-podcast-header-social-icon">
@@ -50,6 +50,13 @@
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ person.userprofile.youtube_url }}" target="_blank">
                         <i class="fa fa-youtube-square"></i>
+                    </a>
+                </span>
+            {% endif %}
+            {% if person.userprofile.reddit_url %}
+                <span class="pq-podcast-header-social-icon">
+                    <a href="{{ person.userprofile.reddit_url }}" target="_blank">
+                        <i class="fa fa-reddit"></i>
                     </a>
                 </span>
             {% endif %}
