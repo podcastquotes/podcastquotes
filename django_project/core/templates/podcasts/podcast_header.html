@@ -93,13 +93,15 @@
                     </div>
                 {% endif %}
                 
-                {% if is_podcast_page %}
+            </div><!-- /.pq-podcast-profile-text -->
+            
+                {% if is_podcast_page or is_episode_page %}
                     <div class="pq-podcast-karma">
-                        Karma: {{ podcast.karma_total }} &nbsp &nbsp &nbsp Quotes: {{ podcast.all_podcast_quotes_count }}
+                        Karma: {{ podcast.karma_total }} &nbsp &nbsp &nbsp Clips: {{ podcast.all_podcast_quotes_count }}
                     </div>
                 {% endif %}
                 
-                {% if is_podcast_page %}
+                {% if is_podcast_page or is_episode_page %}
                 <div class="pq-podcast-buttons">
                     
                     <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#podcastShareModal{{ podcast.id }}">
@@ -145,42 +147,28 @@
                     
                 </div><!-- /.pq-podcast-buttons -->
             {% endif %}
-                
-            </div><!-- /.pq-podcast-profile-text -->
             
             <div class="clearfix">
             </div>
         </div><!-- /.pq-podcast-box -->
-
-        {% if episode.youtube_url or episode.image %}
-            <div class="pq-episode-profile-picture">
-                <a href="/episodes/{{ episode.id }}">
-                  <img src="
-                  {% if episode.youtube_url %}
-                      https://img.youtube.com/vi/{{ episode.video_id }}/0.jpg
-                  {% elif episode.image %}
-                      {{MEDIA_URL}}{{ episode.image }}
-                  {% else %}
-                      
-                  {% endif %}
-                  
-                  " />
-                </a>
-            </div>
-        {% endif %}
         
         <div class="pq-episode-text-box">
         
             <div class="pq-episode-finder">
                 <select class="pq-episode-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;" style="border-radius:10px {% if is_podcast_page %}margin:0;{% endif %}">
-                    {% if episode.title %}
+                    {% if is_episode_page %}
                         <option value="episodes/{{ podcast.episode.id }}" selected="selected">Episode: {{ episode.title }}</option>
-                    <option value="/podcasts/{{ podcast.id }}">All Episodes with Clips</option>
-                    {% else %}
-                    <option value="/podcasts/{{ podcast.id }}/episodes/{{ podcast.episode.id }}" selected="selected">All Episodes with Clips</option>
+                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">All Episodes</option>
+                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">All Highlights</option>
+                    {% elif is_podcast_episodes_page %}
+                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">All Episodes</option>
+                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">All Highlights</option>
+                    {% elif is_podcast_clips_page %}
+                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">All Highlights</option>
+                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">All Episodes</option>
                     {% endif %}
                     {% for episode in episodes %}
-                        <option style="font-size:8px;" value="/episodes/{{ episode.id }}">
+                        <option value="/episodes/{{ episode.id }}">
                             {{ episode.title }}
                         </option>
                     {% endfor %}
@@ -188,15 +176,11 @@
             </div><!-- /.pq-episode-finder -->
             
             {% if episode %}
-                <div class="pq-episode-description">
-                    {{ episode.description }}
-                </div>
-
-                <div class="pq-podcast-karma">
-                    Karma: {{ episode.karma_total }} &nbsp &nbsp &nbsp Quotes: {{ episode.all_episode_quotes_count }}
+                <div class="pq-podcast-karma" style="margin-top:10px;">
+                    Karma: {{ episode.karma_total }} &nbsp &nbsp &nbsp Clips: {{ episode.all_episode_quotes_count }}
                 </div>
                 
-                <div class="pq-episode-buttons">
+                <div class="pq-episode-buttons" style="margin-top:10px;">
                     
                     <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#episodeShareModal{{ episode.id }}">
                         share

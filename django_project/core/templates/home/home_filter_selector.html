@@ -1,17 +1,35 @@
 <div class="pq-nav-wrapper">
-    <a href="/home/hot/">
+    <a href="
+            {% if is_home_episodes_page %}
+                /episodes/hot/
+            {% elif is_home_clips_page %}
+                /clips/hot/
+            {% endif %}
+            ">
         <div class="pq-nav{% if home_hot_is_active %}-active{% endif %}">
             hot
         </div>
     </a>
 
-    <a href="/home/new/">
+    <a href="
+            {% if is_home_episodes_page %}
+                /episodes/new/
+            {% elif is_home_clips_page %}
+                /clips/new/
+            {% endif %}
+            ">
         <div class="pq-nav{% if home_new_is_active %}-active{% endif %} pq-nav-disappear-4">
             new
         </div>
     </a>
 
-    <a href="/home/top/">
+    <a href="
+            {% if is_home_episodes_page %}
+                /episodes/top/
+            {% elif is_home_clips_page %}
+                /clips/top/
+            {% endif %}
+            ">
         <div class="pq-nav{% if home_top_is_active %}-active{% endif %} pq-nav-disappear-3">
             top
         </div>

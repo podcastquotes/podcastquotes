@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 
 register = template.Library()
 
+@register.filter
+def is_true(arg):
+    return arg is True
+
 @register.filter(name="is_less_than_X_characters")
 def is_less_than_X_characters(val, total_characters):
     q = Quote.objects.get(id=val)

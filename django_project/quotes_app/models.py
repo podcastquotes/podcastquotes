@@ -17,18 +17,11 @@ def get_upload_file_name(instance, filename):
     return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
 
 class QuoteVoteManager(models.Manager):
-    
     def query_hot(self):
         ### need to implement hot algorithm
         ###
         # Most upvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-rank_score', '-karma_total')
-
-    def query_not(self):
-        ### need to implement not algorithm
-        ###
-        # Most downvoted trending algorithm
-        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('rank_score', 'karma_total')
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-is_full_episode', '-rank_score', '-karma_total')
 
     def query_controversial(self):
         ### need to implement controversial algorithm
@@ -41,44 +34,15 @@ class QuoteVoteManager(models.Manager):
         ### This will need some kind of smart filter to prevent quotes with
         ### significantly overlapping times from appearing right after one another
         ### any ideas how to achieve this?
-        return super(QuoteVoteManager, self).get_query_set().order_by('time_quote_begins')
+        return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', 'time_quote_begins')
     
     def query_new(self):
         # Order by most recently submitted to least recently submitted
-        return super(QuoteVoteManager, self).get_query_set().order_by('-created_at')
+        return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', '-created_at')
         
     def query_top(self):
         # Order by highest karma_total to lowest karma_total
-        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-karma_total')
-        
-    def query_bottom(self):
-        # Order by lowest karma_total to highest karma_total
-        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('karma_total')
-        
-    def query_mainstream(self):
-        # Order by total number of votes
-        return super(QuoteVoteManager, self).get_query_set().annotate(vote_total=Count('vote__vote_type')).order_by('vote_total')
-        
-    def query_underground(self):
-        ### need to implement underground algorithm
-        ###
-        # Order by the ratio of upvotes to downvotes they have received (maybe 90% upvote to 10% downvote?) but limit query to only quotes that have received less than a certain # of votes...the # could be 10, 20, 50, etc. depending how how active the site is. Perhaps the # of votes could be 10% of whatever the average top quote of the day receives...
-        return super(QuoteVoteManager, self).get_query_set()
-    
-    def query_chronological(self):
-        # Order by the time the quote begins in the podcast
-        return super(QuoteVoteManager, self).get_query_set().order_by('time_quote_begins')
-        
-    def query_ghosts(self):
-        ### need to implement ghosts algorithm
-        ###
-        # Quotes that have no votes
-        return super(QuoteVoteManager, self).get_query_set()
-        
-    def query_birthdays(self):
-        ### need to implement birthdays algorithm
-        ### Quotes that were publicized on the same month/day as today in any year, ordered by highest karma_total to lowest karma_total
-        return super(QuoteVoteManager, self).get_query_set()
+        return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-is_full_episode', '-karma_total')
     
 class Podcast(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -107,7 +71,7 @@ class Podcast(models.Model):
        return Quote.objects.filter(episode__podcast=self)
     
     def all_podcast_quotes_count(self):
-       return Quote.objects.filter(episode__podcast=self).count()
+       return Quote.objects.filter(episode__podcast=self).exclude(is_full_episode=True).count()
     
     def all_episodes_count(self):
         return Episode.objects.filter(podcast_id=self.id).count()
@@ -130,6 +94,7 @@ class Episode(models.Model):
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
     guid = models.CharField(max_length=200)
+    duration = models.IntegerField(null=True, blank=True)
     publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
@@ -194,7 +159,7 @@ class Episode(models.Model):
        return Quote.objects.filter(episode__id=self.id)
 
     def all_episode_quotes_count(self):
-       return Quote.objects.filter(episode__id=self.id).count()
+       return Quote.objects.filter(episode__id=self.id).exclude(is_full_episode=True).count()
     
     all_episode_quotes_property = property(all_episode_quotes_count)
     
@@ -221,6 +186,7 @@ class Quote(models.Model):
     text = models.TextField(blank=True)
     time_quote_begins = models.IntegerField()
     time_quote_ends = models.IntegerField(null=True, blank=True)
+    is_full_episode = models.BooleanField(default=False)
     
     quote_vote_manager = QuoteVoteManager()
     objects = models.Manager() # default manager
@@ -239,8 +205,8 @@ class Quote(models.Model):
         self.rank_score = karma_total / pow((item_week_age+2), GRAVITY)
         self.save()
             
-    def is_longer_than_200chars(self):
-        if len(self.text) > 200:
+    def is_longer_than_240chars(self):
+        if len(self.text) > 240:
             return 1
         else:
             return 0
@@ -264,7 +230,20 @@ class Quote(models.Model):
             return "%d:%02d:%02d" % (h, m, s)
         else:
             return "%02d:%02d" % (m, s)
-        
+    
+    rank_score = models.FloatField(default=0.0)
+    episode = models.ForeignKey(Episode)
+    summary = models.CharField(max_length=200, blank=True)
+    text = models.TextField(blank=True)
+    time_quote_begins = models.IntegerField()
+    time_quote_ends = models.IntegerField(null=True, blank=True)
+    is_full_episode = models.BooleanField(default=False)    
+    
+    @classmethod
+    def create(cls, submitted_by, rank_score, episode, summary, text, time_quote_begins, is_full_episode):
+        quote = cls(submitted_by=submitted_by, rank_score=rank_score, episode=episode, summary=summary, text=text, time_quote_begins=time_quote_begins, is_full_episode=is_full_episode)
+        return quote
+    
     def duration(self):
         if self.time_quote_ends == None:
             pass

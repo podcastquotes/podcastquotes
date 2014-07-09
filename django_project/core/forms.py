@@ -93,7 +93,7 @@ class QuoteForm(forms.ModelForm):
     
     class Meta:
         model = Quote
-        exclude = ('rank_score', 'submitted_by')
+        exclude = ('rank_score', 'submitted_by', 'is_full_episode')
         widgets = {
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format."'}),
@@ -124,7 +124,7 @@ class QuoteCreateForm(QuoteForm):
 class QuoteUpdateForm(QuoteForm):
     class Meta:
         model = Quote
-        exclude = ('episode', 'rank_score', 'submitted_by')
+        exclude = ('episode', 'rank_score', 'submitted_by', 'is_full_episode')
         widgets = {
             'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'max 200 characters'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder': 'Speaker Name: "Type quote in this format."'}),

@@ -43,7 +43,7 @@ class PodcastSyndicationService():
         }
         
         if hasattr(feed, 'description'):
-            podcast_info['description'] = feed.description
+            podcast_info['description'] = strip_tags(feed.description)
         else: 
             podcast_info['description'] = ''
             

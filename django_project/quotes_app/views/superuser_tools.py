@@ -1,10 +1,37 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
-from quotes_app.models import Podcast, Episode
+from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+    
+# this view checks if every episode with a youtube_url has a full episode clip,
+# if not, it creates one.
+@user_passes_test(lambda u: u.is_staff)
+def create_full_episodes(self):
+    episodes = Episode.objects.all()
+    for episode in episodes:
+        if episode.youtube_url:
+            try:
+                full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
+            except ObjectDoesNotExist:
+                # user with id=1 is the user "podverse" on podverse.tv
+                user = User.objects.get(id=1)
+                full_episode_quote = Quote.create(submitted_by=user,
+                                              rank_score=float(0.0),
+                                              episode=episode,
+                                              summary=episode.title,
+                                              text=episode.description,
+                                              time_quote_begins=int(0),
+                                              is_full_episode=True)
+                full_episode_quote.save()
+                vote = Vote.create(voter=user, quote=full_episode_quote, vote_type=1)
+                vote.save()
+    return HttpResponseRedirect('/')
 
-# this view is useful for superuser to check for episodes which do not have a YouTube link for playing clips
+# this view helps mitch check for episodes which do not have a YouTube link for playing clips
 class NeedYouTubeLinks(ListView):
     model = Episode
     template_name = 'need-youtube-links.html'
@@ -18,7 +45,7 @@ class NeedYouTubeLinks(ListView):
         context['episodes_without_youtube_links'] = Episode.objects.filter(podcast__managed_by_superuser=True).filter(youtube_url='').order_by('podcast');
         return context
 
-# this view is useful for Mitch to check the titles of a podcast's episodes
+# this view helps Mitch check episodes in a podcast rss feed
 class PodcastEpisodeTitlePrint(ListView):
     model = Podcast
     template_name = 'podcast_episode_title_print.html'

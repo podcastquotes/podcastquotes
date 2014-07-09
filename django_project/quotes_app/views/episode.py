@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.http import HttpResponse
+from django.utils.timezone import now
 from core.forms import EpisodeCreateForm, EpisodeForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 import json
@@ -27,6 +29,27 @@ class EpisodeUpdateView(UpdateView):
     model = Episode
     template_name = 'episode_update.html'
     form_class = EpisodeForm
+    
+    def form_valid(self, form):
+        self.object = episode = form.save(commit=False)
+        if episode.youtube_url:
+            try:
+                full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
+            except ObjectDoesNotExist:
+                # user with id=1 is the user "podverse" on podverse.tv
+                user = User.objects.get(id=1)
+                full_episode_quote = Quote.create(submitted_by=user,
+                                              rank_score=float(0.0),
+                                              episode=episode,
+                                              summary=episode.title,
+                                              text=episode.description,
+                                              time_quote_begins=int(0),
+                                              is_full_episode=True)
+                full_episode_quote.save()
+                vote = Vote.create(voter=user, quote=full_episode_quote, vote_type=1)
+                vote.save()
+        episode.save()
+        return HttpResponseRedirect(self.get_success_url())
     
     def get_context_data(self, **kwargs):
         context = super(EpisodeUpdateView, self).get_context_data(**kwargs)

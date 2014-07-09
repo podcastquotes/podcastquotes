@@ -272,21 +272,21 @@ a {
 
 @media (min-width:768px) and (max-width:991px) {
     .pq-navbar-container {
-        max-width:700px;
+        max-width:728px;
         margin:0 auto;
     }
 }
 
 @media (min-width:992px) and (max-width:1079px) {
     .pq-navbar-container {
-        max-width:920px;
+        max-width:952px;
         margin:0 auto;
     }
 }
 
 @media (min-width:1080px) and (max-width:1199px) {
     .pq-navbar-container {
-        max-width:980px;
+        max-width:1040px;
         margin:0 auto;
     }
 }
@@ -458,21 +458,21 @@ a {
 
 @media (min-width:768px) and (max-width:991px) {
     .pq-container {
-        max-width:700px;
+        max-width:728px;
         margin:0 auto;
     }
 }
 
 @media (min-width:992px) and (max-width:1079px) {
     .pq-container {
-        max-width:920px;
+        max-width:952px;
         margin:0 auto;
     }
 }
 
 @media (min-width:1080px) and (max-width:1199px) {
     .pq-container {
-        max-width:980px;
+        max-width:1040px;
         margin:0 auto;
     }
 }
@@ -565,7 +565,7 @@ a {
 }
 
 .pq-nav-wrapper {
-    padding:10px 15px;
+    padding:10px 10px;
 }
 
 .pq-nav-active {
@@ -706,7 +706,7 @@ a {
     .pq-podcast-profile-picture {
         clear:left;
         float:left;
-        margin:0 20px 15px 0;
+        margin:0 15px 15px 0;
     }
 }
 
@@ -720,13 +720,13 @@ a {
 
 @media (max-width:549px) {
     .pq-podcast-profile-picture img {
-        max-width:100px;
+        max-width:180px;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-profile-picture img {
-        max-width:100px;
+        max-width:180px;
     }
 }
 
@@ -806,7 +806,7 @@ a {
 .pq-podcast-description {
     clear:both;
     font-size:14px;
-    margin:0 0 10px 0;
+    margin:0 0 15px 0;
 }
 
 @media (max-width:549px) {
@@ -832,7 +832,7 @@ a {
 
 @media (min-width:550px) {
     .pq-podcast-karma {
-        clear:right;
+        clear:both;
         float:left;
         font-size:13px;
         font-weight:600;
@@ -950,8 +950,8 @@ a {
 }
 
 .pq-episode-selector {
-    margin:0 0 5px 0;
     font-size:18px;
+    margin:0 0 5px 0;
 }
 
 .pq-episode-description {
@@ -1034,13 +1034,13 @@ a {
 
 @media (max-width:549px) {
     .pq-quote {
-        padding:10px 15px 15px 15px;
+        padding:10px 15px 10px 15px;
     }
 }
 
 @media (min-width:550px) {
     .pq-quote {
-        padding:10px 15px 15px 15px;
+        padding:10px 15px 10px 15px;
     }
 }
 
@@ -1065,6 +1065,20 @@ a {
     text-align:center;
     font-size:13px;
     font-weight:600;
+}
+
+.pq-quote-episode-picture {
+    position:relative;
+    float:left;
+    width:180px;
+    height:auto;
+    text-align:center;
+    margin:5px 20px 10px 0;
+    cursor:pointer;
+}
+
+.pq-quote-episode-picture img {
+    max-width:180px;
 }
 
 @media (max-width:767px) {
@@ -1159,10 +1173,6 @@ a {
     }
 }
 
-.pq-quote-text-box p {
-    margin:0;
-}
-
 @media (max-width:767px) {
     .pq-quote-text-box {
         max-width:550px;
@@ -1199,7 +1209,6 @@ a {
     overflow:hidden;
     font-size:18px;
     font-family:"Open Sans", Georgia, serif;
-    margin:0 0 5px 0;
     font-weight:600;
 }
 
@@ -1321,7 +1330,7 @@ a {
     .pq-quote-buttons {
         clear:right;
         float:right;
-        margin:5px 0 0 20px;
+        margin:5px 0 5px 20px;
     }
 }
 
@@ -1369,7 +1378,7 @@ button {
     .pq-quote-xs-buttons {
         float:left;
         clear:left;
-        padding:15px 20px 5px 0;
+        padding:12px 20px 10px 0;
     }
 }
 
@@ -1414,25 +1423,36 @@ button {
     border:none;
 }
 
-.pq-quote-text {
-    clear:left;
-    display:none;
-    max-width:520px;
-    margin:10px 0 0 0;
+@media (max-width:767px) {
+    .pq-quote-text {
+        clear:left;
+        display:none;
+        max-width:550px;
+        margin:5px 0 10px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-quote-text {
+        clear:left;
+        display:none;
+        max-width:550px;
+        margin:5px 0 10px 0;
+    }
 }
 
 @media (max-width:767px) {
     .pq-quote-text-preview {
-        max-width:520px;
-        margin:10px 0 0 0;
+        max-width:550px;
+        margin:5px 0 10px 0;
     }
 }
 
 @media (min-width:768px) {
     .pq-quote-text-preview {
         clear:left;
-        max-width:520px;
-        margin:10px 0 0 0;
+        max-width:550px;
+        margin:5px 0 10px 0;
     }
 }
 
@@ -1455,18 +1475,23 @@ button {
     display:none;
     cursor:pointer;
     color:#225b9a;
-    margin:5px 0 0 0;
+    margin:-5px 0 10px 0;
 }
 
 .pq-show-less:hover {
    color:#729bba;
 }
 
+@media (max-width:549px) {
+    .pq-quote-date {
+        margin:0 0 10px 0;
+    }
+}
+
 .pq-quote-date {
     clear:both;
     float:left;
     font-size:13px;
-    margin:10px 0 0 0;
 }
 
 .pq-quote-date:hover {
@@ -1474,22 +1499,20 @@ button {
 }
 
 @media (max-width:549px) {
-    .pq-quote-date {
-        margin:10px 0;
-    }
-}
-
-@media (max-width:549px) {
     .pq-quote-bottom-buttons {
         clear:left;
-        margin:10px 0 0 0;
     }
 }
 
-@media (min-width:550px) {
+@media (min-width:550px) and (max-width:767px) {
     .pq-quote-bottom-buttons {
         float:right;
-        margin:10px 0 0 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-quote-bottom-buttons {
+        float:right;
     }
 }
 
@@ -1668,10 +1691,38 @@ button {
 *******************************
 ******************************/
 
+@media (max-width:767px) {
+    .button-hider {
+        
+    }
+}
+
+@media (min-width:768px) {
+    .button-hider {
+        display:none;
+    }
+}
+
+.picture-play-button {
+    position:absolute;
+    left:0;
+    top:0;
+    height:36px;
+    width:36px;
+    font-size:32px;
+    z-index:1000;
+    color:#0075A9;
+    background:#bbb;
+}
+
+.picture-play-button-inside {
+    margin:-5px 0 0 -1px;
+}
+
 @media (max-width:549px) {
     .youtube-start-button-wrapper {
         float:left;
-        margin:15px 10px 5px 0;
+        margin:10px 10px 10px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1682,7 +1733,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:15px 5px 0 0;
+        margin:10px 5px 10px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
@@ -1696,7 +1747,7 @@ button {
     padding-bottom:56.25%; /* 16:9 */
     padding-top:25px;
     height:0;
-    margin:15px 0 5px 0;
+    margin:10px 0;
 }
 
 .youtube-player-wrapper iframe {
@@ -1710,7 +1761,8 @@ button {
 @media (max-width:549px) {
     .youtube-start-button {
         width:85px;
-        height:35px;
+        height:34px;
+        margin:2px 0 0 0;
         padding:11px 0 0 0;
         background:#41a141;
         text-align:center;

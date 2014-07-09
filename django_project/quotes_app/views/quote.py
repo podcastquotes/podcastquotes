@@ -2,6 +2,7 @@ import json
 import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render, render_to_response
@@ -28,6 +29,19 @@ class QuoteCreateView(CreateView):
     def form_valid(self, form):
         self.object = quote = form.save(commit=False)
         quote.submitted_by = self.request.user
+        if quote.time_quote_begins == 0 and quote.time_quote_ends is None:
+            # Redirect to full episode clip page if the full episode clip already exists
+            try:
+                obj = Quote.objects.get(episode__id=quote.episode.id, is_full_episode=True)
+                url = obj.get_absolute_url()
+                return HttpResponseRedirect(url)
+            except ObjectDoesNotExist:
+                pass
+                
+            quote.summary = quote.episode.title
+            quote.text = quote.episode.description
+            quote.is_full_episode = True
+            
         quote.save()
         vote = Vote.create(voter=self.request.user, quote=quote, vote_type=1)
         vote.save()
@@ -48,7 +62,7 @@ class QuoteUpdateView(UpdateView):
     
     class Meta:
         model = Quote
-        exclude = ['episode']
+        exclude = ['episode', 'is_full_episode']
     
     def get_context_data(self, **kwargs):
         context = super(QuoteUpdateView, self).get_context_data(**kwargs)
@@ -68,6 +82,25 @@ class QuoteUpdateView(UpdateView):
         
         context['episode'] = Episode.objects.get(id=q.episode.id)        
         return context
+    
+    def form_valid(self, form):
+        self.object = quote = form.save(commit=False)
+        quote.submitted_by = self.request.user
+        
+        if quote.time_quote_begins == 0 and quote.time_quote_ends is None:
+            # Redirect to full episode clip page if the full episode clip already exists
+            try:
+                obj = Quote.objects.get(episode__id=quote.episode.id, is_full_episode=True)
+                url = obj.get_absolute_url()
+                return HttpResponseRedirect(url)
+            except ObjectDoesNotExist:
+                pass
+            quote.is_full_episode = True
+            
+        quote.save()
+        vote = Vote.create(voter=self.request.user, quote=quote, vote_type=1)
+        vote.save()
+        return HttpResponseRedirect(self.get_success_url())
     
     def get_initial(self):
         q = Quote.objects.get(id=self.kwargs['pk'])
@@ -152,11 +185,11 @@ def quote(request, quote_id):
     all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
     
     # this gives the top quotes that appear a degree of randomness
-    more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode_id=q_object.episode.id)[:10], key=lambda x: random.random())
+    more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().exclude(is_full_episode=True).filter(episode_id=q_object.episode.id)[:20], key=lambda x: random.random())
     more_episode_quotes = more_episode_quotes[:5]
     
     # this gives the top quotes that appear a degree of randomness
-    more_podcast_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:20], key=lambda x: random.random())
+    more_podcast_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:50], key=lambda x: random.random())
     more_podcast_quotes = more_podcast_quotes[:5]
     
     return render(request, 'quote.html',
