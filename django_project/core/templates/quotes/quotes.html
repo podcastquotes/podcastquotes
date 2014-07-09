@@ -45,7 +45,7 @@
     
     {% if not is_quote_page %}
             {% if is_episode_page and quote.is_full_episode|is_true %}
-                <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}">
+                <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
                     {% if quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.video_id %}

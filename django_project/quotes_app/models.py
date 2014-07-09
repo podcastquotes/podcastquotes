@@ -65,7 +65,7 @@ class Podcast(models.Model):
     managed_by_superuser = models.BooleanField(default=False)
     
     def get_absolute_url(self):
-        return reverse('podcast_quote_list_root', kwargs={'pk': self.pk})
+        return reverse('podcast_episode_list_root', kwargs={'pk': self.pk})
 
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
@@ -93,7 +93,7 @@ class Episode(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     podcast = models.ForeignKey(Podcast)
     title = models.CharField(max_length=200)
-    guid = models.CharField(max_length=200)
+    guid = models.CharField(max_length=200, blank=True)
     duration = models.IntegerField(null=True, blank=True)
     publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
