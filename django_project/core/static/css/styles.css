@@ -561,17 +561,15 @@ a {
         font-size:22px;
         font-weight:600;
         color:#111;
-        margin:0 0 5px 0;
     }
 }
 
 .pq-nav-wrapper {
-    padding:10px 0 0 0;
 }
 
 .pq-nav-active {
     float:left;
-    margin:0 10px 0 0;
+    margin:0 10px 10px 0;
     padding:3px 10px;
     background-color:#fcfcfc;
     border:1px solid #888;
@@ -587,13 +585,12 @@ a {
 
 .pq-nav {
     float:left;
-    margin:0 10px 0 0;
+    margin:0 10px 10px 0;
     padding:3px 10px;
     border:1px solid #888;
     border-radius:20px;
     color:#111;
     font-size:14px;
-    background:#eee;
 }
 
 /* Delete this style rule below when all nav filters are working properly. */
@@ -673,10 +670,6 @@ a {
 
 .dropdown-menu-active {
     background-color:#111;
-}
-
-.pq-podcast-header hr {
-    margin:15px 0 5px 0;
 }
 
 .pq-podcast-header {
@@ -823,7 +816,7 @@ a {
 }
 
 .pq-podcast-box {
-    margin:0 0 15px 0;
+    margin:0 0 20px 0;
 }
 
 @media (max-width:549px) {
@@ -1069,7 +1062,6 @@ a {
     width:40%;
     text-align:center;
     font-size:13px;
-    font-weight:600;
 }
 
 .pq-quote-episode-picture {
@@ -1142,11 +1134,9 @@ a {
         float:right;
         text-align:center;
         font-size:14px;
-        font-weight:600;
         border:1px solid #999;
         border-radius:20px;
         cursor:pointer;
-        background:#eee;
     }
 }
 
@@ -1161,6 +1151,7 @@ a {
 .autoplay-on {
     display:none;
     background-color:#FFF8C6;
+    font-weight:600;
 }
 
 .autoplay-off {
