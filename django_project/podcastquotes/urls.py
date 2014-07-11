@@ -87,7 +87,7 @@ urlpatterns = patterns('',
     
     url(r'^podcasts/(?P<pk>\d+)/clips/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
     
-    url(r'^podcasts/(?P<pk>\d+)/full-episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
+    url(r'^podcasts/(?P<pk>\d+)/full-episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list'),
     
     url(r'^podcasts/(?P<pk>\d+)/full-episodes/(?P<query_filter>\w+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_filter'),
     

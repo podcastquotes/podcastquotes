@@ -1,7 +1,5 @@
 <div class="pq-podcast-header">
     
-    {% include 'breadcrumb.html' %}
-    
     {% if person.userprofile or person.userprofile.twitter_url or person.userprofile.facebook_url or person.userprofile.instagram_url or person.userprofile.google_plus_url or person.userprofile.tumblr_url or person.userprofile.youtube_url or person.userprofile.reddit_url %}
         <div class="pq-podcast-header-social-icons dark-link">
             {% if person.userprofile.homepage %}
@@ -106,7 +104,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
                             </div>
                             <div class="modal-body">
-                                http://www.podverse.tv{{ person.userprofile.get_absolute_url }}
+                                https://podverse.tv{{ person.userprofile.get_absolute_url }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -104,9 +104,11 @@
                 {% if is_podcast_page or is_episode_page %}
                 <div class="pq-podcast-buttons">
                     
-                    <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#podcastShareModal{{ podcast.id }}">
-                        share
-                    </button>
+                    {% if is_podcast_page %}
+                        <button class="pq-podcast-button pq-podcast-share-button" data-toggle="modal" data-target="#podcastShareModal{{ podcast.id }}">
+                            share
+                        </button>
+                    {% endif %}
                 
                     <!-- Modal - Share Podcast -->
                     <div class="modal fade" id="podcastShareModal{{ podcast.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,7 +119,11 @@
                                     <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
                                 </div>
                                 <div class="modal-body">
-                                    http://www.podverse.tv{{ podcast.get_absolute_url }}
+                                    {% if is_podcast_episodes_page or is_episode_page %}
+                                        https://podverse.tv{{ podcast.get_absolute_url }}
+                                    {% elif is_podcast_clips_page %}
+                                        https://podverse.tv{{ podcast.get_absolute_url }}clips/
+                                    {% endif %}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,7 +201,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
                                 </div>
                                 <div class="modal-body">
-                                    http://www.podverse.tv{{ episode.get_absolute_url }}
+                                    https://podverse.tv{{ episode.get_absolute_url }}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
