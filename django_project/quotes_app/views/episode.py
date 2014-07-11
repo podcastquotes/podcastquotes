@@ -193,7 +193,7 @@ class EpisodeQuoteListView(ListView):
         elif f == 'birthdays':
             context['episode_birthdays_is_active'] = True
         else:
-            context['episode_ordered_is_active'] = True
+            context['episode_hot_is_active'] = True
         
         return context
 
@@ -213,7 +213,7 @@ class EpisodeQuoteListView(ListView):
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().filter(episode_id=e.id)
         elif f == 'ordered':
-            return Quote.quote_vote_manager.query_ordered().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_ordered('episode_highlights').filter(episode_id=e.id)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().filter(episode_id=e.id)
         elif f == 'top':
@@ -231,7 +231,7 @@ class EpisodeQuoteListView(ListView):
         elif f == 'birthdays':
             return Quote.quote_vote_manager.query_birthdays().filter(episode_id=e.id)
         else:
-            return Quote.quote_vote_manager.query_ordered().filter(episode_id=e.id)
+            return Quote.quote_vote_manager.query_hot().filter(episode_id=e.id)
 
 def thin_json_episode_query(request):
     

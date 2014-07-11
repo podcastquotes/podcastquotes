@@ -215,6 +215,7 @@ class PodcastEpisodeListView(ListView):
         context['podcast_hot_is_active'] = False
         context['podcast_not_is_active'] = False
         context['podcast_controversial_is_active'] = False
+        context['podcast_ordered_is_active'] = False
         context['podcast_new_is_active'] = False
         context['podcast_top_is_active'] = False
         context['podcast_bottom_is_active'] = False
@@ -230,6 +231,8 @@ class PodcastEpisodeListView(ListView):
             context['podcast_not_is_active'] = True
         elif f == 'controversial':
             context['podcast_controversial_is_active'] = True
+        elif f == 'ordered':
+            context['podcast_ordered_is_active'] = True
         elif f == 'new':
             context['podcast_new_is_active'] = True
         elif f == 'top':
@@ -265,6 +268,8 @@ class PodcastEpisodeListView(ListView):
             return Quote.quote_vote_manager.query_not().filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
+        elif f == 'ordered':
+            return Quote.quote_vote_manager.query_ordered('full_episodes').filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
         elif f == 'top':
@@ -334,6 +339,7 @@ class PodcastQuoteListView(ListView):
         context['podcast_hot_is_active'] = False
         context['podcast_not_is_active'] = False
         context['podcast_controversial_is_active'] = False
+        context['podcast_ordered_is_active'] = False
         context['podcast_new_is_active'] = False
         context['podcast_top_is_active'] = False
         context['podcast_bottom_is_active'] = False
@@ -349,6 +355,8 @@ class PodcastQuoteListView(ListView):
             context['podcast_not_is_active'] = True
         elif f == 'controversial':
             context['podcast_controversial_is_active'] = True
+        elif f == 'ordered':
+            context['podcast_ordered_is_active'] = True
         elif f == 'new':
             context['podcast_new_is_active'] = True
         elif f == 'top':
@@ -384,6 +392,8 @@ class PodcastQuoteListView(ListView):
             return Quote.quote_vote_manager.query_not().filter(episode__podcast_id=p.id).exclude(is_full_episode=True)
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().filter(episode__podcast_id=p.id).exclude(is_full_episode=True)
+        elif f == 'ordered':
+            return Quote.quote_vote_manager.query_ordered('highlights').filter(episode__podcast_id=p.id).exclude(is_full_episode=True)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().filter(episode__podcast_id=p.id).exclude(is_full_episode=True)
         elif f == 'top':

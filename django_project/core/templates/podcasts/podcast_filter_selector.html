@@ -1,8 +1,8 @@
 <div class="pq-nav-wrapper">
     <a href="
-            {% if is_home_episodes_page %}
+            {% if is_podcast_episodes_page %}
                 /podcasts/{{ podcast.id }}/full-episodes/hot/
-            {% elif is_home_clips_page %}
+            {% elif is_podcast_clips_page %}
                 /podcasts/{{ podcast.id }}/clips/hot/
             {% endif %}
             ">
@@ -12,9 +12,21 @@
     </a>
 
     <a href="
-            {% if is_home_episodes_page %}
+            {% if is_podcast_episodes_page %}
+                /podcasts/{{ podcast.id }}/full-episodes/ordered/
+            {% elif is_podcast_clips_page %}
+                /podcasts/{{ podcast.id }}/clips/ordered/
+            {% endif %}
+            ">
+        <div class="pq-nav{% if podcast_ordered_is_active %}-active{% endif %} pq-nav-disappear-4">
+            ordered
+        </div>
+    </a>
+    
+    <a href="
+            {% if is_podcast_episodes_page %}
                 /podcasts/{{ podcast.id }}/full-episodes/new/
-            {% elif is_home_clips_page %}
+            {% elif is_podcast_clips_page %}
                 /podcasts/{{ podcast.id }}/clips/new/
             {% endif %}
             ">
@@ -24,9 +36,9 @@
     </a>
 
     <a href="
-            {% if is_home_episodes_page %}
+            {% if is_podcast_episodes_page %}
                 /podcasts/{{ podcast.id }}/full-episodes/top/
-            {% elif is_home_clips_page %}
+            {% elif is_podcast_clips_page %}
                 /podcasts/{{ podcast.id }}/clips/top/
             {% endif %}
             ">

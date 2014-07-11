@@ -29,17 +29,23 @@ class QuoteVoteManager(models.Manager):
         # Most evenly upvoted and downvoted trending algorithm
         return super(QuoteVoteManager, self).get_query_set()
     
-    def query_ordered(self):
-        # Order by time quote begins from earliest to latest
+    def query_ordered(self, type):
+        # Order full episode querysets by publication_date from most recent to oldest, 
+        # otherwise order highlight querysets by time quote begins from earliest to latest
         ### This will need some kind of smart filter to prevent quotes with
         ### significantly overlapping times from appearing right after one another
-        ### any ideas how to achieve this?
-        return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', 'time_quote_begins')
+        if type == 'full_episodes':
+            return super(QuoteVoteManager, self).get_query_set().order_by('-episode__publication_date')
+        if type == 'highlights':
+            return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', '-episode__publication_date', 'time_quote_begins')
+        if type == 'episode_highlights':
+            return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', 'time_quote_begins')
+            
     
     def query_new(self):
         # Order by most recently submitted to least recently submitted
         return super(QuoteVoteManager, self).get_query_set().order_by('-is_full_episode', '-created_at')
-        
+    
     def query_top(self):
         # Order by highest karma_total to lowest karma_total
         return super(QuoteVoteManager, self).get_query_set().annotate(karma_total=Sum('vote__vote_type')).order_by('-is_full_episode', '-karma_total')

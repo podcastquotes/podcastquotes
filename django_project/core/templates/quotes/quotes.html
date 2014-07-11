@@ -62,8 +62,41 @@
                     {% endif %}
                 </div>
             {% elif is_episode_page and not quote.is_full_episode|is_true %}
-            {% else %}
+                <div class="pq-quote-episode-clip hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    {% if quote.episode.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                    {% elif quote.episode.video_id %}
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                    {% elif quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                    {% if quote.episode.youtube_url %}
+                        <div class="picture-play-button">
+                            <div class="picture-play-button-inside">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% elif quote.is_full_episode|is_true %}
                 <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    {% if quote.episode.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                    {% elif quote.episode.video_id %}
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                    {% elif quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                    {% if quote.episode.youtube_url %}
+                        <div class="picture-play-button">
+                            <div class="picture-play-button-inside">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="pq-quote-episode-clip hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
                     {% if quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.video_id %}
@@ -262,11 +295,7 @@
         </div><!-- /.pq-quote-xs-buttons -->
 
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-            <div class="button-hider" style="
-                                             {% if not is_home_page and not is_podcast_page and not quote.is_full_episode|is_true %}
-                                                 display:block;
-                                             {% endif %}
-                ">
+            <div class="button-hider">
                 <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
                      class="youtube-start-button-wrapper" 
                      style="{% if not quote.episode.youtube_url %}

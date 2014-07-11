@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.models import User
@@ -45,6 +46,7 @@ class HomeEpisodeListView(ListView):
         context['home_hot_is_active'] = False
         context['home_not_is_active'] = False
         context['home_controversial_is_active'] = False
+        context['home_ordered_is_active'] = False
         context['home_new_is_active'] = False
         context['home_top_is_active'] = False
         context['home_bottom_is_active'] = False
@@ -60,6 +62,8 @@ class HomeEpisodeListView(ListView):
             context['home_not_is_active'] = True
         elif f == 'controversial':
             context['home_controversial_is_active'] = True
+        elif f == 'ordered':
+            context['home_ordered_is_active'] = True
         elif f == 'new':
             context['home_new_is_active'] = True
         elif f == 'top':
@@ -93,6 +97,8 @@ class HomeEpisodeListView(ListView):
             return Quote.quote_vote_manager.query_not().exclude(is_full_episode=False)
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().exclude(is_full_episode=False)
+        elif f == 'ordered':
+            return Quote.quote_vote_manager.query_ordered('full_episodes').exclude(is_full_episode=False)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().exclude(is_full_episode=False)
         elif f == 'top':
@@ -154,6 +160,7 @@ class HomeQuoteListView(ListView):
         context['home_hot_is_active'] = False
         context['home_not_is_active'] = False
         context['home_controversial_is_active'] = False
+        context['home_ordered_is_active'] = False
         context['home_new_is_active'] = False
         context['home_top_is_active'] = False
         context['home_bottom_is_active'] = False
@@ -169,6 +176,8 @@ class HomeQuoteListView(ListView):
             context['home_not_is_active'] = True
         elif f == 'controversial':
             context['home_controversial_is_active'] = True
+        elif f == 'ordered':
+            context['home_ordered_is_active'] = True
         elif f == 'new':
             context['home_new_is_active'] = True
         elif f == 'top':
@@ -202,6 +211,8 @@ class HomeQuoteListView(ListView):
             return Quote.quote_vote_manager.query_not().exclude(is_full_episode=True)
         elif f == 'controversial':
             return Quote.quote_vote_manager.query_controversial().exclude(is_full_episode=True)
+        elif f == 'ordered':
+            return Quote.quote_vote_manager.query_ordered('highlights').exclude(is_full_episode=True)
         elif f == 'new':
             return Quote.quote_vote_manager.query_new().exclude(is_full_episode=True)
         elif f == 'top':

@@ -55,7 +55,17 @@
                     {% endif %}
                     
                     <li>
-                        <a class="pq-navbar-dropdown-2" href="{% url 'quote_create' %}">
+                        <a class="pq-navbar-dropdown-2" 
+                           href="{% if is_podcast_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}
+                                 {% elif is_episode_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                 {% elif is_quote_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                 {% else %}
+                                     {% url 'quote_create' %}
+                                 {% endif %}
+                            ">
                             <i class="fa fa-plus-square"></i>&nbsp Add a Clip
                         </a>
                     </li>
@@ -73,7 +83,17 @@
                     </li>
                 {% else %}
                     <li>
-                        <a class="pq-navbar-dropdown-2" href="{% url 'quote_create' %}">
+                        <a class="pq-navbar-dropdown-2"
+                           href="{% if is_podcast_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}
+                                 {% elif is_episode_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                 {% elif is_quote_page %}
+                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                 {% else %}
+                                     {% url 'quote_create' %}
+                                 {% endif %}
+                            ">
                             <i class="fa fa-plus-square"></i> Add a Clip
                         </a>
                     </li>
