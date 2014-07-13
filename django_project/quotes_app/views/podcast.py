@@ -167,8 +167,21 @@ class PodcastDeleteView(DeleteView):
 
 class PodcastEpisodeListView(ListView):
     model = Quote
-    template_name = 'podcast_detail.html'
-    paginate_by = 10
+    
+    ### WET - should use CBV inheritance
+    def get_template_names(self):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 'podcast_detail.html'
+        elif view_type == 'slim':
+            return 'slim_podcast_detail.html'
+    ### WET - should use CBV inheritance
+    def get_paginate_by(self, queryset):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 10
+        elif view_type == 'slim':
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(PodcastEpisodeListView, self).get_context_data(**kwargs)
@@ -291,8 +304,21 @@ class PodcastEpisodeListView(ListView):
 
 class PodcastQuoteListView(ListView):
     model = Quote
-    template_name = 'podcast_detail.html'
-    paginate_by = 10
+
+    ### WET - should use CBV inheritance
+    def get_template_names(self):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 'podcast_detail.html'
+        elif view_type == 'slim':
+            return 'slim_podcast_detail.html'
+    ### WET - should use CBV inheritance
+    def get_paginate_by(self, queryset):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 10
+        elif view_type == 'slim':
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)

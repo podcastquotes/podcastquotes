@@ -110,8 +110,21 @@ class EpisodeDeleteView(DeleteView):
             
 class EpisodeQuoteListView(ListView):
     model = Quote
-    template_name = 'episode_detail.html'
-    paginate_by = 10
+    
+    ### WET - should use CBV inheritance
+    def get_template_names(self):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 'episode_detail.html'
+        elif view_type == 'slim':
+            return 'slim_episode_detail.html'
+    ### WET - should use CBV inheritance
+    def get_paginate_by(self, queryset):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 10
+        elif view_type == 'slim':
+            return 100
 
     def get_context_data(self, **kwargs):
         context = super(EpisodeQuoteListView, self).get_context_data(**kwargs)

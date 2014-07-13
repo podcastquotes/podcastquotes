@@ -672,6 +672,20 @@ a {
     background-color:#111;
 }
 
+.pq-view-selector {
+    float:right;
+    margin:4px 20px 0 0;
+    font-size:14px;
+    font-family:'Open Sans', sans-serif !important;
+    color:#111;
+    cursor:pointer;
+}
+
+.pq-view-selector a {
+    color:#111;
+    cursor:pointer;
+}
+
 .pq-podcast-header {
     margin:0 0 10px 0;
     background-color:#fcfcfc;
@@ -1078,6 +1092,20 @@ a {
     max-width:180px;
 }
 
+.pq-slim-quote-picture {
+    position:relative;
+    float:left;
+    width:100px;
+    height:auto;
+    text-align:left;
+    margin:0 10px 0 0;
+    cursor:pointer;
+}
+
+.pq-slim-quote-picture img {
+    width:100px;
+}
+
 .pq-quote-episode-clip {
     position:relative;
     float:left;
@@ -1341,7 +1369,22 @@ a {
     .pq-quote-buttons {
         clear:right;
         float:right;
-        margin:5px 0 5px 20px;
+        margin:5px 0 10px 20px;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-slim-quote-buttons {
+        display:none;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-slim-quote-buttons {
+        float:left;
+        margin:0 10px 0 0;
+        color:#444;
+        font-size:13px;
     }
 }
 
@@ -1361,9 +1404,19 @@ button {
     border:none;
 }
 
+.pq-slim-quote-upvote {
+}
+
 .pq-quote-vote-total {
     text-align:center;
     width:44px;
+    margin:2px 0;
+    font-size:13px;
+    color:#444;
+}
+
+.pq-slim-quote-vote-total {
+    text-align:center;
     margin:2px 0;
     font-size:13px;
     color:#444;
@@ -1383,6 +1436,9 @@ button {
     color:#444;
     box-shadow:none;
     border:none;
+}
+
+.pq-slim-quote-downvote {
 }
 
 @media (max-width:549px) {
@@ -1723,7 +1779,7 @@ button {
     font-size:32px;
     z-index:1000;
     color:#0075A9;
-    background:#bbb;
+    background:#ddd;
 }
 
 .picture-play-button-inside {
@@ -1744,7 +1800,7 @@ button {
     .youtube-start-button-wrapper {
         clear:left;
         float:left;
-        margin:10px 5px 10px 0;
+        margin:5px 5px 10px 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;

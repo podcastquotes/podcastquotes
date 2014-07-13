@@ -6,8 +6,21 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 class HomeEpisodeListView(ListView):
     model = Quote
-    template_name = 'home.html'
-    paginate_by = 10
+    
+    ### WET - should use CBV inheritance
+    def get_template_names(self):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 'home.html'
+        elif view_type == 'slim':
+            return 'slim_home.html'
+    ### WET - should use CBV inheritance
+    def get_paginate_by(self, queryset):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 10
+        elif view_type == 'slim':
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -120,8 +133,21 @@ class HomeEpisodeListView(ListView):
 
 class HomeQuoteListView(ListView):
     model = Quote
-    template_name = 'home.html'
-    paginate_by = 10
+    
+    ### WET - should use CBV inheritance
+    def get_template_names(self):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 'home.html'
+        elif view_type == 'slim':
+            return 'slim_home.html'
+    ### WET - should use CBV inheritance
+    def get_paginate_by(self, queryset):
+        view_type = self.request.COOKIES.get('view_type')
+        if view_type == 'full':
+            return 10
+        elif view_type == 'slim':
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block opengraph %}
+    <meta property="og:url" content="https://podverse.tv/people/{{ person.username }}/">
+    <meta property="og:title" content="Highlights from {{ person.username }} on Podverse.tv">
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit.">
+    <meta property="og:image" content="https://podverse.tv/media/{{ person.userprofile.image }}">
+    <meta property="og:image" content="https://podverse.tv/static/img/podverse-logo-square.jpg" />
+{% endblock %}
+
+{% block content %}
+    
+    {% include 'main_col_width.html' %}
+
+    {% include 'user_header.html' %}
+
+    {% include 'user_filter_selector.html' %}
+        
+{% endblock %}<!-- /block content -->
+    
+{% block quotes %}
+
+    {% include 'quotes_forloop.html' %}
+
+{% endblock %}<!-- / block quotes -->

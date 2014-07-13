@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    {% include 'main_col_width.html' %}
+
+    {% include 'home_header.html' %}
+    
+    {% include 'home_filter_selector.html' %}
+        
+{% endblock %}<!-- /block content -->
+    
+{% block quotes %}
+
+    {% include 'slim_quotes_forloop.html' %}
+
+{% endblock %}<!-- / block quotes -->
+    
