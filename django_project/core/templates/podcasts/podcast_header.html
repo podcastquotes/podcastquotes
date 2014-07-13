@@ -89,7 +89,9 @@
                 
                 {% if podcast.description %}
                     <div class="pq-podcast-description">
-                        {{ podcast.description }}
+                        {% autoescape off %}
+                            {{ podcast.description }}
+                        {% endautoescape %}
                     </div>
                 {% endif %}
                 

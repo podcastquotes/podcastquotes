@@ -280,12 +280,15 @@
         </div><!-- /.pq-quote-xs-buttons -->
 
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
-            <div class="button-hider">
+            <div class="button-hider" 
+                 {% if is_episode_page and not quote.is_full_episode|is_true %} 
+                     style="display:block"
+                 {% endif %}>
                 <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
                      class="youtube-start-button-wrapper" 
                      style="{% if not quote.episode.youtube_url %}
                                 display:none; 
-                            {% elif not quote.episode.is_full_episode|is_true %}
+                            {% elif quote.episode.youtube_url %}
                                 display:block;
                             {% endif %}
                             {% if quote.text %}
@@ -335,18 +338,24 @@
                         <div class="pq-quote-text-preview" 
                              id="pq-quote-text-preview-{{ forloop.counter }}">
                             {% if not quote.is_longer_than_240chars %}
-                                {{ quote.text|urlize|linebreaks }}
+                                {% autoescape off %}
+                                    {{ quote.text|urlize|linebreaks }}
+                                {% endautoescape %}
                             {% endif %}
                             {% if quote.is_longer_than_240chars %}
-                                {{ quote.text|linebreaks|truncatechars:240 }}
-                                <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
-                                    show
-                                </span>
+                                {% autoescape off %}
+                                    {{ quote.text|linebreaks|truncatechars:240 }}
+                                    <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
+                                        show
+                                    </span>
+                                {% endautoescape %}
                             {% endif %}
                         </div>
                         <div class="pq-quote-text"
                              id="pq-quote-text-{{ forloop.counter }}">
-                            {{ quote.text|urlize|linebreaks }}
+                            {% autoescape off %}
+                                {{ quote.text|urlize|linebreaks }}
+                            {% endautoescape %}
                             {% if quote.is_longer_than_240chars %}
                                 <div class="pq-show-less" id="show-less-{{ forloop.counter }}">
                                     less

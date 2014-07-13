@@ -61,7 +61,6 @@
                         </div>
                     {% endif %}
                 </div>
-            {% elif is_episode_page and not quote.is_full_episode|is_true %}
             {% elif is_home_page and quote.is_full_episode|is_true %}
                 <div class="pq-slim-quote-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
                     {% if quote.episode.podcast.image %}
@@ -280,10 +279,14 @@
                              id="pq-quote-text-preview-{{ forloop.counter }}"
                              style="margin:0;">
                             {% if not quote.is_longer_than_150chars %}
-                                {{ quote.text|urlize|linebreaks }}
+                                {% autoescape off %}
+                                    {{ quote.text|urlize|linebreaks }}
+                                {% endautoescape %}
                             {% endif %}
                             {% if quote.is_longer_than_150chars %}
-                                {{ quote.text|linebreaks|truncatechars:150 }}
+                                {% autoescape off %}
+                                    {{ quote.text|linebreaks|truncatechars:150 }}
+                                {% endautoescape %}
                                 <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
                                     show
                                 </span>
@@ -292,7 +295,9 @@
                         <div class="pq-quote-text"
                              id="pq-quote-text-{{ forloop.counter }}"
                              style="margin:0;">
-                            {{ quote.text|urlize|linebreaks }}
+                             {% autoescape off %}
+                                {{ quote.text|urlize|linebreaks }}
+                             {% endautoescape %}
                             {% if quote.is_longer_than_150chars %}
                                 <div class="pq-show-less" id="show-less-{{ forloop.counter }}" style="margin-bottom:5px;">
                                     less
@@ -360,7 +365,7 @@
             </form>
             
         </div><!-- /.pq-quote-xs-buttons -->
-
+       
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div class="button-hider">
                 <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
@@ -414,7 +419,9 @@
                     {% if quote.text %}
                         <div class="pq-quote-text"
                              id="pq-quote-text-{{ forloop.counter }}">
-                            {{ quote.text|urlize|linebreaks }}
+                                {% autoescape off %}
+                                    {{ quote.text|urlize|linebreaks }}
+                                {% endautoescape %}
                         </div><!-- /.pq-quote-text -->
                     {% endif %}
                 </div><!-- /.pq-quote-text-box -->

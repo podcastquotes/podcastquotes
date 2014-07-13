@@ -1094,11 +1094,11 @@ a {
 
 .pq-quote-episode-picture {
     position:relative;
-    float:right;
+    float:left;
     width:180px;
     height:auto;
     text-align:center;
-    margin:5px 0 10px 15px;
+    margin:5px 15px 10px 0;
     cursor:pointer;
 }
 
@@ -1146,11 +1146,11 @@ a {
 
 .pq-quote-episode-clip {
     position:relative;
-    float:right;
+    float:left;
     width:100px;
     height:auto;
     text-align:center;
-    margin:5px 0 10px 15px;
+    margin:5px 15px 10px 0;
     cursor:pointer;
 }
 
@@ -1420,8 +1420,8 @@ a {
 
 @media (min-width:550px) {
     .pq-quote-buttons {
-        float:left;
-        margin:5px 15px 10px 0;
+        float:right;
+        margin:5px 0 10px 15px;
     }
 }
 
