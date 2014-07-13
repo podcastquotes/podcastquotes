@@ -487,7 +487,7 @@
 
         {% if is_home_page or is_quote_page or is_user_page %}
             {% if quote.episode.support_url %}
-                <div class="pq-quote-bottom-button text-orange">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
                     <a href=
                     "{% if quote.episode.support_url %}
                         {{ quote.episode.support_url }}
@@ -497,7 +497,7 @@
                     </a>
                 </div>
             {% elif quote.episode.podcast.support_url %}
-                <div class="pq-quote-bottom-button text-orange">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
                     <a href=
                     "{% if quote.episode.podcast.support_url %}
                         {{ quote.episode.podcast.support_url }}
@@ -512,7 +512,7 @@
         
         {% if is_podcast_page %}
             {% if quote.episode.support_url %}
-                <div class="pq-quote-bottom-button text-orange">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
                     <a href=
                     "{% if quote.episode.podcast.support_url %}
                         {{ quote.episode.podcast.support_url }}
