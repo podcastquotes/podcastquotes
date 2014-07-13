@@ -216,6 +216,12 @@ class Quote(models.Model):
             return 1
         else:
             return 0
+            
+    def is_longer_than_150chars(self):
+        if len(self.text) > 150:
+            return 1
+        else:
+            return 0
     
     def converted_time_begins(self):
         m, s = divmod(self.time_quote_begins, 60)

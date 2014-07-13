@@ -45,7 +45,7 @@
     
     {% if not is_quote_page %}
             {% if is_episode_page and quote.is_full_episode|is_true %}
-                <div class="pq-quote-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                <div class="pq-quote-episode-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
                     {% if quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.video_id %}
@@ -62,8 +62,23 @@
                     {% endif %}
                 </div>
             {% elif is_episode_page and not quote.is_full_episode|is_true %}
+            {% elif is_home_page and quote.is_full_episode|is_true %}
+                <div class="pq-slim-quote-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    {% if quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                    {% if quote.episode.youtube_url %}
+                        <div class="picture-play-button"
+                             style="width:24px;height:24px;border-radius:50px;">
+                            <div class="picture-play-button-inside" 
+                                 style="margin:-10px 0 0 0;font-size:32px;">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             {% elif quote.is_full_episode|is_true %}
-                <div class="pq-slim-quote-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                <div class="pq-slim-quote-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
                     {% if quote.episode.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                     {% elif quote.episode.video_id %}
@@ -72,25 +87,44 @@
                         <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                     {% endif %}
                     {% if quote.episode.youtube_url %}
-                        <div class="picture-play-button">
-                            <div class="picture-play-button-inside" style="margin:-4px 0 0 4px;">
+                        <div class="picture-play-button"
+                             style="width:24px;height:24px;border-radius:50px;">
+                            <div class="picture-play-button-inside" 
+                                 style="margin:-10px 0 0 0;font-size:32px;">
+                                <i class="fa fa-play-circle"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% elif is_podcast_page %}
+                <div class="pq-slim-quote-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    {% if quote.episode.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                    {% elif quote.episode.video_id %}
+                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                    {% elif quote.episode.podcast.image %}
+                        <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                    {% endif %}
+                    {% if quote.episode.youtube_url %}
+                        <div class="picture-play-button" 
+                             style="width:24px;height:24px;border-radius:50px;">
+                            <div class="picture-play-button-inside" 
+                                 style="margin:-10px 0 0 0;font-size:32px;">
                                 <i class="fa fa-play-circle"></i>
                             </div>
                         </div>
                     {% endif %}
                 </div>
             {% else %}
-                <div class="pq-slim-quote-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
-                    {% if quote.episode.image %}
-                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
-                    {% elif quote.episode.video_id %}
-                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
-                    {% elif quote.episode.podcast.image %}
+                <div class="pq-slim-quote-picture" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    {% if quote.episode.podcast.image %}
                         <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                     {% endif %}
                     {% if quote.episode.youtube_url %}
-                        <div class="picture-play-button" style="width:28px;height:28px;font-size:24px;">
-                            <div class="picture-play-button-inside" style="margin:-4px 0 0 4px;">
+                        <div class="picture-play-button" 
+                             style="width:24px;height:24px;border-radius:50px;">
+                            <div class="picture-play-button-inside" 
+                                 style="margin:-10px 0 0 0;font-size:32px;">
                                 <i class="fa fa-play-circle"></i>
                             </div>
                         </div>
@@ -116,7 +150,7 @@
 
     
     <div class="pq-slim-quote-text-wrapper" id="quote-text-wrapper-{{ forloop.counter }}">
-        <div class="pq-slim-quote-title dark-link" style="{% if is_episode_page %} margin-bottom:0;{% endif %}">
+        <div class="pq-slim-quote-title dark-link">
             {% if quote.summary %}
                 <a href="
                          {% if quote.is_full_episode|is_true %}
@@ -125,7 +159,7 @@
                              {{ quote.get_absolute_url }}
                          {% endif %}
                     ">
-                    Episode: {{ quote.summary }}
+                    {{ quote.summary }}
                 </a>
             {% elif not quote.summary %}
                 <a href="
@@ -147,7 +181,8 @@
         {% else %}
             {% if is_home_page or is_quote_page or is_user_page %}
                 {% if quote.episode.podcast.image %}
-                    <div class="pq-quote-profile-picture display-none-550px">
+                    <div class="pq-quote-profile-picture display-none-550px"
+                         style="margin-top:10px;margin-bottom:10px;">
                         <a href="{% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}">
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         </a>
@@ -155,10 +190,10 @@
                 {% endif %}
             {% endif %}
             {% if is_podcast_page %}
-                {% if not is_podcast_episodes_page %}
                     {% if quote.episode.image or quote.episode.video_id %}
-                        <div class="pq-quote-profile-picture-episode display-none-550px">
-                            <a href="{% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}">
+                        <div class="pq-quote-profile-picture-episode display-none-550px"
+                             style="margin-top:10px;margin-bottom:10px;">
+                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
                                 {% if quote.episode.image %}
                                     <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                                 {% elif quote.episode.video_id %}
@@ -167,7 +202,6 @@
                             </a>
                         </div>
                     {% endif %}
-                {% endif %}
             {% endif %}
         
             <div class="pq-quote-subtitle display-none-550px gray-link">
@@ -203,9 +237,7 @@
         {% endif %}            
         
         <div class="pq-quote-xs-subtitle display-none-549px gray-link"
-             style="{% if not quote.text %}
-                        margin-bottom:5px;
-                    {% endif %}">
+             style="margin:0 15px 5px 0;font-size:13px;">
             {% if is_home_page or is_quote_page or is_user_page %}
                 {% if quote.episode.podcast.title %}
                     <a href="
@@ -224,7 +256,7 @@
             {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
                 {% if quote.episode.title %} 
                     <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                        {{ quote.episode.title|truncatechars:40 }}
+                        Episode: {{ quote.episode.title }}
                     </a>
                     <br>
                 {% endif %}
@@ -239,10 +271,58 @@
             -->
         </div>
         
+        {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
+            {% if quote.text %}
+                <div class="pq-quote-text-box"
+                     style="margin:0;font-size:13px">
+                    {% if quote.text %}
+                        <div class="pq-quote-text-preview" 
+                             id="pq-quote-text-preview-{{ forloop.counter }}"
+                             style="margin:0;">
+                            {% if not quote.is_longer_than_150chars %}
+                                {{ quote.text|urlize|linebreaks }}
+                            {% endif %}
+                            {% if quote.is_longer_than_150chars %}
+                                {{ quote.text|linebreaks|truncatechars:150 }}
+                                <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
+                                    show
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="pq-quote-text"
+                             id="pq-quote-text-{{ forloop.counter }}"
+                             style="margin:0;">
+                            {{ quote.text|urlize|linebreaks }}
+                            {% if quote.is_longer_than_150chars %}
+                                <div class="pq-show-less" id="show-less-{{ forloop.counter }}" style="margin-bottom:5px;">
+                                    less
+                                </div>
+                            {% endif %}
+                        </div><!-- /.pq-quote-text -->
+                    {% endif %}
+                </div><!-- /.pq-quote-text-box -->
+            {% endif %}
+        {% endif %}
+        
+        <script>
+          $("#show-more-{{ forloop.counter }}").click(function() {
+              $("#pq-quote-text-{{ forloop.counter }}").show();
+              $("#pq-quote-text-preview-{{ forloop.counter }}").hide();
+              $("#show-more-{{ forloop.counter }}").hide();
+              $("#show-less-{{ forloop.counter }}").show();
+          });
+          $("#show-less-{{ forloop.counter }}").click(function() {
+              $("#pq-quote-text-preview-{{ forloop.counter }}").show();
+              $("#pq-quote-text-{{ forloop.counter }}").hide();
+              $("#show-less-{{ forloop.counter }}").hide();
+              $("#show-more-{{ forloop.counter }}").show();
+          });
+        </script>
+        
         <div class="clearfix">
         </div>
         
-        <div class="pq-quote-xs-buttons hidden-sm hidden-md hidden-lg">
+        <div class="pq-slim-quote-xs-buttons hidden-sm hidden-md hidden-lg">
             <form method="POST" action="{% url 'quote_vote' %}" class="vote_form">
                 {% csrf_token %}
                 <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
@@ -290,9 +370,7 @@
                             {% elif not quote.episode.is_full_episode|is_true %}
                                 display:block;
                             {% endif %}
-                            {% if quote.text %}
-                                margin-bottom:5px;
-                            {% endif %}
+                            margin-top:5px;
                     ">
                     {% if quote.episode.youtube_url %}    
                         <div class="youtube-start-button fa fa-play light-blue-gradient" 
@@ -350,17 +428,9 @@
                 </div>
             {% endif %}
         {% endif %}
-  
-    </div><!-- /.pq-quote-text-wrapper --> 
-    
-    <div class="pq-quote-date dark-link">
+        
+    <div class="pq-quote-date dark-link" style="margin-bottom:5px">
         {% if quote.is_full_episode|is_true %}
-            <a href="{{ quote.episode.get_absolute_url }}">
-                <span class="font-semibold">Full Episode</span>
-                {% if not is_episode_page %}
-                    - Clips: {{ quote.episode.all_episode_quotes_count }}
-                {% endif %}
-            </a>
         {% else %}
             <a href="{{ quote.get_absolute_url }}">       
                 {% if quote.time_quote_ends %}
@@ -368,7 +438,7 @@
                 {% elif not quote.time_quote_ends %}
                     Starts: {{ quote.converted_time_begins }}
                 {% endif %}
-                {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
+                {% if is_quote_page or is_user_page or is_episode_page %}
                     {% if quote.time_quote_ends %}
                         / {{ quote.converted_time_begins }} 
                         {% if quote.time_quote_ends %}
@@ -388,11 +458,11 @@
         -->
     </div>
 
-    <div class="pq-quote-bottom-buttons">
+    <div class="pq-quote-bottom-buttons" style="float:left;clear:left;">
     
         <!-- Button trigger modal -->
         
-        <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
+        <button class="pq-quote-bottom-button" style="margin:0 15px 0 0;" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
         </button>
         
@@ -414,23 +484,6 @@
                 </div>
             </div>
         </div><!-- /.modal fade -->
-        
-        <div class="pq-quote-bottom-button" 
-             id="show-notes-{{ forloop.counter }}"
-             style="{% if not quote.text %}
-                        margin:0;
-                    {% endif %}">
-            {% if quote.text %}
-                notes
-            {% endif %}
-        </div>
-        
-        <script>
-          $("#show-notes-{{ forloop.counter }}").click(function() {
-              $("#show-notes-{{ forloop.counter }}").hide();
-              $("#pq-quote-text-{{ forloop.counter }}").show();
-          });
-        </script>
 
         {% if is_home_page or is_quote_page or is_user_page %}
             {% if quote.episode.support_url %}
@@ -472,7 +525,8 @@
         {% endif %}
         
         {% if request.user == quote.submitted_by or user.is_superuser %}
-            <div class="pq-quote-bottom-button text-purple">
+            <div class="pq-quote-bottom-button text-purple"
+                 style="margin:0 15px 0 0;">
                 <a href="{{ quote.get_absolute_url }}edit/">
                     edit clip
                 </a>
@@ -482,7 +536,9 @@
         <div class="clearfix">
         </div>
           
-    </div><!-- /.pq-quote-bottom -->
+    </div><!-- /.pq-quote-bottom-buttons -->
+  
+    </div><!-- /.pq-quote-text-wrapper --> 
   
     <div class="clearfix">
     </div>

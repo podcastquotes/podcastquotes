@@ -168,6 +168,14 @@ hr {
     color:#232323
 }
 
+.blue-font {
+    color:#225b9a;
+}
+
+.blue-font:hover {
+    color:#729bba;
+}
+
 .blue-link a {
     color:#225b9a;
 }
@@ -672,6 +680,12 @@ a {
     background-color:#111;
 }
 
+@media (max-width:549px) {
+    .pq-view-selector {
+        display:none;
+    }
+}
+
 .pq-view-selector {
     float:right;
     margin:4px 20px 0 0;
@@ -772,7 +786,7 @@ a {
 }
 
 .pq-podcast-subtitle {
-    font-size:15px;
+    font-size:13px;
     color:#555;
     margin:0 0 10px 0;
 }
@@ -1080,11 +1094,11 @@ a {
 
 .pq-quote-episode-picture {
     position:relative;
-    float:left;
+    float:right;
     width:180px;
     height:auto;
     text-align:center;
-    margin:5px 20px 10px 0;
+    margin:5px 0 10px 15px;
     cursor:pointer;
 }
 
@@ -1092,27 +1106,51 @@ a {
     max-width:180px;
 }
 
+.pq-slim-quote-title {
+    font-weight:600;
+}
+
 .pq-slim-quote-picture {
     position:relative;
-    float:left;
-    width:100px;
+    float:right;
+    width:90px;
     height:auto;
-    text-align:left;
-    margin:0 10px 0 0;
+    text-align:right;
+    margin:0 0 0 15px;
     cursor:pointer;
 }
 
 .pq-slim-quote-picture img {
-    width:100px;
+    width:90px;
+}
+
+@media (max-width:549px) {
+    .pq-slim-quote-picture {
+        display:none;
+    }
+}
+
+@media (max-width:550px) {
+    .pq-slim-quote-text-wrapper {
+        clear:left;
+    }
+}
+
+.pq-slim-quote-text-wrapper {
+    overflow:hidden;
+}
+
+.pq-slim-quote-text-wrapper p {
+    margin-bottom:5px;
 }
 
 .pq-quote-episode-clip {
     position:relative;
-    float:left;
+    float:right;
     width:100px;
     height:auto;
     text-align:center;
-    margin:5px 20px 10px 0;
+    margin:5px 0 10px 15px;
     cursor:pointer;
 }
 
@@ -1254,11 +1292,11 @@ a {
 .pq-quote-profile-picture {
     float:left;
     vertical-align:top;
-    margin:5px 10px 0 0;
+    margin:10px 10px 10px 0;
 }
 
 .pq-quote-profile-picture img {
-    max-width:60px;
+    max-width:100px;
 }
 
 .pq-quote-profile-picture-episode {
@@ -1268,12 +1306,27 @@ a {
 }
 
 .pq-quote-profile-picture-episode img {
-    max-width:60px;
+    max-width:100px;
+}
+
+@media (max-width:549px) {
+    .pq-quote-profile-picture-episode {
+        margin:5px 0 10px 0;
+    }
+    .pq-quote-profile-picture-episode img {
+        max-width:120px;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-quote-subtitle {
+        clear:both;
+    }
 }
 
 .pq-quote-subtitle {
     vertical-align:top;
-    font-size:14px;
+    font-size:13px;
     margin-top:1px;
 }
 
@@ -1303,7 +1356,7 @@ a {
 
 .pq-quote-xs-subtitle {
     vertical-align:top;
-    font-size:14px;
+    font-size:13px;
 }
 
 .pq-quote-xs-subtitle a:hover {
@@ -1367,9 +1420,8 @@ a {
 
 @media (min-width:550px) {
     .pq-quote-buttons {
-        clear:right;
-        float:right;
-        margin:5px 0 10px 20px;
+        float:left;
+        margin:5px 15px 10px 0;
     }
 }
 
@@ -1382,9 +1434,9 @@ a {
 @media (min-width:550px) {
     .pq-slim-quote-buttons {
         float:left;
-        margin:0 10px 0 0;
+        margin:0 15px 0 0;
         color:#444;
-        font-size:13px;
+        font-size:16px;
     }
 }
 
@@ -1405,6 +1457,12 @@ button {
 }
 
 .pq-slim-quote-upvote {
+    padding:3px 8px;
+    text-align:center;
+    background:#ddd;
+    border-radius:10px;
+    box-shadow:none;
+    border:none;
 }
 
 .pq-quote-vote-total {
@@ -1418,7 +1476,7 @@ button {
 .pq-slim-quote-vote-total {
     text-align:center;
     margin:2px 0;
-    font-size:13px;
+    font-size:14px;
     color:#444;
 }
 
@@ -1431,7 +1489,7 @@ button {
     width:44px;
     padding:3px 0;
     background:#ddd;
-    border-radius:10px;
+    border-radius:20px;
     font-size:16px;
     color:#444;
     box-shadow:none;
@@ -1439,6 +1497,12 @@ button {
 }
 
 .pq-slim-quote-downvote {
+    padding:3px 8px;
+    text-align:center;
+    background:#ddd;
+    border-radius:10px;
+    box-shadow:none;
+    border:none;
 }
 
 @media (max-width:549px) {
@@ -1451,6 +1515,20 @@ button {
 
 @media (min-width:550px) {
     .pq-quote-xs-buttons {
+        display:none;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-slim-quote-xs-buttons {
+        float:left;
+        clear:left;
+        padding:7px 20px 5px 0;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-slim-quote-xs-buttons {
         display:none;
     }
 }
@@ -1496,6 +1574,7 @@ button {
         display:none;
         max-width:550px;
         margin:5px 0 10px 0;
+        font-size:13px;
     }
 }
 
@@ -1505,6 +1584,7 @@ button {
         display:none;
         max-width:550px;
         margin:5px 0 10px 0;
+        font-size:13px;
     }
 }
 
@@ -1512,6 +1592,7 @@ button {
     .pq-quote-text-preview {
         max-width:550px;
         margin:5px 0 10px 0;
+        font-size:13px;
     }
 }
 
@@ -1520,6 +1601,7 @@ button {
         clear:left;
         max-width:550px;
         margin:5px 0 10px 0;
+        font-size:13px;
     }
 }
 
@@ -1758,13 +1840,13 @@ button {
 *******************************
 ******************************/
 
-@media (max-width:767px) {
+@media (max-width:549px) {
     .button-hider {
         
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:550px) {
     .button-hider {
         display:none;
     }
@@ -1774,16 +1856,17 @@ button {
     position:absolute;
     left:0;
     top:0;
-    height:36px;
-    width:36px;
+    height:24px;
+    width:24px;
     font-size:32px;
     z-index:1000;
     color:#0075A9;
     background:#ddd;
+    border-radius:50px;
 }
 
 .picture-play-button-inside {
-    margin:-5px 0 0 -1px;
+    margin:-10px 0 0 0;
 }
 
 @media (max-width:549px) {
@@ -1798,6 +1881,7 @@ button {
 
 @media (min-width:550px) {
     .youtube-start-button-wrapper {
+        display:none;
         clear:left;
         float:left;
         margin:5px 5px 10px 0;

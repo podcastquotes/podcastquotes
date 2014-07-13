@@ -144,6 +144,8 @@ function startVideoAlone() {
 /* multiple YouTube players loaded on home, podcast, episode, and user pages */
 
 $(window).load(function () {
+    var i = 0
+
     var videoPlayerWrappers = document.getElementsByClassName('youtube-player-wrapper', i);
     var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
     var quoteWrappers = document.getElementsByClassName('pq-quote', i);
@@ -155,7 +157,7 @@ $(window).load(function () {
     var videoIDs = [];
     var nextPageButton = document.getElementById('next-page');
 
-    for (var i=0; i < 10; i++) {
+    for (i = 0; i < videoPlayerWrappers.length; ++i) {
         players[i] = 'player' + i;
         nodes[i] = 'youtube-player-' + (i + 1);
         params[i] = document.getElementById(nodes[i]);
@@ -177,7 +179,7 @@ $(window).load(function () {
     window.videoIDs = videoIDs;
     window.nextPageButton = nextPageButton;
 
-    for (var i=0; i < 10; i++) {
+    for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
             startButtonWrappers[i].addEventListener("click", startVideo(i));
         }
@@ -257,7 +259,7 @@ $(window).load(function () {
     }
     
     function continueVideos() {
-        for (var i=0; i < 10; i++) {
+        for (i = 0; i < videoPlayerWrappers.length; ++i) {
             if (videoIDs[i] != 'None' && videoIDs[i] != undefined) {
                 startButtonWrappers[i].click();
                 window.location.hash = '#pq-quote-' + (i + 1);

@@ -12,15 +12,15 @@ class HomeEpisodeListView(ListView):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
             return 'home.html'
-        elif view_type == 'slim':
+        else:
             return 'slim_home.html'
     ### WET - should use CBV inheritance
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
             return 10
-        elif view_type == 'slim':
-            return 100
+        else:
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -139,15 +139,15 @@ class HomeQuoteListView(ListView):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
             return 'home.html'
-        elif view_type == 'slim':
+        else:
             return 'slim_home.html'
     ### WET - should use CBV inheritance
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
             return 10
-        elif view_type == 'slim':
-            return 100
+        else:
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)
