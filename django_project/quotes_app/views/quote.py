@@ -63,6 +63,47 @@ class QuoteCreateView(CreateView):
         context['podcasts'] = Podcast.objects.all().order_by('title')
         
         return context
+    
+    def get_episode_id(self):
+        """
+        Robustly obtains a valid Episode id from the 'eid' uri param.
+        Returns None if it isn't valid (blank/not-exist/garbage/etc)
+        """
+        
+        eid = None
+        
+        try:
+            eid_uri_param = self.request.GET.get('eid')
+            
+            # Quit if the param doesn't exist
+            if eid_uri_param == None:
+                return None
+            
+            # Convert to int
+            eid = int(eid_uri_param)
+            
+            # Quit if episode doesn't exist
+            if not Episode.objects.filter(id=eid).exists():
+                return None
+            
+        except ValueError:
+            pass
+            
+        return eid
+    
+    def get_initial(self):
+        """
+        Called in the Django view pipeline to obtain initial data for
+        a form.
+        """
+        return_val = {}
+        
+        episode_id = self.get_episode_id()
+        
+        if episode_id != None:
+            return_val['episode'] = episode_id
+        
+        return return_val
 
 class QuoteUpdateView(UpdateView):
     model = Quote

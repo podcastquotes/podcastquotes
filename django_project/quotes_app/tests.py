@@ -450,6 +450,54 @@ class QuoteCreateTests(TestCase):
     def test_success_redirects_to_success_url(self):
         self.fail("Behavior not tested")
 
+
+class QuoteCreateInitialDataTests(TestCase):
+    
+    def setUp(self):
+        
+        self.podcast = Podcast.objects.create(title='asdf')
+        self.episode = Episode.objects \
+            .create(id=23, podcast=self.podcast, title='asdf2')
+        
+        self.view = view = QuoteCreateView()
+        view.request = RequestFactory().get('/whatever/')
+        
+    
+    def act(self, GET = None):
+        
+        if GET != None:
+            self.view.request.GET = GET
+        
+        self.result = self.view.get_initial()
+
+    def test_when_eid_param_is_present_and_valid(self):
+        
+        self.act(GET={'eid': '23'})
+        
+        self.assertEqual(self.result, {'episode': 23})
+    
+    def test_when_eid_param_is_present_with_bad_id(self):
+        
+        self.act(GET={'eid': '-2'})
+        
+        self.assertEqual(self.result.get('episode'), None,
+            "Episode should not be in initial data.")
+    
+    def test_when_eid_param_not_there(self):
+        
+        self.act(GET=None)
+        
+        self.assertEqual(self.result.get('episode'), None,
+            "There should not be episode initial data.")
+    
+    def test_when_eid_param_is_not_int_parsable(self):
+        
+        self.act(GET={'eid': 'fooooo'})
+        
+        self.assertEqual(self.result.get('episode'), None,
+            "It should ignore bad eids")
+        
+
 class QuoteUpdateTests(TestCase):
     
     def setUp(self):
@@ -492,8 +540,6 @@ class QuoteUpdateTests(TestCase):
         
         self.act()
 
-    
-    
 class EpisodeFieldTests(TestCase):
     
     def setUp(self):
