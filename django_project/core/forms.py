@@ -15,7 +15,7 @@ class PodcastCreateForm(forms.ModelForm):
     
     class Meta:
         model = Podcast
-        exclude = ('',)
+        exclude = ('alphabetical_title',)
         widgets = {
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
@@ -35,7 +35,7 @@ class PodcastForm(forms.ModelForm):
     
     class Meta:
         model = Podcast
-        exclude = ('moderators',)
+        exclude = ('moderators', 'alphabetical_title')
         widgets = {
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),

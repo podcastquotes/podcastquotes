@@ -56,6 +56,7 @@ class Podcast(models.Model):
     moderators = models.ManyToManyField(User, blank=True)
     rss_url = models.URLField(blank=True)
     title = models.CharField(max_length=200, blank=True)
+    alphabetical_title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
     keywords = models.CharField(max_length=500, blank=True)
     image = models.FileField(upload_to=get_upload_file_name, blank=True)
@@ -69,6 +70,39 @@ class Podcast(models.Model):
     youtube_url = models.URLField(blank=True)
     reddit_url = models.URLField(blank=True)
     managed_by_superuser = models.BooleanField(default=False)
+    is_hidden = models.BooleanField(default=False)
+    
+    def save(self, *args, **kwargs):
+        non_alpha_title = self.title
+        self.alphabetical_title = self.alphabetize_title(non_alpha_title)
+        super(Podcast, self).save(*args, **kwargs)
+    
+    # Adapted from respondcreate's SO post 
+    # http://stackoverflow.com/a/12062621/3791099
+    def alphabetize_title(self, title):
+        """
+        Returns an alphabetical-friendly string of a title attribute.
+        """
+        title = self.title
+        
+        # A list of flags to check each 'title' against.
+        starts_with_flags = [
+            'the ',
+            'an ',
+            'a '
+        ]
+        
+        # Check each flag to see if the title starts with one of it's contents.
+        for flag in starts_with_flags:
+            if title.lower().startswith(flag):
+                # If the title does indeed start with a flag, return the title without
+                # the flag appended to the end preceded by a comma.
+                return "%s, %s" % (title[len(flag):], title[:len(flag)-1])
+            else:
+                pass
+        # If the property did not return as a result of the previous for loop then
+        # return the title.
+        return self.title
     
     def get_absolute_url(self):
         return reverse('podcast_episode_list_root', kwargs={'pk': self.pk})
@@ -330,8 +364,8 @@ class UserProfile(models.Model):
             return k
         else:
             pass
-        
-    leaderboard_karma_total = property(karma_total)
+    # This property is too inefficient, removing karma leaderboard.   
+    # leaderboard_karma_total = property(karma_total)
     
     def get_absolute_url(self):
         return reverse('user_quote_list_root', kwargs={'slug': self.user})

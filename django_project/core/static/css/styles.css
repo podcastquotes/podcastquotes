@@ -1691,6 +1691,17 @@ button {
     color:#777;
 }
 
+.skip-button {
+    display:none;
+    color:#CC3232;
+    cursor:pointer;
+}
+
+.skip-button:hover {
+    color:#8E2323;
+    cursor:pointer;
+}
+
 .pq-quote-posted-by {
     clear:left;
     margin:10px 0 0 0;

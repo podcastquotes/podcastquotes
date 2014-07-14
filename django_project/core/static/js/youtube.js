@@ -148,13 +148,17 @@ $(window).load(function () {
 
     var videoPlayerWrappers = document.getElementsByClassName('youtube-player-wrapper', i);
     var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
+    var slimStartButtons = document.getElementsByClassName('pq-slim-quote-picture', i);
+    var episodeStartButtons = document.getElementsByClassName('pq-quote-episode-picture', i);
     var quoteWrappers = document.getElementsByClassName('pq-quote', i);
+    var skipButtons = document.getElementsByClassName('skip-button', i);
     var players = [];
     var nodes = [];
     var params = [];
     var startTimes = [];
     var endTimes = [];
     var videoIDs = [];
+    var openVideos = [];
     var nextPageButton = document.getElementById('next-page');
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
@@ -171,13 +175,17 @@ $(window).load(function () {
     // Set as global variables so continueVideos() will work
     window.videoPlayerWrappers = videoPlayerWrappers;
     window.startButtonWrappers = startButtonWrappers;
+    window.slimStartButtons = slimStartButtons;
+    window.episodeStartButtons = episodeStartButtons;
     window.players = players;
     window.nodes = nodes;
     window.params = params;
     window.startTimes = startTimes;
     window.endTimes = endTimes;
     window.videoIDs = videoIDs;
+    window.openVideos = openVideos;
     window.nextPageButton = nextPageButton;
+    window.skipButtons = skipButtons;
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
@@ -186,11 +194,18 @@ $(window).load(function () {
     }
 });
 
+/* STICK THIS SOMEWHERE, MAYBE MAKE IT A FUNCTION YOU CALL
+        for (i = 0; i < videoPlayerWrappers.length; ++i) {
+            $(players[i]).remove();
+        }
+*/
+
 function startVideo(i) {
     "use strict";
     return function () {
         $(startButtonWrappers[i]).hide();
         $(videoPlayerWrappers[i]).show();
+        $(skipButtons[i]).show();
         onYouTubeIframeAPIReady();
     
         function onYouTubeIframeAPIReady() {
@@ -211,26 +226,49 @@ function startVideo(i) {
             videoId: videoIDs[i],
             startSeconds: startTimes[i],
             endSeconds: endTimes[i]
-          });  
+          });
+          $(skipButtons[i]).click(function() {
+            event.target.destroy();
+            $(startButtonWrappers[i]).show();
+            $(videoPlayerWrappers[i]).hide();
+            $(skipButtons[i]).hide();
+            $(slimStartButtons).show();
+            $(episodeStartButtons).show();
+            var wasSkipped = true
+            window.wasSkipped = wasSkipped
+            playNextVideo();
+          });          
         }
 
         var done = false;
         function onPlayerStateChange(event) {
             if (event.data == 0) {
                 done = true;
+                event.target.destroy();
+                $(startButtonWrappers[i]).show();
+                $(videoPlayerWrappers[i]).hide();
+                $(skipButtons[i]).hide();
+                $(slimStartButtons).show();
+                $(episodeStartButtons).show();
                 playNextVideo();
             }
         };
         
         function playNextVideo() {
+            var viewType = getCookie('view_type');
             var autoplayOn = getCookie('_autoplay');
-            if (autoplayOn == 'true') {
-                for (var j=1; j < 9; j++) {
+            if (autoplayOn == 'true' || wasSkipped == true) {
+                wasSkipped = false;
+                for (var j=1; j < videoPlayerWrappers.length; j++) {
                     if (videoIDs[i + j] != 'None' && videoIDs[i + j] != undefined) {
                         startButtonWrappers[i + j].click();
                         window.location.hash = '#pq-quote-' + (i + j + 1);
                         break;
-                    } else if (i + j + 1 > 10 && nextPageButton != null) {
+                    } else if (i + j + 1 > 20 && nextPageButton != null && viewType == 'full') {
+                        setCookie('_autoplay_continued', 'true', 14)
+                        nextPageButton.click();
+                        break;
+                    } else if (i + j + 1 > 100 && nextPageButton != null) {
                         setCookie('_autoplay_continued', 'true', 14)
                         nextPageButton.click();
                         break;

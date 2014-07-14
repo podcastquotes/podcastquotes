@@ -26,6 +26,15 @@ class QuoteCreateView(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(QuoteCreateView, self).dispatch(*args, **kwargs)
     
+    """
+    def get_initial(self):
+        eid = self.request.GET['eid']
+        episode = Episode.objects.get(pk=eid)
+        p_title = episode.podcast.title
+        e_title = episode.title
+        return { 'podcast': 'p_title', 'episode': 2 }
+    """
+    
     def form_valid(self, form):
         self.object = quote = form.save(commit=False)
         quote.submitted_by = self.request.user
@@ -172,7 +181,8 @@ def quote(request, quote_id):
             q_object_next = item
             break
     
-    all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+    """
+    all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
     
     # take only the top 5 karma_leaders
     all_karma_leaders = all_karma_leaders[:5]
@@ -180,6 +190,7 @@ def quote(request, quote_id):
     # remove the users who have submitted 0 quotes
     # they may not want to have their username public
     all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
+    """
     
     all_episodes = Episode.objects.filter(podcast_id=q_object.episode.podcast_id).order_by('-publication_date')
     all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
@@ -196,7 +207,7 @@ def quote(request, quote_id):
                  {'podcasts': Podcast.objects.all().order_by('title'),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
                  'episodes': all_episodes_with_quotes,
-                 ('karma_leaders'): all_karma_leaders,
+                 # ('karma_leaders'): all_karma_leaders,
                  'quote_pseudo_list': q_pseudo_list,
                  'quote': q_object,
                  'quote_previous': q_object_prev,

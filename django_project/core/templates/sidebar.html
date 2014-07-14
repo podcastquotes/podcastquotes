@@ -126,72 +126,73 @@
         
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
-            <div class="pq-menu dark-link">
-              
-                <div class="pq-menu-toggle" id="karma-leaderboard-button-expand">
-                    <i class="fa fa-plus-square-o"></i>
-                </div>
-                <div class="pq-menu-toggle" id="karma-leaderboard-button-collapse" style="display:none;">
-                    <i class="fa fa-minus-square-o"></i>
-                </div>
-              
-                <div class="pq-menu-title">
-                    Karma Leaderboard
-                </div><!-- /.pq-menu-title -->
+            {% if karma_leaders %}
+                <div class="pq-menu dark-link">
+                  
+                    <div class="pq-menu-toggle" id="karma-leaderboard-button-expand">
+                        <i class="fa fa-plus-square-o"></i>
+                    </div>
+                    <div class="pq-menu-toggle" id="karma-leaderboard-button-collapse" style="display:none;">
+                        <i class="fa fa-minus-square-o"></i>
+                    </div>
                 
-                <div class="pq-menu-pulldown">
-                    {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
-                        All Podcasts
-                    {% endif %}
-                    <!--{% if is_podcast_page or is_episode_page or is_quote_page %}
-                        {{ podcast.title }}
-                    {% endif %}-->
-                </div><!-- /.pq-menu-pulldown -->
+                    <div class="pq-menu-title">
+                        Karma Leaderboard
+                    </div><!-- /.pq-menu-title -->
                 
-                <div class="clearfix">
-                </div>
+                    <div class="pq-menu-pulldown">
+                        {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
+                            All Podcasts
+                        {% endif %}
+                        <!--{% if is_podcast_page or is_episode_page or is_quote_page %}
+                            {{ podcast.title }}
+                        {% endif %}-->
+                    </div><!-- /.pq-menu-pulldown -->
+                    
+                    <div class="clearfix">
+                    </div>
 
-                {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
-                    <div class="pq-menu-options" id="karma-leaderboard" style="display:none;height:180px">
-                        <hr />
-                        {% for karma_leader in karma_leaders %}        
-                            <div class="pq-menu-option">
-                                <a href="/people/{{ karma_leader.username }}">
-                                    {% if karma_leader.userprofile.image %}
-                                        <img class="pq-menu-option-image" style="inline-block;" src="{{MEDIA_URL}}{{ karma_leader.userprofile.image }}">
-                                    {% endif %}
-                                    <span class="hidden-xs hidden-sm hidden-lg" style="vertical-align:top; display:inline-block; padding-top:1px">
-                                        {{ karma_leader|truncatechars:20 }}
-                                        <br>
-                                        <i>{{ karma_leader.userprofile.karma_total }}</i>
-                                    </span>
-                                    <span class="hidden-xs hidden-sm hidden-md" style="vertical-align:top; display:inline-block; padding-top:1px">
-                                        {{ karma_leader|truncatechars:25 }}
-                                        <br>
-                                        <i>{{ karma_leader.userprofile.karma_total }}</i>
-                                    </span>
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div><!-- /.pq-menu-options -->
-                    
-                    <script>
-                        $(document).ready(function() {
-                            $("#karma-leaderboard-button-expand").click(function(){
-                                $("#karma-leaderboard").slideDown('medium');
-                                $("#karma-leaderboard-button-expand").hide();
-                                $("#karma-leaderboard-button-collapse").show();
+                    {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
+                        <div class="pq-menu-options" id="karma-leaderboard" style="display:none;height:180px">
+                            <hr />
+                            {% for karma_leader in karma_leaders %}        
+                                <div class="pq-menu-option">
+                                    <a href="/people/{{ karma_leader.username }}">
+                                        {% if karma_leader.userprofile.image %}
+                                            <img class="pq-menu-option-image" style="inline-block;" src="{{MEDIA_URL}}{{ karma_leader.userprofile.image }}">
+                                        {% endif %}
+                                        <span class="hidden-xs hidden-sm hidden-lg" style="vertical-align:top; display:inline-block; padding-top:1px">
+                                            {{ karma_leader|truncatechars:20 }}
+                                            <br>
+                                            <i>{{ karma_leader.userprofile.karma_total }}</i>
+                                        </span>
+                                        <span class="hidden-xs hidden-sm hidden-md" style="vertical-align:top; display:inline-block; padding-top:1px">
+                                            {{ karma_leader|truncatechars:25 }}
+                                            <br>
+                                            <i>{{ karma_leader.userprofile.karma_total }}</i>
+                                        </span>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div><!-- /.pq-menu-options -->
+                        
+                        <script>
+                            $(document).ready(function() {
+                                $("#karma-leaderboard-button-expand").click(function(){
+                                    $("#karma-leaderboard").slideDown('medium');
+                                    $("#karma-leaderboard-button-expand").hide();
+                                    $("#karma-leaderboard-button-collapse").show();
+                                });
+                                $("#karma-leaderboard-button-collapse").click(function(){
+                                    $("#karma-leaderboard").slideUp('medium');
+                                    $("#karma-leaderboard-button-expand").show();
+                                    $("#karma-leaderboard-button-collapse").hide();
+                                });
                             });
-                            $("#karma-leaderboard-button-collapse").click(function(){
-                                $("#karma-leaderboard").slideUp('medium');
-                                $("#karma-leaderboard-button-expand").show();
-                                $("#karma-leaderboard-button-collapse").hide();
-                            });
-                        });
-                    </script>
-                    
-                {% endif %}
-            </div><!-- /.pq-menu -->
+                        </script>
+                    {% endif %}
+                </div><!-- /.pq-menu -->
+            {% endif %}
         {% endif %}
         
     </div><!-- /.pq-sidebar -->

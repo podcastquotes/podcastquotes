@@ -17,7 +17,7 @@ class UserProfileUpdateView(UpdateView):
         context = super(UserProfileUpdateView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['person'] = User.objects.get(username=self.kwargs['slug'])
         
@@ -48,7 +48,7 @@ class UserProfileDeleteView(DeleteView):
         context = super(UserProfileDeleteView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['person'] = User.objects.get(username=self.kwargs['slug'])
 
@@ -78,9 +78,9 @@ class UserQuoteListView(ListView):
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
-            return 10
+            return 20
         else:
-            return 50
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(UserQuoteListView, self).get_context_data(**kwargs)
@@ -92,11 +92,12 @@ class UserQuoteListView(ListView):
             f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['person'] = User.objects.get(username=self.kwargs['slug'])
         
-        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        """
+        all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # take only the top 5 karma_leaders
         all_karma_leaders = all_karma_leaders[:5]
@@ -106,6 +107,7 @@ class UserQuoteListView(ListView):
         all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
         
         context['karma_leaders'] = all_karma_leaders
+        """
         
         context['is_home_page'] = False
         context['is_podcast_page'] = False

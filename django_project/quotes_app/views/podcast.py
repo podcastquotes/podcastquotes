@@ -108,7 +108,7 @@ class PodcastCreateView(CreateView):
         context = super(PodcastCreateView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
 
         return context
 
@@ -121,7 +121,7 @@ class PodcastUpdateView(UpdateView):
         context = super(PodcastUpdateView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
 
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
         all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
@@ -148,7 +148,7 @@ class PodcastDeleteView(DeleteView):
         context = super(PodcastDeleteView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
 
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
         all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
@@ -179,9 +179,9 @@ class PodcastEpisodeListView(ListView):
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
-            return 10
+            return 20
         else:
-            return 50
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(PodcastEpisodeListView, self).get_context_data(**kwargs)
@@ -193,7 +193,7 @@ class PodcastEpisodeListView(ListView):
             f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         
@@ -202,7 +202,8 @@ class PodcastEpisodeListView(ListView):
         
         context['episodes'] = all_episodes_with_quotes
         
-        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        """
+        all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # take only the top 5 karma_leaders
         all_karma_leaders = all_karma_leaders[:5]
@@ -212,6 +213,7 @@ class PodcastEpisodeListView(ListView):
         all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
         
         context['karma_leaders'] = all_karma_leaders
+        """
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = False
@@ -263,7 +265,7 @@ class PodcastEpisodeListView(ListView):
         elif f == 'birthdays':
             context['podcast_birthdays_is_active'] = True
         else:
-            context['podcast_hot_is_active'] = True
+            context['podcast_ordered_is_active'] = True
         
         return context
     
@@ -300,7 +302,7 @@ class PodcastEpisodeListView(ListView):
         elif f == 'birthdays':
             return Quote.quote_vote_manager.query_birthdays().filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
         else:
-            return Quote.quote_vote_manager.query_hot().filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
+            return Quote.quote_vote_manager.query_ordered('full_episodes').filter(episode__podcast_id=p.id).exclude(is_full_episode=False)
 
 class PodcastQuoteListView(ListView):
     model = Quote
@@ -316,9 +318,9 @@ class PodcastQuoteListView(ListView):
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
-            return 10
+            return 20
         else:
-            return 50
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
@@ -330,7 +332,7 @@ class PodcastQuoteListView(ListView):
             f = 0
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         
@@ -339,7 +341,8 @@ class PodcastQuoteListView(ListView):
         
         context['episodes'] = all_episodes_with_quotes
         
-        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        """
+        all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # take only the top 5 karma_leaders
         all_karma_leaders = all_karma_leaders[:5]
@@ -349,6 +352,7 @@ class PodcastQuoteListView(ListView):
         all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
         
         context['karma_leaders'] = all_karma_leaders
+        """
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = False

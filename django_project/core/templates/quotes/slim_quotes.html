@@ -445,7 +445,7 @@
                 {% elif not quote.time_quote_ends %}
                     Starts: {{ quote.converted_time_begins }}
                 {% endif %}
-                {% if is_quote_page or is_user_page or is_episode_page %}
+                {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
                     {% if quote.time_quote_ends %}
                         / {{ quote.converted_time_begins }} 
                         {% if quote.time_quote_ends %}
@@ -466,6 +466,10 @@
     </div>
 
     <div class="pq-quote-bottom-buttons" style="float:left;clear:left;">
+    
+        <div class="skip-button pq-quote-bottom-button" id="skip-button-{{ forloop.counter }}">
+            skip
+        </div>
     
         <!-- Button trigger modal -->
         

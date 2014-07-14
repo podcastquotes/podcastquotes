@@ -18,9 +18,9 @@ class HomeEpisodeListView(ListView):
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
-            return 10
+            return 20
         else:
-            return 50
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -31,9 +31,10 @@ class HomeEpisodeListView(ListView):
             f = False   
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
-        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        """
+        all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # take only the top 5 karma_leaders
         all_karma_leaders = all_karma_leaders[:5]
@@ -43,6 +44,7 @@ class HomeEpisodeListView(ListView):
         all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
         
         context['karma_leaders'] = all_karma_leaders
+        """
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True
@@ -145,9 +147,9 @@ class HomeQuoteListView(ListView):
     def get_paginate_by(self, queryset):
         view_type = self.request.COOKIES.get('view_type')
         if view_type == 'full':
-            return 10
+            return 20
         else:
-            return 50
+            return 100
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)
@@ -158,9 +160,10 @@ class HomeQuoteListView(ListView):
             f = False   
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
-        all_karma_leaders = sorted(User.objects.all(), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
+        """
+        all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
         
         # take only the top 5 karma_leaders
         all_karma_leaders = all_karma_leaders[:5]
@@ -170,6 +173,7 @@ class HomeQuoteListView(ListView):
         all_karma_leaders = [i for i in all_karma_leaders if i.userprofile.leaderboard_karma_total != None]
         
         context['karma_leaders'] = all_karma_leaders
+        """
         
         # these allow the template to know if a breadcrumb should be displayed within quote divs
         context['is_home_page'] = True
