@@ -26,15 +26,6 @@ class QuoteCreateView(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(QuoteCreateView, self).dispatch(*args, **kwargs)
     
-    """
-    def get_initial(self):
-        eid = self.request.GET['eid']
-        episode = Episode.objects.get(pk=eid)
-        p_title = episode.podcast.title
-        e_title = episode.title
-        return { 'podcast': 'p_title', 'episode': 2 }
-    """
-    
     def form_valid(self, form):
         self.object = quote = form.save(commit=False)
         quote.submitted_by = self.request.user
