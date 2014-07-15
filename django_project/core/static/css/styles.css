@@ -280,7 +280,7 @@ a {
 
 @media (min-width:768px) and (max-width:991px) {
     .pq-navbar-container {
-        max-width:728px;
+        max-width:738px;
         margin:0 auto;
     }
 }
@@ -408,10 +408,16 @@ a {
 }
 
 .pq-brand {
-    margin:4px 30px 5px 0;
+    margin:4px 10px 5px 0;
     float:left;
     font-size:22px;
     font-weight:300;
+}
+
+@media (max-width:991px) {
+    .pq-brand {
+        margin-right:0;
+    }
 }
 
 @media (max-width:767px) {
@@ -436,6 +442,41 @@ a {
 
 .pq-brand a:hover {
     color:#bbb;
+}
+
+.pq-search-bar {
+    float:left;
+    line-height:36px;
+    margin-top:4px;
+}
+
+.pq-search-bar input {
+    width:220px; 
+    font-size:14px; 
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
+}
+
+@media (min-width:992px) {
+    .pq-search-bar input {
+        width:260px;
+    }
+}
+
+.pq-search-bar-button {
+    float:left;
+    margin:2px 0 0 -4px;
+    width:36px;
+    height:36px;
+    line-height:36px;
+    background:#fff;
+    color:#777;
+    border-top:1px solid #aaa;
+    border-right:1px solid #aaa;
+    border-bottom:1px solid #aaa;
+    text-align:center;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:30px;
 }
 
 .pq-login {
@@ -1870,7 +1911,7 @@ button {
     height:24px;
     width:24px;
     font-size:32px;
-    z-index:1000;
+    z-index:2;
     color:#0075A9;
     background:#ddd;
     border-radius:50px;

@@ -1,6 +1,11 @@
+import autocomplete_light
+autocomplete_light.autodiscover()
+
 from django.conf.urls import patterns, include, url
+
 from django.contrib import admin
 admin.autodiscover()
+
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import RedirectView
@@ -12,9 +17,13 @@ from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDelete
 from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint, create_full_episodes
 from quotes_app.views.user import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views.vote import VoteFormView
+from quotes_app.views.autocomplete import navigation_autocomplete
 
 
 urlpatterns = patterns('',
+    url(r'^autocomplete/', include('autocomplete_light.urls')),
+    
+    url(r'navigation-autocomplete/', 'quotes_app.views.autocomplete.navigation_autocomplete', name='navigation_autocomplete'),
     
     url(r'^about/$', 'quotes_app.views.pq.about_pq', name='about_pq'),
     

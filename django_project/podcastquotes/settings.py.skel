@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     
     'captcha',
     'south',
+    'autocomplete_light',
 
 
     
@@ -90,7 +91,8 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
                 BASE_DIR+'/core/templates/quotes',
                 BASE_DIR+'/core/templates/users',
                 BASE_DIR+'/core/templates/pq',
-                BASE_DIR+'/core/templates/superuser_tools']
+                BASE_DIR+'/core/templates/superuser_tools',
+                BASE_DIR+'/core/templates/navigation_autocomplete',]
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of 'allauth'

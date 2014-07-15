@@ -13,7 +13,23 @@
               <div class="pq-brand">
                 <a href="/"><img class="pq-brand-img" src="/static/img/podverse-brand.png"></a>
               </div><!-- /.pq-brand -->
+              
             </div><!-- /.navbar-header -->
+            
+            <div class="col-sm-7 pull-left hidden-xs">
+                <form class="navbar-form pq-search-bar" role="search">
+                    <div class=" pull-left">
+                        <input type="text" 
+                               class="form-control" 
+                               name="q" 
+                               id="navigation_autocomplete" />
+                    </div>
+                    <div class="pq-search-bar-button">
+                        <i style="font-size:19px;margin:0 4px 0 0;" class="fa fa-search"></i>
+                    </div>
+                </form>
+            </div>
+            
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar1">
               <!-- probably not include this, makes navbar too busy
@@ -38,6 +54,7 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     
+                    <!--
                     {% if request.user.is_superuser %}
                     <li>
                         <a class="pq-navbar-dropdown-2" href="{% url 'podcast_create' %}">
@@ -53,26 +70,27 @@
                         </a>
                     </li>
                     {% endif %}
+                    -->
                     
                     <li>
                         <a class="pq-navbar-dropdown-2" 
+                           style="padding-left:0;"
                            href="{% if is_podcast_page %}
                                      {% url 'quote_create' %}?pid={{podcast.id}}
                                  {% elif is_episode_page %}
-                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                     {% url 'quote_create' %}?eid={{episode.id}}
                                  {% elif is_quote_page %}
-                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                     {% url 'quote_create' %}?eid={{quote.episode.id}}
                                  {% else %}
                                      {% url 'quote_create' %}
-                                 {% endif %}
-                            ">
-                            <i class="fa fa-plus-square"></i>&nbsp Add a Clip
+                                 {% endif %}">
+                                 <i class="fa fa-plus-square"></i> Add a Clip
                         </a>
                     </li>
                     
                     <li>
                         <a class="pq-navbar-dropdown-1 dropdown-toggle" data-toggle="dropdown">
-                            {{ request.user.username }} <i class="fa fa-caret-down"></i>
+                            {{ request.user.username|truncatechars:11 }} <i class="fa fa-caret-down"></i>
                         </a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="/people/{{ request.user.username }}">My Profile</a></li>
@@ -87,14 +105,13 @@
                            href="{% if is_podcast_page %}
                                      {% url 'quote_create' %}?pid={{podcast.id}}
                                  {% elif is_episode_page %}
-                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                     {% url 'quote_create' %}?eid={{episode.id}}
                                  {% elif is_quote_page %}
-                                     {% url 'quote_create' %}?pid={{podcast.id}}&eid={{episode.id}}
+                                     {% url 'quote_create' %}?eid={{quote.episode.id}}
                                  {% else %}
                                      {% url 'quote_create' %}
-                                 {% endif %}
-                            ">
-                            <i class="fa fa-plus-square"></i> Add a Clip
+                                 {% endif %}">
+                                 <i class="fa fa-plus-square"></i> Add a Clip
                         </a>
                     </li>
                     

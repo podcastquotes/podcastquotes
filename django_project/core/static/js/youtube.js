@@ -150,6 +150,7 @@ $(window).load(function () {
     var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
     var slimStartButtons = document.getElementsByClassName('pq-slim-quote-picture', i);
     var episodeStartButtons = document.getElementsByClassName('pq-quote-episode-picture', i);
+    var fullStartButtons = document.getElementsByClassName('pq-quote-episode-clip', i);
     var quoteWrappers = document.getElementsByClassName('pq-quote', i);
     var skipButtons = document.getElementsByClassName('skip-button', i);
     var players = [];
@@ -177,6 +178,7 @@ $(window).load(function () {
     window.startButtonWrappers = startButtonWrappers;
     window.slimStartButtons = slimStartButtons;
     window.episodeStartButtons = episodeStartButtons;
+    window.fullStartButtons = fullStartButtons;
     window.players = players;
     window.nodes = nodes;
     window.params = params;
@@ -233,6 +235,7 @@ function startVideo(i) {
             $(videoPlayerWrappers[i]).hide();
             $(skipButtons[i]).hide();
             $(slimStartButtons).show();
+            $(fullStartButtons).show();
             $(episodeStartButtons).show();
             var wasSkipped = true
             window.wasSkipped = wasSkipped
@@ -249,6 +252,7 @@ function startVideo(i) {
                 $(videoPlayerWrappers[i]).hide();
                 $(skipButtons[i]).hide();
                 $(slimStartButtons).show();
+                $(fullStartButtons).show();
                 $(episodeStartButtons).show();
                 playNextVideo();
             }

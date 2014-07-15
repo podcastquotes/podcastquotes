@@ -467,13 +467,9 @@
 
     <div class="pq-quote-bottom-buttons" style="float:left;clear:left;">
     
-        <div class="skip-button pq-quote-bottom-button" id="skip-button-{{ forloop.counter }}">
-            skip
-        </div>
-    
         <!-- Button trigger modal -->
         
-        <button class="pq-quote-bottom-button" style="margin:0 15px 0 0;" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
+        <button class="pq-quote-bottom-button" style="margin:0 20px 0 0;" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
         </button>
         
@@ -498,7 +494,7 @@
 
         {% if is_home_page or is_quote_page or is_user_page %}
             {% if quote.episode.support_url %}
-                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 20px 0 0;">
                     <a href=
                     "{% if quote.episode.support_url %}
                         {{ quote.episode.support_url }}
@@ -508,7 +504,7 @@
                     </a>
                 </div>
             {% elif quote.episode.podcast.support_url %}
-                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 20px 0 0;">
                     <a href=
                     "{% if quote.episode.podcast.support_url %}
                         {{ quote.episode.podcast.support_url }}
@@ -523,7 +519,7 @@
         
         {% if is_podcast_page %}
             {% if quote.episode.support_url %}
-                <div class="pq-quote-bottom-button text-orange" style="margin:0 15px 0 0;">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 20px 0 0;">
                     <a href=
                     "{% if quote.episode.podcast.support_url %}
                         {{ quote.episode.podcast.support_url }}
@@ -537,13 +533,17 @@
         
         {% if request.user == quote.submitted_by or user.is_superuser %}
             <div class="pq-quote-bottom-button text-purple"
-                 style="margin:0 15px 0 0;">
+                 style="margin:0 20px 0 0;">
                 <a href="{{ quote.get_absolute_url }}edit/">
                     edit clip
                 </a>
             </div>
         {% endif %}
 
+        <div class="skip-button pq-quote-bottom-button" style="margin:0 20px 0 0;" id="skip-button-{{ forloop.counter }}">
+            skip
+        </div>
+        
         <div class="clearfix">
         </div>
           
