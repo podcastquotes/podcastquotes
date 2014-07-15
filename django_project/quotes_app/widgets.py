@@ -85,8 +85,8 @@ class EpisodeEstablisherWidget(Widget):
         """
 
         return (
-            data[self.get_podcast_id_form_name(name)],
-            data[self.get_podcast_title_form_name(name)],
-            data[self.get_episode_id_form_name(name)],
-            data[self.get_episode_title_form_name(name)]
+            data.get(self.get_podcast_id_form_name(name)),
+            data.get(self.get_podcast_title_form_name(name)),
+            data.get(self.get_episode_id_form_name(name)),
+            data.get(self.get_episode_title_form_name(name))
         )

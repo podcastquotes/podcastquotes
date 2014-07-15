@@ -681,6 +681,21 @@ class EpisodeEstablisherWidgetTests(TestCase):
         value = None
         
         result = self.widget.render(name, value)
+       
+    def test_that_it_handles_data_with_no_titles(self):
+        
+        name = 'whatever'
+        
+        # Only PK's are provided (enough for it to figure it out)
+        data = { 
+            self.widget.get_episode_id_form_name(name): '5',
+            self.widget.get_podcast_id_form_name(name): '102'
+        }
+        
+        result = self.widget.value_from_datadict(data, None, name)
+        
+        self.assertEqual(result, ('102', None, '5', None))
+        
         
 class EpisodeListJSONEndpointTests(TestCase):
     
