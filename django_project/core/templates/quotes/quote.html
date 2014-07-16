@@ -30,6 +30,8 @@
     
     {% include 'main_col_width.html' %}
     
+    {% include 'autocomplete_slim.html' %}
+    
     {% if not quote.is_full_episode|is_true %}
         {% if quote_previous or quote_next %}
             <table style="width:100%;margin:-17px 0 0 0;">

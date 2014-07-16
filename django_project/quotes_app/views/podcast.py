@@ -181,7 +181,7 @@ class PodcastEpisodeListView(ListView):
         if view_type == 'full':
             return 20
         else:
-            return 100
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(PodcastEpisodeListView, self).get_context_data(**kwargs)
@@ -320,7 +320,7 @@ class PodcastQuoteListView(ListView):
         if view_type == 'full':
             return 20
         else:
-            return 100
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)

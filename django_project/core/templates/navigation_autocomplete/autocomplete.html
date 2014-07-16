@@ -1,15 +1,14 @@
 {% load url from future %}
 
-
 <span style="color:#111;">
     {% if nav_podcasts %}
-        <strong>Podcasts</strong><br>
+        &nbsp <strong>Podcasts</strong><br>
         {% for podcast in nav_podcasts %}
             <a class="div choice" href="{{ podcast.get_absolute_url }}">{{ podcast }}</a>
         {% endfor %}
     {% endif %}
     {% if nav_episodes %}
-        <strong>Episodes</strong><br>
+        &nbsp <strong>Episodes</strong><br>
         {% for episode in nav_episodes %}
             <a class="div choice" href="{{ episode.get_absolute_url }}">{{ episode }}</a>
         {% endfor %}

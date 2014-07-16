@@ -20,7 +20,7 @@ class HomeEpisodeListView(ListView):
         if view_type == 'full':
             return 20
         else:
-            return 100
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -149,7 +149,7 @@ class HomeQuoteListView(ListView):
         if view_type == 'full':
             return 20
         else:
-            return 100
+            return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)

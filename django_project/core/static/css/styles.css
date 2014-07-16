@@ -463,6 +463,18 @@ a {
     }
 }
 
+.pq-search-bar-slim {
+    line-height:36px;
+    margin-top:-15px;
+    margin-bottom:5px;
+}
+
+.pq-search-bar-slim input {
+    font-size:14px; 
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
+}
+
 .pq-search-bar-button {
     float:left;
     margin:2px 0 0 -4px;
@@ -475,6 +487,11 @@ a {
     border-right:1px solid #aaa;
     border-bottom:1px solid #aaa;
     text-align:center;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:30px;
+}
+
+.pq-search-bar-button-slim {
     border-top-right-radius:30px;
     border-bottom-right-radius:30px;
 }

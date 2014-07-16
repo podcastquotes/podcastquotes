@@ -9,6 +9,7 @@ from datetime import date, datetime
 from time import time
 import pytz
 from urlparse import urlparse, parse_qs
+from django_resized import ResizedImageField
  
 today = date.today()
 
@@ -59,7 +60,7 @@ class Podcast(models.Model):
     alphabetical_title = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
     keywords = models.CharField(max_length=500, blank=True)
-    image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    image = ResizedImageField(upload_to=get_upload_file_name, max_width=250, max_height=250, blank=True)
     homepage = models.URLField(blank=True)
     support_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
@@ -137,7 +138,7 @@ class Episode(models.Model):
     duration = models.IntegerField(null=True, blank=True)
     publication_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
-    image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    image = ResizedImageField(upload_to=get_upload_file_name, max_width=250, max_height=250, blank=True)
     episode_url = models.URLField(blank=True)
     youtube_url = models.URLField(blank=True)
     support_url = models.URLField(blank=True)
@@ -334,7 +335,7 @@ class Vote(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
-    image = models.FileField(upload_to=get_upload_file_name, blank=True)
+    image = ResizedImageField(upload_to=get_upload_file_name, max_width=250, max_height=250, blank=True)
     about = models.TextField(blank=True)
     homepage = models.URLField(blank=True)
     support_url = models.URLField(blank=True)
