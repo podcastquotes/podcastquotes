@@ -63,8 +63,7 @@ class EpisodeUpdateView(UpdateView):
         context['podcast'] = Podcast.objects.get(id=e.podcast.id)
         
         all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         return context
         
     def get_object(self, *args, **kwargs):
@@ -144,9 +143,8 @@ class EpisodeQuoteListView(ListView):
         context['podcast'] = Podcast.objects.get(id=e.podcast.id)
         
         all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
         
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         
         context['episode'] = Episode.objects.get(id=self.kwargs['pk'])
         

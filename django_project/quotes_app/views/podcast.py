@@ -124,9 +124,8 @@ class PodcastUpdateView(UpdateView):
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
 
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
         
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         return context
         
     def get_object(self, *args, **kwargs):
@@ -151,9 +150,8 @@ class PodcastDeleteView(DeleteView):
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
 
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
         
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         return context
 
     def get_object(self, *args, **kwargs):
@@ -198,9 +196,7 @@ class PodcastEpisodeListView(ListView):
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
-        
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         
         """
         all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)
@@ -337,9 +333,7 @@ class PodcastQuoteListView(ListView):
         context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
         
         all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
-        
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         
         """
         all_karma_leaders = sorted(User.objects.exclude(id=1), key = lambda u: u.userprofile.leaderboard_karma_total, reverse=True)

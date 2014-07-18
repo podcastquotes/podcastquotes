@@ -117,9 +117,7 @@ class QuoteUpdateView(UpdateView):
         context['podcast'] = Podcast.objects.get(id=q.episode.podcast.id)
         
         all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
-        
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
         
         context['episode'] = Episode.objects.get(id=q.episode.id)        
         return context
@@ -174,9 +172,7 @@ class QuoteDeleteView(DeleteView):
         context['podcast'] = Podcast.objects.get(id=q.episode.podcast.id)
         
         all_episodes = Episode.objects.filter(podcast_id=podcast_id).order_by('-publication_date')
-        all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
-        
-        context['episodes'] = all_episodes_with_quotes
+        context['episodes'] = all_episodes
 
         return context
         
@@ -225,7 +221,6 @@ def quote(request, quote_id):
     """
     
     all_episodes = Episode.objects.filter(podcast_id=q_object.episode.podcast_id).order_by('-publication_date')
-    all_episodes_with_quotes = [i for i in all_episodes if i.all_episode_quotes_property != 0]
     
     # this gives the top quotes that appear a degree of randomness
     more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().exclude(is_full_episode=True).filter(episode_id=q_object.episode.id)[:20], key=lambda x: random.random())
@@ -238,7 +233,7 @@ def quote(request, quote_id):
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all().order_by('title'),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
-                 'episodes': all_episodes_with_quotes,
+                 'episodes': all_episodes,
                  # ('karma_leaders'): all_karma_leaders,
                  'quote_pseudo_list': q_pseudo_list,
                  'quote': q_object,
