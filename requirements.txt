@@ -8,5 +8,6 @@ South==0.8.4
 mock==1.0.1
 django-mailgun==0.2.2
 django-autocomplete-light==1.4.14
+django-stdimage==0.5.10
 django-resized==0.2.4
 Pillow==2.5.1

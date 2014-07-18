@@ -161,6 +161,7 @@ $(window).load(function () {
     var videoIDs = [];
     var openVideos = [];
     var nextPageButton = document.getElementById('next-page');
+    var wasSkipped = false
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         players[i] = 'player' + i;
@@ -188,6 +189,7 @@ $(window).load(function () {
     window.openVideos = openVideos;
     window.nextPageButton = nextPageButton;
     window.skipButtons = skipButtons;
+    window.wasSkipped = wasSkipped
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
@@ -272,7 +274,7 @@ function startVideo(i) {
                         setCookie('_autoplay_continued', 'true', 14)
                         nextPageButton.click();
                         break;
-                    } else if (i + j + 1 > 100 && nextPageButton != null) {
+                    } else if (i + j + 1 > 50 && nextPageButton != null) {
                         setCookie('_autoplay_continued', 'true', 14)
                         nextPageButton.click();
                         break;
