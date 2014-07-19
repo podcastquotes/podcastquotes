@@ -9,12 +9,12 @@
 
 {% if is_episode_page %}
     <a href="/" >Home</a> > 
-    <a href="{{ podcast.get_absolute_url }}" class="blue-link">{{ podcast.title|truncatechars:24 }}</a> >
-    {{ episode.title|truncatechars:24 }}
+    <a href="{{ podcast.get_absolute_url }}" class="blue-link">{{ podcast.title|truncatechars:30 }}</a> >
+    {{ episode.title|truncatechars:30 }}
 {% endif %}
 
 {% if is_user_page %}
     <a href="/">Home</a> >
-    {{ person.username|truncatechars:24 }}
+    {{ person.username|truncatechars:30 }}
 {% endif %}
 </div><!-- /.pq-breadcrumb -->

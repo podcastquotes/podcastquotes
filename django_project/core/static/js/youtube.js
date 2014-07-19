@@ -225,12 +225,22 @@ function startVideo(i) {
         // When the player is ready, we load the video.
         // loadVideoById starts the video automatically.
         // cueVideoById does not start the video automatically.
+        
         function onPlayerReady(event) {
-          event.target.loadVideoById({ 
-            videoId: videoIDs[i],
-            startSeconds: startTimes[i],
-            endSeconds: endTimes[i]
-          });
+          var autoplayOn = getCookie('_autoplay');
+          if (autoplayOn==='true') {
+              event.target.loadVideoById({ 
+                videoId: videoIDs[i],
+                startSeconds: startTimes[i],
+                endSeconds: endTimes[i]
+              });
+          } else {
+              event.target.cueVideoById({ 
+                videoId: videoIDs[i],
+                startSeconds: startTimes[i],
+                endSeconds: endTimes[i]
+              });
+          };
           $(skipButtons[i]).click(function() {
             event.target.destroy();
             $(startButtonWrappers[i]).show();

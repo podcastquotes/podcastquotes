@@ -1634,7 +1634,7 @@ button {
         display:none;
         max-width:550px;
         margin:5px 0 10px 0;
-        font-size:13px;
+        font-size:14px;
     }
 }
 
@@ -1644,7 +1644,7 @@ button {
         display:none;
         max-width:550px;
         margin:5px 0 10px 0;
-        font-size:13px;
+        font-size:14px;
     }
 }
 
@@ -1652,7 +1652,7 @@ button {
     .pq-quote-text-preview {
         max-width:550px;
         margin:5px 0 10px 0;
-        font-size:13px;
+        font-size:14px;
     }
 }
 
@@ -1661,7 +1661,7 @@ button {
         clear:left;
         max-width:550px;
         margin:5px 0 10px 0;
-        font-size:13px;
+        font-size:14px;
     }
 }
 
@@ -1922,6 +1922,18 @@ button {
         display:none;
     }
 }
+
+@media (max-width:549px) {
+    .button-hider-xs {
+        display:none;
+    }
+}
+
+@media (min-width:550px) {
+    .button-hider-xs {
+    }
+}
+
 
 .picture-play-button {
     position:absolute;
