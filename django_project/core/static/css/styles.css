@@ -492,8 +492,8 @@ a {
 }
 
 .pq-search-bar-button-slim {
-    border-top-right-radius:30px;
-    border-bottom-right-radius:30px;
+    border-top-left-radius:30px;
+    border-bottom-left-radius:30px;
 }
 
 .pq-login {
@@ -1227,6 +1227,23 @@ a {
 @media (min-width:768px) {
     .pq-responsive-autoplay-button  {
         float:right;
+    }
+}
+
+@media (max-width:767px) {
+    .pq-previous-next-wrap {
+        padding:8px 0 7px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-previous-next-wrap {
+    }
+}
+
+@media (max-width:767px) {
+    .pq-autoplay {
+        display:none;
     }
 }
 
