@@ -57,9 +57,6 @@ def update_all_existing_episodes(self):
                 
             episode, created = Episode.objects.get_or_create(podcast_id=podcast_id, guid=e_guid)
             
-            if created == False:
-                continue
-            
             episode.title = e.title
             episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
             episode.description = strip_tags(e.description)
