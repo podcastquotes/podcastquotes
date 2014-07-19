@@ -219,6 +219,12 @@
                     {% endif %}
                 {% endif %}
                 
+                {% if is_podcast_episodes_page %}
+                    <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                        Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
+                    </a>
+                {% endif %}
+                
                 {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
                     {% if quote.episode.title %} 
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
@@ -250,6 +256,12 @@
                     </a>
                     <br>
                 {% endif %}
+            {% endif %}
+            
+            {% if is_podcast_episodes_page %}
+                <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                    Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
+                </a>
             {% endif %}
             
             {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
