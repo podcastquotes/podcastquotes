@@ -40,6 +40,8 @@ urlpatterns = patterns('',
     # if not, it creates one.
     url(r'^create-full-episodes/$', 'quotes_app.views.superuser_tools.create_full_episodes', name='create_full_episodes'),
     
+    url(r'^update-all-existing-episodes/$', 'quotes_app.views.superuser_tools.update_all_existing_episodes', name='update_all_existing_episodes'),
+    
     # this view helps Mitch check episodes in a podcast rss feed
     url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
     
