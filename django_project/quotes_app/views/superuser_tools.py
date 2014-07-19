@@ -1,7 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
