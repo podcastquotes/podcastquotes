@@ -32,7 +32,7 @@ class EpisodeUpdateView(UpdateView):
     
     def form_valid(self, form):
         self.object = episode = form.save(commit=False)
-        if episode.youtube_url:
+        if episode.youtube_url or episode.episode_url:
             try:
                 full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
             except ObjectDoesNotExist:

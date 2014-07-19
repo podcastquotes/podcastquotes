@@ -13,9 +13,12 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 def create_full_episodes(self):
     episodes = Episode.objects.all()
     for episode in episodes:
-        if episode.youtube_url:
+        if episode.youtube_url or episode.episode_url:
             try:
                 full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
+            except MultipleObjectsReturned:
+                alert('Episode #' + str(episode.id) + 'returns multiple objects!')
+                break
             except ObjectDoesNotExist:
                 # user with id=1 is the user "podverse" on podverse.tv
                 user = User.objects.get(id=1)

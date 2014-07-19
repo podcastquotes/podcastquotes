@@ -7,10 +7,16 @@
             <a class="div choice" href="{{ podcast.get_absolute_url }}">{{ podcast }}</a>
         {% endfor %}
     {% endif %}
+    {% if not nav_podcasts %}
+        <em>No podcasts found.</em>
+    {% endif %}
     {% if nav_episodes %}
         &nbsp <strong>Episodes</strong><br>
         {% for episode in nav_episodes %}
             <a class="div choice" href="{{ episode.get_absolute_url }}">{{ episode }}</a>
         {% endfor %}
+    {% endif %}
+    {% if not nav_episodes %}
+        <em>No episodes found.</em>
     {% endif %}
 </span>

@@ -81,7 +81,15 @@ class PodcastSyndicationService():
         
         for e in feed.entries:
             e_guid = e.guid
+                
             episode, created = Episode.objects.get_or_create(podcast_id=podcast_id, guid=e_guid)
+            
+            try:
+                episode.episode_url = e.enclosures[0].href
+            except IndexError:
+                pass
+            
+            episode.save()
             
             if created == False:
                 continue
@@ -89,7 +97,7 @@ class PodcastSyndicationService():
             episode.title = e.title
             episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
             episode.description = strip_tags(e.description)
-            episode.episode_url = e.link
+
             episode.save()
             
             new_episode_count = new_episode_count + 1

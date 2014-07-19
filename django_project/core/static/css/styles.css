@@ -1155,7 +1155,7 @@ a {
 .pq-quote-episode-picture {
     position:relative;
     float:left;
-    width:180px;
+    width:150px;
     height:auto;
     text-align:center;
     margin:5px 15px 10px 0;
@@ -1163,7 +1163,7 @@ a {
 }
 
 .pq-quote-episode-picture img {
-    max-width:180px;
+    max-width:150px;
 }
 
 .pq-slim-quote-title {

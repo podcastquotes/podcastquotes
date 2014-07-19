@@ -41,6 +41,14 @@
               {{ form.youtube_url }}
           </div><!-- /.pq-form-input -->
             
+          <div class="pq-form-input">
+              {% if form.episode_url.errors %}
+                  <p class="error">{{ form.episode_url.errors }}</p>
+              {% endif %}
+              <label class="pq-form-label-optional {% if form.episode_url.errors %}error{% endif %}" for="episode_url">Episode MP3 or Video URL <small>(optional, enables media player)</small></label>
+              {{ form.episode_url }}
+          </div><!-- /.pq-form-input -->
+            
             <div class="pq-form-input">
                 {% if form.guid.errors %}
                     <p class="error">{{ form.guid.errors }}</p>

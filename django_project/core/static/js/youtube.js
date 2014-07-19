@@ -159,6 +159,7 @@ $(window).load(function () {
     var startTimes = [];
     var endTimes = [];
     var videoIDs = [];
+    var episodeURLs = [];
     var openVideos = [];
     var nextPageButton = document.getElementById('next-page');
     var wasSkipped = false
@@ -171,6 +172,7 @@ $(window).load(function () {
             startTimes[i] = params[i].getAttribute('startTime');
             endTimes[i] = params[i].getAttribute('endTime');
             videoIDs[i] = params[i].getAttribute('videoID');
+            episodeURLs[i] = params[i].getAttribute('episodeURL');
         }
     }
 
@@ -186,6 +188,7 @@ $(window).load(function () {
     window.startTimes = startTimes;
     window.endTimes = endTimes;
     window.videoIDs = videoIDs;
+    window.episodeURLs = episodeURLs;
     window.openVideos = openVideos;
     window.nextPageButton = nextPageButton;
     window.skipButtons = skipButtons;
@@ -193,9 +196,13 @@ $(window).load(function () {
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
-            startButtonWrappers[i].addEventListener("click", startVideo(i));
-        }
-    }
+            if (videoIDs[i].length > 10) {
+                startButtonWrappers[i].addEventListener("click", startVideo(i));
+            } else {
+                startButtonWrappers[i].addEventListener("click", startEpisode(i));
+            };
+        };
+    };
 });
 
 /* STICK THIS SOMEWHERE, MAYBE MAKE IT A FUNCTION YOU CALL
@@ -204,8 +211,15 @@ $(window).load(function () {
         }
 */
 
+function startEpisode(i) {
+    return function () {
+        episodeURL = episodeURLs[i]
+        var win = window.open(episodeURL, '_blank');
+        win.focus();
+    }
+};
+
 function startVideo(i) {
-    "use strict";
     return function () {
         $(startButtonWrappers[i]).hide();
         $(videoPlayerWrappers[i]).show();

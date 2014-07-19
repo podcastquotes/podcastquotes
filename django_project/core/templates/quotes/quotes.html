@@ -46,7 +46,7 @@
     {% if not is_quote_page %}
             {% if is_episode_page and quote.is_full_episode|is_true %}
                 <div class="button-hider-xs">
-                    <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url or quote.episode.episode_url %}canplay="canplay"{% else %}cannotplay="cannotplay"{% endif %}>
                         {% if quote.episode.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                         {% elif quote.episode.video_id %}
@@ -54,7 +54,7 @@
                         {% elif quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
-                        {% if quote.episode.youtube_url %}
+                        {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button">
                                 <div class="picture-play-button-inside">
                                     <i class="fa fa-play-circle"></i>
@@ -66,7 +66,7 @@
             {% elif is_episode_page and not quote.is_full_episode|is_true %}
             {% elif quote.is_full_episode|is_true %}
                 <div class="button-hider-xs">
-                    <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
+                    <div class="pq-quote-episode-picture hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url or quote.episode.episode_url %}canplay="canplay"{% else %}cannotplay="cannotplay"{% endif %}>
                         {% if quote.episode.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
                         {% elif quote.episode.video_id %}
@@ -74,7 +74,7 @@
                         {% elif quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
-                        {% if quote.episode.youtube_url %}
+                        {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button">
                                 <div class="picture-play-button-inside">
                                     <i class="fa fa-play-circle"></i>
@@ -85,15 +85,11 @@
                 </div>
             {% else %}
                 <div class="button-hider-xs">
-                    <div class="pq-quote-episode-clip hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url %}canplay="canplay"{% endif %} {% if not quote.episode.youtube_url %}cannotplay="cannotplay"{% endif %}>
-                        {% if quote.episode.image %}
-                            <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
-                        {% elif quote.episode.video_id %}
-                            <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
-                        {% elif quote.episode.podcast.image %}
+                    <div class="pq-quote-episode-clip hidden-xs" id="pq-quote-episode-picture-{{ forloop.counter }}" {% if quote.episode.youtube_url or quote.episode.episode_url %}canplay="canplay"{% else %}cannotplay="cannotplay"{% endif %}>
+                        {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
-                        {% if quote.episode.youtube_url %}
+                        {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button">
                                 <div class="picture-play-button-inside">
                                     <i class="fa fa-play-circle"></i>
@@ -107,7 +103,9 @@
             $(document).ready(function () {
                 if ($('#pq-quote-episode-picture-{{ forloop.counter }}').attr('canplay')) {
                     $('#youtube-start-button-wrapper-{{ forloop.counter }}').click(function() {
-                        $("#pq-quote-episode-picture-{{ forloop.counter }}").hide();
+                        {% if quote.episode.youtube_url %}
+                            $("#pq-quote-episode-picture-{{ forloop.counter }}").hide();
+                        {% endif %}
                     });
                     $('#pq-quote-episode-picture-{{ forloop.counter }}').click(function() {
                         $('#youtube-start-button-wrapper-{{ forloop.counter }}').click();
@@ -292,21 +290,24 @@
                  {% endif %}>
                 <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
                      class="youtube-start-button-wrapper" 
-                     style="{% if not quote.episode.youtube_url %}
-                                display:none; 
-                            {% elif quote.episode.youtube_url %}
+                     style="{% if not quote.episode.is_full_episode|is_true %}
                                 display:block;
+                            {% elif quote.episode.youtube_url or quote.episode.episode_url %}
+                                display:block;
+                            {% else %}
+                                display:none;
                             {% endif %}
                             {% if quote.text %}
                                 margin-bottom:5px;
                             {% endif %}
                     ">
-                    {% if quote.episode.youtube_url %}    
+                    {% if quote.episode.youtube_url or quote.episode.episode_url %}    
                         <div class="youtube-start-button fa fa-play light-blue-gradient" 
                              videoID="{{ quote.episode.video_id }}" 
                              startTime="{{ quote.time_quote_begins }}" 
                              endTime="{{ quote.time_quote_ends }}" 
                              nextVideoURL="{{ quote_next.get_absolute_url }}"
+                             episodeURL="{{ quote.episode.episode_url }}"
                              >
                             <div class="youtube-start-button-text" id="{{ forloop.counter }}">
                                 <small>&nbsp</small> PLAY
@@ -321,16 +322,22 @@
                 <div id="youtube-player-{{ forloop.counter }}" 
                      videoID="{{ quote.episode.video_id }}" 
                      startTime="{{ quote.time_quote_begins }}" 
-                     endTime="{{ quote.time_quote_ends }}">
+                     endTime="{{ quote.time_quote_ends }}"
+                     episodeURL="{{ quote.episode.episode_url }}">
                     <!-- For pages with multiple videos, insert video onclick of youtube-start-button-wrapper via youtube.js -->
                 </div>
             </div>
         {% endif %}
         
         {% if is_quote_page %}
-            {% if quote.episode.youtube_url %}   
+            {% if quote.episode.youtube_url or quote.episode.episode_url %}   
                 <div class="youtube-player-wrapper" style="display:block;">
-                    <div id="youtube-player-alone" videoID="{{ quote.episode.video_id }}" startTime="{{ quote.time_quote_begins }}" endTime="{{ quote.time_quote_ends }}" nextVideoURL="{{ quote_next.get_absolute_url }}">
+                    <div id="youtube-player-alone" 
+                         videoID="{{ quote.episode.video_id }}" 
+                         startTime="{{ quote.time_quote_begins }}" 
+                         endTime="{{ quote.time_quote_ends }}" 
+                         nextVideoURL="{{ quote_next.get_absolute_url }}"
+                         episodeURL="{{ quote.episode.episode_url }}">
                         <!-- insert YouTube player here from youtube.js -->
                     </div>
                 </div>
