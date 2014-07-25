@@ -71,7 +71,7 @@ class UserQuoteListView(ListView):
         return 'user_detail.html'
 
     def get_paginate_by(self, queryset):
-        return 50
+        return 20
     
     def get_context_data(self, **kwargs):
         context = super(UserQuoteListView, self).get_context_data(**kwargs)

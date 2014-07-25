@@ -11,7 +11,7 @@ class HomeEpisodeListView(ListView):
         return 'home.html'
 
     def get_paginate_by(self, queryset):
-        return 50
+        return 20
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -131,7 +131,7 @@ class HomeQuoteListView(ListView):
         return 'home.html'
 
     def get_paginate_by(self, queryset):
-        return 50
+        return 20
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)

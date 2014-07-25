@@ -170,7 +170,7 @@ class PodcastEpisodeListView(ListView):
         return 'podcast_detail.html'
         
     def get_paginate_by(self, queryset):
-        return 50
+        return 20
     
     def get_context_data(self, **kwargs):
         context = super(PodcastEpisodeListView, self).get_context_data(**kwargs)
@@ -299,7 +299,7 @@ class PodcastQuoteListView(ListView):
         return 'podcast_detail.html'
 
     def get_paginate_by(self, queryset):
-        return 50
+        return 20
     
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)
