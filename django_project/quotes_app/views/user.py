@@ -67,20 +67,11 @@ class UserQuoteListView(ListView):
     model = get_user_model()
     slug_field = "username"
     
-    ### WET - should use CBV inheritance
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'user_detail.html'
-        else:
-            return 'slim_user_detail.html'
-    ### WET - should use CBV inheritance
+        return 'user_detail.html'
+
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
     
     def get_context_data(self, **kwargs):
         context = super(UserQuoteListView, self).get_context_data(**kwargs)

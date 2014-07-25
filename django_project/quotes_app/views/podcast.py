@@ -166,20 +166,11 @@ class PodcastDeleteView(DeleteView):
 class PodcastEpisodeListView(ListView):
     model = Quote
     
-    ### WET - should use CBV inheritance
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'podcast_detail.html'
-        else:
-            return 'slim_podcast_detail.html'
-    ### WET - should use CBV inheritance
+        return 'podcast_detail.html'
+        
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
     
     def get_context_data(self, **kwargs):
         context = super(PodcastEpisodeListView, self).get_context_data(**kwargs)
@@ -303,20 +294,12 @@ class PodcastEpisodeListView(ListView):
 class PodcastQuoteListView(ListView):
     model = Quote
 
-    ### WET - should use CBV inheritance
+
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'podcast_detail.html'
-        else:
-            return 'slim_podcast_detail.html'
-    ### WET - should use CBV inheritance
+        return 'podcast_detail.html'
+
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
     
     def get_context_data(self, **kwargs):
         context = super(PodcastQuoteListView, self).get_context_data(**kwargs)

@@ -6,21 +6,12 @@ from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
 
 class HomeEpisodeListView(ListView):
     model = Quote
-    
-    ### WET - should use CBV inheritance
+
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'home.html'
-        else:
-            return 'slim_home.html'
-    ### WET - should use CBV inheritance
+        return 'home.html'
+
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeEpisodeListView, self).get_context_data(**kwargs)
@@ -135,21 +126,12 @@ class HomeEpisodeListView(ListView):
 
 class HomeQuoteListView(ListView):
     model = Quote
-    
-    ### WET - should use CBV inheritance
+
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'home.html'
-        else:
-            return 'slim_home.html'
-    ### WET - should use CBV inheritance
+        return 'home.html'
+
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
     
     def get_context_data(self, **kwargs):
         context = super(HomeQuoteListView, self).get_context_data(**kwargs)

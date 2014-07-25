@@ -145,14 +145,22 @@ function startVideoAlone() {
 
 $(window).load(function () {
     var i = 0
-
+    
+    var quoteElements = document.getElementsByClassName('pq-quote', i);
+    
+    var audioElements = document.getElementsByClassName('audio-player', i);
+    var audioURLs = [];
+    var audioStartTimes = [];
+    var audioEndTimes = [];
+    var bufferedTimeRanges = [];
+    
     var videoPlayerWrappers = document.getElementsByClassName('youtube-player-wrapper', i);
     var startButtonWrappers = document.getElementsByClassName('youtube-start-button-wrapper', i);
     var slimStartButtons = document.getElementsByClassName('pq-slim-quote-picture', i);
     var episodeStartButtons = document.getElementsByClassName('pq-quote-episode-picture', i);
     var fullStartButtons = document.getElementsByClassName('pq-quote-episode-clip', i);
     var quoteWrappers = document.getElementsByClassName('pq-quote', i);
-    var skipButtons = document.getElementsByClassName('skip-button', i);
+    var skipButtons = document.getElementsByClassName('skip-button', i);    
     var players = [];
     var nodes = [];
     var params = [];
@@ -175,8 +183,21 @@ $(window).load(function () {
             episodeURLs[i] = params[i].getAttribute('episodeURL');
         }
     }
+    
+    for (i = 0; i < audioElements.length; ++i) {
+        audioStartTimes[i] = audioElements[i].getAttribute('audioStartTime');
+        audioEndTimes[i] = audioElements[i].getAttribute('audioEndTime');
+    }
 
     // Set as global variables so continueVideos() will work
+    window.quoteElements = quoteElements;
+    
+    window.audioElements = audioElements;
+    window.audioURLs = audioURLs;
+    window.audioStartTimes = audioStartTimes;
+    window.audioEndTimes = audioEndTimes;
+    window.bufferedTimeRanges = bufferedTimeRanges;
+    
     window.videoPlayerWrappers = videoPlayerWrappers;
     window.startButtonWrappers = startButtonWrappers;
     window.slimStartButtons = slimStartButtons;
@@ -193,6 +214,24 @@ $(window).load(function () {
     window.nextPageButton = nextPageButton;
     window.skipButtons = skipButtons;
     window.wasSkipped = wasSkipped
+    
+    for (i = 0; i < audioElements.length; ++i) {
+        console.log("hello?");
+        if (audioElements[i] != null) {
+            /*
+            audioElements[i].addEventListener('endAudio', function () {
+                if (segmentEnd && audioElements[i].currentTime >= segmentEnd
+            }
+            */
+            console.log("the start time is " + audioStartTimes[i]);
+            if (audioStartTimes[i] != null) {
+                console.log("it's trying");
+                audioElements[i].currentTime = audioStartTimes[i];
+            }
+            if (audioEndTimes[i] != null) {
+            }
+        }
+    };
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
@@ -204,12 +243,6 @@ $(window).load(function () {
         };
     };
 });
-
-/* STICK THIS SOMEWHERE, MAYBE MAKE IT A FUNCTION YOU CALL
-        for (i = 0; i < videoPlayerWrappers.length; ++i) {
-            $(players[i]).remove();
-        }
-*/
 
 function startEpisode(i) {
     return function () {

@@ -4,12 +4,17 @@
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
 <head>
 <meta charset=”utf-8”> 
+
 {% block head_title %}
     <title>Podverse.tv - Find and share podcast highlights</title>
 {% endblock %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="description" content="Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit.">
+
 <link rel="publisher" href="">
+<link rel="shortcut icon" href="{% static 'img/podverse-logo-square-favicon.ico' %}">
+
 {% block opengraph %}
     <meta property="og:url" content="https://podverse.tv/" />
     <meta property="og:title" content="Podverse.tv - Find and share podcast highlights" />
@@ -17,6 +22,7 @@
     <meta property="og:description" content="Find and share highlights of your favorite podcasts. Connect with podcast listeners. Raise money for your podcast. Inspired by reddit." />
     <meta property="og:image" content="https://podverse.tv/static/img/podverse-logo-square.jpg" />
 {% endblock %}
+
 <link href='//fonts.googleapis.com/css?family=Quicksand:400,700|Open+Sans:400italic,400,600,700,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 <link href="{% static 'css/master.css' %}" rel="stylesheet">
@@ -27,7 +33,7 @@
 <script src="{% static 'js/cookies.js' %}"></script>
 <script src="{% static 'js/ajax-vote.js' %}"></script>
 <script src="{% static 'js/ajax-get-episodes.js' %}"></script>
-<script src="{% static 'js/view-type-selector.js' %}"></script>
+<script src="{% static 'js/autoplay.js' %}"></script>
 
 {% include 'autocomplete_light/static.html' %}
 {% include 'navigation_autocomplete/script.html' %}
@@ -47,10 +53,8 @@
             {% block content %}
             {% endblock %}
 
-            <div class="pq-quotes-wrapper">
-                {% block quotes %}
-                {% endblock %}
-            </div>
+            {% block quotes %}
+            {% endblock %}
             
             {% block more %}
             {% endblock %}
@@ -70,7 +74,7 @@
     
     {% include 'google_analytics_code.html' %}
     
-    <script src="{% static 'js/youtube.js' %}"></script>
+    <script src="{% static 'js/players.js' %}"></script>
     
 </body>
   

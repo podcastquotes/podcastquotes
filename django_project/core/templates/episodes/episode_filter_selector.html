@@ -23,108 +23,10 @@
         </div>
     </a>
 
-    <!--
-    <a href="/episodes/{{ episode.id }}/not/">
-        <div class="pq-nav{% if episode_not_is_active %}-active{% endif %}">
-            not
-        </div>
-    </a>
-    -->
-
-    <!--
-    <a href="/episodes/{{ episode.id }}/controversial/">
-        <div class="pq-nav{% if episode_controversial_is_active %}-active{% endif %} pq-nav-disappear-5">
-            controversial
-        </div>
-    </a>
-    -->
-
-    <!--
-    <a href="/episodes/{{ episode.id }}/bottom/">
-        <div class="pq-nav{% if episode_bottom_is_active %}-active{% endif %} pq-nav-disappear-2">
-            bottom
-        </div>
-    </a>
-    -->
-
-    <!--
-    <div class="btn-group">
-      
-        <button type="button" class="pq-nav dropdown-toggle" data-toggle="dropdown">
-            more <span class="caret"></span>
-        </button>
-        
-        <ul class="dropdown-menu" role="menu">
-          
-            <li class="{% if episode_controversial_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-5">
-                <a href="/episodes/{{ episode.id }}/controversial/">
-                    controversial
-                </a>
-            </li>
-            
-            <li class="{% if episode_new_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-4">
-                <a href="/episodes/{{ episode.id }}/new/">
-                    new
-                </a>
-            </li>
-            
-            <li class="{% if episode_top_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-3">
-                <a href="/episodes/{{ episode.id }}/">
-                    top
-                </a>
-            </li>
-            
-            <li class="{% if episode_bottom_is_active %}dropdown-menu-active{% endif %} pq-nav-appear-2">
-                <a href="/episodes/{{ episode.id }}/bottom/">
-                    bottom
-                </a>
-            </li>
-            
-            <li class="{% if episode_mainstream_is_active %}dropdown-menu-active{% endif %}">
-                <a href="/episodes/{{ episode.id }}/mainstream/">
-                    mainstream
-                </a>
-            </li>
-            
-            <li class="{% if episode_underground_is_active %}dropdown-menu-active{% endif %}">
-                <a href="/episodes/{{ episode.id }}/underground/">
-                    underground
-                </a>
-            </li>
-            
-            <li class="{% if episode_chronological_is_active %}dropdown-menu-active{% endif %}">
-                <a href="/episodes/{{ episode.id }}/chronological/">
-                    chronological
-                </a>
-            </li>
-            
-            <li class="{% if episode_ghosts_is_active %}dropdown-menu-active{% endif %}">
-                <a href="/episodes/{{ episode.id }}/ghosts/">
-                    ghosts
-                </a>
-            </li>
-            
-            <li class="{% if episode_birthdays_is_active %}dropdown-menu-active{% endif %}">
-                <a href="/episodes/{{ episode.id }}/birthdays/">
-                    birthdays
-                </a>
-            </li>
-            
-            <li class="divider"></li>
-            
-            <li>
-                <a href="#">
-                    custom
-                </a>
-            </li>
-          
-        </ul>
-    </div>
-    -->
     <div class="pq-responsive-autoplay-button">
         <div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
         <div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
     </div>
-    {% include 'view_type_selector.html' %}
+
     <div class="clearfix"></div>
 </div><!-- /.pq-nav-wrapper -->

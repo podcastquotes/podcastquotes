@@ -1,0 +1,21 @@
+SITE MAP
+
+Home_Episodes (hot, ordered, new, top)
+
+Home_Highlights (hot, ordered, new, top)
+
+Podcast_Episodes (hot, ordered, new, top)
+
+Podcast_Highlights (hot, ordered, new, top)
+
+Episode (hot, ordered, new, top)
+
+User (hot, ordered, new, top) (HAS BUGS ON PAGE)
+
+Quote (MUST BE REVISED)
+
+Login
+
+REFACTOR YOUTUBE/AUDIOPLAYER JS
+
+Add slug_field for podcast titles

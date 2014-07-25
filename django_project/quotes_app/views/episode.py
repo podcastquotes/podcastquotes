@@ -110,20 +110,11 @@ class EpisodeDeleteView(DeleteView):
 class EpisodeQuoteListView(ListView):
     model = Quote
     
-    ### WET - should use CBV inheritance
     def get_template_names(self):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 'episode_detail.html'
-        else:
-            return 'slim_episode_detail.html'
-    ### WET - should use CBV inheritance
+        return 'episode_detail.html'
+        
     def get_paginate_by(self, queryset):
-        view_type = self.request.COOKIES.get('view_type')
-        if view_type == 'full':
-            return 20
-        else:
-            return 50
+        return 50
 
     def get_context_data(self, **kwargs):
         context = super(EpisodeQuoteListView, self).get_context_data(**kwargs)
@@ -264,4 +255,3 @@ def thin_json_episode_query(request):
         json_payload = json.dumps(episodes)
     
     return HttpResponse(json_payload, content_type="application/json")
-   

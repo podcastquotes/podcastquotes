@@ -318,7 +318,7 @@ a {
     border-right:1px solid #2A323F;
     border-bottom:1px solid #3c4144;
     border-left:1px solid #2A323F;
-    margin:0 0 20px 0;
+    margin:0 0 15px 0;
     border-radius:0;
     color:#fff;
     z-index:100;
@@ -808,13 +808,13 @@ a {
 
 @media (max-width:549px) {
     .pq-podcast-profile-picture img {
-        max-width:100px;
+        width:120px;
     }
 }
 
 @media (min-width:550px) {
     .pq-podcast-profile-picture img {
-        max-width:100px;
+        width:120px;
     }
 }
 
@@ -832,7 +832,7 @@ a {
 
 .pq-podcast-title {
     margin:-5px 0 10px 0;
-    font-size:22px;
+    font-size:24px;
     font-weight:600;
     font-family:"Open Sans", Georgia, serif;
     color:#111;
@@ -1001,13 +1001,13 @@ a {
 
 @media (max-width:549px) {
     .pq-episode-profile-picture img {
-        max-width:100px;
+        width:100px;
     }
 }
 
 @media (min-width:550px) {
     .pq-episode-profile-picture img {
-        max-width:100px;
+        width:100px;
     }
 }
 
@@ -1154,20 +1154,22 @@ a {
 
 .pq-quote-episode-picture {
     position:relative;
-    float:left;
-    width:150px;
+    float:right;
+    width:120px;
     height:auto;
     text-align:center;
-    margin:5px 15px 10px 0;
+    margin:5px 0 10px 15px;
     cursor:pointer;
 }
 
 .pq-quote-episode-picture img {
-    max-width:150px;
+    width:120px;
 }
 
 .pq-slim-quote-title {
+    margin-top:-4px;
     font-weight:600;
+    font-size:18px;
 }
 
 .pq-slim-quote-picture {
@@ -1215,7 +1217,7 @@ a {
 }
 
 .pq-quote-episode-clip img {
-    max-width:100px;
+    width:100px;
 }
 
 @media (max-width:767px) {
@@ -1373,7 +1375,7 @@ a {
 }
 
 .pq-quote-profile-picture img {
-    max-width:100px;
+    width:100px;
 }
 
 .pq-quote-profile-picture-episode {
@@ -1383,7 +1385,7 @@ a {
 }
 
 .pq-quote-profile-picture-episode img {
-    max-width:100px;
+    width:100px;
 }
 
 @media (max-width:549px) {
@@ -1391,7 +1393,7 @@ a {
         margin:5px 0 10px 0;
     }
     .pq-quote-profile-picture-episode img {
-        max-width:120px;
+        width:120px;
     }
 }
 
@@ -1403,7 +1405,7 @@ a {
 
 .pq-quote-subtitle {
     vertical-align:top;
-    font-size:13px;
+    font-size:14px;
     margin-top:1px;
 }
 
@@ -1433,7 +1435,7 @@ a {
 
 .pq-quote-xs-subtitle {
     vertical-align:top;
-    font-size:13px;
+    font-size:14px;
 }
 
 .pq-quote-xs-subtitle a:hover {
@@ -1701,7 +1703,7 @@ button {
     display:none;
     cursor:pointer;
     color:#225b9a;
-    margin:-5px 0 10px 0;
+    margin:0 0 10px 0;
 }
 
 .pq-show-less:hover {
@@ -1721,7 +1723,6 @@ button {
 }
 
 .pq-quote-date:hover {
-    text-decoration:underline;
 }
 
 @media (max-width:549px) {
@@ -1967,6 +1968,10 @@ button {
 
 .picture-play-button-inside {
     margin:-10px 0 0 0;
+}
+
+.player {
+    margin:5px 0 0 0;
 }
 
 @media (max-width:549px) {
