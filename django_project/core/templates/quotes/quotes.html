@@ -469,8 +469,6 @@
             <a href="{{ quote.get_absolute_url }}">       
                 {% if quote.time_quote_ends %}
                     Length: {{ quote.duration }}
-                {% elif not quote.time_quote_ends %}
-                    Starts: {{ quote.converted_time_begins }}
                 {% endif %}
                 {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
                     {% if quote.time_quote_ends %}
