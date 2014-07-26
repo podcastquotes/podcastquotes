@@ -217,6 +217,7 @@
                         <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">Highlights</option>
                         <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">Full Episodes</option>
                     {% endif %}
+                    <option value="">---</option>
                     {% for episode in episodes %}
                         <option value="/episodes/{{ episode.id }}">
                             {{ episode.title }}
