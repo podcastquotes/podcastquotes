@@ -1977,7 +1977,7 @@ button {
 .picture-play-button {
     position:absolute;
     left:0;
-    top:0;
+    top:2px;
     height:24px;
     width:24px;
     font-size:32px;

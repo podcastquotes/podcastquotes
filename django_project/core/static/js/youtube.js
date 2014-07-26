@@ -214,43 +214,15 @@ $(window).load(function () {
     window.nextPageButton = nextPageButton;
     window.skipButtons = skipButtons;
     window.wasSkipped = wasSkipped
-    
-    for (i = 0; i < audioElements.length; ++i) {
-        console.log("hello?");
-        if (audioElements[i] != null) {
-            /*
-            audioElements[i].addEventListener('endAudio', function () {
-                if (segmentEnd && audioElements[i].currentTime >= segmentEnd
-            }
-            */
-            console.log("the start time is " + audioStartTimes[i]);
-            if (audioStartTimes[i] != null) {
-                console.log("it's trying");
-                audioElements[i].currentTime = audioStartTimes[i];
-            }
-            if (audioEndTimes[i] != null) {
-            }
-        }
-    };
 
     for (i = 0; i < videoPlayerWrappers.length; ++i) {
         if (startButtonWrappers[i] != null) {
             if (videoIDs[i].length > 10) {
                 startButtonWrappers[i].addEventListener("click", startVideo(i));
-            } else {
-                startButtonWrappers[i].addEventListener("click", startEpisode(i));
-            };
+            }
         };
     };
 });
-
-function startEpisode(i) {
-    return function () {
-        episodeURL = episodeURLs[i]
-        var win = window.open(episodeURL, '_blank');
-        win.focus();
-    }
-};
 
 function startVideo(i) {
     return function () {

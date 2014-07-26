@@ -105,7 +105,7 @@ $(window).load(function () {
                 source.setAttribute('src', audioSourceMP3[i]);
                 audio.appendChild(source);
                 
-                $(playerWrappers[i]).css('margin', '10px 0 -5px 0');
+                $(playerWrappers[i]).css('margin', '10px 0 0 0');
 
                 audio.load();
                 audio.onloadedmetadata = function() { 

@@ -18,4 +18,6 @@ Login
 
 REFACTOR YOUTUBE/AUDIOPLAYER JS
 
+Alert user that Chrome is not recommended
+
 Add slug_field for podcast titles
