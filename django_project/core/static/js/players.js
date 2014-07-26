@@ -110,9 +110,7 @@ $(window).load(function () {
                 $(playerWrappers[i]).css('margin', '5px 0 0 0');
 
                 audio.load();
-                audio.play();
                 audio.onloadedmetadata = function() { 
-                    audio.currentTime = timeBegins[i];
                     audio.play();
                 };
                             
@@ -120,6 +118,8 @@ $(window).load(function () {
                     if (Math.floor(audio.currentTime) == timeEnds[i]) {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
+                    } else if (audio.currentTime == 0) {
+                        audio.currentTime = timeBegins[i];
                     }
                 },false);
             }
