@@ -45,6 +45,8 @@ $(window).load(function () {
     function playMedia(i) {
         return function () {
             if (openPlayerWrapper != false) {
+                var openPlayer = document.getElementById('open-player');
+                openPlayer.parentNode.className = "player";
                 $('#open-player').remove();
                 $(hiddenButton).show();
                 hiddenButton = startButtons[i];
@@ -60,8 +62,8 @@ $(window).load(function () {
                 function onYouTubeIframeAPIReady() {
                     var YouTubeNode = document.createElement('div');
                     YouTubeNode.setAttribute('id', 'open-player');
-
                     playerWrappers[i].appendChild(YouTubeNode);
+                    YouTubeNode.parentNode.className = YouTubeNode.parentNode.className + " youtube-player";
                   
                     playerWrappers[i] = new YT.Player(YouTubeNode, {
                         playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
