@@ -48,15 +48,13 @@ function playMedia(i) {
         audio.load();
         audio.onloadedmetadata = function() { 
             audio.currentTime = timeBegins[i];
-        };
-        audio.onloadeddata = function() { 
             audio.play();
         };
                     
         audio.addEventListener('timeupdate', function() {
-            if (timeEnds[i] && audio.currentTime >= timeEnds[i]) {
+            if (Math.floor(audio.currentTime) == timeEnds[i]) {
                 audio.pause();
-                audio.currentTime = timeBegins[i];
+                audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
             }
         },false);
         
