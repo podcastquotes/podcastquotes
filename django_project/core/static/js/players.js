@@ -102,7 +102,7 @@ $(window).load(function () {
                 audio.setAttribute('preload', 'metadata');
                 audio.setAttribute('id', 'open-player');
                 playerWrappers[i].appendChild(audio);
-
+                
                 var source = document.createElement('source');
                 source.setAttribute('src', audioSourceMP3[i]);
                 audio.appendChild(source);
@@ -110,6 +110,7 @@ $(window).load(function () {
                 $(playerWrappers[i]).css('margin', '5px 0 0 0');
 
                 audio.load();
+                audio.play();
                 audio.onloadedmetadata = function() { 
                     audio.currentTime = timeBegins[i];
                     audio.play();
