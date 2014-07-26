@@ -137,8 +137,6 @@ class QuoteUpdateView(UpdateView):
             quote.is_full_episode = True
             
         quote.save()
-        vote = Vote.create(voter=self.request.user, quote=quote, vote_type=1)
-        vote.save()
         return HttpResponseRedirect(self.get_success_url())
     
     def get_initial(self):
