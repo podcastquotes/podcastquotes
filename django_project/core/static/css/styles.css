@@ -1192,9 +1192,10 @@ a {
     }
 }
 
-@media (max-width:550px) {
+@media (max-width:549px) {
     .pq-slim-quote-text-wrapper {
         clear:left;
+        overflow:none;
     }
 }
 
@@ -1368,14 +1369,32 @@ a {
     font-weight:600;
 }
 
-.pq-quote-profile-picture {
-    float:left;
-    vertical-align:top;
-    margin:10px 10px 10px 0;
+@media (max-width:549px) {
+    .pq-quote-profile-picture {
+        float:left;
+        vertical-align:top;
+        margin:10px 10px 7px 0;
+    }
 }
 
-.pq-quote-profile-picture img {
-    width:100px;
+@media (min-width:550px) {
+    .pq-quote-profile-picture {
+        float:left;
+        vertical-align:top;
+        margin:10px 10px 10px 0;
+    }
+}
+
+@media (max-width:549px) {
+    .pq-quote-profile-picture img {
+        width:40px;
+    }
+}
+
+@media (min-width:550px) {
+    .pq-quote-profile-picture img {
+        width:100px;
+    }
 }
 
 .pq-quote-profile-picture-episode {
@@ -1390,7 +1409,7 @@ a {
 
 @media (max-width:549px) {
     .pq-quote-profile-picture-episode {
-        margin:5px 0 10px 0;
+        margin:5px 10px 10px 0;
     }
     .pq-quote-profile-picture-episode img {
         width:120px;
@@ -1399,7 +1418,9 @@ a {
 
 @media (max-width:549px) {
     .pq-quote-subtitle {
-        clear:both;
+        padding:7px 0 0 0;
+        margin:0 0 7px 0;
+        overflow:hidden;
     }
 }
 
@@ -1602,7 +1623,7 @@ button {
     .pq-slim-quote-xs-buttons {
         float:left;
         clear:left;
-        padding:7px 20px 5px 0;
+        margin:5px 20px 5px 0;
     }
 }
 
@@ -1630,7 +1651,7 @@ button {
     text-align:center;
     padding:0 7px;
     margin:4px 0;
-    font-size:13px;
+    font-size:14px;
     color:#444;
 }
 
@@ -1966,16 +1987,23 @@ button {
     border-radius:50px;
 }
 
+.fa-youtube-play {
+    color:#e52d27;
+}
+
 .picture-play-button-inside {
-    margin:-10px 0 0 0;
+    margin:-12px 0 0 0;
+}
+
+#open-player {
+    margin:5px 0;
 }
 
 .player {
-    margin:5px 0 0 0;
 }
 
 @media (max-width:549px) {
-    .youtube-start-button-wrapper {
+    .mobile-start-button-wrapper {
         float:left;
         margin:10px 10px 10px 0;
         font-size:14px;
@@ -1985,7 +2013,7 @@ button {
 }
 
 @media (min-width:550px) {
-    .youtube-start-button-wrapper {
+    .mobile-start-button-wrapper {
         display:none;
         clear:left;
         float:left;
@@ -2015,7 +2043,7 @@ button {
 }
 
 @media (max-width:549px) {
-    .youtube-start-button {
+    .mobile-start-button {
         width:85px;
         height:34px;
         margin:2px 0 0 0;
@@ -2028,7 +2056,7 @@ button {
 }
 
 @media (min-width:550px) {
-    .youtube-start-button {
+    .mobile-start-button {
         width:85px;
         height:40px;
         padding:13px 0 0 0;
@@ -2039,12 +2067,12 @@ button {
     }
 }
 
-.youtube-start-button:hover {
+.mobile-start-button:hover {
     color:#f7f7f7;
     background:#04859E;
 }
 
-.youtube-start-button-text {
+.mobile-start-button-text {
     display:inline-block;
     font-family:"Montserrat", Arial, sans-serif;
 }

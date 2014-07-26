@@ -48,14 +48,19 @@
                 <div class="button-hider-xs">
                     <div class="pq-slim-quote-picture" 
                          id="pq-quote-episode-picture-{{ forloop.counter }}" 
-                         audioSourceMP3="{{ quote.episode.episode_url }}">
+                         audioSourceMP3="{{ quote.episode.episode_url }}"
+                         YouTubeID="{{ quote.episode.video_id }}">
                         {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
                         {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button">
                                 <div class="picture-play-button-inside">
-                                    <i class="fa fa-play-circle"></i>
+                                    <i class="{% if quote.episode.youtube_url %}
+                                                  fa fa-youtube-play
+                                              {% elif quote.episode.episode_url %}
+                                                  fa fa-play-circle
+                                              {% endif %}"></i>
                                 </div>
                             </div>
                         {% endif %}
@@ -65,16 +70,20 @@
                 <div class="button-hider-xs">
                     <div class="pq-slim-quote-picture" 
                          id="pq-quote-episode-picture-{{ forloop.counter }}"
-                         audioSourceMP3="{{ quote.episode.episode_url }}">
+                             audioSourceMP3="{{ quote.episode.episode_url }}"
+                             YouTubeID="{{ quote.episode.video_id }}">
                         {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
                         {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button"
                                  style="width:24px;height:24px;border-radius:50px;">
-                                <div class="picture-play-button-inside" 
-                                     style="margin:-10px 0 0 0;font-size:32px;">
-                                    <i class="fa fa-play-circle"></i>
+                                <div class="picture-play-button-inside">
+                                    <i class="{% if quote.episode.youtube_url %}
+                                                  fa fa-youtube-play
+                                              {% elif quote.episode.episode_url %}
+                                                  fa fa-play-circle
+                                              {% endif %}"></i>
                                 </div>
                             </div>
                         {% endif %}
@@ -84,16 +93,20 @@
                 <div class="button-hider-xs">
                     <div class="pq-slim-quote-picture" 
                          id="pq-quote-episode-picture-{{ forloop.counter }}"
-                         audioSourceMP3="{{ quote.episode.episode_url }}">
+                         audioSourceMP3="{{ quote.episode.episode_url }}"
+                         YouTubeID="{{ quote.episode.video_id }}">
                         {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                         {% endif %}
                         {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button"
                                  style="width:24px;height:24px;border-radius:50px;">
-                                <div class="picture-play-button-inside" 
-                                     style="margin:-10px 0 0 0;font-size:32px;">
-                                    <i class="fa fa-play-circle"></i>
+                                <div class="picture-play-button-inside">
+                                    <i class="{% if quote.episode.youtube_url %}
+                                                  fa fa-youtube-play
+                                              {% elif quote.episode.episode_url %}
+                                                  fa fa-play-circle
+                                              {% endif %}"></i>
                                 </div>
                             </div>
                         {% endif %}
@@ -104,7 +117,8 @@
                     <div class="pq-slim-quote-picture" 
                          id="pq-quote-episode-picture-{{ forloop.counter }}"
                          audioSourceMP3="{{ quote.episode.episode_url }}"
-                         timeBegins="{{ quote.time_quote_begins }}"
+                         YouTubeID="{{ quote.episode.video_id }}"
+                         timeBegins="{{ quote.time_quote_begins }}" 
                          timeEnds="{{ quote.time_quote_ends }}">
                         {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
@@ -112,9 +126,12 @@
                         {% if quote.episode.youtube_url or quote.episode.episode_url %}
                             <div class="picture-play-button" 
                                  style="width:24px;height:24px;border-radius:50px;">
-                                <div class="picture-play-button-inside" 
-                                     style="margin:-10px 0 0 0;font-size:32px;">
-                                    <i class="fa fa-play-circle"></i>
+                                <div class="picture-play-button-inside">
+                                    <i class="{% if quote.episode.youtube_url %}
+                                                  fa fa-youtube-play
+                                              {% elif quote.episode.episode_url %}
+                                                  fa fa-play-circle
+                                              {% endif %}"></i>
                                 </div>
                             </div>
                         {% endif %}
@@ -125,7 +142,8 @@
                     <div class="pq-slim-quote-picture" 
                          id="pq-quote-episode-picture-{{ forloop.counter }}"
                          audioSourceMP3="{{ quote.episode.episode_url }}"
-                         timeBegins="{{ quote.time_quote_begins }}"
+                         YouTubeID="{{ quote.episode.video_id }}"
+                         timeBegins="{{ quote.time_quote_begins }}" 
                          timeEnds="{{ quote.time_quote_ends }}">
                         {% if quote.episode.podcast.image %}
                             <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
@@ -135,33 +153,18 @@
                                  style="width:24px;
                                         height:24px;
                                         border-radius:50px;">
-                                <div class="picture-play-button-inside" 
-                                     style="margin:-10px 0 0 0;
-                                            font-size:32px;">
-                                    <i class="fa fa-play-circle"></i>
+                                <div class="picture-play-button-inside">
+                                    <i class="{% if quote.episode.youtube_url %}
+                                                  fa fa-youtube-play
+                                              {% elif quote.episode.episode_url %}
+                                                  fa fa-play-circle
+                                              {% endif %}"></i>
                                 </div>
                             </div>
                         {% endif %}
                     </div>
                 </div>
             {% endif %}
-        <script>
-            $(document).ready(function () {
-                if ($('#pq-quote-episode-picture-{{ forloop.counter }}').attr('canplay')) {
-                    $('#youtube-start-button-wrapper-{{ forloop.counter }}').click(function() {
-                        {% if quote.episode.youtube_url %}
-                            $("#pq-quote-episode-picture-{{ forloop.counter }}").hide();
-                        {% endif %}
-                    });
-                    $('#pq-quote-episode-picture-{{ forloop.counter }}').click(function() {
-                        $('#youtube-start-button-wrapper-{{ forloop.counter }}').click();
-                    });
-                };
-                if ($('#pq-quote-episode-picture-{{ forloop.counter }}').attr('cannotplay')) {
-                    $('#pq-quote-episode-picture-{{ forloop.counter }}').css('cursor', 'auto');
-                };
-            });
-        </script>
     {% endif %}
 
     
@@ -195,102 +198,101 @@
         
         {% if is_episode_page %}
         {% else %}
-            {% if is_home_page or is_quote_page or is_user_page %}
-                {% if quote.episode.podcast.image %}
-                    <div class="pq-quote-profile-picture display-none-550px"
-                         style="margin-top:10px;margin-bottom:10px;">
-                        <a href="{% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}">
-                            <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
-                        </a>
-                    </div>
-                {% endif %}
-            {% endif %}
-            {% if is_podcast_page %}
-                    {% if quote.episode.image or quote.episode.video_id %}
-                        <div class="pq-quote-profile-picture-episode display-none-550px"
-                             style="margin-top:10px;margin-bottom:10px;">
-                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                                {% if quote.episode.image %}
-                                    <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
-                                {% elif quote.episode.video_id %}
-                                    <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
-                                {% endif %}
+                {% if is_home_page or is_quote_page or is_user_page %}
+                    {% if quote.episode.podcast.image %}
+                        <div class="pq-quote-profile-picture display-none-550px">
+                            <a href="{% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}">
+                                <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                             </a>
                         </div>
                     {% endif %}
-            {% endif %}
-        
-            <div class="pq-quote-subtitle display-none-550px gray-link">
-                {% if is_home_page or is_quote_page or is_user_page %}
-                    {% if quote.episode.podcast.title %}
-                        <a href="
-                                 {% if is_home_clips_page or is_user_page %}
-                                     {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
-                                 {% else %}
-                                     {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
-                                 {% endif %}
-                            ">
-                            Podcast: {{ quote.episode.podcast.title|truncatechars:40 }}
-                        </a>
-                        <br>
+                {% endif %}
+                {% if is_podcast_page %}
+                        {% if quote.episode.image or quote.episode.video_id %}
+                            <div class="pq-quote-profile-picture-episode display-none-550px">
+                                <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                                    {% if quote.episode.image %}
+                                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                                    {% elif quote.episode.video_id %}
+                                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endif %}
+                {% endif %}
+            
+                <div class="pq-quote-subtitle display-none-550px gray-link">
+                    {% if is_home_page or is_quote_page or is_user_page %}
+                        {% if quote.episode.podcast.title %}
+                            <a href="
+                                     {% if is_home_clips_page or is_user_page %}
+                                         {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
+                                     {% else %}
+                                         {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
+                                     {% endif %}
+                                ">
+                                {{ quote.episode.podcast.title|truncatechars:40 }}
+                            </a>
+                            <br>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                
-                {% if is_podcast_episodes_page %}
-                    <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                        Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
-                    </a>
-                {% endif %}
-                
-                {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
-                    {% if quote.episode.title %} 
+                    
+                    {% if is_podcast_episodes_page %}
                         <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                            Episode: {{ quote.episode.title|truncatechars:40 }}
+                            {{ quote.episode.publication_date|date:'M d, Y' }}
                         </a>
-                        <br>
                     {% endif %}
-                {% endif %}
-                <!--
-                    {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
-                        Karma: {{ quote.episode.karma_total }}
+                    
+                    {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
+                        {% if quote.episode.title %} 
+                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                                {{ quote.episode.title|truncatechars:40 }}
+                            </a>
+                            <br>
+                        {% endif %}
                     {% endif %}
-                -->
-            </div>
+                    <!--
+                        {% if is_home_page or is_podcast_page or is_quote_page or is_user_page %}
+                            Karma: {{ quote.episode.karma_total }}
+                        {% endif %}
+                    -->
+                </div>
         {% endif %}            
-        
-        <div class="pq-quote-xs-subtitle display-none-549px gray-link"
-             style="margin:0 15px 5px 0;">
-            {% if is_home_page or is_quote_page or is_user_page %}
-                {% if quote.episode.podcast.title %}
-                    <a href="
-                             {% if is_home_clips_page or is_user_page %}
-                                 {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
-                             {% else %}
-                                 {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
-                             {% endif %}
-                        ">
-                        Podcast: {{ quote.episode.podcast.title }}
-                    </a>
-                    <br>
-                {% endif %}
-            {% endif %}
-            
-            {% if is_podcast_episodes_page %}
-                <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                    Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
-                </a>
-            {% endif %}
-            
-            {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
-                {% if quote.episode.title %} 
-                    <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
-                        Episode: {{ quote.episode.title }}
-                    </a>
-                    <br>
-                {% endif %}
-            {% endif %}
-            
-        </div>
+            <div style="width:100%;float:left;">
+                <div class="pq-quote-xs-subtitle display-none-549px gray-link"
+                     style="margin:0 15px 5px 0;">
+                    {% if is_home_page or is_quote_page or is_user_page %}
+                        {% if quote.episode.podcast.title %}
+                            <a href="
+                                     {% if is_home_clips_page or is_user_page %}
+                                         {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
+                                     {% else %}
+                                         {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
+                                     {% endif %}
+                                ">
+                                Podcast: {{ quote.episode.podcast.title }}
+                            </a>
+                            <br>
+                        {% endif %}
+                    {% endif %}
+                    
+                    {% if is_podcast_episodes_page %}
+                        <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                            Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
+                        </a>
+                    {% endif %}
+                    
+                    {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
+                        {% if quote.episode.title %} 
+                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                                Episode: {{ quote.episode.title }}
+                            </a>
+                            <br>
+                        {% endif %}
+                    {% endif %}
+                    
+                </div>
+            </div>
         
         <div class="player">
             <!-- insert audio/video media here via players.js -->
@@ -394,8 +396,8 @@
        
         {% if is_home_page or is_podcast_page or is_episode_page or is_user_page %}
             <div class="button-hider">
-                <div id="youtube-start-button-wrapper-{{ forloop.counter }}" 
-                     class="youtube-start-button-wrapper" 
+                <div id="mobile-start-button-wrapper-{{ forloop.counter }}" 
+                     class="mobile-start-button-wrapper" 
                      style="{% if not quote.episode.is_full_episode|is_true %}
                                 display:block;
                             {% elif quote.episode.youtube_url or quote.episode.episode_url %}
@@ -406,31 +408,19 @@
                             margin-top:5px;
                     ">
                     {% if quote.episode.youtube_url or quote.episode.episode_url %}    
-                        <div class="youtube-start-button fa fa-play light-blue-gradient" 
-                             videoID="{{ quote.episode.video_id }}" 
-                             startTime="{{ quote.time_quote_begins }}" 
-                             endTime="{{ quote.time_quote_ends }}" 
-                             nextVideoURL="{{ quote_next.get_absolute_url }}"
-                             episodeURL="{{ quote.episode.episode_url }}"
-                             >
-                            <div class="youtube-start-button-text" id="{{ forloop.counter }}">
+                        <div class="mobile-start-button fa fa-play light-blue-gradient" 
+                             audioSourceMP3="{{ quote.episode.episode_url }}"
+                             YouTubeID="{{ quote.episode.video_id }}"
+                             timeBegins="{{ quote.time_quote_begins }}" 
+                             timeEnds="{{ quote.time_quote_ends }}">
+                            <div class="mobile-start-button-text" id="{{ forloop.counter }}">
                                 <small>&nbsp</small> PLAY
                             </div>
                         </div>
                     {% endif %}
-                </div><!-- /.youtube-start-button-wrapper -->
+                </div><!-- /.mobile-start-button-wrapper -->
             </div><!-- /.button-hider -->
             <div class="clearfix">
-            </div>
-            <div id="youtube-player-wrapper-{{ forloop.counter }}" class="youtube-player-wrapper">
-                <div id="youtube-player-{{ forloop.counter }}" 
-                     videoID="{{ quote.episode.video_id }}" 
-                     startTime="{{ quote.time_quote_begins }}" 
-                     endTime="{{ quote.time_quote_ends }}"
-                     episodeURL="{{ quote.episode.episode_url }}"
-                     >
-                    <!-- For pages with multiple videos, insert video onclick of youtube-start-button-wrapper via youtube.js -->
-                </div>
             </div>
         {% endif %}
         
@@ -473,7 +463,8 @@
         {% endif %}
         
     <div class="pq-quote-date gray-link" style="margin-bottom:5px">
-        {% if quote.is_full_episode|is_true %}
+        {% if quote.is_full_episode|is_true and is_episode_page %}
+            <span class="font-semibold">Full Episode</span>
         {% else %}
             <a href="{{ quote.get_absolute_url }}">       
                 {% if quote.time_quote_ends %}
