@@ -118,7 +118,7 @@ $(window).load(function () {
                     if (Math.floor(audio.currentTime) == timeEnds[i]) {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
-                    } else if (audio.currentTime < 0) {
+                    } else if (audio.currentTime < 1) {
                         audio.currentTime = timeBegins[i];
                     }
                 },false);
