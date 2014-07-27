@@ -1996,8 +1996,7 @@ button {
 @media (max-width:549px) {
     .mobile-start-button {
         width:85px;
-        height:34px;
-        margin:2px 0 0 0;
+        height:35px;
         padding:11px 0 0 0;
         background:#41a141;
         text-align:center;
