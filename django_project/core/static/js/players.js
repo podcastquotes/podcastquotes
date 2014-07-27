@@ -22,6 +22,7 @@ $(window).load(function () {
     var playerWrappers = document.getElementsByClassName('player');
     
     var openPlayerWrapper = false;
+    var isStarted = false;
     
     for (i = 0; i < startButtons.length; ++i) {
         startButtons[i].addEventListener("click", playMedia(i));
@@ -34,6 +35,7 @@ $(window).load(function () {
     
     window.playerWrappers = playerWrappers;
     window.openPlayerWrapper = openPlayerWrapper;
+    window.isStarted = isStarted;
     window.startButtons = startButtons;
     window.mobileStartButtons = mobileStartButtons;
     window.hiddenButton = hiddenButton;
@@ -118,7 +120,8 @@ $(window).load(function () {
                     if (Math.floor(audio.currentTime) == timeEnds[i]) {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
-                    } else if (audio.currentTime < 1) {
+                    } else if (audio.currentTime < 1 && isStarted != true) {
+                        isStarted = true;
                         audio.currentTime = timeBegins[i];
                     }
                 },false);
