@@ -51,12 +51,10 @@ $(window).load(function () {
                 $(hiddenButton).show();
                 hiddenButton = startButtons[i];
                 $(startButtons[i]).hide();
-                isStarted = false;
             } else {
                 openPlayerWrapper = true;
                 hiddenButton = startButtons[i];
                 $(startButtons[i]).hide();
-                isStarted = false;
             }
             if (YouTubeIDs[i].length == 11) {
                 onYouTubeIframeAPIReady();
