@@ -57,8 +57,6 @@ $(window).load(function () {
                 $(startButtons[i]).hide();
             }
             if (YouTubeIDs[i].length == 11) {
-                onYouTubeIframeAPIReady();
-              
                 function onYouTubeIframeAPIReady() {
                     var YouTubeNode = document.createElement('div');
                     YouTubeNode.setAttribute('id', 'open-player');
@@ -95,6 +93,7 @@ $(window).load(function () {
                           $('#open-player').remove();
                       }
                   };
+                  onYouTubeIframeAPIReady();
                     
             } else {
                 var audio = document.createElement('audio');
@@ -119,8 +118,10 @@ $(window).load(function () {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
                     }
-                    if (parseInt(timeBegins[i]) < 5) {
-                        // pass
+                    if (timeBegins[i] < 5) {
+                        return
+                    } else if (audio.currentTime == 0) {
+                        audio.currentTime = timeBegins[i];
                     } else if (audio.currentTime < 5) {
                         audio.currentTime = timeBegins[i];
                     }

@@ -674,68 +674,6 @@ a {
     }
 }
 
-/* These are deactivated until all the nav filters are working properly.
-@media (max-width:1000px) {
-    .pq-nav-disappear-1 {
-        display:none;
-    }
-}
-
-@media (min-width:1000px) {
-    .pq-nav-appear-1 {
-        display:none;
-    }
-}
-
-@media (max-width:900px) {
-    .pq-nav-disappear-2 {
-        display:none;
-    }
-}
-
-@media (min-width:900px) {
-    .pq-nav-appear-2 {
-        display:none;
-    }
-}
-
-@media (max-width:520px) {
-    .pq-nav-disappear-3 {
-        display:none;
-    }
-}
-
-@media (min-width:520px) {
-    .pq-nav-appear-3 {
-        display:none;
-    }
-}
-
-@media (max-width:460px) {
-    .pq-nav-disappear-4 {
-        display:none;
-    }
-}
-
-@media (min-width:460px) {
-    .pq-nav-appear-4 {
-        display:none;
-    }
-}
-
-@media (max-width:400px) {
-    .pq-nav-disappear-5 {
-        display:none;
-    }
-}
-
-@media (min-width:400px) {
-    .pq-nav-appear-5 {
-        display:none;
-    }
-}
-*/
-
 .dropdown-menu-active {
     background-color:#111;
 }
@@ -1996,7 +1934,7 @@ button {
 }
 
 #open-player {
-    margin:5px 0;
+    padding:5px 0;
 }
 
 .player {
@@ -2031,7 +1969,6 @@ button {
 
 @media (min-width:550px) {
     .mobile-start-button-wrapper {
-        display:none;
         clear:left;
         float:left;
         margin:5px 5px 10px 0;
@@ -2042,7 +1979,6 @@ button {
 }
 
 .youtube-player-wrapper {
-    display:none;
     clear:left;
     position:relative;
     padding-bottom:56.25%; /* 16:9 */
