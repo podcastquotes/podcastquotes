@@ -32,40 +32,6 @@
     
     {% include 'autocomplete_slim.html' %}
     
-    {% if not quote.is_full_episode|is_true %}
-        {% if quote_previous or quote_next %}
-            <div class="pq-previous-next-wrap">
-                <table style="width:100%;margin:-17px 0 0 0;">
-                    <tr style="width:100%;">
-                        {% if quote_previous or quote_next %}
-                            <td class="pq-previous-clip gray-link">
-                                {% if quote_previous %}
-                                    <a href="{{ quote_previous.get_absolute_url }}" id="previous-clip">
-                                        < prev
-                                    </a>
-                                {% endif %}
-                            </td>
-                        {% endif %}
-                        {% if quote_next or quote_previous %}
-                            <td class="pq-autoplay">
-                                <div class="pq-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
-                                <div class="pq-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
-                            </td>                    
-                        {% endif %}
-                        {% if quote_next or quote_previous %}
-                            <td class="pq-next-clip gray-link">
-                                {% if quote_next %}
-                                    <a href="{{ quote_next.get_absolute_url }}" id="next-clip">
-                                        next >
-                                    </a>
-                                {% endif %}
-                            </td>
-                        {% endif %}
-                    </tr>
-                </table>
-            </div>
-        {% endif %}
-    {% endif %}
 {% endblock %}<!-- /block content -->
     
 {% block quotes %}

@@ -45,9 +45,14 @@ $(window).load(function () {
     function playMedia(i) {
         return function () {
             if (openPlayerWrapper != false) {
-                var openPlayer = document.getElementById('open-player');
-                openPlayer.parentNode.className = "player";
-                $('#open-player').remove();
+                try {
+                    var openPlayer = document.getElementById('open-player');
+                    openPlayer.parentNode.className = "player";
+                    $('#open-player').remove();
+                }
+                catch(err) {
+                    // pass
+                } 
                 $(hiddenButton).show();
                 hiddenButton = startButtons[i];
                 $(startButtons[i]).hide();
@@ -62,6 +67,9 @@ $(window).load(function () {
                     YouTubeNode.setAttribute('id', 'open-player');
                     playerWrappers[i].appendChild(YouTubeNode);
                     YouTubeNode.parentNode.className = YouTubeNode.parentNode.className + " youtube-player";
+                    
+                    var playerNode = document.getElementById('open-player').parentNode;
+                    $(playerNode).css('margin', '5px 0 10px 0');
                   
                     playerWrappers[i] = new YT.Player(YouTubeNode, {
                         playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
@@ -90,6 +98,8 @@ $(window).load(function () {
                           done = true;
                           event.target.destroy();
                           $(hiddenButton).show();
+                          var YouTubeNode = document.getElementById('open-player');
+                          YouTubeNode.parentNode.className = "player";
                           $('#open-player').remove();
                       }
                   };
@@ -106,7 +116,8 @@ $(window).load(function () {
                 source.setAttribute('src', audioSourceMP3[i]);
                 audio.appendChild(source);
                 
-                $(playerWrappers[i]).css('margin', '5px 0 0 0');
+                var playerNode = document.getElementById('open-player').parentNode;
+                $(playerNode).css('margin', '10px 0');
 
                 audio.load();
                 audio.onloadedmetadata = function() { 
