@@ -163,7 +163,7 @@ var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 
 if (is_chrome == true  && alertedChrome != 'true') {
     if (typeof window.orientation == 'undefined') {
-          alert('Chrome users beware! Chrome works OK but it loads mp3 Highlights much slower than other browsers. We recommend Firefox, IE, or Safari until we or Google fix it. Thank you for your ┬─┬ノ( ゜-゜ノ)');
+          alert('Attn Chrome user: Podverse is in beta. Full episodes will work well on Chrome, but episode highlights currently load faster on Firefox, IE, or Safari.');
           setCookie('_alertedChrome', 'true', 14)
     }
 };
