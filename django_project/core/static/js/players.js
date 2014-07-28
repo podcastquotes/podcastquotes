@@ -123,18 +123,18 @@ $(window).load(function () {
                 audio.onloadedmetadata = function() { 
                     audio.play();
                 };
-                            
+                
                 audio.addEventListener('timeupdate', function() {
                     if (Math.floor(audio.currentTime) == timeEnds[i]) {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
                     }
-                    if (parseInt(timeBegins[i]) < 5) {
-                        setTimeout(function() {}, (6 * 1000));
-                    } else if (audio.currentTime == 0) {
-                        audio.currentTime = timeBegins[i];
-                    } else if (audio.currentTime < 5) {
-                        audio.currentTime = timeBegins[i];
+                    if (timeBegins[i] != null ) {
+                        if (audio.currentTime == 0) {
+                            audio.currentTime = timeBegins[i];
+                        } else if (audio.currentTime < 5) {
+                            audio.currentTime = timeBegins[i];
+                        }
                     }
                     
                 },false);
