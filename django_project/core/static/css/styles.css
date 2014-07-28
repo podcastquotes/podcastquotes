@@ -459,7 +459,7 @@ a {
 
 @media (min-width:992px) {
     .pq-search-bar input {
-        width:260px;
+        width:260px !important;
     }
 }
 
