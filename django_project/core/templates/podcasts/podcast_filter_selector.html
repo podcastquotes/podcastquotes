@@ -47,10 +47,23 @@
         </div>
     </a>
 
+    <a style="float:right" href="
+            {% if is_podcast_all_episodes_page %}
+                /podcasts/{{ podcast.id }}/
+            {% else %}
+                /podcasts/{{ podcast.id }}/all-episodes/
+            {% endif %}">
+        <div class="pq-show-all{% if is_podcast_all_episodes_page %}-active{% endif %}">
+            show all
+        </div>
+    </a>
+    
+    <!--
     <div class="pq-responsive-autoplay-button">
-        <div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">autoplay on</div>
+        <div class="pq-filter-autoplay-button autoplay-on" id="autoplay-on">show all</div>
         <div class="pq-filter-autoplay-button autoplay-off" id="autoplay-off">autoplay off</div>
     </div>
+    -->
     
     <div class="clearfix"></div>
 </div><!-- /.pq-nav-wrapper -->

@@ -1,5 +1,11 @@
-/* append the YouTube IFRAME API script */
 
+
+
+
+
+
+/* append the YouTube IFRAME API script */
+/*
 
 var youtube = document.createElement('script');
 youtube.type = "text/javascript";
@@ -69,7 +75,7 @@ $(window).load(function () {
                     YouTubeNode.parentNode.className = YouTubeNode.parentNode.className + " youtube-player";
                     
                     var playerNode = document.getElementById('open-player').parentNode;
-                    $(playerNode).css('margin', '5px 0 15px 0');
+                    $(playerNode).css('margin', '5px 0 10px 0');
                   
                     playerWrappers[i] = new YT.Player(YouTubeNode, {
                         playerVars: {'rel': 0, 'showinfo': 0, 'hidecontrols': 1 },
@@ -117,7 +123,7 @@ $(window).load(function () {
                 audio.appendChild(source);
                 
                 var playerNode = document.getElementById('open-player').parentNode;
-                $(playerNode).css('margin', '5px 0 10px 0');
+                $(playerNode).css('margin', '10px 0');
 
                 audio.load();
                 audio.onloadedmetadata = function() { 
@@ -129,8 +135,8 @@ $(window).load(function () {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
                     }
-                    if (parseInt(timeBegins[i]) < 5) {
-                        setTimeout(function() {}, (6 * 1000));
+                    if (timeBegins[i] < 5) {
+                        return
                     } else if (audio.currentTime == 0) {
                         audio.currentTime = timeBegins[i];
                     } else if (audio.currentTime < 5) {
@@ -143,27 +149,7 @@ $(window).load(function () {
     }
     
 });
-
+*/
 
 /* Sample MP3: http://traffic.libsyn.com/joeroganexp/p523.mp3 */
 /* Sample OGG: http://www.tuxradar.com/files/podcast/tuxradar_s06e02.ogg */
-
-// HACK solution to check if person is using a mobile browser
-if (typeof window.orientation == 'undefined') {
-  //
-}
-
-
-// Alert Chrome users that clicked a highlight 1-time
-//  that Chrome is not optimal for viewing highlights
-var alertedChrome = getCookie('_alertedChrome');
-var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-
-
-
-if (is_chrome == true  && alertedChrome != 'true') {
-    if (typeof window.orientation == 'undefined') {
-          alert('Chrome users beware! Chrome works OK but it loads mp3 Highlights much slower than other browsers. We recommend Firefox, IE, or Safari until we or Google fix it. Thank you for your ┬─┬ノ( ゜-゜ノ)');
-          setCookie('_alertedChrome', 'true', 14)
-    }
-};

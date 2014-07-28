@@ -88,7 +88,30 @@
                 {% endif %}
             </div>
         </div>
-    {% elif is_podcast_page and not is_podcast_all_episodes_page %}
+    {% elif quote.is_full_episode|is_true %}
+        <div class="button-hider-xs">
+            <div class="pq-slim-quote-picture" 
+                 id="pq-quote-episode-picture-{{ forloop.counter }}"
+                 audioSourceMP3="{{ quote.episode.episode_url }}"
+                 YouTubeID="{{ quote.episode.video_id }}">
+                {% if quote.episode.podcast.image %}
+                    <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
+                {% endif %}
+                {% if quote.episode.youtube_url or quote.episode.episode_url %}
+                    <div class="picture-play-button"
+                         style="width:24px;height:24px;border-radius:50px;">
+                        <div class="picture-play-button-inside">
+                            <i class="{% if quote.episode.youtube_url %}
+                                          fa fa-youtube-play
+                                      {% elif quote.episode.episode_url %}
+                                          fa fa-play-circle
+                                      {% endif %}"></i>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% elif is_podcast_page %}
         <div class="button-hider-xs">
             <div class="pq-slim-quote-picture" 
                  id="pq-quote-episode-picture-{{ forloop.counter }}"
@@ -180,7 +203,21 @@
                             </a>
                         </div>
                     {% endif %}
-                {% endif %}            
+                {% endif %}
+                {% if is_podcast_page %}
+                        {% if quote.episode.image or quote.episode.video_id %}
+                            <div class="pq-quote-profile-picture-episode display-none-550px">
+                                <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                                    {% if quote.episode.image %}
+                                        <img src="{{MEDIA_URL}}{{ quote.episode.image }}">
+                                    {% elif quote.episode.video_id %}
+                                        <img src="https://img.youtube.com/vi/{{ quote.episode.video_id }}/0.jpg">
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endif %}
+                {% endif %}
+            
                 <div class="pq-quote-subtitle display-none-550px gray-link">
                     {% if is_home_page or is_quote_page or is_user_page %}
                         {% if quote.episode.podcast.title %}
@@ -230,7 +267,7 @@
                                          {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
                                      {% endif %}
                                 ">
-                                {{ quote.episode.podcast.title }}
+                                Podcast: {{ quote.episode.podcast.title }}
                             </a>
                             <br>
                         {% endif %}
@@ -255,17 +292,76 @@
             </div>
         <div class="clearfix">
         </div>
-
-        <div class="player" id="player-{{ forloop.counter }}">
-            <!-- insert audio/video media here via players.js -->
+{% if forloop.first %}
+<div id="jquery_jplayer_{{ forloop.counter }}" class="jp-jplayer"></div>
+  <div id="jp_container_{{ forloop.counter }}" class="jp-audio">
+    <div class="jp-type-single">
+      <div class="jp-gui jp-interface">
+        <ul class="jp-controls">
+          <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+          <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+          <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+          <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+          <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+          <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+        </ul>
+        <div class="jp-progress">
+          <div class="jp-seek-bar">
+            <div class="jp-play-bar"></div>
+          </div>
         </div>
+        <div class="jp-volume-bar">
+          <div class="jp-volume-bar-value"></div>
+        </div>
+        <div class="jp-time-holder">
+          <div class="jp-current-time"></div>
+          <div class="jp-duration"></div>
+          <ul class="jp-toggles">
+            <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+            <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="jp-details">
+        <ul>
+          <li><span class="jp-title"></span></li>
+        </ul>
+      </div>
+      <div class="jp-no-solution">
+        <span>Update Required</span>
+        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+      </div>
+    </div>
+  </div>
+  <script>
+      $(document).ready(function(){
+        $("#jquery_jplayer_1").jPlayer({
+          ready: function () {
+            $(this).jPlayer("setMedia", {
+              title: "Bubble",
+              mp3: "http://traffic.libsyn.com/joeroganexp/p523.mp3",
+            });
+          },
+          swfPath: "{% static 'jQuery.jPlayer.2.6.0' %}",
+          supplied: "mp3"
+        });
+      });
+  </script>
+{% endif %}
+        <!--
+        <div class="player" id="player-{{ forloop.counter }}">
+            <!-- insert audio/video media here via players.js
+        </div>
+        -->
         
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
             {% if quote.text %}
-                <div class="pq-quote-text-box">
+                <div class="pq-quote-text-box"
+                     style="margin:0;font-size:14px">
                     {% if quote.text %}
                         <div class="pq-quote-text-preview" 
-                             id="pq-quote-text-preview-{{ forloop.counter }}">
+                             id="pq-quote-text-preview-{{ forloop.counter }}"
+                             style="margin:0;">
                             {% if not quote.is_longer_than_150chars %}
                                 {% autoescape off %}
                                     {{ quote.text|urlize|linebreaks }}
@@ -399,6 +495,14 @@
             {% endif %}
         {% endif %}
         
+        {% if is_quote_page %}
+            {% if not quote.is_full_episode|is_true %}
+                <div class="pq-quote-posted-by blue-link">
+                    posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
+                </div>
+            {% endif %}
+        {% endif %}
+        
     <div class="pq-quote-date gray-link" style="margin-bottom:5px">
         {% if quote.is_full_episode|is_true and is_episode_page %}
             <span class="font-semibold">Full Episode</span>
@@ -426,20 +530,12 @@
         {% endif %}
         -->
     </div>
-    
-    {% if is_quote_page %}
-        {% if not quote.is_full_episode|is_true %}
-            <div class="pq-quote-posted-by blue-link">
-                posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
-            </div>
-        {% endif %}
-    {% endif %}
 
     <div class="pq-quote-bottom-buttons" style="float:left;clear:left;">
     
         <!-- Button trigger modal -->
         
-        <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
+        <button class="pq-quote-bottom-button" style="margin:0 20px 0 0;" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
         </button>
         
@@ -464,7 +560,7 @@
 
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
             {% if quote.episode.support_url %}
-                <div class="pq-quote-bottom-button text-orange">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 20px 0 0;">
                     <a href=
                     "{% if quote.episode.support_url %}
                         {{ quote.episode.support_url }}
@@ -474,7 +570,7 @@
                     </a>
                 </div>
             {% elif quote.episode.podcast.support_url %}
-                <div class="pq-quote-bottom-button text-orange">
+                <div class="pq-quote-bottom-button text-orange" style="margin:0 20px 0 0;">
                     <a href=
                     "{% if quote.episode.podcast.support_url %}
                         {{ quote.episode.podcast.support_url }}
@@ -496,7 +592,7 @@
             </div>
         {% endif %}
 
-        <div class="skip-button pq-quote-bottom-button" id="skip-button-{{ forloop.counter }}">
+        <div class="skip-button pq-quote-bottom-button" style="margin:0 20px 0 0;" id="skip-button-{{ forloop.counter }}">
             skip
         </div>
         

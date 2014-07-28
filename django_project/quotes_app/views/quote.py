@@ -221,12 +221,12 @@ def quote(request, quote_id):
     all_episodes = Episode.objects.filter(podcast_id=q_object.episode.podcast_id).order_by('-publication_date')
     
     # this gives the top quotes that appear a degree of randomness
-    more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().exclude(is_full_episode=True).filter(episode_id=q_object.episode.id)[:20], key=lambda x: random.random())
-    more_episode_quotes = more_episode_quotes[:5]
+    more_episode_quotes = sorted(Quote.quote_vote_manager.query_top().exclude(is_full_episode=True).filter(episode_id=q_object.episode.id)[:10], key=lambda x: random.random())
+    more_episode_quotes = more_episode_quotes[:10]
     
     # this gives the top quotes that appear a degree of randomness
-    more_podcast_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:50], key=lambda x: random.random())
-    more_podcast_quotes = more_podcast_quotes[:5]
+    more_podcast_quotes = sorted(Quote.quote_vote_manager.query_top().filter(episode__podcast_id=q_object.episode.podcast.id)[:100], key=lambda x: random.random())
+    more_podcast_quotes = more_podcast_quotes[:20]
     
     return render(request, 'quote.html',
                  {'podcasts': Podcast.objects.all().order_by('title'),

@@ -12,7 +12,7 @@ from django.views.generic import RedirectView
 from quotes_app.models import Podcast, Episode, Quote, UserProfile
 from quotes_app.views.episode import EpisodeQuoteListView, EpisodeCreateView, EpisodeUpdateView, EpisodeDeleteView
 from quotes_app.views.home import HomeEpisodeListView, HomeQuoteListView
-from quotes_app.views.podcast import PodcastEpisodeListView, PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
+from quotes_app.views.podcast import PodcastEpisodeListView, PodcastAllEpisodeListView, PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDeleteView
 from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint, create_full_episodes
 from quotes_app.views.user import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
@@ -78,6 +78,10 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     
     url(r'^podcasts/(?P<pk>\d+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
+    
+    url(r'^podcasts/(?P<pk>\d+)/all-episodes/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_root'),
+    
+    url(r'^podcasts/(?P<pk>\d+)/all-episodes/(?P<query_filter>\w+)/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_filter'),
     
     url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),
     
