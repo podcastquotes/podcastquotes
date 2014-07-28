@@ -1749,6 +1749,7 @@ button {
 
 @media (min-width:550px) and (max-width:767px) {
     .pq-quote-bottom-buttons {
+        margin:5px 0 0 0;
         float:right;
     }
 }
