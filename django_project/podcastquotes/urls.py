@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     
     # this view helps Mitch check episodes in a podcast rss feed
     url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
-    
+
     url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     
     url(r'^people/(?P<slug>\w+)/edit/$', UserProfileUpdateView.as_view(), name='user_update'),
@@ -52,7 +52,7 @@ urlpatterns = patterns('',
     url(r'^people/(?P<slug>\w+)/delete/$', UserProfileDeleteView.as_view(), name='user_delete'),
     
     url(r'^people/(?P<slug>\w+)/(?P<query_filter>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list'),
-        
+    
     url(r'^$', HomeEpisodeListView.as_view(), name='home'),
     
     url(r'^episodes/$', HomeEpisodeListView.as_view(), name='home_episode_list'),
@@ -105,6 +105,8 @@ urlpatterns = patterns('',
     url(r'^podcasts/(?P<pk>\d+)/full-episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list'),
     
     url(r'^podcasts/(?P<pk>\d+)/full-episodes/(?P<query_filter>\w+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_filter'),
+    
+    url(r'^podcasts/(?P<pk>\d+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
     url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
     

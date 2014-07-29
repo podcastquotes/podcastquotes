@@ -939,13 +939,13 @@ a {
 
 @media (max-width:767px) {
     .pq-episode-profile-picture img {
-        width:100px;
+        height:110px;;
     }
 }
 
 @media (min-width:768px) {
     .pq-episode-profile-picture img {
-        width:100px;
+        height:110px;;
     }
 }
 
@@ -1093,7 +1093,7 @@ a {
 .pq-quote-episode-picture {
     position:relative;
     float:right;
-    width:120px;
+    width:147px;
     height:auto;
     text-align:center;
     margin:5px 0 10px 15px;
@@ -1101,7 +1101,7 @@ a {
 }
 
 .pq-quote-episode-picture img {
-    width:120px;
+    height:110px;
 }
 
 .pq-slim-quote-title {
@@ -1114,15 +1114,16 @@ a {
 .pq-slim-quote-picture {
     position:relative;
     float:right;
-    width:100px;
+    height:110px;
     height:auto;
+    width:147px;
     text-align:right;
-    margin:0 0 0 15px;
+    margin:0 0 0 25px;
     cursor:pointer;
 }
 
 .pq-slim-quote-picture img {
-    width:100px;
+    height:110px;
 }
 
 @media (max-width:767px) {
@@ -1149,7 +1150,7 @@ a {
 .pq-quote-episode-clip {
     position:relative;
     float:left;
-    width:100px;
+    height:110px;
     height:auto;
     text-align:center;
     margin:5px 15px 10px 0;
@@ -1157,7 +1158,7 @@ a {
 }
 
 .pq-quote-episode-clip img {
-    width:100px;
+    height:110px;
 }
 
 @media (max-width:767px) {
@@ -1358,7 +1359,14 @@ a {
 
 @media (min-width:768px) {
     .pq-quote-profile-picture img {
-        width:100px;
+        height:110px;;
+    }
+}
+
+@media (min-width:768px) {
+    .podcast-image {
+        width:110px;
+        margin:0 18px 0 47px;
     }
 }
 
@@ -1369,7 +1377,7 @@ a {
 }
 
 .pq-quote-profile-picture-episode img {
-    width:100px;
+    height:110px;;
 }
 
 @media (max-width:767px) {
