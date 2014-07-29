@@ -406,24 +406,27 @@
                 </div><!-- /.pq-quote-text-box -->
             {% endif %}
         {% endif %}
-        
-    <div class="pq-quote-date gray-link">
+    
         {% if quote.is_full_episode|is_true and is_episode_page %}
-            <span class="font-semibold">Full Episode</span>
+            <div class="pq-quote-date gray-link">
+                <span class="font-semibold">Full Episode</span>
+            </div>
         {% else %}
-            <a href="{{ quote.get_absolute_url }}">       
-                {% if quote.time_quote_ends %}
-                    Length: {{ quote.duration }}
-                {% endif %}
-                {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
+            <div class="pq-quote-date gray-link">
+                <a href="{{ quote.get_absolute_url }}">       
                     {% if quote.time_quote_ends %}
-                        / {{ quote.converted_time_begins }} 
+                        Length: {{ quote.duration }}
+                    {% endif %}
+                    {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
                         {% if quote.time_quote_ends %}
-                            - {{ quote.converted_time_ends }}
+                            / {{ quote.converted_time_begins }} 
+                            {% if quote.time_quote_ends %}
+                                - {{ quote.converted_time_ends }}
+                            {% endif %}
                         {% endif %}
                     {% endif %}
-                {% endif %}
-            </a>
+                </a>
+            </div>
         {% endif %}
             
         <!--
@@ -433,7 +436,6 @@
             {% endif %}
         {% endif %}
         -->
-    </div>
     
     {% if is_quote_page %}
         {% if not quote.is_full_episode|is_true %}
