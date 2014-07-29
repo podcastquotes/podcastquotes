@@ -44,6 +44,7 @@ $(window).load(function () {
     
     function playMedia(i) {
         return function () {
+            window.location.hash = '#pq-quote-' + (i + 1);
             if (openPlayerWrapper != false) {
                 try {
                     var openPlayer = document.getElementById('open-player');
@@ -129,7 +130,7 @@ $(window).load(function () {
                         audio.pause();
                         audio.currentTime = parseInt(Math.floor(timeEnds[i])) + 1;
                     }
-                    if (timeBegins[i] != null ) {
+                    if (timeBegins[i] != null && timeBegins[i] > 5 ) {
                         if (audio.currentTime == 0) {
                             audio.currentTime = timeBegins[i];
                         } else if (audio.currentTime < 5) {

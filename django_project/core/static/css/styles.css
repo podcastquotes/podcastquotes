@@ -1729,6 +1729,7 @@ button {
     clear:both;
     float:left;
     font-size: 12px;
+    margin:0 0 10px 0;
     /* color: #FFFFFF; */
 }
 

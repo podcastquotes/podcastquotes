@@ -94,8 +94,12 @@
                  id="pq-quote-episode-picture-{{ forloop.counter }}"
                  audioSourceMP3="{{ quote.episode.episode_url }}"
                  YouTubeID="{{ quote.episode.video_id }}"
-                 timeBegins="{{ quote.time_quote_begins }}" 
-                 timeEnds="{{ quote.time_quote_ends }}">
+                 {% if quote.time_quote_begins %}
+                     timeBegins="{{ quote.time_quote_begins }}"
+                 {% endif %}
+                 {% if quote.time_quote_ends %}
+                     timeEnds="{{ quote.time_quote_ends }}"
+                 {% endif %}>
                 {% if quote.episode.podcast.image %}
                     <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                 {% endif %}
@@ -119,8 +123,12 @@
                  id="pq-quote-episode-picture-{{ forloop.counter }}"
                  audioSourceMP3="{{ quote.episode.episode_url }}"
                  YouTubeID="{{ quote.episode.video_id }}"
-                 timeBegins="{{ quote.time_quote_begins }}" 
-                 timeEnds="{{ quote.time_quote_ends }}">
+                 {% if quote.time_quote_begins %}
+                     timeBegins="{{ quote.time_quote_begins }}"
+                 {% endif %}
+                 {% if quote.time_quote_ends %}
+                     timeEnds="{{ quote.time_quote_ends }}"
+                 {% endif %}>
                 {% if quote.episode.podcast.image %}
                     <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                 {% endif %}
@@ -399,7 +407,7 @@
             {% endif %}
         {% endif %}
         
-    <div class="pq-quote-date gray-link" style="margin-bottom:5px">
+    <div class="pq-quote-date gray-link">
         {% if quote.is_full_episode|is_true and is_episode_page %}
             <span class="font-semibold">Full Episode</span>
         {% else %}
