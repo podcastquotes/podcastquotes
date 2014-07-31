@@ -44,7 +44,6 @@ $(window).load(function () {
     
     function playMedia(i) {
         return function () {
-            window.location.hash = '#pq-quote-' + (i + 1);
             if (openPlayerWrapper != false) {
                 try {
                     var openPlayer = document.getElementById('open-player');
@@ -61,6 +60,9 @@ $(window).load(function () {
                 openPlayerWrapper = true;
                 hiddenButton = startButtons[i];
                 $(startButtons[i]).hide();
+            }
+            if (i != 0) {
+                window.location.hash = '#pq-quote-' + (i + 1);
             }
             if (YouTubeIDs[i].length == 11) {
                 function onYouTubeIframeAPIReady() {
