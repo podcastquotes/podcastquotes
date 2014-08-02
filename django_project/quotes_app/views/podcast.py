@@ -321,9 +321,9 @@ class PodcastAllEpisodeListView(ListView):
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
-        context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
+        context['podcast'] = Podcast.objects.get(slug=self.kwargs['slug'])
         
-        all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
+        all_episodes = Episode.objects.filter(podcast__slug=self.kwargs['slug']).order_by('-publication_date')
         context['episodes'] = all_episodes
         
         """
@@ -396,7 +396,7 @@ class PodcastAllEpisodeListView(ListView):
         return context
     
     def get_queryset(self):
-        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        p = get_object_or_404(Podcast, slug=self.kwargs['slug'])
         try: 
             self.kwargs['query_filter']
             f = self.kwargs['query_filter']
