@@ -67,7 +67,7 @@
         <div class="pq-podcast-box">
             {% if podcast.image %}
                 <div class="pq-podcast-profile-picture">
-                    <a href="/podcasts/{{ podcast.id }}">
+                    <a href="{% url 'podcast_episode_list_root' slug=podcast.slug %}">
                       <img src="{{MEDIA_URL}}{{ podcast.image }}" />
                     </a>
                 </div><!-- /.pq-podcast-profile-picture -->
@@ -99,11 +99,11 @@
             
                 {% if is_podcast_page %}
                     <div class="pq-podcast-karma">
-                        Karma: {{ podcast.karma_total }} &nbsp &nbsp &nbsp Clips: {{ podcast.all_podcast_quotes_count }}
+                        Karma: {{ podcast.karma_total }} &nbsp &nbsp &nbsp Highlights: {{ podcast.all_podcast_quotes_count }}
                     </div>
                 {% elif is_episode_page %}
                    <div class="pq-podcast-karma">
-                        Karma: {{ episode.karma_total }} &nbsp &nbsp &nbsp Clips: {{ episode.all_episode_quotes_count }}
+                        Karma: {{ episode.karma_total }} &nbsp &nbsp &nbsp Highlights: {{ episode.all_episode_quotes_count }}
                     </div>
                 {% endif %}
                 
@@ -207,19 +207,19 @@
             <div class="pq-episode-finder">
                 <select class="pq-episode-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;" style="border-radius:10px {% if is_podcast_page %}margin:0;{% endif %}">
                     {% if is_episode_page %}
-                        <option value="episodes/{{ podcast.episode.id }}" selected="selected">Episode: {{ episode.title }}</option>
-                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">Full Episodes</option>
-                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">Highlights</option>
+                        <option value="" selected="selected">Episode: {{ episode.title }}</option>
+                        <option value="{% url 'podcast_episode_list_root' slug=podcast.slug %}">Full Episodes</option>
+                        <option value="{% url 'podcast_quote_list_root' slug=podcast.slug %}">Highlights</option>
                     {% elif is_podcast_episodes_page %}
-                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">Full Episodes</option>
-                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">Highlights</option>
+                        <option value="{% url 'podcast_episode_list_root' slug=podcast.slug %}">Full Episodes</option>
+                        <option value="{% url 'podcast_quote_list_root' slug=podcast.slug %}">Highlights</option>
                     {% elif is_podcast_clips_page %}
-                        <option value="{% url 'podcast_quote_list_root' pk=podcast.id %}">Highlights</option>
-                        <option value="{% url 'podcast_episode_list_root' pk=podcast.id %}">Full Episodes</option>
+                        <option value="{% url 'podcast_quote_list_root' slug=podcast.slug %}">Highlights</option>
+                        <option value="{% url 'podcast_episode_list_root' slug=podcast.slug %}">Full Episodes</option>
                     {% endif %}
                     <option value="">---</option>
                     {% for episode in episodes %}
-                        <option value="/episodes/{{ episode.id }}">
+                        <option value="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}">
                             {{ episode.title }}
                         </option>
                     {% endfor %}

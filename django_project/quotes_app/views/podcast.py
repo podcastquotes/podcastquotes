@@ -23,12 +23,13 @@ def update_feed(request, podcast_id):
     
     # print podcast_syndication_service.collect_episodes(p)
     
-    return HttpResponseRedirect(p.get_absolute_url())
+    return HttpResponseRedirect('/')
     
 class PodcastCreateView(CreateView):
     model = Podcast
     form_class = PodcastCreateForm
     context_object_name = 'podcast'
+    slug_field="slug"
     
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
@@ -116,15 +117,17 @@ class PodcastUpdateView(UpdateView):
     model = Podcast
     template_name = 'podcast_update.html'
     form_class = PodcastForm
+    slug_field="slug"
     
     def get_context_data(self, **kwargs):
         context = super(PodcastUpdateView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
-
-        all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
         
+        context['podcast'] = Podcast.objects.get(slug=self.kwargs['slug'])
+        
+        all_episodes = Episode.objects.filter(podcast__slug=self.kwargs['slug']).order_by('-publication_date')
         context['episodes'] = all_episodes
         return context
         
@@ -142,14 +145,18 @@ class PodcastDeleteView(DeleteView):
     context_object_name = 'podcast'
     success_url = reverse_lazy('home')
     template_name = 'podcast_delete.html'
+    slug_field="slug"
     
     def get_context_data(self, **kwargs):
         context = super(PodcastDeleteView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
-
-        all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
+        
+        context['podcast'] = Podcast.objects.get(slug=self.kwargs['slug'])
+        
+        all_episodes = Episode.objects.filter(podcast__slug=self.kwargs['slug']).order_by('-publication_date')
+        context['episodes'] = all_episodes
         
         context['episodes'] = all_episodes
         return context
@@ -165,6 +172,7 @@ class PodcastDeleteView(DeleteView):
 
 class PodcastEpisodeListView(ListView):
     model = Quote
+    slug_field="slug"
     
     def get_template_names(self):
         return 'podcast_detail.html'
@@ -184,9 +192,10 @@ class PodcastEpisodeListView(ListView):
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
-        context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
+        p = Podcast.objects.get(slug=self.kwargs['slug'])
+        context['podcast'] = p
         
-        all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
+        all_episodes = Episode.objects.filter(podcast_id=p.id).order_by('-publication_date')
         context['episodes'] = all_episodes
         
         """
@@ -257,7 +266,7 @@ class PodcastEpisodeListView(ListView):
         return context
     
     def get_queryset(self):
-        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        p = get_object_or_404(Podcast, slug=self.kwargs['slug'])
         try: 
             self.kwargs['query_filter']
             f = self.kwargs['query_filter']
@@ -295,6 +304,7 @@ class PodcastEpisodeListView(ListView):
 # Should be using class inheritance.
 class PodcastAllEpisodeListView(ListView):
     model = Quote
+    slug_field="slug"
     
     def get_template_names(self):
         return 'podcast_detail.html'
@@ -422,6 +432,7 @@ class PodcastAllEpisodeListView(ListView):
 
 class PodcastQuoteListView(ListView):
     model = Quote
+    slug_field="slug"
 
 
     def get_template_names(self):
@@ -442,9 +453,9 @@ class PodcastQuoteListView(ListView):
         ### context['podcasts'] must be refactored, this is passed to all views
         context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
-        context['podcast'] = Podcast.objects.get(id=self.kwargs['pk'])
+        context['podcast'] = Podcast.objects.get(slug=self.kwargs['slug'])
         
-        all_episodes = Episode.objects.filter(podcast_id=self.kwargs['pk']).order_by('-publication_date')
+        all_episodes = Episode.objects.filter(podcast__slug=self.kwargs['slug']).order_by('-publication_date')
         context['episodes'] = all_episodes
         
         """
@@ -515,7 +526,7 @@ class PodcastQuoteListView(ListView):
         return context
     
     def get_queryset(self):
-        p = get_object_or_404(Podcast, id=self.kwargs['pk'])
+        p = get_object_or_404(Podcast, slug=self.kwargs['slug'])
         try: 
             self.kwargs['query_filter']
             f = self.kwargs['query_filter']

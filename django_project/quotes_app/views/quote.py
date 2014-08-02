@@ -145,6 +145,11 @@ class QuoteUpdateView(UpdateView):
     
     def get_object(self, *args, **kwargs):
         quote = super(QuoteUpdateView, self).get_object(*args, **kwargs)
+        q = get_object_or_404(Quote, id=self.kwargs['pk'])
+
+        if q.episode.podcast.slug != self.kwargs['podcast_slug']:
+            return Http404
+        
         if self.request.user == quote.submitted_by:
             return quote
         elif self.request.user.is_superuser:
@@ -176,6 +181,10 @@ class QuoteDeleteView(DeleteView):
         
     def get_object(self, *args, **kwargs):
         quote = super(QuoteDeleteView, self).get_object(*args, **kwargs)
+        q = get_object_or_404(Quote, id=self.kwargs['pk'])
+        if q.episode.podcast.slug != self.kwargs['podcast_slug']:
+            return Http404
+            
         if self.request.user == quote.submitted_by:
             return quote
         elif self.request.user.is_superuser:
@@ -183,9 +192,13 @@ class QuoteDeleteView(DeleteView):
         else:
             raise Http404
 
-def quote(request, quote_id):
+def quote(request, quote_id, podcast_slug):
     ### TechDebt - list containing one object is needed to make
     # Mitch's kluge youtube.js file work on quote_detail pages
+    q = get_object_or_404(Quote, id=quote_id)
+    if q.episode.podcast.slug != podcast_slug:
+        return Http404
+    
     q_pseudo_list = Quote.objects.filter(id=quote_id)
     q_object = Quote.objects.get(id=quote_id)
     

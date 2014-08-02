@@ -1,23 +1,23 @@
 <div class="pq-nav-wrapper">
-    <a href="/episodes/{{ episode.id }}/hot/">
+    <a href="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}/hot/">
         <div class="pq-nav{% if episode_hot_is_active %}-active{% endif %}">
             hot
         </div>
     </a>
 
-    <a href="/episodes/{{ episode.id }}/ordered/">
+    <a href="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}/ordered/">
         <div class="pq-nav{% if episode_ordered_is_active %}-active{% endif %}">
             ordered
         </div>
     </a>
     
-    <a href="/episodes/{{ episode.id }}/new/">
+    <a href="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}/new/">
         <div class="pq-nav{% if episode_new_is_active %}-active{% endif %} pq-nav-disappear-4">
             new
         </div>
     </a>
 
-    <a href="/episodes/{{ episode.id }}/top/">
+    <a href="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}/top/">
         <div class="pq-nav{% if episode_top_is_active %}-active{% endif %} pq-nav-disappear-3">
             top
         </div>

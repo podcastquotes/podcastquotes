@@ -12,12 +12,12 @@
     
         <p>Are you sure you want to delete this quote?</p>
 
-        <form method="post" action="{% url 'quote_delete' pk=quote.pk %}">
+        <form method="post" action="/{{ quote.episode.podcast.slug }}/clips/{{ quote.pk }}/delete/">
             {% csrf_token %}
             
             <div class="pq-form-buttons">
                 <button type="submit" class="btn btn-small btn-danger pq-form-button">Confirm Delete <i class="fa fa-trash-o"></i></button>
-                <a href="{% url 'quote' quote_id=quote.pk %}" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
+                <a href="/{{ quote.episode.podcast.slug }}/clips/{{ quote.pk }}/" style="color:#eee;" class="btn btn-small btn-primary text-light-grey pq-form-button">Cancel</a>
             </div><!-- /.pq-form-input -->
             
             <div class="clearfix">

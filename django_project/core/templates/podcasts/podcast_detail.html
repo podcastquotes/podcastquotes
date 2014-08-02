@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block opengraph %}
-    <meta property="og:url" content="https://podverse.tv/podcasts/{{ podcast.id }}/">
+    <meta property="og:url" content="{% if is_podcast_episodes_page %}
+                                         https://podverse.tv{% url 'podcast_episode_list_root' slug=podcast.slug %}
+                                     {% elif is_podcast_highlights_page %}
+                                         https://podverse.tv{% url 'podcast_quote_list_root' slug=podcast.slug %}
+                                     {% endif %}">
     <meta property="og:title" content="{% if is_podcast_episodes_page %}
                                            {{ podcast.title }} episodes on podverse.tv
                                        {% elif is_podcast_highlights_page %}
@@ -22,7 +26,6 @@
 {% endblock %}
 
 {% block content %}
-
     {% include 'main_col_width.html' %}
         
     {% include 'autocomplete_slim.html' %}

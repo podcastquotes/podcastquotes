@@ -58,6 +58,7 @@ class Podcast(models.Model):
     rss_url = models.URLField(blank=True)
     title = models.CharField(max_length=200, blank=True)
     alphabetical_title = models.CharField(max_length=200, blank=True)
+    slug = models.SlugField(max_length=50, blank=True)
     description = models.TextField(blank=True)
     keywords = models.CharField(max_length=500, blank=True)
     image = ResizedImageField(upload_to=get_upload_file_name, max_width=250, max_height=250, blank=True)
@@ -106,7 +107,7 @@ class Podcast(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('podcast_episode_list_root', kwargs={'pk': self.pk})
+        return reverse('podcast_episode_list_root', kwargs={'slug': self.slug})
 
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)
@@ -212,8 +213,8 @@ class Episode(models.Model):
         return k
     
     def get_absolute_url(self):
-        return reverse('episode_quote_list_root', kwargs={'pk': self.pk})
-
+        return reverse('episode_quote_list_root', kwargs={'podcast_slug': self.podcast.slug, 'pk': self.pk})
+        
     def __unicode__(self):
         return u'%s - %s' % (self.podcast.title, self.title)
 
@@ -303,9 +304,8 @@ class Quote(models.Model):
         else:
             return "%02d:%02d" % (m, s)
 
-    
     def get_absolute_url(self):
-        return reverse('quote', kwargs={'quote_id': self.pk})
+        return reverse('quote', kwargs={'podcast_slug': self.episode.podcast.slug, 'quote_id': self.pk})
         
     def __unicode__(self):
         return u'%s - %s' % (self.episode.podcast.title, self.episode.title)

@@ -228,7 +228,7 @@
                 {% if is_home_page or is_quote_page or is_user_page %}
                     {% if quote.episode.podcast.image %}
                         <div class="pq-quote-profile-picture display-none-550px">
-                            <a href="{% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}">
+                            <a href="{% url 'podcast_episode_list_root' slug=quote.episode.podcast.slug %}">
                                 <img src="{{MEDIA_URL}}{{ quote.episode.podcast.image }}">
                             </a>
                         </div>
@@ -239,9 +239,9 @@
                         {% if quote.episode.podcast.title %}
                             <a href="
                                      {% if is_home_clips_page or is_user_page %}
-                                         {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
+                                         {% url 'podcast_quote_list_root' slug=quote.episode.podcast.slug %}
                                      {% else %}
-                                         {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
+                                         {% url 'podcast_episode_list_root' slug=quote.episode.podcast.slug %}
                                      {% endif %}
                                 ">
                                 {{ quote.episode.podcast.title|truncatechars:40 }}
@@ -251,14 +251,14 @@
                     {% endif %}
                     
                     {% if is_podcast_episodes_page %}
-                        <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                        <a href="/{{ quote.episode.podcast.slug }}/episodes/{{ quote.episode.pk }}">
                             {{ quote.episode.publication_date|date:'M d, Y' }}
                         </a>
                     {% endif %}
                     
                     {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
                         {% if quote.episode.title %} 
-                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                            <a href="/{{ quote.episode.podcast.slug }}/episodes/{{ quote.episode.pk }}">
                                 {{ quote.episode.title|truncatechars:40 }}
                             </a>
                             <br>
@@ -278,9 +278,9 @@
                         {% if quote.episode.podcast.title %}
                             <a href="
                                      {% if is_home_clips_page or is_user_page %}
-                                         {% url 'podcast_quote_list_root' pk=quote.episode.podcast.id %}
+                                         {% url 'podcast_quote_list_root' slug=quote.episode.podcast.slug %}
                                      {% else %}
-                                         {% url 'podcast_episode_list_root' pk=quote.episode.podcast.id %}
+                                         {% url 'podcast_episode_list_root' slug=quote.episode.podcast.slug %}
                                      {% endif %}
                                 ">
                                 {{ quote.episode.podcast.title }}
@@ -290,14 +290,14 @@
                     {% endif %}
                     
                     {% if is_podcast_episodes_page %}
-                        <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                        <a href="/{{ quote.episode.podcast.slug }}/episodes/{{ quote.episode.pk }}">
                             Date Aired: {{ quote.episode.publication_date|date:'M d, Y' }}
                         </a>
                     {% endif %}
                     
                     {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
                         {% if quote.episode.title %} 
-                            <a href="{% url 'episode_quote_list_root' pk=quote.episode.id %}">
+                            <a href="/{{ quote.episode.podcast.slug }}/episodes/{{ quote.episode.pk }}">
                                 Episode: {{ quote.episode.title }}
                             </a>
                             <br>
@@ -510,7 +510,11 @@
                         <h4 class="modal-title" id="myModalLabel">Copy this link</h4>
                     </div>
                     <div class="modal-body">
-                        https://podverse.tv{{ quote.get_absolute_url }}
+                        {% if quote.is_full_episode|is_true %}
+                            https://podverse.tv{{ quote.episode.get_absolute_url }}
+                        {% else %}
+                            https://podverse.tv{{ quote.get_absolute_url }}
+                        {% endif %}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -546,7 +550,7 @@
             <div class="pq-quote-bottom-button text-purple"
                  style="margin:0 20px 0 0;">
                 <a href="{{ quote.get_absolute_url }}edit/">
-                    edit clip
+                    edit
                 </a>
             </div>
         {% endif %}

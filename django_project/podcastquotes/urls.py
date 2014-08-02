@@ -61,14 +61,6 @@ urlpatterns = patterns('',
     
     url(r'^clips/create/$', QuoteCreateView.as_view(), name='quote_create'),
     
-    url(r'^clips/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
-    
-    url(r'^quotes/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote_alternate'),
-    
-    url(r'^clips/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
-    
-    url(r'^clips/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
-    
     url(r'^clips/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
     
     url(r'^clips/(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list_filter'),
@@ -77,15 +69,16 @@ urlpatterns = patterns('',
     
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
     
-    url(r'^podcasts/(?P<pk>\d+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
+    url(r'^episodes/(?P<query_filter>\w+)/$', HomeEpisodeListView.as_view(), name='home_episode_list_filter'),
     
-    url(r'^podcasts/(?P<pk>\d+)/all-episodes/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_root'),
+    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
     
-    url(r'^podcasts/(?P<pk>\d+)/all-episodes/(?P<query_filter>\w+)/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_filter'),
+	# JSON Endpoints
+    url(r'^episodes/json$', 'quotes_app.views.episode.thin_json_episode_query', name="thin_json_episode_query"),
+    url(r'^podcasts/json$', 'quotes_app.views.podcast.thin_json_podcast_query', name="thin_json_podcast_query"),
     
-    url(r'^podcasts/(?P<pk>\d+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),
-    
-    url(r'^podcasts/(?P<pk>\d+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
+    # Allauth urls
+    (r'^accounts/', include('allauth.urls')),
     
     url(r'^podcasts/create/$', 
         PodcastCreateView.as_view(
@@ -98,36 +91,40 @@ urlpatterns = patterns('',
         'quotes_app.views.podcast.update_feed', 
         name='update_feed',),
     
-    url(r'^podcasts/(?P<pk>\d+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
     
-    url(r'^podcasts/(?P<pk>\d+)/clips/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
+    url(r'^(?P<slug>[\w-]+)/all-episodes/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_root'),
     
-    url(r'^podcasts/(?P<pk>\d+)/full-episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list'),
+    url(r'^(?P<slug>[\w-]+)/all-episodes/(?P<query_filter>\w+)/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_filter'),
     
-    url(r'^podcasts/(?P<pk>\d+)/full-episodes/(?P<query_filter>\w+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_filter'),
+    url(r'^(?P<slug>[\w-]+)/edit/$', PodcastUpdateView.as_view(), name='podcast_update'),
     
-    url(r'^podcasts/(?P<pk>\d+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
     
-    url(r'^episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list'),
     
-    url(r'^episodes/(?P<query_filter>\w+)/$', HomeEpisodeListView.as_view(), name='home_episode_list_filter'),
+    url(r'^(?P<podcast_slug>[\w-]+)/episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
     
-    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
+    url(r'^(?P<podcast_slug>[\w-]+)/episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
     
-    url(r'^episodes/(?P<pk>\d+)/edit/$', EpisodeUpdateView.as_view(), name='episode_update'),
+    url(r'^(?P<podcast_slug>[\w-]+)/episodes/(?P<pk>\d+)/delete/$', EpisodeDeleteView.as_view(), name='episode_delete'),  
     
-    url(r'^episodes/(?P<pk>\d+)/delete/$', EpisodeDeleteView.as_view(), name='episode_delete'),  
+    url(r'^(?P<podcast_slug>[\w-]+)/episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
     
-    url(r'^episodes/(?P<pk>\d+)/(?P<query_filter>\w+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list'),
+    url(r'^(?P<slug>[\w-]+)/episodes/(?P<query_filter>\w+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_filter'),
     
-	# JSON Endpoints
-    url(r'^episodes/json$', 'quotes_app.views.episode.thin_json_episode_query', name="thin_json_episode_query"),
-    url(r'^podcasts/json$', 'quotes_app.views.podcast.thin_json_podcast_query', name="thin_json_podcast_query"),
+    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
     
+    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
     
-    # Allauth urls
-    (r'^accounts/', include('allauth.urls')),
-
+    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
+    
+    url(r'^(?P<slug>[\w-]+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    
+    url(r'^(?P<slug>[\w-]+)/clips/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
+    
+    url(r'^(?P<slug>[\w-]+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    
 )
 
 # Serve static in development

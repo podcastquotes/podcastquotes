@@ -19,6 +19,7 @@ class PodcastCreateForm(forms.ModelForm):
         widgets = {
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
+            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
             'support_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
@@ -39,6 +40,7 @@ class PodcastForm(forms.ModelForm):
         widgets = {
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
+            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'keywords': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),

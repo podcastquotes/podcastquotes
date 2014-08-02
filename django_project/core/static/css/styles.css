@@ -1824,8 +1824,6 @@ button {
         margin:10px 0;
         background-color:#fcfcfc;
         border:1px solid #ccc;
-        height:250px;
-        overflow:auto;
     }
 }
 
@@ -1835,13 +1833,16 @@ button {
         margin:10px 0;
         background-color:#fcfcfc;
         border:1px solid #ccc;
-        height:250px;
-        overflow:auto;
     }
 }
 
+.pq-quote-more-overflow {
+    height:220px;
+    overflow:auto;
+}
+
 .pq-quote-more hr {
-    margin:10px 0;
+    margin:0 0 10px 0;
     border-top:1px solid #d5d5d5;
 }
 
@@ -1857,6 +1858,7 @@ button {
 .pq-quote-more-box {
     background-color:#fcfcfc;
     overflow:hidden;
+    margin:0 0 10px 0;
 }
 
 .pq-quote-more-text {

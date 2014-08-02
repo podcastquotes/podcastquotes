@@ -32,7 +32,7 @@
           <div class="pq-menu-options">
               {% for podcast in podcasts %}        
                   <div class="pq-menu-option">
-                      <a href="/podcasts/{{ podcast.id }}">
+                      <a href="{% url 'podcast_episode_list_root' slug=podcast.slug %}">
                           <img class="pq-menu-option-image" src="{{MEDIA_URL}}{{ podcast.image }}">
                           <span class="hidden-xs hidden-sm hidden-lg">
                               {{ podcast.title|truncatechars:25 }}
@@ -66,7 +66,7 @@
                 <div class="pq-menu-options">
                     {% for episode in episodes %}        
                         <div class="pq-menu-option">
-                            <a href="/episodes/{{ episode.id}}">
+                            <a href="/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}">
                                 {{ episode.title }}<br>
                                 <i>{{ episode.publication_date|date:'M d, Y' }}</i>
                             </a>

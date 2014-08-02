@@ -508,7 +508,7 @@ class QuoteUpdateTests(TestCase):
         self.test_user = User.objects.create()
         
         # Create the holy trinity (pod/episode/quote)
-        self.test_podcast = Podcast.objects.create(title='Hoagie Talk')
+        self.test_podcast = Podcast.objects.create(title='Hoagie Talk', slug="hoagie-talk")
         
         self.test_episode = Episode.objects.create(
             title='Click of Death',
@@ -526,7 +526,7 @@ class QuoteUpdateTests(TestCase):
         
     def act(self):
         quote_update_view = QuoteUpdateView.as_view()
-        response = quote_update_view(self.request, pk=self.test_quote.id)
+        response = quote_update_view(self.request, podcast_slug=self.test_quote.episode.podcast.slug, pk=self.test_quote.id)
         
         # Act
         response.render()

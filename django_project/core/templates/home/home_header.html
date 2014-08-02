@@ -9,7 +9,7 @@
         {% endif %}
         <option value="/">---</option>
         {% for podcast in podcasts %}
-            <option value="/podcasts/{{ podcast.id }}">{{ podcast.title }}</option>
+            <option value="{% url 'podcast_episode_list_root' slug=podcast.slug %}">{{ podcast.title }}</option>
         {% endfor %}
     </select>
 </div>

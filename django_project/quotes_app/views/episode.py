@@ -202,6 +202,9 @@ class EpisodeQuoteListView(ListView):
 
     def get_queryset(self):
         e = get_object_or_404(Episode, id=self.kwargs['pk'])
+
+        if e.podcast.slug != self.kwargs['podcast_slug']:
+            return Http404
         
         try: 
             self.kwargs['query_filter']

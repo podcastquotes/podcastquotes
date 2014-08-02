@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block opengraph %}
-    <meta property="og:url" content="https://podverse.tv/episodes/{{ episode.id }}/">
+    <meta property="og:url" content="https://podverse.tv/{{ episode.podcast.slug }}/episodes/{{ episode.pk }}">
     <meta property="og:title" content="{% if is_episode_page %}
                                            {{ episode.podcast.title }} - {{ episode.title }} on podverse.tv
                                        {% endif %}">
