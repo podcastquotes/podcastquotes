@@ -55,7 +55,9 @@
                 </div>
                 
                 <div class="pq-menu-pulldown">
-                    All
+                    {% if podcast %}
+                        {{ podcast.title }}
+                    {% endif %}
                 </div>
                 
                 <div class="clearfix">
