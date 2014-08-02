@@ -3,7 +3,7 @@
             {% if is_podcast_episodes_page %}
                 {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/hot/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}clips/hot/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/hot/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_hot_is_active %}-active{% endif %}">
@@ -15,7 +15,7 @@
             {% if is_podcast_episodes_page %}
                 {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/ordered/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}clips/ordered/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/ordered/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_ordered_is_active %}-active{% endif %} pq-nav-disappear-4">
@@ -27,7 +27,7 @@
             {% if is_podcast_episodes_page %}
                 {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/new/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}clips/new/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/new/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
@@ -39,7 +39,7 @@
             {% if is_podcast_episodes_page %}
                 {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/top/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}clips/top/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/top/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">

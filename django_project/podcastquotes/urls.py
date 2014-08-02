@@ -57,13 +57,13 @@ urlpatterns = patterns('',
     
     url(r'^episodes/$', HomeEpisodeListView.as_view(), name='home_episode_list'),
     
-    url(r'^clips/$', HomeQuoteListView.as_view(), name='home_quote_list'),
+    url(r'^highlights/$', HomeQuoteListView.as_view(), name='home_quote_list'),
     
-    url(r'^clips/create/$', QuoteCreateView.as_view(), name='quote_create'),
+    url(r'^highlights/create/$', QuoteCreateView.as_view(), name='quote_create'),
     
-    url(r'^clips/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
+    url(r'^highlights/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
     
-    url(r'^clips/(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list_filter'),
+    url(r'^highlights/(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list_filter'),
 
     url(r'^admin/', include(admin.site.urls)),
     
@@ -113,17 +113,17 @@ urlpatterns = patterns('',
     
     url(r'^(?P<slug>[\w-]+)/episodes/(?P<query_filter>\w+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_filter'),
     
-    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
+    url(r'^(?P<podcast_slug>[\w-]+)/highlights/(?P<quote_id>\d+)/$', 'quotes_app.views.quote.quote', name='quote'),
     
-    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
+    url(r'^(?P<podcast_slug>[\w-]+)/highlights/(?P<pk>\d+)/edit/$', QuoteUpdateView.as_view(), name='quote_update'),
     
-    url(r'^(?P<podcast_slug>[\w-]+)/clips/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
+    url(r'^(?P<podcast_slug>[\w-]+)/highlights/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
     
-    url(r'^(?P<slug>[\w-]+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/highlights/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
-    url(r'^(?P<slug>[\w-]+)/clips/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
+    url(r'^(?P<slug>[\w-]+)/highlights/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
     
-    url(r'^(?P<slug>[\w-]+)/clips/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/highlights/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
 )
 

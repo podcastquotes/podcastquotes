@@ -2,9 +2,9 @@
     <select class="pq-podcast-selector form-control" ONCHANGE="location = this.options[this.selectedIndex].value;">
         {% if is_home_episodes_page %}
             <option value="/episodes/">Full Episodes</option>
-            <option value="/clips/">Highlights</option>
+            <option value="/highlights/">Highlights</option>
         {% elif is_home_clips_page %}
-            <option value="/clips/">Highlights</option>
+            <option value="/highlights/">Highlights</option>
             <option value="/episodes/">Full Episodes</option>
         {% endif %}
         <option value="/">---</option>
