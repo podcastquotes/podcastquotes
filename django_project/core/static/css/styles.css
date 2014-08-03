@@ -828,6 +828,20 @@ a {
 }
 
 @media (max-width:767px) {
+    .pq-person-header-social-icons {
+        clear:left;
+        margin:0 0 5px 0;
+    }
+}
+
+@media (min-width:768px) {
+    .pq-person-header-social-icons {
+        float:right;
+        margin:0 0 10px 0;
+    }
+}
+
+@media (max-width:767px) {
     .pq-podcast-header-social-icon {
         margin:0 5px 0 0;
         font-size:22px;

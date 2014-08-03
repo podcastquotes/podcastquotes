@@ -1,7 +1,9 @@
 <div class="pq-podcast-header">
     
+    <div class="pq-podcast-profile">
+    
     {% if person.userprofile or person.userprofile.twitter_url or person.userprofile.facebook_url or person.userprofile.instagram_url or person.userprofile.google_plus_url or person.userprofile.tumblr_url or person.userprofile.youtube_url or person.userprofile.reddit_url %}
-        <div class="pq-podcast-header-social-icons dark-link">
+        <div class="pq-person-header-social-icons dark-link">
             {% if person.userprofile.homepage %}
                 <span class="pq-podcast-header-social-icon">
                     <a href="{{ person.userprofile.homepage }}" target="_blank">
@@ -60,8 +62,6 @@
             {% endif %}
         </div><!-- /.pq-podcast-header-social-icons -->
     {% endif %}
-    
-    <div class="pq-podcast-profile">
     
         {% if person.userprofile.image %}
             <div class="pq-podcast-profile-picture">
