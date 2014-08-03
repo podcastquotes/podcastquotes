@@ -1,12 +1,21 @@
 from django import template
-from quotes_app.models import Podcast, Episode, Quote, Vote
+from quotes_app.models import Podcast, Episode, Quote, Vote, SavedQuote
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 register = template.Library()
 
 @register.filter
 def is_true(arg):
     return arg is True
+
+@register.filter(name="is_saved_quote")
+def is_saved_quote(quote_id, saver_id):
+    try:
+        sq = SavedQuote.objects.get(quote_id=quote_id, saver_id=saver_id)
+        return True
+    except ObjectDoesNotExist:
+        return False
 
 @register.filter(name="is_less_than_X_characters")
 def is_less_than_X_characters(val, total_characters):

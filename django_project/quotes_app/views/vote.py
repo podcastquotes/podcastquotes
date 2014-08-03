@@ -7,26 +7,6 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from core.forms import VoteForm
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
-
-
-@login_required
-def vote(request, quote_id, vote_type_id):
-    q = get_object_or_404(Quote, pk=quote_id)
-    v = get_object_or_404(User, pk=request.user.id)
-    t = int(vote_type_id)
-    vote, created = Vote.objects.get_or_create(voter=v, quote=q)
-    if vote.vote_type == 1 and t == 1:
-        vote.vote_type = 0
-    elif vote.vote_type == 1 and t == -1:
-        vote.vote_type = -1
-    elif vote.vote_type == -1 and t == -1:
-        vote.vote_type = 0
-    elif vote.vote_type == -1 and t == 1:
-        vote.vote_type = 1
-    else:
-        vote.vote_type = t
-    vote.save()
-    return HttpResponseRedirect('/')
     
 class JSONFormMixin(object):
     def create_response(self, vdict=dict(), valid_form=True):

@@ -15,8 +15,9 @@ from quotes_app.views.home import HomeEpisodeListView, HomeQuoteListView
 from quotes_app.views.podcast import PodcastEpisodeListView, PodcastAllEpisodeListView, PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDeleteView
 from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint, create_full_episodes
-from quotes_app.views.user import UserQuoteListView, UserProfileUpdateView, UserProfileDeleteView
+from quotes_app.views.user import UserQuoteListView, UserSavedQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views.vote import VoteFormView
+from quotes_app.views.save import SaveQuoteFormView
 from quotes_app.views.autocomplete import navigation_autocomplete
 
 
@@ -44,7 +45,11 @@ urlpatterns = patterns('',
     
     # this view helps Mitch check episodes in a podcast rss feed
     url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
-
+    
+    url(r'^people/(?P<slug>\w+)/saved/$', UserSavedQuoteListView.as_view(), name='user_saved_quote_list_root'),
+    
+    url(r'^people/(?P<slug>\w+)/saved/(?P<query_filter>\w+)/$', UserSavedQuoteListView.as_view(), name='user_saved_quote_list'),
+    
     url(r'^people/(?P<slug>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list_root'),
     
     url(r'^people/(?P<slug>\w+)/edit/$', UserProfileUpdateView.as_view(), name='user_update'),
@@ -62,6 +67,8 @@ urlpatterns = patterns('',
     url(r'^highlights/create/$', QuoteCreateView.as_view(), name='quote_create'),
     
     url(r'^highlights/vote/$', login_required(VoteFormView.as_view()), name="quote_vote"),
+    
+    url(r'^highlights/save/$', login_required(SaveQuoteFormView.as_view()), name="quote_save"),
     
     url(r'^highlights/(?P<query_filter>\w+)/$', HomeQuoteListView.as_view(), name='home_quote_list_filter'),
 

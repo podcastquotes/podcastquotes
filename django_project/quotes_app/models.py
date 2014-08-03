@@ -253,8 +253,8 @@ class Quote(models.Model):
         else:
             return 0
             
-    def is_longer_than_150chars(self):
-        if len(self.text) > 150:
+    def is_longer_than_120chars(self):
+        if len(self.text) > 120:
             return 1
         else:
             return 0
@@ -332,6 +332,10 @@ class Vote(models.Model):
     
     def __unicode__(self):
         return "Vote by: " + str(self.voter)  
+    
+class SavedQuote(models.Model):
+    saver = models.ForeignKey(User)
+    quote = models.ForeignKey(Quote)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)

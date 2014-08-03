@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.forms import ModelForm
 from django.http import Http404
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+from quotes_app.models import Podcast, Episode, Quote, Vote, SavedQuote, UserProfile
 from quotes_app.fields import EpisodeField
 from captcha.fields import ReCaptchaField
 
@@ -137,6 +137,11 @@ class VoteForm(forms.ModelForm):
 
     class Meta:
         model = Vote
+        
+class SaveQuoteForm(forms.ModelForm):
+
+    class Meta:
+        model = SavedQuote
         
 class AllauthSignupForm(forms.Form):
     captcha = ReCaptchaField()

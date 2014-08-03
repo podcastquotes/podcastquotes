@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+from quotes_app.models import Podcast, Episode, Quote, Vote, SavedQuote, UserProfile
 
 admin.site.unregister(User)
 
@@ -18,5 +18,5 @@ class EpisodeAdmin(admin.ModelAdmin):
     
 admin.site.register(Episode, EpisodeAdmin)
 
-for model in [Podcast, Quote, Vote]:
+for model in [Podcast, Quote, Vote, SavedQuote]:
     admin.site.register(model)

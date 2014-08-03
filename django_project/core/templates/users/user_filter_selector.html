@@ -1,17 +1,29 @@
 <div class="pq-nav-wrapper">
-    <a href="{{ user.userprofile.get_absolute_url }}hot/">
+    <a href="{% if user_saved_is_active %}
+                 {{ user.userprofile.get_absolute_url }}saved/hot/
+             {% else %}
+                 {{ user.userprofile.get_absolute_url }}hot/
+             {% endif %}">
         <div class="pq-nav{% if user_hot_is_active %}-active{% endif %}">
             hot
         </div>
     </a>
 
-    <a href="{{ user.userprofile.get_absolute_url }}new/">
+    <a href="{% if user_saved_is_active %}
+                 {{ user.userprofile.get_absolute_url }}saved/new/
+             {% else %}
+                 {{ user.userprofile.get_absolute_url }}new/
+             {% endif %}">
         <div class="pq-nav{% if user_new_is_active %}-active{% endif %} pq-nav-disappear-4">
             new
         </div>
     </a>
 
-    <a href="{{ user.userprofile.get_absolute_url }}top/">
+    <a href="{% if user_saved_is_active %}
+                 {{ user.userprofile.get_absolute_url }}saved/top/
+             {% else %}
+                 {{ user.userprofile.get_absolute_url }}top/
+             {% endif %}">
         <div class="pq-nav{% if user_top_is_active %}-active{% endif %} pq-nav-disappear-3">
             top
         </div>
@@ -23,4 +35,22 @@
     </div>
     
     <div class="clearfix"></div>
+    
 </div><!-- pq-nav-wrapper -->
+
+<div class="pq-nav-wrapper">
+    {% if request.user = person %}
+        <a href="{{ user.userprofile.get_absolute_url }}">
+            <div class="pq-nav{% if user_posted_is_active %}-active{% endif %}">
+                posted
+            </div>
+        </a>
+    {% endif %}
+    {% if request.user = person %}
+        <a href="{{ user.userprofile.get_absolute_url }}saved/">
+            <div class="pq-nav{% if user_saved_is_active %}-active{% endif %}">
+                saved
+            </div>
+        </a>
+    {% endif %}
+</div>

@@ -3,7 +3,6 @@
 {% load humanize %}
 
 <div class="pq-quote" id="pq-quote-{{ forloop.counter }}">
-    
     <div class="pq-slim-quote-buttons">
         <form method="post" action="{% url 'quote_vote' %}" class="vote_form">
             {% csrf_token %}
@@ -298,7 +297,7 @@
                     {% if is_home_clips_page or is_podcast_clips_page or is_quote_page or is_user_page %}
                         {% if quote.episode.title %} 
                             <a href="/{{ quote.episode.podcast.slug }}/episodes/{{ quote.episode.pk }}">
-                                Episode: {{ quote.episode.title }}
+                                {{ quote.episode.title }}
                             </a>
                             <br>
                         {% endif %}
@@ -319,14 +318,14 @@
                     {% if quote.text %}
                         <div class="pq-quote-text-preview" 
                              id="pq-quote-text-preview-{{ forloop.counter }}">
-                            {% if not quote.is_longer_than_150chars %}
+                            {% if not quote.is_longer_than_120chars %}
                                 {% autoescape off %}
                                     {{ quote.text|urlize|linebreaks }}
                                 {% endautoescape %}
                             {% endif %}
-                            {% if quote.is_longer_than_150chars %}
+                            {% if quote.is_longer_than_120chars %}
                                 {% autoescape off %}
-                                    {{ quote.text|linebreaks|truncatechars:150 }}
+                                    {{ quote.text|linebreaks|truncatechars:120 }}
                                 {% endautoescape %}
                                 <span class="pq-show-more" id="show-more-{{ forloop.counter }}">
                                     show
@@ -339,7 +338,7 @@
                              {% autoescape off %}
                                 {{ quote.text|urlize|linebreaks }}
                              {% endautoescape %}
-                            {% if quote.is_longer_than_150chars %}
+                            {% if quote.is_longer_than_120chars %}
                                 <div class="pq-show-less" id="show-less-{{ forloop.counter }}" style="margin-bottom:5px;">
                                     less
                                 </div>
@@ -453,25 +452,23 @@
         {% endif %}
     
         {% if quote.is_full_episode|is_true and is_episode_page %}
-            <div class="pq-quote-date gray-link">
+            <div class="pq-quote-date text-gray">
                 <span class="font-semibold">Full Episode</span>
             </div>
         {% else %}
             {% if quote.time_quote_begins and quote.time_quote_ends %}
-                <div class="pq-quote-date gray-link">
-                    <a href="{{ quote.get_absolute_url }}">       
+                <div class="pq-quote-date text-gray">      
+                    {% if quote.time_quote_ends %}
+                        Length: {{ quote.duration }}
+                    {% endif %}
+                    {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
                         {% if quote.time_quote_ends %}
-                            Length: {{ quote.duration }}
-                        {% endif %}
-                        {% if is_home_page or is_podcast_page or is_quote_page or is_user_page or is_episode_page %}
+                            / {{ quote.converted_time_begins }} 
                             {% if quote.time_quote_ends %}
-                                / {{ quote.converted_time_begins }} 
-                                {% if quote.time_quote_ends %}
-                                    - {{ quote.converted_time_ends }}
-                                {% endif %}
+                                - {{ quote.converted_time_ends }}
                             {% endif %}
                         {% endif %}
-                    </a>
+                    {% endif %}
                 </div>
             {% endif %}
         {% endif %}
@@ -484,12 +481,10 @@
         {% endif %}
         -->
     
-    {% if is_quote_page %}
-        {% if not quote.is_full_episode|is_true %}
-            <div class="pq-quote-posted-by blue-link">
-                posted {{ quote.created_at|naturaltime }} by <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
-            </div>
-        {% endif %}
+    {% if not quote.is_full_episode|is_true %}
+        <div class="pq-quote-posted-by blue-link">
+            <span class="text-gray">posted {{ quote.created_at|naturaltime }} by</span> <a href="{{ quote.submitted_by.userprofile.get_absolute_url }}">{{ quote.submitted_by }}</a>
+        </div>
     {% endif %}
 
     <div class="pq-quote-bottom-buttons" style="float:left;clear:left;">
@@ -499,7 +494,6 @@
         <button class="pq-quote-bottom-button" data-toggle="modal" data-target="#quoteShareModal{{ quote.id }}">
             share
         </button>
-        
         
         <!-- Modal -->
         <div class="modal fade" id="quoteShareModal{{ quote.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -523,6 +517,37 @@
             </div>
         </div><!-- /.modal fade -->
 
+        <div class="pq-quote-bottom-button dark-link display-none-mobile">
+            <a href="{{ quote.episode.episode_url }}" download>
+                download
+            </a>
+        </div>
+        <form method="POST" action="{% url 'quote_save' %}" class="save_form">
+            {% csrf_token %}
+            <input type="hidden" id="id_quote" name="quote" class="hidden_id" value="{{ quote.pk }}" />
+            <input type="hidden" id="id_saver" name="saver" class="hidden_id" value="{{ user.pk }}" />
+            {% if not user.is_authenticated %}
+                <button onclick="location.href = '/accounts/login/';" 
+                        class="pq-quote-bottom-button dark-link" 
+                        id="pq-quote-save-button-{{ quote.id }}" 
+                        title="Please login to vote">
+                    save
+                </button>
+            {% else %}
+                {% if quote.id|is_saved_quote:user.id %}
+                    <button class="pq-quote-bottom-button text-yellow" 
+                            id="pq-quote-save-button-{{ quote.id }}">
+                        saved
+                    </button>
+                {% else %}
+                    <button class="pq-quote-bottom-button dark-link" 
+                            id="pq-quote-save-button-{{ quote.id }}">
+                        save
+                    </button>
+                {% endif %}
+            {% endif %}
+        </form>
+        
         {% if is_home_page or is_podcast_page or is_episode_page or is_quote_page or is_user_page %}
             {% if quote.episode.support_url %}
                 <div class="pq-quote-bottom-button text-orange">
