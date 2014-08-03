@@ -324,4 +324,4 @@ class UserSavedQuoteListView(ListView):
         elif f == 'birthdays':
             return Quote.quote_vote_manager.query_birthdays().filter(savedquote__saver_id=u)
         else:
-            return Quote.quote_vote_manager.query_hot().filter(savedquote__saver_id=u)
+            return Quote.quote_vote_manager.query_new().filter(savedquote__saver_id=u)
