@@ -16,7 +16,7 @@
               
             </div><!-- /.navbar-header -->
             
-            <div class="col-sm-7 pull-left hidden-xs">
+            <div class="pull-left hidden-xs">
                 <form class="navbar-form pq-search-bar" role="search">
                     <div class=" pull-left">
                         <input type="text" 
@@ -84,13 +84,13 @@
                                  {% else %}
                                      {% url 'quote_create' %}
                                  {% endif %}">
-                                 <i class="fa fa-plus-square"></i>&nbsp Add a Highlight
+                                 <i class="fa fa-plus-square"></i> Add Highlight
                         </a>
                     </li>
                     
                     <li>
                         <a class="pq-navbar-dropdown-1 dropdown-toggle" data-toggle="dropdown">
-                            {{ request.user.username|truncatechars:11 }} <i class="fa fa-caret-down"></i>
+                            {{ request.user.username|truncatechars:12 }} <i class="fa fa-caret-down"></i>
                         </a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="/people/{{ request.user.username }}">My Profile</a></li>
@@ -112,7 +112,7 @@
                                  {% else %}
                                      {% url 'quote_create' %}
                                  {% endif %}">
-                                 <i class="fa fa-plus-square"></i>&nbsp Add a Highlight
+                                 <i class="fa fa-plus-square"></i> Add Highlight
                         </a>
                     </li>
                     
