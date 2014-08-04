@@ -51,7 +51,7 @@ class QuoteCreateView(CreateView):
         context = super(QuoteCreateView, self).get_context_data(**kwargs)
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         return context
     
@@ -112,7 +112,7 @@ class QuoteUpdateView(UpdateView):
         podcast_id = q.episode.podcast.id
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['podcast'] = Podcast.objects.get(id=q.episode.podcast.id)
         
@@ -170,7 +170,7 @@ class QuoteDeleteView(DeleteView):
         podcast_id = q.episode.podcast.id
         
         ### context['podcasts'] must be refactored, this is passed to all views
-        context['podcasts'] = Podcast.objects.all().order_by('title')
+        context['podcasts'] = Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True)
         
         context['podcast'] = Podcast.objects.get(id=q.episode.podcast.id)
         
@@ -242,7 +242,7 @@ def quote(request, quote_id, podcast_slug):
     more_podcast_quotes = more_podcast_quotes[:20]
     
     return render(request, 'quote.html',
-                 {'podcasts': Podcast.objects.all().order_by('title'),
+                 {'podcasts': Podcast.objects.all().order_by('alphabetical_title').exclude(is_hidden=True),
                  'podcast': Podcast.objects.get(id=q_object.episode.podcast.id),
                  'episodes': all_episodes,
                  # ('karma_leaders'): all_karma_leaders,
