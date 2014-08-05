@@ -23,8 +23,7 @@ def create_full_episodes(self):
             try:
                 full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
             except MultipleObjectsReturned:
-                alert('Episode #' + str(episode.id) + 'returns multiple objects!')
-                break
+                continue
             except ObjectDoesNotExist:
                 # user with id=1 is the user "podverse" on podverse.tv
                 user = User.objects.get(id=1)
