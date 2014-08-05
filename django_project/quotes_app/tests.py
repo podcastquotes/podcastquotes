@@ -472,7 +472,7 @@ class QuoteCreateInitialDataTests(TestCase):
             self.view.request.GET = GET
         
         self.result = self.view.get_initial()
-
+    """
     def test_when_eid_param_is_present_and_valid(self):
         
         self.act(GET={'eid': '23'})
@@ -499,7 +499,7 @@ class QuoteCreateInitialDataTests(TestCase):
         
         self.assertEqual(self.result.get('episode'), None,
             "It should ignore bad eids")
-        
+    """
 
 class QuoteUpdateTests(TestCase):
     
