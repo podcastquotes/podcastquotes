@@ -8,6 +8,7 @@ from django.utils.timezone import now
 from datetime import date, datetime
 from time import time
 import pytz
+import re
 from urlparse import urlparse, parse_qs
 from django_resized import ResizedImageField
  
@@ -56,9 +57,9 @@ class Podcast(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     moderators = models.ManyToManyField(User, blank=True)
     rss_url = models.URLField(blank=True)
-    title = models.CharField(max_length=200, blank=True)
+    title = models.CharField(max_length=200)
     alphabetical_title = models.CharField(max_length=200, blank=True)
-    slug = models.SlugField(max_length=50, blank=True)
+    slug = models.SlugField(max_length=50)
     description = models.TextField(blank=True)
     keywords = models.CharField(max_length=500, blank=True)
     image = ResizedImageField(upload_to=get_upload_file_name, max_width=250, max_height=250, blank=True)
@@ -77,6 +78,12 @@ class Podcast(models.Model):
     def save(self, *args, **kwargs):
         non_alpha_title = self.title
         self.alphabetical_title = self.alphabetize_title(non_alpha_title)
+        lower_title = self.title.lower()
+        lower_title_with_hyphens = "-".join(lower_title.split())
+        r = re.compile(r"[^a-zA-Z0-9-]+")
+        self.slug = r.sub("", lower_title_with_hyphens)
+        if self.slug == "":
+            self.slug = "pv-broken-slug"
         super(Podcast, self).save(*args, **kwargs)
     
     # Adapted from respondcreate's SO post 

@@ -29,7 +29,6 @@ class PodcastCreateView(CreateView):
     model = Podcast
     form_class = PodcastCreateForm
     context_object_name = 'podcast'
-    slug_field="slug"
     
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):

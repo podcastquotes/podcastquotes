@@ -76,11 +76,11 @@
                         <a class="pq-navbar-dropdown-2" 
                            style="padding-left:0;"
                            href="{% if is_podcast_page %}
-                                     {% url 'quote_create' %}?pid={{podcast.id}}
+                                     {% url 'quote_create' %}
                                  {% elif is_episode_page %}
-                                     {% url 'quote_create' %}?eid={{episode.id}}
+                                     {% url 'quote_create' %}
                                  {% elif is_quote_page %}
-                                     {% url 'quote_create' %}?eid={{quote.episode.id}}
+                                     {% url 'quote_create' %}
                                  {% else %}
                                      {% url 'quote_create' %}
                                  {% endif %}">

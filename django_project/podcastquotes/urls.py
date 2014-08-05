@@ -78,7 +78,7 @@ urlpatterns = patterns('',
     
     url(r'^episodes/(?P<query_filter>\w+)/$', HomeEpisodeListView.as_view(), name='home_episode_list_filter'),
     
-    url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
+    # url(r'^episodes/create/$', EpisodeCreateView.as_view(), name='episode_create'),
     
 	# JSON Endpoints
     url(r'^episodes/json$', 'quotes_app.views.episode.thin_json_episode_query', name="thin_json_episode_query"),

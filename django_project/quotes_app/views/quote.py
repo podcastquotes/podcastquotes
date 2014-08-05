@@ -55,11 +55,15 @@ class QuoteCreateView(CreateView):
         
         return context
     
+    """
+    THIS FUNCTION IS FLAWED. IF A URI HAS ?eid=### IN IT, THEN YOU CANNOT CHANGE THE
+    PODCAST/EPISODE TO CREATE A QUOTE FOR A PODCAST/EPISODE OTHER THAN THE ONE SPECIFIED
+    IN THE URI
     def get_episode_id(self):
-        """
-        Robustly obtains a valid Episode id from the 'eid' uri param.
-        Returns None if it isn't valid (blank/not-exist/garbage/etc)
-        """
+        #
+        # Robustly obtains a valid Episode id from the 'eid' uri param.
+        # Returns None if it isn't valid (blank/not-exist/garbage/etc)
+        #
         
         eid = None
         
@@ -83,10 +87,10 @@ class QuoteCreateView(CreateView):
         return eid
     
     def get_initial(self):
-        """
-        Called in the Django view pipeline to obtain initial data for
-        a form.
-        """
+        #
+        # Called in the Django view pipeline to obtain initial data for
+        # a form.
+        #
         return_val = {}
         
         episode_id = self.get_episode_id()
@@ -95,7 +99,8 @@ class QuoteCreateView(CreateView):
             return_val['episode'] = episode_id
         
         return return_val
-
+    """
+    
 class QuoteUpdateView(UpdateView):
     model = Quote
     template_name = 'quote_update.html'
