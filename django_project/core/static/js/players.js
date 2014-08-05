@@ -86,15 +86,25 @@ $(window).load(function () {
                 // When the player is ready, we load the video.
                 // loadVideoById starts the video automatically.
                 // cueVideoById does not start the video automatically.
+                // loadVideoById does not work on most mobile devices
                   
-                function onPlayerReady(event) {
-                    event.target.loadVideoById({ 
-                        videoId: YouTubeIDs[i],
-                        startSeconds: timeBegins[i],
-                        endSeconds: timeEnds[i]
-                    });
-                  };
-                    
+                 if (typeof window.orientation == 'undefined') {
+                    function onPlayerReady(event) {
+                        event.target.loadVideoById({ 
+                            videoId: YouTubeIDs[i],
+                            startSeconds: timeBegins[i],
+                            endSeconds: timeEnds[i]
+                        });
+                      };
+                 } else {
+                    function onPlayerReady(event) {
+                        event.target.cueVideoById({ 
+                            videoId: YouTubeIDs[i],
+                            startSeconds: timeBegins[i],
+                            endSeconds: timeEnds[i]
+                        });
+                      };
+                 }
                   var done = false;
                   function onPlayerStateChange(event) {
                       if (event.data == 0) {
