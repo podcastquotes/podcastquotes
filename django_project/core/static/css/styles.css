@@ -1635,7 +1635,7 @@ button {
     .pq-slim-quote-xs-buttons {
         float:left;
         clear:left;
-        margin:5px 20px 5px 0;
+        margin:5px 6px 5px 0;
     }
 }
 
@@ -2058,7 +2058,7 @@ button {
 @media (max-width:767px) {
     .mobile-start-button-wrapper {
         float:left;
-        margin:10px 10px 10px 0;
+        margin:10px 10px 0 0;
         font-size:14px;
         color:#f7f7f7;
         width:90px;
