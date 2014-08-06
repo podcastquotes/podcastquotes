@@ -463,7 +463,7 @@ a {
 }
 
 .pq-search-bar input {
-    width:220px; 
+    width:180px !important;
     font-size:14px; 
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
