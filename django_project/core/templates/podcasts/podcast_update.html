@@ -33,14 +33,6 @@
               <label class="pq-form-label {% if form.title.errors %}error{% endif %}" for="title">Title</label>
               {{ form.title }}
           </div><!-- /.pq-form-input -->
-          
-          <div class="pq-form-input">
-              {% if form.slug.errors %}
-                  <p class="error">{{ form.slug.errors }}</p>
-              {% endif %}
-              <label class="pq-form-label {% if form.slug.errors %}error{% endif %}" for="slug">URL Slug</label>
-              {{ form.slug }}
-          </div><!-- /.pq-form-input -->
 
           <div class="pq-form-input">
               {% if form.keywords.errors %}

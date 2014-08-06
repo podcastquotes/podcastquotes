@@ -36,11 +36,10 @@ class PodcastForm(forms.ModelForm):
     
     class Meta:
         model = Podcast
-        exclude = ('moderators', 'alphabetical_title')
+        exclude = ('moderators', 'alphabetical_title', 'slug')
         widgets = {
             'rss_url': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
-            'slug': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'keywords': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'homepage': forms.URLInput(attrs={'class':'form-control', 'placeholder': ''}),
@@ -72,18 +71,17 @@ class EpisodeForm(forms.ModelForm):
     
     class Meta:
         model = Episode
-        exclude = ('',)
+        exclude = ('description',)
         widgets = {
             'podcast': forms.Select(attrs={'class':'form-control', 'placeholder':''}),
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':''}),
             'guid': forms.TextInput(attrs={'class':'form-control', 'placeholder':'globally unique identifier'}),
             'publication_date': forms.DateInput(attrs={'class':'form-control', 'placeholder':'mm/dd/yy'}),
-            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder': ''}),
             'youtube_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to full-length, unedited episode on YouTube'}),
             'episode_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'direct URL to mp3 or video file'}),
             'support_url': forms.URLInput(attrs={'class':'form-control', 'placeholder': 'link to support for this episode'}),
-            'support_recipient': forms.TextInput(attrs={'class':'form-control', 'placeholder':'name of recipient (will appear as banner on clip page)'}),
-            'support_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "description of recipient (will appear on banner on clip page)"}),
+            'support_recipient': forms.TextInput(attrs={'class':'form-control', 'placeholder':'name of recipient'}),
+            'support_recipient_about': forms.Textarea(attrs={'class':'form-control', 'placeholder': "description of recipient"}),
         }
 
 class QuoteForm(forms.ModelForm):

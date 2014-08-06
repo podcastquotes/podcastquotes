@@ -539,8 +539,7 @@
             {% endif %}
                 
         {% endif %}
-        
-        {% if request.user == quote.submitted_by or user.is_superuser %}
+        {% if request.user == quote.submitted_by or user.is_superuser or user in podcast.moderators.all %}
             <div class="pq-quote-bottom-button text-purple"
                  style="margin:0 20px 0 0;">
                 <a href="{{ quote.get_absolute_url }}edit/">
