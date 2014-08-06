@@ -159,6 +159,8 @@ class QuoteUpdateView(UpdateView):
             return quote
         elif self.request.user.is_superuser:
             return quote
+        elif self.request.user in podcast.moderators.all():
+            return quote
         else:
             raise Http404
 
