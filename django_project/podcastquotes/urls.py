@@ -108,7 +108,7 @@ urlpatterns = patterns('',
     
     url(r'^(?P<slug>[\w-]+)/delete/$', PodcastDeleteView.as_view(), name='podcast_delete'),  
     
-    url(r'^(?P<slug>[\w-]+)/episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list'),
+    url(r'^(?P<slug>[\w-]+)/episodes/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
     
     url(r'^(?P<podcast_slug>[\w-]+)/episodes/(?P<pk>\d+)/$', EpisodeQuoteListView.as_view(), name='episode_quote_list_root'),
     
