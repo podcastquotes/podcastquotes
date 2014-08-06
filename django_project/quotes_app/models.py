@@ -325,7 +325,8 @@ class Vote(models.Model):
     quote = models.ForeignKey(Quote)
     UPVOTE = 1
     NOVOTE = 0
-    DOWNVOTE = -1
+    # deactivated downvote, to activate set = to -1
+    DOWNVOTE = 0
     VOTE_CHOICES = (
         (UPVOTE, 'Upvote'),
         (NOVOTE, 'Novote'),
