@@ -115,7 +115,7 @@ class Podcast(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('podcast_episode_list_root', kwargs={'slug': self.slug})
+        return reverse('podcast_quote_list_root', kwargs={'slug': self.slug})
 
     def all_podcast_quotes(self):
        return Quote.objects.filter(episode__podcast=self)

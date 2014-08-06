@@ -58,7 +58,7 @@ urlpatterns = patterns('',
     
     url(r'^people/(?P<slug>\w+)/(?P<query_filter>\w+)/$', UserQuoteListView.as_view(), name='user_quote_list'),
     
-    url(r'^$', HomeEpisodeListView.as_view(), name='home'),
+    url(r'^$', HomeQuoteListView.as_view(), name='home'),
     
     url(r'^episodes/$', HomeEpisodeListView.as_view(), name='home_episode_list'),
     
@@ -98,7 +98,7 @@ urlpatterns = patterns('',
         'quotes_app.views.podcast.update_feed', 
         name='update_feed',),
     
-    url(r'^(?P<slug>[\w-]+)/$', PodcastEpisodeListView.as_view(), name='podcast_episode_list_root'),
+    url(r'^(?P<slug>[\w-]+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
     url(r'^(?P<slug>[\w-]+)/all-episodes/$', PodcastAllEpisodeListView.as_view(), name='podcast_all_episode_list_root'),
     
@@ -126,11 +126,9 @@ urlpatterns = patterns('',
     
     url(r'^(?P<podcast_slug>[\w-]+)/highlights/(?P<pk>\d+)/delete/$', QuoteDeleteView.as_view(), name='quote_delete'), 
     
-    url(r'^(?P<slug>[\w-]+)/highlights/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
+    url(r'^(?P<slug>[\w-]+)/highlights/$', PodcastQuoteListView.as_view(), name='podcast_quote_list'),
     
     url(r'^(?P<slug>[\w-]+)/highlights/(?P<query_filter>\w+)/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_filter'),
-    
-    url(r'^(?P<slug>[\w-]+)/highlights/$', PodcastQuoteListView.as_view(), name='podcast_quote_list_root'),
     
 )
 
