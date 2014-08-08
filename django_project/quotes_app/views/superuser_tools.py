@@ -21,7 +21,7 @@ def create_full_episodes(self):
     for episode in episodes:
         if episode.youtube_url or episode.episode_url:
             try:
-                full_episode_quote = Quote.objects.get(episode__id=episode.id, is_full_episode=True)
+                full_episode_quote = Quote.objects.get(episode_id=episode.id, is_full_episode=True)
             except MultipleObjectsReturned:
                 continue
             except ObjectDoesNotExist:
