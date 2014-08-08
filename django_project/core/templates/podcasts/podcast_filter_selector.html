@@ -1,9 +1,9 @@
 <div class="pq-nav-wrapper">
     <a href="
             {% if is_podcast_episodes_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/hot/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}hot/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/hot/
+                {% url 'podcast_quote_list_root' slug=podcast.slug %}highlights/hot/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_hot_is_active %}-active{% endif %}">
@@ -13,9 +13,9 @@
 
     <a href="
             {% if is_podcast_episodes_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/ordered/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}ordered/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/ordered/
+                {% url 'podcast_quote_list_root' slug=podcast.slug %}highlights/ordered/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_ordered_is_active %}-active{% endif %} pq-nav-disappear-4">
@@ -25,9 +25,9 @@
     
     <a href="
             {% if is_podcast_episodes_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/new/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}new/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/new/
+                {% url 'podcast_quote_list_root' slug=podcast.slug %}highlights/new/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_new_is_active %}-active{% endif %} pq-nav-disappear-4">
@@ -37,9 +37,9 @@
 
     <a href="
             {% if is_podcast_episodes_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}episodes/top/
+                {% url 'podcast_episode_list_root' slug=podcast.slug %}top/
             {% elif is_podcast_clips_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}highlights/top/
+                {% url 'podcast_quote_list_root' slug=podcast.slug %}highlights/top/
             {% endif %}
             ">
         <div class="pq-nav{% if podcast_top_is_active %}-active{% endif %} pq-nav-disappear-3">
@@ -49,9 +49,9 @@
 
     <a style="float:right" href="
             {% if is_podcast_all_episodes_page %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}
+                /{{ podcast.slug }}/all-episodes/
             {% else %}
-                {% url 'podcast_episode_list_root' slug=podcast.slug %}all-episodes/
+                {% url 'podcast_quote_list_root' slug=podcast.slug %}
             {% endif %}">
         <div class="pq-show-all{% if is_podcast_all_episodes_page %}-active{% endif %}">
             show all
