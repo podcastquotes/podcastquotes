@@ -80,15 +80,30 @@ class PodcastSyndicationService():
         new_episode_count = 0
         
         for e in feed.entries:
-            e_guid = e.guid
+            try:
+                e_guid = e.guid
+            except AttributeError:
+                continue
             episode, created = Episode.objects.get_or_create(podcast_id=podcast_id, guid=e_guid)
             
             if created == False:
                 continue
             
-            episode.title = e.title
-            episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
-            episode.description = strip_tags(e.description)
+            try:
+                episode.title = e.title
+            except AttributeError:
+                pass
+            
+            try:
+                episode.publication_date = datetime.fromtimestamp(calendar.timegm(e.published_parsed), tz=pytz.utc)
+            except AttributeError:
+                pass
+                
+            try:
+                episode.description = strip_tags(e.description)
+            except AttributeError:
+                pass
+            
             try:
                 episode.episode_url = e.enclosures[0].href
             except IndexError:
