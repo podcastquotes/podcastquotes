@@ -6,12 +6,23 @@ from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView
 from quotes_app.models import Podcast, Episode, Quote, Vote, UserProfile
+from quotes_app.services import PodcastSyndicationService
 
 from django.utils.html import strip_tags
 import feedparser
 import calendar
 from datetime import datetime
 import pytz
+
+podcast_syndication_service = PodcastSyndicationService()
+
+@user_passes_test(lambda u: u.is_staff)
+def update_all_feeds(self):
+    podcasts = Podcast.objects.all()
+    for p in podcasts:     
+        podcast_syndication_service.collect_episodes(p)
+        
+    return HttpResponseRedirect('/')
 
 # this view checks if every episode with a youtube_url has a full episode clip,
 # if not, it creates one.

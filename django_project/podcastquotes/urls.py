@@ -14,7 +14,7 @@ from quotes_app.views.episode import EpisodeQuoteListView, EpisodeCreateView, Ep
 from quotes_app.views.home import HomeEpisodeListView, HomeQuoteListView
 from quotes_app.views.podcast import PodcastEpisodeListView, PodcastAllEpisodeListView, PodcastQuoteListView, PodcastCreateView, PodcastUpdateView, PodcastDeleteView
 from quotes_app.views.quote import QuoteCreateView, QuoteUpdateView, QuoteDeleteView
-from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint, create_full_episodes
+from quotes_app.views.superuser_tools import NeedYouTubeLinks, PodcastEpisodeTitlePrint, create_full_episodes, update_all_feeds
 from quotes_app.views.user import UserQuoteListView, UserSavedQuoteListView, UserProfileUpdateView, UserProfileDeleteView
 from quotes_app.views.vote import VoteFormView
 from quotes_app.views.save import SaveQuoteFormView
@@ -42,6 +42,8 @@ urlpatterns = patterns('',
     url(r'^create-full-episodes/$', 'quotes_app.views.superuser_tools.create_full_episodes', name='create_full_episodes'),
     
     url(r'^update-all-existing-episodes/$', 'quotes_app.views.superuser_tools.update_all_existing_episodes', name='update_all_existing_episodes'),
+    
+    url(r'^update-all-feeds/$', 'quotes_app.views.superuser_tools.update_all_feeds', name='update_all_feeds'),
     
     # this view helps Mitch check episodes in a podcast rss feed
     url(r'^podcasts/(?P<pk>\d+)/print-episodes/$', PodcastEpisodeTitlePrint.as_view(), name='podcast_episode_title_print'),
