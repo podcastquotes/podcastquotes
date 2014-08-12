@@ -20,10 +20,28 @@ def create_full_episodes(self):
     episodes = Episode.objects.all()
     for episode in episodes:
         if episode.youtube_url or episode.episode_url:
+            # these try/excepts are a brutal hack
+            # allowing it because development is basically finished until redevelopment
             try:
                 full_episode_quote = Quote.objects.get(episode_id=episode.id, is_full_episode=True)
             except MultipleObjectsReturned:
-                continue
+                try:
+                    full_episode_quote = Quote.objects.get(episode_title=episode.title, is_full_episode=True)
+                except MultipleObjectsReturned:
+                    continue
+                except ObjectDoesNotExist:
+                    # user with id=1 is the user "podverse" on podverse.tv
+                    user = User.objects.get(id=1)
+                    full_episode_quote = Quote.create(submitted_by=user,
+                                                  rank_score=float(0.0),
+                                                  episode=episode,
+                                                  summary=episode.title,
+                                                  text=episode.description,
+                                                  time_quote_begins=int(0),
+                                                  is_full_episode=True)
+                    full_episode_quote.save()
+                    vote = Vote.create(voter=user, quote=full_episode_quote, vote_type=1)
+                    vote.save()
             except ObjectDoesNotExist:
                 # user with id=1 is the user "podverse" on podverse.tv
                 user = User.objects.get(id=1)
